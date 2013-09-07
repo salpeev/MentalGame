@@ -7,6 +7,7 @@
 //
 
 #import "MGOpenGLView.h"
+#import "RenderingEngine.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -14,6 +15,8 @@
 
 @interface MGOpenGLView ()
 {
+    RenderingEngine *m_renderingEngine;
+    
     GLuint m_resolveFramebuffer;
     GLuint m_sampleFramebuffer;
     GLuint m_resolveColorRenderbuffer;
@@ -77,10 +80,17 @@
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
         
+        m_renderingEngine = new RenderingEngine(width, height);
+        
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    delete m_renderingEngine;
 }
 
 #pragma mark - Private Methods
@@ -91,7 +101,7 @@
     glBindRenderbuffer(GL_RENDERBUFFER, m_sampleColorRenderbuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
     
-    // TODO: Drawing code here
+    m_renderingEngine->Render();
     
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, m_resolveFramebuffer);
     glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, m_sampleFramebuffer);

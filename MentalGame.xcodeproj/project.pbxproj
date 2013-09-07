@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B47E8D9217DBD8E4008CE6DD /* RenderingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47E8D9017DBD8E4008CE6DD /* RenderingEngine.cpp */; };
 		B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971317DB671400F4A436 /* UIKit.framework */; };
 		B4E0971617DB671400F4A436 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971517DB671400F4A436 /* Foundation.framework */; };
 		B4E0971817DB671400F4A436 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971717DB671400F4A436 /* CoreGraphics.framework */; };
@@ -16,13 +17,17 @@
 		B4E0972617DB671400F4A436 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E0972517DB671400F4A436 /* Default.png */; };
 		B4E0972817DB671400F4A436 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E0972717DB671400F4A436 /* Default@2x.png */; };
 		B4E0972A17DB671400F4A436 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E0972917DB671400F4A436 /* Default-568h@2x.png */; };
-		B4E0974417DB75DD00F4A436 /* MGOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E0974117DB75DD00F4A436 /* MGOpenGLView.m */; };
+		B4E0974417DB75DD00F4A436 /* MGOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4E0974117DB75DD00F4A436 /* MGOpenGLView.mm */; };
 		B4E0974517DB75DD00F4A436 /* MGOpenGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E0974317DB75DD00F4A436 /* MGOpenGLViewController.m */; };
 		B4E0974717DB75ED00F4A436 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0974617DB75ED00F4A436 /* QuartzCore.framework */; };
 		B4E0974917DB75F400F4A436 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0974817DB75F400F4A436 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B47E8D9017DBD8E4008CE6DD /* RenderingEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingEngine.cpp; sourceTree = "<group>"; };
+		B47E8D9117DBD8E4008CE6DD /* RenderingEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingEngine.h; sourceTree = "<group>"; };
+		B47E8DCB17DBE047008CE6DD /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		B47E8DCD17DBE054008CE6DD /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		B4E0971017DB671400F4A436 /* MentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E0971317DB671400F4A436 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4E0971517DB671400F4A436 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,7 +42,7 @@
 		B4E0972717DB671400F4A436 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B4E0972917DB671400F4A436 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B4E0974017DB75DD00F4A436 /* MGOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGOpenGLView.h; sourceTree = "<group>"; };
-		B4E0974117DB75DD00F4A436 /* MGOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGOpenGLView.m; sourceTree = "<group>"; };
+		B4E0974117DB75DD00F4A436 /* MGOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MGOpenGLView.mm; sourceTree = "<group>"; };
 		B4E0974217DB75DD00F4A436 /* MGOpenGLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGOpenGLViewController.h; sourceTree = "<group>"; };
 		B4E0974317DB75DD00F4A436 /* MGOpenGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGOpenGLViewController.m; sourceTree = "<group>"; };
 		B4E0974617DB75ED00F4A436 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -60,6 +65,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B47E8D8F17DBD7EE008CE6DD /* RenderingEngine */ = {
+			isa = PBXGroup;
+			children = (
+				B47E8D9017DBD8E4008CE6DD /* RenderingEngine.cpp */,
+				B47E8D9117DBD8E4008CE6DD /* RenderingEngine.h */,
+			);
+			name = RenderingEngine;
+			sourceTree = "<group>";
+		};
+		B47E8DCA17DBE022008CE6DD /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				B47E8DCB17DBE047008CE6DD /* Shader.vsh */,
+				B47E8DCD17DBE054008CE6DD /* Shader.fsh */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
 		B4E0970717DB671400F4A436 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +115,8 @@
 		B4E0971917DB671400F4A436 /* MentalGame */ = {
 			isa = PBXGroup;
 			children = (
+				B47E8DCA17DBE022008CE6DD /* Shaders */,
+				B47E8D8F17DBD7EE008CE6DD /* RenderingEngine */,
 				B4E0974C17DB762500F4A436 /* Views */,
 				B4E0974B17DB761E00F4A436 /* View Controllers */,
 				B4E0974A17DB761700F4A436 /* Main */,
@@ -152,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				B4E0974017DB75DD00F4A436 /* MGOpenGLView.h */,
-				B4E0974117DB75DD00F4A436 /* MGOpenGLView.m */,
+				B4E0974117DB75DD00F4A436 /* MGOpenGLView.mm */,
 			);
 			name = MGOpenGLView;
 			sourceTree = "<group>";
@@ -225,8 +250,9 @@
 			files = (
 				B4E0972017DB671400F4A436 /* main.m in Sources */,
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
-				B4E0974417DB75DD00F4A436 /* MGOpenGLView.m in Sources */,
+				B4E0974417DB75DD00F4A436 /* MGOpenGLView.mm in Sources */,
 				B4E0974517DB75DD00F4A436 /* MGOpenGLViewController.m in Sources */,
+				B47E8D9217DBD8E4008CE6DD /* RenderingEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
