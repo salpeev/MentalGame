@@ -7,32 +7,37 @@
 //
 
 #import "MGOpenGLViewController.h"
+#import "MGOpenGLView.h"
+
+
 
 @interface MGOpenGLViewController ()
 
 @end
 
+
+
 @implementation MGOpenGLViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - Lifecycle
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+#pragma mark - View Lifecycle
 
-- (void)didReceiveMemoryWarning
+- (void)loadView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    
+    MGOpenGLView *openglView = [[MGOpenGLView alloc] initWithFrame:screenBounds];
+    self.view = openglView;
 }
 
 @end

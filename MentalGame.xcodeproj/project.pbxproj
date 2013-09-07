@@ -16,6 +16,10 @@
 		B4E0972617DB671400F4A436 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E0972517DB671400F4A436 /* Default.png */; };
 		B4E0972817DB671400F4A436 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E0972717DB671400F4A436 /* Default@2x.png */; };
 		B4E0972A17DB671400F4A436 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E0972917DB671400F4A436 /* Default-568h@2x.png */; };
+		B4E0974417DB75DD00F4A436 /* MGOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E0974117DB75DD00F4A436 /* MGOpenGLView.m */; };
+		B4E0974517DB75DD00F4A436 /* MGOpenGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E0974317DB75DD00F4A436 /* MGOpenGLViewController.m */; };
+		B4E0974717DB75ED00F4A436 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0974617DB75ED00F4A436 /* QuartzCore.framework */; };
+		B4E0974917DB75F400F4A436 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0974817DB75F400F4A436 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,12 @@
 		B4E0972517DB671400F4A436 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		B4E0972717DB671400F4A436 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B4E0972917DB671400F4A436 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B4E0974017DB75DD00F4A436 /* MGOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGOpenGLView.h; sourceTree = "<group>"; };
+		B4E0974117DB75DD00F4A436 /* MGOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGOpenGLView.m; sourceTree = "<group>"; };
+		B4E0974217DB75DD00F4A436 /* MGOpenGLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGOpenGLViewController.h; sourceTree = "<group>"; };
+		B4E0974317DB75DD00F4A436 /* MGOpenGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGOpenGLViewController.m; sourceTree = "<group>"; };
+		B4E0974617DB75ED00F4A436 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B4E0974817DB75F400F4A436 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E0974917DB75F400F4A436 /* OpenGLES.framework in Frameworks */,
+				B4E0974717DB75ED00F4A436 /* QuartzCore.framework in Frameworks */,
 				B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */,
 				B4E0971617DB671400F4A436 /* Foundation.framework in Frameworks */,
 				B4E0971817DB671400F4A436 /* CoreGraphics.framework in Frameworks */,
@@ -68,9 +80,11 @@
 		B4E0971217DB671400F4A436 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B4E0971317DB671400F4A436 /* UIKit.framework */,
-				B4E0971517DB671400F4A436 /* Foundation.framework */,
 				B4E0971717DB671400F4A436 /* CoreGraphics.framework */,
+				B4E0971517DB671400F4A436 /* Foundation.framework */,
+				B4E0974817DB75F400F4A436 /* OpenGLES.framework */,
+				B4E0974617DB75ED00F4A436 /* QuartzCore.framework */,
+				B4E0971317DB671400F4A436 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -78,8 +92,9 @@
 		B4E0971917DB671400F4A436 /* MentalGame */ = {
 			isa = PBXGroup;
 			children = (
-				B4E0972217DB671400F4A436 /* MGAppDelegate.h */,
-				B4E0972317DB671400F4A436 /* MGAppDelegate.m */,
+				B4E0974C17DB762500F4A436 /* Views */,
+				B4E0974B17DB761E00F4A436 /* View Controllers */,
+				B4E0974A17DB761700F4A436 /* Main */,
 				B4E0971A17DB671400F4A436 /* Supporting Files */,
 			);
 			path = MentalGame;
@@ -97,6 +112,49 @@
 				B4E0972917DB671400F4A436 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4E0974A17DB761700F4A436 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B4E0972217DB671400F4A436 /* MGAppDelegate.h */,
+				B4E0972317DB671400F4A436 /* MGAppDelegate.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		B4E0974B17DB761E00F4A436 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B4E0974D17DB762D00F4A436 /* MGOpenGLViewController */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B4E0974C17DB762500F4A436 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4E0974E17DB763700F4A436 /* MGOpenGLView */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B4E0974D17DB762D00F4A436 /* MGOpenGLViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4E0974217DB75DD00F4A436 /* MGOpenGLViewController.h */,
+				B4E0974317DB75DD00F4A436 /* MGOpenGLViewController.m */,
+			);
+			name = MGOpenGLViewController;
+			sourceTree = "<group>";
+		};
+		B4E0974E17DB763700F4A436 /* MGOpenGLView */ = {
+			isa = PBXGroup;
+			children = (
+				B4E0974017DB75DD00F4A436 /* MGOpenGLView.h */,
+				B4E0974117DB75DD00F4A436 /* MGOpenGLView.m */,
+			);
+			name = MGOpenGLView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +225,8 @@
 			files = (
 				B4E0972017DB671400F4A436 /* main.m in Sources */,
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
+				B4E0974417DB75DD00F4A436 /* MGOpenGLView.m in Sources */,
+				B4E0974517DB75DD00F4A436 /* MGOpenGLViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +341,7 @@
 				B4E0972F17DB671400F4A436 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

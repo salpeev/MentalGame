@@ -7,14 +7,19 @@
 //
 
 #import "MGAppDelegate.h"
+#import "MGOpenGLViewController.h"
+
+
 
 @implementation MGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    MGOpenGLViewController *openglViewController = [[MGOpenGLViewController alloc] init];
+    self.window.rootViewController = openglViewController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

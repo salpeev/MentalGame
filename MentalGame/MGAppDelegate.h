@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface MGAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
