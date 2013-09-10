@@ -7,26 +7,36 @@
 //
 
 #include "RenderingEngine.h"
+#include "GLSLProgram.h"
+#include "ResourceManager.h"
 #include <OpenGLES/ES2/gl.h>
 
 
 
-RenderingEngine::RenderingEngine(int width, int height)
-{
-    glViewport(0, 0, width, height);
-}
-
-RenderingEngine::~RenderingEngine()
+namespace Renderer
 {
     
-}
-
-void RenderingEngine::Render() const
-{
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    RenderingEngine::RenderingEngine(int width, int height)
+    {
+        glViewport(0, 0, width, height);
+        
+        string vertexShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("Shader.vsh");
+        GLSLShader vertexShader(GL_VERTEX_SHADER, &vertexShaderSource);
+    }
     
+    RenderingEngine::~RenderingEngine()
+    {
+        
+    }
     
+    void RenderingEngine::Render() const
+    {
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        
+        
+        //    glDrawArrays(GL_LINES, 0, 2);
+    }
     
-//    glDrawArrays(GL_LINES, 0, 2);
 }

@@ -6,14 +6,19 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-class RenderingEngine
+namespace Renderer
 {
-public:
-    RenderingEngine(int width, int height);
-    ~RenderingEngine();
     
-    void Render() const;
+    class RenderingEngine
+    {
+    public:
+        RenderingEngine(int width, int height);
+        ~RenderingEngine();
+        
+        void Render() const;
+        
+    private:
+        
+    };
     
-private:
-    
-};
+}

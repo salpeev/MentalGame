@@ -8,8 +8,11 @@
 
 #import "MGOpenGLView.h"
 #import "RenderingEngine.h"
+#import "ResourceManager.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
+
+using namespace Renderer;
 
 
 
