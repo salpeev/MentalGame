@@ -10,6 +10,9 @@
 #include "GLSLProgram.h"
 #include "ResourceManager.h"
 #include <OpenGLES/ES2/gl.h>
+#include <iostream>
+
+using namespace std;
 
 
 
@@ -21,7 +24,15 @@ namespace Renderer
         glViewport(0, 0, width, height);
         
         string vertexShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("Shader.vsh");
-        GLSLShader vertexShader(GL_VERTEX_SHADER, &vertexShaderSource);
+        string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("Shader.fsh");
+        
+        GLSLShader *vertexShader = new GLSLShader(GL_VERTEX_SHADER, &vertexShaderSource);
+        GLSLShader *fragmentShader = new GLSLShader(GL_FRAGMENT_SHADER, &fragmentShaderSource);
+        
+        GLSLProgram program(vertexShader, fragmentShader);
+        
+        delete vertexShader;
+        delete fragmentShader;
     }
     
     RenderingEngine::~RenderingEngine()

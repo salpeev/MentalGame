@@ -16,7 +16,23 @@ namespace Renderer
     class GLSLProgram
     {
     public:
+        GLSLProgram();
+        GLSLProgram(GLSLShader *pVertexShader, GLSLShader *pFragmentShader);
+        ~GLSLProgram();
         
+        void SetVertexShader(GLSLShader *pVertexShader);
+        void SetFragmentShader(GLSLShader *pFragmentShader);
+        
+        GLuint GetProgramHandle() const;
+        
+        bool Link() const;
+        bool IsLinked() const;
+        
+    private:
+        GLuint m_programHandle;
+        
+        GLSLShader *p_vertexShader;
+        GLSLShader *p_fragmentShader;
     };
     
 }

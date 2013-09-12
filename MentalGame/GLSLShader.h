@@ -26,6 +26,8 @@ namespace Renderer
         void SetType(GLenum type);
         void SetSource(const string *source);
         
+        GLuint GetShaderHandle() const;
+        
         bool Compile() const;
         bool IsCompiled() const;
         

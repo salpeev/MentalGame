@@ -19,7 +19,7 @@ namespace Renderer
         
     }
     
-    GLSLShader::GLSLShader(GLenum type, const string *source)
+    GLSLShader::GLSLShader(GLenum type, const string *source): GLSLShader()
     {
         SetType(type);
         SetSource(source);
@@ -49,6 +49,11 @@ namespace Renderer
         CheckError();
     }
     
+    GLuint GLSLShader::GetShaderHandle() const
+    {
+        return m_shaderHandle;
+    }
+    
     bool GLSLShader::Compile() const
     {
         glCompileShader(m_shaderHandle);
@@ -57,10 +62,7 @@ namespace Renderer
             return false;
         }
         
-        GLint compileStatus;
-        glGetShaderiv(m_shaderHandle, GL_COMPILE_STATUS, &compileStatus);
-        
-        if (compileStatus == GL_FALSE)
+        if (!IsCompiled())
         {
             GLint infoLength;
             glGetShaderiv(m_shaderHandle, GL_INFO_LOG_LENGTH, &infoLength);
