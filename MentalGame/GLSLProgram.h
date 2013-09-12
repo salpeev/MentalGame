@@ -22,6 +22,7 @@ namespace Renderer
         
         void SetVertexShader(GLSLShader *pVertexShader);
         void SetFragmentShader(GLSLShader *pFragmentShader);
+        void Activate() const;
         
         GLuint GetProgramHandle() const;
         

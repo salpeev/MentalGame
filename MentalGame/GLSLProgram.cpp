@@ -42,6 +42,11 @@ namespace Renderer
         p_fragmentShader = pFragmentShader;
     }
     
+    void GLSLProgram::Activate() const
+    {
+        glUseProgram(m_programHandle);
+    }
+    
     GLuint GLSLProgram::GetProgramHandle() const
     {
         return m_programHandle;
@@ -49,16 +54,6 @@ namespace Renderer
     
     bool GLSLProgram::Link() const
     {
-        if (!p_vertexShader->IsCompiled())
-        {
-            p_vertexShader->Compile();
-        }
-        
-        if (!p_fragmentShader->IsCompiled())
-        {
-            p_fragmentShader->Compile();
-        }
-        
         glAttachShader(m_programHandle, p_vertexShader->GetShaderHandle());
         CheckError();
         glAttachShader(m_programHandle, p_fragmentShader->GetShaderHandle());

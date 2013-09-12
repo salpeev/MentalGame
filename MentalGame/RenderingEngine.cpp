@@ -29,10 +29,12 @@ namespace Renderer
         GLSLShader *vertexShader = new GLSLShader(GL_VERTEX_SHADER, &vertexShaderSource);
         GLSLShader *fragmentShader = new GLSLShader(GL_FRAGMENT_SHADER, &fragmentShaderSource);
         
-        GLSLProgram program(vertexShader, fragmentShader);
+        GLSLProgram *program = new GLSLProgram(vertexShader, fragmentShader);
+        program->Activate();
         
-        delete vertexShader;
-        delete fragmentShader;
+//        delete program;
+//        delete vertexShader;
+//        delete fragmentShader;
     }
     
     RenderingEngine::~RenderingEngine()
@@ -46,6 +48,11 @@ namespace Renderer
         glClear(GL_COLOR_BUFFER_BIT);
         
         
+//        GLfloat vertices[] =
+//        {
+//            0.0f, 0.0f, 0.0f,
+//            1.0f, 1.0f, 0.0f
+//        };
         
         //    glDrawArrays(GL_LINES, 0, 2);
     }
