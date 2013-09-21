@@ -30,6 +30,8 @@ namespace Renderer
         bool IsLinked() const;
         
     private:
+        void ExtractAttributes() const;
+        
         GLuint m_programHandle;
         
         GLSLShader *p_vertexShader;

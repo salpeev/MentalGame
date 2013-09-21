@@ -62,7 +62,7 @@ namespace Renderer
         glLinkProgram(m_programHandle);
         CheckError();
         
-        if (IsLinked())
+        if (!IsLinked())
         {
             GLint infoLength;
             glGetProgramiv(m_programHandle, GL_INFO_LOG_LENGTH, &infoLength);
@@ -80,6 +80,8 @@ namespace Renderer
             return false;
         }
         
+        ExtractAttributes();
+        
         return true;
     }
     
@@ -91,5 +93,32 @@ namespace Renderer
         CheckError();
         
         return (linkStatus == GL_TRUE);
+    }
+    
+    void GLSLProgram::ExtractAttributes() const
+    {
+        GLint attributesCount;
+        glGetProgramiv(m_programHandle, GL_ACTIVE_ATTRIBUTES, &attributesCount);
+        CheckError();
+        
+        GLint maxAttributeNameLength;
+        glGetProgramiv(m_programHandle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttributeNameLength);
+        CheckError();
+        
+        for (GLint attributeIndex = 0; attributeIndex < attributesCount; attributeIndex++)
+        {
+            GLsizei attributeNameLength;
+            GLint attributeSize;
+            GLenum attributeType;
+            GLchar *attributeName = new GLchar(maxAttributeNameLength + 1);
+            
+            glGetActiveAttrib(m_programHandle, attributeIndex, maxAttributeNameLength, &attributeNameLength, &attributeSize, &attributeType, attributeName);
+            
+            GLint attributeLocation = glGetAttribLocation(m_programHandle, attributeName);
+            
+            cout << attributeName << ": " << attributeLocation << endl;
+            
+            delete attributeName;
+        }
     }
 }
