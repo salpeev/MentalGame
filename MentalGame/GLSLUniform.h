@@ -1,25 +1,22 @@
 //
-//  GLSLAttribute.h
+//  GLSLUniform.h
 //  MentalGame
 //
-//  Created by Sergey Alpeev on 21.09.13.
+//  Created by Sergey Alpeev on 24.09.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include <string>
 #include <OpenGLES/ES2/gl.h>
-
-using namespace std;
 
 
 
 namespace Renderer
 {
-    class GLSLAttribute
+    class GLSLUniform
     {
     public:
-        GLSLAttribute(GLchar *name, GLenum type, GLint size, GLint location);
-        ~GLSLAttribute();
+        GLSLUniform(GLchar *name, GLenum type, GLint size, GLint location);
+        ~GLSLUniform();
         
         GLchar *GetName() const;
         GLenum GetType() const;

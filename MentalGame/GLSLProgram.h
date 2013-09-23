@@ -7,6 +7,11 @@
 //
 
 #include "GLSLShader.h"
+#include "GLSLAttribute.h"
+#include "GLSLUniform.h"
+#include <vector>
+
+using namespace std;
 
 
 
@@ -26,16 +31,22 @@ namespace Renderer
         
         GLuint GetProgramHandle() const;
         
-        bool Link() const;
+        bool Link();
         bool IsLinked() const;
         
     private:
-        void ExtractAttributes() const;
+        void ExtractAttributes();
+        void ExtractUniforms();
+        void SetAttributes(vector<GLSLAttribute *> *pAttributes);
+        void SetUniforms(vector<GLSLUniform *> *pUniforms);
         
         GLuint m_programHandle;
         
         GLSLShader *p_vertexShader;
         GLSLShader *p_fragmentShader;
+        
+        vector<GLSLAttribute *> *p_attributes;
+        vector<GLSLUniform *> *p_uniforms;
     };
     
 }
