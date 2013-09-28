@@ -17,6 +17,11 @@ namespace GLRenderer
     GLSLProgram::GLSLProgram(): p_vertexShader(NULL), p_fragmentShader(NULL)
     {
         m_programHandle = glCreateProgram();
+        
+        if (m_programHandle == 0)
+        {
+            Log("Unable to create program");
+        }
     }
     
     GLSLProgram::GLSLProgram(GLSLShader *pVertexShader, GLSLShader *pFragmentShader): GLSLProgram()
@@ -30,6 +35,8 @@ namespace GLRenderer
     GLSLProgram::~GLSLProgram()
     {
         glDeleteProgram(m_programHandle);
+        CheckError();
+        
         delete p_vertexShader;
         delete p_fragmentShader;
         delete p_attributes;

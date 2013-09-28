@@ -29,15 +29,17 @@ namespace GLRenderer
     GLSLShader::~GLSLShader()
     {
         glDeleteShader(m_shaderHandle);
+        CheckError();
     }
     
     void GLSLShader::SetType(GLenum type)
     {
         m_shaderHandle = glCreateShader(type);
+        CheckError();
         
         if (m_shaderHandle == 0)
         {
-            CheckError();
+            Log("Unable to create shader");
         }
     }
     
