@@ -7,12 +7,12 @@
 //
 
 #include "GLSLProgram.h"
-#include "Logger.h"
+#include "GLLogger.h"
 #include <iostream>
 
 
 
-namespace Renderer
+namespace GLRenderer
 {
     GLSLProgram::GLSLProgram(): p_vertexShader(NULL), p_fragmentShader(NULL)
     {
@@ -45,7 +45,7 @@ namespace Renderer
         p_fragmentShader = pFragmentShader;
     }
     
-    void GLSLProgram::Activate() const
+    void GLSLProgram::Use() const
     {
         glUseProgram(m_programHandle);
     }
@@ -163,7 +163,7 @@ namespace Renderer
         SetUniforms(pUniforms);
     }
     
-    void GLSLProgram::SetAttributes(vector<Renderer::GLSLAttribute *> *pAttributes)
+    void GLSLProgram::SetAttributes(vector<GLSLAttribute *> *pAttributes)
     {
         if (p_attributes)
         {
@@ -173,7 +173,7 @@ namespace Renderer
         p_attributes = pAttributes;
     }
     
-    void GLSLProgram::SetUniforms(vector<Renderer::GLSLUniform *> *pUniforms)
+    void GLSLProgram::SetUniforms(vector<GLSLUniform *> *pUniforms)
     {
         if (p_uniforms)
         {

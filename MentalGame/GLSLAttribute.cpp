@@ -10,7 +10,7 @@
 
 
 
-namespace Renderer
+namespace GLRenderer
 {
     GLSLAttribute::GLSLAttribute(GLchar *name, GLenum type, GLint size, GLint location): m_name(name), m_type(type), m_size(size), m_location(location)
     {

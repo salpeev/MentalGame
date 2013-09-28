@@ -7,12 +7,12 @@
 //
 
 #include "GLSLShader.h"
-#include "Logger.h"
+#include "GLLogger.h"
 #include <iostream>
 
 
 
-namespace Renderer
+namespace GLRenderer
 {
     GLSLShader::GLSLShader(): m_shaderHandle(0)
     {

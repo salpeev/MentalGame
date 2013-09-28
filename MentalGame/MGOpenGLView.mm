@@ -7,18 +7,18 @@
 //
 
 #import "MGOpenGLView.h"
-#import "RenderingEngine.h"
+#import "GLRenderingEngine.h"
 #import "ResourceManager.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
-using namespace Renderer;
+using namespace GLRenderer;
 
 
 
 @interface MGOpenGLView ()
 {
-    RenderingEngine *m_renderingEngine;
+    GLRenderingEngine *m_renderingEngine;
     
     GLuint m_resolveFramebuffer;
     GLuint m_sampleFramebuffer;
@@ -83,7 +83,7 @@ using namespace Renderer;
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
         
-        m_renderingEngine = new RenderingEngine(width, height);
+        m_renderingEngine = new GLRenderingEngine(width, height);
         
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];

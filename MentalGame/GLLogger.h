@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-namespace Renderer
+namespace GLRenderer
 {
     void Log(const char *formatString, ...);
     bool CheckError();

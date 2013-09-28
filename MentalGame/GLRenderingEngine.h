@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-namespace Renderer
+namespace GLRenderer
 {
     
-    class RenderingEngine
+    class GLRenderingEngine
     {
     public:
-        RenderingEngine(int width, int height);
-        ~RenderingEngine();
+        GLRenderingEngine(int width, int height);
+        ~GLRenderingEngine();
         
         void Render() const;
         

@@ -10,7 +10,7 @@
 
 
 
-namespace Renderer
+namespace GLRenderer
 {
     class GLSLUniform
     {

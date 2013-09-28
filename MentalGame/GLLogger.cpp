@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "Logger.h"
+#include "GLLogger.h"
 #include <iostream>
 #include <OpenGLES/ES2/gl.h>
 
@@ -14,7 +14,7 @@ using namespace std;
 
 
 
-namespace Renderer
+namespace GLRenderer
 {
     void Log(const char *formatString, ...)
     {

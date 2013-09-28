@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-namespace Renderer
+namespace GLRenderer
 {
     class GLSLAttribute
     {

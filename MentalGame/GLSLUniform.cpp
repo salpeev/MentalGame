@@ -10,7 +10,7 @@
 
 
 
-namespace Renderer
+namespace GLRenderer
 {
     GLSLUniform::GLSLUniform(GLchar *name, GLenum type, GLint size, GLint location): m_name(name), m_type(type), m_size(size), m_location(location)
     {

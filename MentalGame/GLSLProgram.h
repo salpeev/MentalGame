@@ -15,7 +15,7 @@ using namespace std;
 
 
 
-namespace Renderer
+namespace GLRenderer
 {
     
     class GLSLProgram
@@ -27,7 +27,7 @@ namespace Renderer
         
         void SetVertexShader(GLSLShader *pVertexShader);
         void SetFragmentShader(GLSLShader *pFragmentShader);
-        void Activate() const;
+        void Use() const;
         
         GLuint GetProgramHandle() const;
         
