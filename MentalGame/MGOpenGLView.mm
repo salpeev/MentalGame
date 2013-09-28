@@ -8,7 +8,7 @@
 
 #import "MGOpenGLView.h"
 #import "GLRenderingEngine.h"
-#import "ResourceManager.h"
+#import "GLResourceManager.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 

@@ -43,7 +43,7 @@ namespace GLRenderer
         m_data->push_back(color.a);
     }
     
-    GLvoid * GLSLVertexData::DataPointer() const
+    GLvoid * GLSLVertexData::GetDataPointer() const
     {
         if (m_data->size() == 0)
         {
@@ -51,5 +51,10 @@ namespace GLRenderer
         }
         
         return &m_data[0];
+    }
+    
+    GLsizeiptr GLSLVertexData::GetDataCount() const
+    {
+        return m_data->size();
     }
 }

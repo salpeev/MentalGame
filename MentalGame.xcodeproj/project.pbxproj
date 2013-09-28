@@ -22,7 +22,7 @@
 		B4CE1DE417DFB72C009094E8 /* GLSLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE217DFB72C009094E8 /* GLSLProgram.cpp */; };
 		B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE517DFBBD9009094E8 /* GLSLShader.cpp */; };
 		B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */; };
-		B4CE1DF017DFD906009094E8 /* ResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */; };
+		B4CE1DF017DFD906009094E8 /* GLResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */; };
 		B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971317DB671400F4A436 /* UIKit.framework */; };
 		B4E0971617DB671400F4A436 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971517DB671400F4A436 /* Foundation.framework */; };
 		B4E0971817DB671400F4A436 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971717DB671400F4A436 /* CoreGraphics.framework */; };
@@ -67,8 +67,8 @@
 		B4CE1DE617DFBBD9009094E8 /* GLSLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLShader.h; sourceTree = "<group>"; };
 		B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLLogger.cpp; sourceTree = "<group>"; };
 		B4CE1DE917DFCCE9009094E8 /* GLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLLogger.h; sourceTree = "<group>"; };
-		B4CE1DEE17DFD906009094E8 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceManager.h; path = MentalGame/ResourceManager.h; sourceTree = "<group>"; };
-		B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ResourceManager.mm; path = MentalGame/ResourceManager.mm; sourceTree = "<group>"; };
+		B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLResourceManager.h; sourceTree = "<group>"; };
+		B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLResourceManager.mm; sourceTree = "<group>"; };
 		B4E0971017DB671400F4A436 /* MentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E0971317DB671400F4A436 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4E0971517DB671400F4A436 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -111,6 +111,8 @@
 			children = (
 				B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */,
 				B47E8D9117DBD8E4008CE6DD /* GLRenderingEngine.h */,
+				B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */,
+				B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */,
 				B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */,
 				B4CE1DE917DFCCE9009094E8 /* GLLogger.h */,
 				B4CE1DE217DFB72C009094E8 /* GLSLProgram.cpp */,
@@ -152,8 +154,6 @@
 		B48BCB2A17DFAB50005DBC3D /* ResourceManager */ = {
 			isa = PBXGroup;
 			children = (
-				B4CE1DEE17DFD906009094E8 /* ResourceManager.h */,
-				B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */,
 			);
 			name = ResourceManager;
 			path = ..;
@@ -344,7 +344,7 @@
 				B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */,
-				B4CE1DF017DFD906009094E8 /* ResourceManager.mm in Sources */,
+				B4CE1DF017DFD906009094E8 /* GLResourceManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

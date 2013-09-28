@@ -34,4 +34,10 @@ namespace GLRenderer
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         CheckError();
     }
+    
+    void GLSLVertexBuffer::LoadVertexData(GLSLVertexData *pVertexData, GLSL_BUFFER_USAGE usage) const
+    {
+        GLenum openGLUsage = OpenGLESUsageFromBufferUsage(usage);
+        glBufferData(GL_ARRAY_BUFFER, pVertexData->GetDataCount(), pVertexData->GetDataPointer(), openGLUsage);
+    }
 }

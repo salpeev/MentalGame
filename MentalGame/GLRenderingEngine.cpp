@@ -6,11 +6,13 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLRenderingEngine.h"
-#include "GLSLProgram.h"
-#include "ResourceManager.h"
 #include <OpenGLES/ES2/gl.h>
 #include <iostream>
+#include "GLRenderingEngine.h"
+#include "GLSLProgram.h"
+#include "GLResourceManager.h"
+#include "GLSLVertexData.h"
+#include "GLLogger.h"
 
 using namespace std;
 
@@ -23,8 +25,8 @@ namespace GLRenderer
     {
         glViewport(0, 0, width, height);
         
-        string vertexShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("Shader.vsh");
-        string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("Shader.fsh");
+        string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("Shader.vsh");
+        string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("Shader.fsh");
         
         GLSLShader *vertexShader = new GLSLShader(GL_VERTEX_SHADER, &vertexShaderSource);
         GLSLShader *fragmentShader = new GLSLShader(GL_FRAGMENT_SHADER, &fragmentShaderSource);
@@ -32,6 +34,15 @@ namespace GLRenderer
         GLSLProgram *program = new GLSLProgram(vertexShader, fragmentShader);
         program->Use();
         
+        
+        GLPoint2 point0(-1, -1);
+        GLPoint2 point1(1, 1);
+        
+        GLSLVertexData vertexData;
+        vertexData.AddPoint2(point0);
+        vertexData.AddPoint2(point1);
+        
+        Log("%f", vertexData.GetDataPointer());
 //        delete program;
 //        delete vertexShader;
 //        delete fragmentShader;

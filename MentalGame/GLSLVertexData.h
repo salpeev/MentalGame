@@ -28,7 +28,8 @@ namespace GLRenderer
         void AddPoint3(GLPoint3 point) const;
         void AddColor(GLColor point) const;
         
-        GLvoid * DataPointer() const;
+        GLvoid * GetDataPointer() const;
+        GLsizeiptr GetDataCount() const;
         
     private:
         vector<GLfloat> *m_data;

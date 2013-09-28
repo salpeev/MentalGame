@@ -20,6 +20,7 @@ namespace GLRenderer
         
         void Bind() const;
         void Unbind() const;
+        void LoadVertexData(GLSLVertexData *pVertexData, GLSL_BUFFER_USAGE usage) const;
     };
 }
 

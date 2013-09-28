@@ -24,4 +24,13 @@ namespace GLRenderer
         glDeleteBuffers(1, &m_bufferHandle);
         CheckError();
     }
+    
+    GLenum GLSLBuffer::OpenGLESUsageFromBufferUsage(GLSL_BUFFER_USAGE usage) const
+    {
+        switch (usage) {
+            case GLSL_BUFFER_USAGE_STREAM_DRAW: return GL_STREAM_DRAW;
+            case GLSL_BUFFER_USAGE_STATIC_DRAW: return GL_STATIC_DRAW;
+            case GLSL_BUFFER_USAGE_DYNAMIC_DRAW: return GL_DYNAMIC_DRAW;
+        }
+    }
 }
