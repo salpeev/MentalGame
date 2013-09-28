@@ -71,7 +71,7 @@ namespace GLRenderer
             
             if (infoLength > 1)
             {
-                char *infoLog = (char *)malloc(sizeof(char *) * infoLength);
+                char *infoLog = (char *)malloc(sizeof(char) * infoLength);
                 
                 glGetShaderInfoLog(m_shaderHandle, infoLength, NULL, infoLog);
                 Log("SHADER: %s", infoLog);
