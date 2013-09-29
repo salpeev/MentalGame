@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
 #include "GLSLShader.h"
 #include "GLSLAttribute.h"
 #include "GLSLUniform.h"
@@ -30,6 +31,9 @@ namespace GLRenderer
         void Use() const;
         
         GLuint GetProgramHandle() const;
+        
+        GLuint GetAttributesCount() const;
+        GLSLAttribute * GetAttributeAtIndex(GLuint index) const;
         
         bool Link();
         bool IsLinked() const;

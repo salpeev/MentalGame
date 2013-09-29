@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include <string>
-#include <OpenGLES/ES2/gl.h>
+#pragma once
+#include "GLSLShaderValue.h"
 
 using namespace std;
 
@@ -15,21 +15,9 @@ using namespace std;
 
 namespace GLRenderer
 {
-    class GLSLAttribute
+    class GLSLAttribute: public GLSLShaderValue
     {
     public:
         GLSLAttribute(GLchar *name, GLenum type, GLint size, GLint location);
-        ~GLSLAttribute();
-        
-        GLchar *GetName() const;
-        GLenum GetType() const;
-        GLint GetSize() const;
-        GLint GetLocation() const;
-        
-    private:
-        GLchar *m_name;
-        GLenum m_type;
-        GLint m_size;
-        GLint m_location;
     };
 }

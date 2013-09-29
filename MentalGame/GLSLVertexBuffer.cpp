@@ -39,5 +39,6 @@ namespace GLRenderer
     {
         GLenum openGLUsage = OpenGLESUsageFromBufferUsage(usage);
         glBufferData(GL_ARRAY_BUFFER, pVertexData->GetDataCount(), pVertexData->GetDataPointer(), openGLUsage);
+        CheckError();
     }
 }

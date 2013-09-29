@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 #include <string>

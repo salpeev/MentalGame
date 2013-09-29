@@ -62,6 +62,16 @@ namespace GLRenderer
         return m_programHandle;
     }
     
+    GLuint GLSLProgram::GetAttributesCount() const
+    {
+        return p_attributes->size();
+    }
+    
+    GLSLAttribute * GLSLProgram::GetAttributeAtIndex(GLuint index) const
+    {
+        return p_attributes->at(index);
+    }
+    
     bool GLSLProgram::Link()
     {
         glAttachShader(m_programHandle, p_vertexShader->GetShaderHandle());

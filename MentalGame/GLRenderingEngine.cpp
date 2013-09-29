@@ -9,10 +9,10 @@
 #include <OpenGLES/ES2/gl.h>
 #include <iostream>
 #include "GLRenderingEngine.h"
+#include "GLLogger.h"
 #include "GLSLProgram.h"
 #include "GLResourceManager.h"
-#include "GLSLVertexData.h"
-#include "GLLogger.h"
+#include "GLSLVertexBuffer.h"
 
 using namespace std;
 
@@ -38,11 +38,25 @@ namespace GLRenderer
         GLPoint2 point0(-1, -1);
         GLPoint2 point1(1, 1);
         
+        GLColor color0(1, 0, 0, 1);
+        GLColor color1(0, 1, 0, 1);
+        
         GLSLVertexData vertexData;
         vertexData.AddPoint2(point0);
+        vertexData.AddColor(color0);
         vertexData.AddPoint2(point1);
+        vertexData.AddColor(color1);
         
-        Log("%f", vertexData.GetDataPointer());
+        GLSLVertexBuffer vertexBuffer;
+        vertexBuffer.Bind();
+        vertexBuffer.LoadVertexData(&vertexData, GLSL_BUFFER_USAGE_STATIC_DRAW);
+        
+        for (GLuint i = 0; i < program->GetAttributesCount(); i++)
+        {
+            GLSLAttribute *attribute = program->GetAttributeAtIndex(i);
+            cout << attribute->GetName() << endl;
+        }
+        
 //        delete program;
 //        delete vertexShader;
 //        delete fragmentShader;
@@ -55,8 +69,8 @@ namespace GLRenderer
     
     void GLRenderingEngine::Render() const
     {
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+//        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+//        glClear(GL_COLOR_BUFFER_BIT);
         
         
 //        GLfloat vertices[] =
