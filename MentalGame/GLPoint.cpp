@@ -12,24 +12,12 @@
 
 namespace GLRenderer
 {
-    GLPoint2::GLPoint2(): GLPoint2(0, 0)
+    GLPoint::GLPoint(): GLPoint(0, 0, 0)
     {
         
     }
     
-    GLPoint2::GLPoint2(GLfloat x, GLfloat y): x(x), y(y)
-    {
-        
-    }
-    
-    
-    
-    GLPoint3::GLPoint3(): GLPoint3(0, 0, 0)
-    {
-        
-    }
-    
-    GLPoint3::GLPoint3(GLfloat x, GLfloat y, GLfloat z): x(x), y(y), z(z)
+    GLPoint::GLPoint(GLfloat x, GLfloat y, GLfloat z): x(x), y(y), z(z)
     {
         
     }

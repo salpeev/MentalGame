@@ -35,26 +35,43 @@ namespace GLRenderer
         program->Use();
         
         
-        GLPoint2 point0(-1, -1);
-        GLPoint2 point1(1, 1);
+        GLPoint point0(-1, -1, 0);
+        GLPoint point1(1, 1, 0);
         
         GLColor color0(1, 0, 0, 1);
         GLColor color1(0, 1, 0, 1);
         
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
+        
         GLSLVertexData vertexData;
-        vertexData.AddPoint2(point0);
-        vertexData.AddColor(color0);
-        vertexData.AddPoint2(point1);
-        vertexData.AddColor(color1);
+        vertexData.AddVertex1P1C(vertex0);
+        vertexData.AddVertex1P1C(vertex1);
         
         GLSLVertexBuffer vertexBuffer;
         vertexBuffer.Bind();
         vertexBuffer.LoadVertexData(&vertexData, GLSL_BUFFER_USAGE_STATIC_DRAW);
         
+        GLuint offset = 0;
         for (GLuint i = 0; i < program->GetAttributesCount(); i++)
         {
             GLSLAttribute *attribute = program->GetAttributeAtIndex(i);
-            cout << attribute->GetName() << endl;
+            if (attribute->GetName()->compare("a_position") == 0)
+            {
+                switch (attribute->GetType()) {
+                    case GL_FLOAT_VEC3:
+                        cout << "vec3" << endl;
+                        break;
+                    case GL_FLOAT_VEC4:
+                        cout << "vec4" << endl;
+                        break;
+                }
+                offset += sizeof(GLPoint) / sizeof(GLfloat);
+            }
+            else if (attribute->GetName()->compare("a_color") == 0)
+            {
+                offset += sizeof(GLColor) / sizeof(GLfloat);
+            }
         }
         
 //        delete program;

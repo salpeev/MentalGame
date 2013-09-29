@@ -22,13 +22,13 @@ namespace GLRenderer
         GLSLShaderValue(GLchar *name, GLenum type, GLint size, GLint location);
         ~GLSLShaderValue();
         
-        GLchar *GetName() const;
+        string *GetName() const;
         GLenum GetType() const;
         GLint GetSize() const;
         GLint GetLocation() const;
         
     protected:
-        GLchar *m_name;
+        string *p_name;
         GLenum m_type;
         GLint m_size;
         GLint m_location;

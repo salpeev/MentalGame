@@ -12,19 +12,19 @@
 
 namespace GLRenderer
 {
-    GLSLShaderValue::GLSLShaderValue(GLchar *name, GLenum type, GLint size, GLint location): m_name(name), m_type(type), m_size(size), m_location(location)
+    GLSLShaderValue::GLSLShaderValue(GLchar *name, GLenum type, GLint size, GLint location): m_type(type), m_size(size), m_location(location)
     {
-        
+        p_name = new string(name);
     }
     
     GLSLShaderValue::~GLSLShaderValue()
     {
-        delete m_name;
+        delete p_name;
     }
     
-    GLchar * GLSLShaderValue::GetName() const
+    string *GLSLShaderValue::GetName() const
     {
-        return m_name;
+        return p_name;
     }
     
     GLenum GLSLShaderValue::GetType() const

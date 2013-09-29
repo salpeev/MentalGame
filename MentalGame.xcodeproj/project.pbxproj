@@ -17,6 +17,7 @@
 		B469605317F75C25002BCF6C /* GLColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605117F75C25002BCF6C /* GLColor.cpp */; };
 		B469605717F76B5E002BCF6C /* GLPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605517F76B5E002BCF6C /* GLPoint.cpp */; };
 		B469605A17F8526F002BCF6C /* GLSLShaderValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605817F8526F002BCF6C /* GLSLShaderValue.cpp */; };
+		B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605B17F858BF002BCF6C /* GLSLVertex.cpp */; };
 		B47E8D9217DBD8E4008CE6DD /* GLRenderingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */; };
 		B4CE1DE017DFB412009094E8 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4CE1DDC17DFB304009094E8 /* Shader.vsh */; };
 		B4CE1DE117DFB412009094E8 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4CE1DDD17DFB304009094E8 /* Shader.fsh */; };
@@ -60,6 +61,8 @@
 		B469605617F76B5E002BCF6C /* GLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLPoint.h; sourceTree = "<group>"; };
 		B469605817F8526F002BCF6C /* GLSLShaderValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLShaderValue.cpp; sourceTree = "<group>"; };
 		B469605917F8526F002BCF6C /* GLSLShaderValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLShaderValue.h; sourceTree = "<group>"; };
+		B469605B17F858BF002BCF6C /* GLSLVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLVertex.cpp; sourceTree = "<group>"; };
+		B469605C17F858BF002BCF6C /* GLSLVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLVertex.h; sourceTree = "<group>"; };
 		B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLRenderingEngine.cpp; sourceTree = "<group>"; };
 		B47E8D9117DBD8E4008CE6DD /* GLRenderingEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRenderingEngine.h; sourceTree = "<group>"; };
 		B4CE1DDC17DFB304009094E8 /* Shader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Shader.vsh; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				B469605217F75C25002BCF6C /* GLColor.h */,
 				B469604E17F756C6002BCF6C /* GLVector.cpp */,
 				B469604F17F756C6002BCF6C /* GLVector.h */,
+				B469605B17F858BF002BCF6C /* GLSLVertex.cpp */,
+				B469605C17F858BF002BCF6C /* GLSLVertex.h */,
 			);
 			name = RenderingEngine;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				B4E0972017DB671400F4A436 /* main.m in Sources */,
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
 				B403F3BD17EE0D5700A2A4E8 /* GLSLAttribute.cpp in Sources */,
+				B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */,
 				B469605717F76B5E002BCF6C /* GLPoint.cpp in Sources */,
 				B469605317F75C25002BCF6C /* GLColor.cpp in Sources */,
 				B469605017F756C6002BCF6C /* GLVector.cpp in Sources */,

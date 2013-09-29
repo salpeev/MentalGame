@@ -12,6 +12,7 @@
 #include "GLPoint.h"
 #include "GLColor.h"
 #include "GLVector.h"
+#include "GLSLVertex.h"
 
 using namespace std;
 
@@ -25,9 +26,9 @@ namespace GLRenderer
         GLSLVertexData();
         ~GLSLVertexData();
         
-        void AddPoint2(GLPoint2 point) const;
-        void AddPoint3(GLPoint3 point) const;
+        void AddPoint(GLPoint point) const;
         void AddColor(GLColor point) const;
+        void AddVertex1P1C(GLSLVertex1P1C vertex) const;
         
         GLvoid * GetDataPointer() const;
         GLsizeiptr GetDataCount() const;

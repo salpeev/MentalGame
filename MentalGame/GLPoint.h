@@ -13,23 +13,11 @@
 
 namespace GLRenderer
 {
-    class GLPoint2
+    class GLPoint
     {
     public:
-        GLPoint2();
-        GLPoint2(GLfloat x, GLfloat y);
-        
-        GLfloat x;
-        GLfloat y;
-    };
-    
-    
-    
-    class GLPoint3
-    {
-    public:
-        GLPoint3();
-        GLPoint3(GLfloat x, GLfloat y, GLfloat z);
+        GLPoint();
+        GLPoint(GLfloat x, GLfloat y, GLfloat z);
         
         GLfloat x;
         GLfloat y;

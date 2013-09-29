@@ -22,13 +22,7 @@ namespace GLRenderer
         delete m_data;
     }
     
-    void GLSLVertexData::AddPoint2(GLPoint2 point) const
-    {
-        m_data->push_back(point.x);
-        m_data->push_back(point.y);
-    }
-    
-    void GLSLVertexData::AddPoint3(GLPoint3 point) const
+    void GLSLVertexData::AddPoint(GLPoint point) const
     {
         m_data->push_back(point.x);
         m_data->push_back(point.y);
@@ -41,6 +35,12 @@ namespace GLRenderer
         m_data->push_back(color.g);
         m_data->push_back(color.b);
         m_data->push_back(color.a);
+    }
+    
+    void GLSLVertexData::AddVertex1P1C(GLSLVertex1P1C vertex) const
+    {
+        AddPoint(vertex.GetPosition());
+        AddColor(vertex.GetColor());
     }
     
     GLvoid * GLSLVertexData::GetDataPointer() const
