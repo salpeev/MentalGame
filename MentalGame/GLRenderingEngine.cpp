@@ -48,35 +48,11 @@ namespace GLRenderer
         vertexData.AddVertex1P1C(vertex0);
         vertexData.AddVertex1P1C(vertex1);
         
-        GLSLVertexBuffer vertexBuffer;
-        vertexBuffer.Bind();
-        vertexBuffer.LoadVertexData(&vertexData, GLSL_BUFFER_USAGE_STATIC_DRAW);
+        GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
+        vertexBuffer->Bind();
+        vertexBuffer->LoadVertexData(&vertexData, GLSL_BUFFER_USAGE_STATIC_DRAW);
         
-        GLuint offset = 0;
-        for (GLuint i = 0; i < program->GetAttributesCount(); i++)
-        {
-            GLSLAttribute *attribute = program->GetAttributeAtIndex(i);
-            if (attribute->GetName()->compare("a_position") == 0)
-            {
-                switch (attribute->GetType()) {
-                    case GL_FLOAT_VEC3:
-                        cout << "vec3" << endl;
-                        break;
-                    case GL_FLOAT_VEC4:
-                        cout << "vec4" << endl;
-                        break;
-                }
-                offset += sizeof(GLPoint) / sizeof(GLfloat);
-            }
-            else if (attribute->GetName()->compare("a_color") == 0)
-            {
-                offset += sizeof(GLColor) / sizeof(GLfloat);
-            }
-        }
-        
-//        delete program;
-//        delete vertexShader;
-//        delete fragmentShader;
+        program->SetVertexBuffer(vertexBuffer);
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -86,17 +62,8 @@ namespace GLRenderer
     
     void GLRenderingEngine::Render() const
     {
-//        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-//        glClear(GL_COLOR_BUFFER_BIT);
-        
-        
-//        GLfloat vertices[] =
-//        {
-//            0.0f, 0.0f, 0.0f,
-//            1.0f, 1.0f, 0.0f
-//        };
-        
-        //    glDrawArrays(GL_LINES, 0, 2);
+        glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
     }
     
 }

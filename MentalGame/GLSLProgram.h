@@ -10,6 +10,7 @@
 #include "GLSLShader.h"
 #include "GLSLAttribute.h"
 #include "GLSLUniform.h"
+#include "GLSLVertexBuffer.h"
 #include <vector>
 
 using namespace std;
@@ -35,6 +36,9 @@ namespace GLRenderer
         GLuint GetAttributesCount() const;
         GLSLAttribute * GetAttributeAtIndex(GLuint index) const;
         
+        void SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer);
+        GLSLVertexBuffer * GetVertexBuffer() const;
+        
         bool Link();
         bool IsLinked() const;
         
@@ -51,6 +55,8 @@ namespace GLRenderer
         
         vector<GLSLAttribute *> *p_attributes;
         vector<GLSLUniform *> *p_uniforms;
+        
+        GLSLVertexBuffer *p_vertexBuffer;
     };
     
 }

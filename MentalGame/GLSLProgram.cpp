@@ -14,7 +14,7 @@
 
 namespace GLRenderer
 {
-    GLSLProgram::GLSLProgram(): p_vertexShader(NULL), p_fragmentShader(NULL)
+    GLSLProgram::GLSLProgram(): p_vertexShader(NULL), p_fragmentShader(NULL), p_vertexBuffer(NULL)
     {
         m_programHandle = glCreateProgram();
         
@@ -70,6 +70,16 @@ namespace GLRenderer
     GLSLAttribute * GLSLProgram::GetAttributeAtIndex(GLuint index) const
     {
         return p_attributes->at(index);
+    }
+    
+    void GLSLProgram::SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer)
+    {
+        p_vertexBuffer = pVertexBuffer;
+    }
+    
+    GLSLVertexBuffer * GLSLProgram::GetVertexBuffer() const
+    {
+        return p_vertexBuffer;
     }
     
     bool GLSLProgram::Link()
