@@ -42,6 +42,8 @@ namespace GLRenderer
         bool Link();
         bool IsLinked() const;
         
+        void Execute() const;
+        
     private:
         void ExtractAttributes();
         void ExtractUniforms();

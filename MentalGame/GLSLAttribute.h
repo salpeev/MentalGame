@@ -19,5 +19,9 @@ namespace GLRenderer
     {
     public:
         GLSLAttribute(GLchar *name, GLenum type, GLint size, GLint location);
+        
+        void EnableArray() const;
+        void DisableArray() const;
+        bool IsArrayEnabled() const;
     };
 }

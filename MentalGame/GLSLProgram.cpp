@@ -126,6 +126,11 @@ namespace GLRenderer
         return (linkStatus == GL_TRUE);
     }
     
+    void GLSLProgram::Execute() const
+    {
+        
+    }
+    
     void GLSLProgram::ExtractAttributes()
     {
         GLint attributesCount;
