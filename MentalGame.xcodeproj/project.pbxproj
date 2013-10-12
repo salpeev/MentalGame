@@ -121,6 +121,7 @@
 				B4963F90180022770037FC39 /* Buffers */,
 				B4963F921800232C0037FC39 /* Shader values */,
 				B4963F931800301B0037FC39 /* Shader data */,
+				B4AFEF841809716C007846A1 /* Vertex data */,
 				B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */,
 				B47E8D9117DBD8E4008CE6DD /* GLRenderingEngine.h */,
 				B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */,
@@ -131,8 +132,6 @@
 				B4CE1DE317DFB72C009094E8 /* GLSLProgram.h */,
 				B4CE1DE517DFBBD9009094E8 /* GLSLShader.cpp */,
 				B4CE1DE617DFBBD9009094E8 /* GLSLShader.h */,
-				B469604B17F754BD002BCF6C /* GLSLVertexData.cpp */,
-				B469604C17F754BD002BCF6C /* GLSLVertexData.h */,
 			);
 			name = RenderingEngine;
 			sourceTree = "<group>";
@@ -209,6 +208,15 @@
 				B4963F9518003B650037FC39 /* GLConstants.h */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		B4AFEF841809716C007846A1 /* Vertex data */ = {
+			isa = PBXGroup;
+			children = (
+				B469604B17F754BD002BCF6C /* GLSLVertexData.cpp */,
+				B469604C17F754BD002BCF6C /* GLSLVertexData.h */,
+			);
+			name = "Vertex data";
 			sourceTree = "<group>";
 		};
 		B4E0970717DB671400F4A436 = {

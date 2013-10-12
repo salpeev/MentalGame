@@ -41,16 +41,16 @@ namespace GLRenderer
         GLColor color0(1, 0, 0, 1);
         GLColor color1(0, 1, 0, 1);
         
-        GLSLVertex1P1C vertex0(point0, color0);
-        GLSLVertex1P1C vertex1(point1, color1);
+        GLSLVertex1P1C *vertex0 = new GLSLVertex1P1C(point0, color0);
+        GLSLVertex1P1C *vertex1 = new GLSLVertex1P1C(point1, color1);
         
-        GLSLVertexData vertexData;
-        vertexData.AddVertex1P1C(vertex0);
-        vertexData.AddVertex1P1C(vertex1);
+        GLSLVertexData1P1C *vertexData = new GLSLVertexData1P1C();
+        vertexData->AddVertex(vertex0);
+        vertexData->AddVertex(vertex1);
         
         GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
         vertexBuffer->Bind();
-        vertexBuffer->LoadVertexData(&vertexData, GLSL_BUFFER_USAGE_STATIC_DRAW);
+        vertexBuffer->LoadVertexData(vertexData, GLSL_BUFFER_USAGE_STATIC_DRAW);
         
         program->SetVertexBuffer(vertexBuffer);
     }

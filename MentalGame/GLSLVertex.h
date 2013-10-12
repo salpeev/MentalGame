@@ -14,15 +14,16 @@
 
 namespace GLRenderer
 {
-    class GLSLVertexLayout
+    class GLSLVertex
     {
+    public:
         virtual GLint GetSizeAtIndex(GLint index) const = 0;
         virtual GLint GetMembersCount() const = 0;
     };
     
     
     
-    class GLSLVertex1P: public GLSLVertexLayout
+    class GLSLVertex1P: public GLSLVertex
     {
     public:
         GLSLVertex1P();
@@ -41,7 +42,7 @@ namespace GLRenderer
     
     
     
-    class GLSLVertex1C: public GLSLVertexLayout
+    class GLSLVertex1C: public GLSLVertex
     {
     public:
         GLSLVertex1C();
@@ -60,7 +61,7 @@ namespace GLRenderer
     
     
     
-    class GLSLVertex1P1C
+    class GLSLVertex1P1C: public GLSLVertex
     {
     public:
         GLSLVertex1P1C();

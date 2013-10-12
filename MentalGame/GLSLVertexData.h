@@ -9,9 +9,6 @@
 #pragma once
 #include <OpenGLES/ES2/gl.h>
 #include <vector>
-#include "GLPoint.h"
-#include "GLColor.h"
-#include "GLVector.h"
 #include "GLSLVertex.h"
 
 using namespace std;
@@ -26,14 +23,39 @@ namespace GLRenderer
         GLSLVertexData();
         ~GLSLVertexData();
         
-        void AddPoint(GLPoint point) const;
-        void AddColor(GLColor point) const;
-        void AddVertex1P1C(GLSLVertex1P1C vertex) const;
+        virtual void AddVertex(GLSLVertex *pVertex) const = 0;
         
         GLvoid * GetDataPointer() const;
         GLsizeiptr GetDataCount() const;
         
+    protected:
+        void AddValue(GLfloat value) const;
+        
     private:
         vector<GLfloat> *m_data;
+    };
+    
+    
+    
+    class GLSLVertexData1P: public GLSLVertexData
+    {
+    public:
+        void AddVertex(GLSLVertex *pVertex) const;
+    };
+    
+    
+    
+    class GLSLVertexData1C: public GLSLVertexData
+    {
+    public:
+        void AddVertex(GLSLVertex *pVertex) const;
+    };
+    
+    
+    
+    class GLSLVertexData1P1C: public GLSLVertexData
+    {
+    public:
+        void AddVertex(GLSLVertex *pVertex) const;
     };
 }

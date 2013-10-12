@@ -22,27 +22,6 @@ namespace GLRenderer
         delete m_data;
     }
     
-    void GLSLVertexData::AddPoint(GLPoint point) const
-    {
-        m_data->push_back(point.x);
-        m_data->push_back(point.y);
-        m_data->push_back(point.z);
-    }
-    
-    void GLSLVertexData::AddColor(GLColor color) const
-    {
-        m_data->push_back(color.r);
-        m_data->push_back(color.g);
-        m_data->push_back(color.b);
-        m_data->push_back(color.a);
-    }
-    
-    void GLSLVertexData::AddVertex1P1C(GLSLVertex1P1C vertex) const
-    {
-        AddPoint(vertex.GetPosition());
-        AddColor(vertex.GetColor());
-    }
-    
     GLvoid * GLSLVertexData::GetDataPointer() const
     {
         if (m_data->size() == 0)
@@ -56,5 +35,47 @@ namespace GLRenderer
     GLsizeiptr GLSLVertexData::GetDataCount() const
     {
         return m_data->size();
+    }
+    
+    void GLSLVertexData::AddValue(GLfloat value) const
+    {
+        m_data->push_back(value);
+    }
+    
+    
+    
+    void GLSLVertexData1P::AddVertex(GLSLVertex *pVertex) const
+    {
+        GLPoint point = ((GLSLVertex1P *)pVertex)->GetPosition();
+        AddValue(point.x);
+        AddValue(point.y);
+        AddValue(point.z);
+    }
+    
+    
+    
+    void GLSLVertexData1C::AddVertex(GLSLVertex *pVertex) const
+    {
+        GLColor color = ((GLSLVertex1C *)pVertex)->GetColor();
+        AddValue(color.r);
+        AddValue(color.g);
+        AddValue(color.b);
+        AddValue(color.a);
+    }
+    
+    
+    
+    void GLSLVertexData1P1C::AddVertex(GLSLVertex *pVertex) const
+    {
+        GLPoint point = ((GLSLVertex1P1C *)pVertex)->GetPosition();
+        AddValue(point.x);
+        AddValue(point.y);
+        AddValue(point.z);
+        
+        GLColor color = ((GLSLVertex1P1C *)pVertex)->GetColor();
+        AddValue(color.r);
+        AddValue(color.g);
+        AddValue(color.b);
+        AddValue(color.a);
     }
 }
