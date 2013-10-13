@@ -19,6 +19,7 @@ namespace GLRenderer
     public:
         virtual GLint GetSizeAtIndex(GLint index) const = 0;
         virtual GLint GetMembersCount() const = 0;
+        virtual GLuint GetByteSize() const = 0;
     };
     
     
@@ -35,6 +36,7 @@ namespace GLRenderer
         
         GLint GetSizeAtIndex(GLint index) const;
         GLint GetMembersCount() const;
+        GLuint GetByteSize() const;
         
     private:
         GLPoint m_position;
@@ -54,6 +56,7 @@ namespace GLRenderer
         
         GLint GetSizeAtIndex(GLint index) const;
         GLint GetMembersCount() const;
+        GLuint GetByteSize() const;
         
     private:
         GLColor m_color;
@@ -75,6 +78,7 @@ namespace GLRenderer
         
         GLint GetSizeAtIndex(GLint index) const;
         GLint GetMembersCount() const;
+        GLuint GetByteSize() const;
         
     private:
         GLSLVertex1P m_position;

@@ -46,6 +46,11 @@ namespace GLRenderer
         return 1;
     }
     
+    GLuint GLSLVertex1P::GetByteSize() const
+    {
+        return sizeof(GLPoint);
+    }
+    
     
     
     GLSLVertex1C::GLSLVertex1C(): GLSLVertex1C(GLColor())
@@ -79,6 +84,11 @@ namespace GLRenderer
     GLint GLSLVertex1C::GetMembersCount() const
     {
         return 1;
+    }
+    
+    GLuint GLSLVertex1C::GetByteSize() const
+    {
+        return sizeof(GLColor);
     }
     
     
@@ -138,6 +148,12 @@ namespace GLRenderer
     {
         GLint membersCount = m_position.GetMembersCount() + m_color.GetMembersCount();
         return membersCount;
+    }
+    
+    GLuint GLSLVertex1P1C::GetByteSize() const
+    {
+        GLuint byteSize = m_position.GetByteSize() + m_color.GetByteSize();
+        return byteSize;
     }
 }
 

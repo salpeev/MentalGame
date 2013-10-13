@@ -36,8 +36,8 @@ namespace GLRenderer
         GLuint GetAttributesCount() const;
         GLSLAttribute * GetAttributeAtIndex(GLuint index) const;
         
-        void SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer);
-        GLSLVertexBuffer * GetVertexBuffer() const;
+        GLuint GetUniformsCount() const;
+        GLSLUniform * GetUniformAtIndex(GLuint index) const;
         
         bool Link();
         bool IsLinked() const;
@@ -57,8 +57,6 @@ namespace GLRenderer
         
         vector<GLSLAttribute *> *p_attributes;
         vector<GLSLUniform *> *p_uniforms;
-        
-        GLSLVertexBuffer *p_vertexBuffer;
     };
     
 }

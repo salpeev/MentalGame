@@ -52,7 +52,22 @@ namespace GLRenderer
         vertexBuffer->Bind();
         vertexBuffer->LoadVertexData(vertexData, GLSL_BUFFER_USAGE_STATIC_DRAW);
         
-        program->SetVertexBuffer(vertexBuffer);
+        for (GLuint i = 0; i < program->GetAttributesCount(); i++)
+        {
+            GLSLAttribute *attribute = program->GetAttributeAtIndex(i);
+            attribute->EnableArray();
+            
+            if (attribute->GetName()->compare("a_position") == 0)
+            {
+                
+            }
+            else if (attribute->GetName()->compare("a_color") == 0)
+            {
+                
+            }
+            
+            cout << *(attribute->GetName()) << endl;
+        }
     }
     
     GLRenderingEngine::~GLRenderingEngine()
