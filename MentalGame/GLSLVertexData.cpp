@@ -7,6 +7,7 @@
 //
 
 #include "GLSLVertexData.h"
+#include "GLConstants.h"
 
 
 
@@ -52,6 +53,32 @@ namespace GLRenderer
         AddValue(point.z);
     }
     
+    GLint GLSLVertexData1P::GetSizeAtIndex(GLint index) const
+    {
+        switch (index) {
+            case 0: return GLSL_FLOATS_3;
+            default: return GLSL_FLOATS_0;
+        }
+    }
+    
+    GLint GLSLVertexData1P::GetMembersCount() const
+    {
+        return GLSL_MEMBERS_COUNT_1;
+    }
+    
+    GLuint GLSLVertexData1P::GetElementByteSize() const
+    {
+        return sizeof(GLSLVertex1P);
+    }
+    
+    GLvoid *GLSLVertexData1P::GetOffetAtIndex(GLint index) const
+    {
+        switch (index) {
+            case 0: return NULL;
+            default: return NULL;
+        }
+    }
+    
     
     
     void GLSLVertexData1C::AddVertex(GLSLVertex *pVertex) const
@@ -61,6 +88,32 @@ namespace GLRenderer
         AddValue(color.g);
         AddValue(color.b);
         AddValue(color.a);
+    }
+    
+    GLint GLSLVertexData1C::GetSizeAtIndex(GLint index) const
+    {
+        switch (index) {
+            case 0: return GLSL_FLOATS_4;
+            default: return GLSL_FLOATS_0;
+        }
+    }
+    
+    GLint GLSLVertexData1C::GetMembersCount() const
+    {
+        return GLSL_MEMBERS_COUNT_1;
+    }
+    
+    GLuint GLSLVertexData1C::GetElementByteSize() const
+    {
+        return sizeof(GLSLVertex1C);
+    }
+    
+    GLvoid *GLSLVertexData1C::GetOffetAtIndex(GLint index) const
+    {
+        switch (index) {
+            case 0: return NULL;
+            default: return NULL;
+        }
     }
     
     
@@ -77,5 +130,33 @@ namespace GLRenderer
         AddValue(color.g);
         AddValue(color.b);
         AddValue(color.a);
+    }
+    
+    GLint GLSLVertexData1P1C::GetSizeAtIndex(GLint index) const
+    {
+        switch (index) {
+            case 0: return GLSL_FLOATS_3;
+            case 1: return GLSL_FLOATS_4;
+            default: return GLSL_FLOATS_0;
+        }
+    }
+    
+    GLint GLSLVertexData1P1C::GetMembersCount() const
+    {
+        return GLSL_MEMBERS_COUNT_2;
+    }
+    
+    GLuint GLSLVertexData1P1C::GetElementByteSize() const
+    {
+        return sizeof(GLSLVertex1P1C);
+    }
+    
+    GLvoid *GLSLVertexData1P1C::GetOffetAtIndex(GLint index) const
+    {
+        switch (index) {
+            case 0: return NULL;
+            case 1: return (GLvoid *)sizeof(GLSLVertex1P);
+            default: return NULL;
+        }
     }
 }

@@ -28,6 +28,11 @@ namespace GLRenderer
         GLvoid * GetDataPointer() const;
         GLsizeiptr GetDataCount() const;
         
+        virtual GLint GetSizeAtIndex(GLint index) const = 0;
+        virtual GLint GetMembersCount() const = 0;
+        virtual GLuint GetElementByteSize() const = 0;
+        virtual GLvoid *GetOffetAtIndex(GLint index) const = 0;
+        
     protected:
         void AddValue(GLfloat value) const;
         
@@ -41,6 +46,11 @@ namespace GLRenderer
     {
     public:
         void AddVertex(GLSLVertex *pVertex) const;
+        
+        GLint GetSizeAtIndex(GLint index) const;
+        GLint GetMembersCount() const;
+        GLuint GetElementByteSize() const;
+        GLvoid *GetOffetAtIndex(GLint index) const;
     };
     
     
@@ -49,6 +59,11 @@ namespace GLRenderer
     {
     public:
         void AddVertex(GLSLVertex *pVertex) const;
+        
+        GLint GetSizeAtIndex(GLint index) const;
+        GLint GetMembersCount() const;
+        GLuint GetElementByteSize() const;
+        GLvoid *GetOffetAtIndex(GLint index) const;
     };
     
     
@@ -57,5 +72,10 @@ namespace GLRenderer
     {
     public:
         void AddVertex(GLSLVertex *pVertex) const;
+        
+        GLint GetSizeAtIndex(GLint index) const;
+        GLint GetMembersCount() const;
+        GLuint GetElementByteSize() const;
+        GLvoid *GetOffetAtIndex(GLint index) const;
     };
 }

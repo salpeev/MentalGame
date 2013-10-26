@@ -16,13 +16,8 @@ namespace GLRenderer
 {
     class GLSLVertex
     {
-    public:
-        virtual GLint GetSizeAtIndex(GLint index) const = 0;
-        virtual GLint GetMembersCount() const = 0;
-        virtual GLuint GetByteSize() const = 0;
+        
     };
-    
-    
     
     class GLSLVertex1P: public GLSLVertex
     {
@@ -33,10 +28,6 @@ namespace GLRenderer
         void SetPosition(GLPoint position);
         
         GLPoint GetPosition() const;
-        
-        GLint GetSizeAtIndex(GLint index) const;
-        GLint GetMembersCount() const;
-        GLuint GetByteSize() const;
         
     private:
         GLPoint m_position;
@@ -53,10 +44,6 @@ namespace GLRenderer
         void SetColor(GLColor color);
         
         GLColor GetColor() const;
-        
-        GLint GetSizeAtIndex(GLint index) const;
-        GLint GetMembersCount() const;
-        GLuint GetByteSize() const;
         
     private:
         GLColor m_color;
@@ -76,12 +63,8 @@ namespace GLRenderer
         GLPoint GetPosition() const;
         GLColor GetColor() const;
         
-        GLint GetSizeAtIndex(GLint index) const;
-        GLint GetMembersCount() const;
-        GLuint GetByteSize() const;
-        
     private:
-        GLSLVertex1P m_position;
-        GLSLVertex1C m_color;
+        GLPoint m_position;
+        GLColor m_color;
     };
 }

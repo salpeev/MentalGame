@@ -33,24 +33,6 @@ namespace GLRenderer
         return m_position;
     }
     
-    GLint GLSLVertex1P::GetSizeAtIndex(GLint index) const
-    {
-        switch (index) {
-            case 0: return GLSL_FLOATS_3;
-            default: return 0;
-        }
-    }
-    
-    GLint GLSLVertex1P::GetMembersCount() const
-    {
-        return 1;
-    }
-    
-    GLuint GLSLVertex1P::GetByteSize() const
-    {
-        return sizeof(GLPoint);
-    }
-    
     
     
     GLSLVertex1C::GLSLVertex1C(): GLSLVertex1C(GLColor())
@@ -73,24 +55,6 @@ namespace GLRenderer
         return m_color;
     }
     
-    GLint GLSLVertex1C::GetSizeAtIndex(GLint index) const
-    {
-        switch (index) {
-            case 0: return GLSL_FLOATS_4;
-            default: return 0;
-        }
-    }
-    
-    GLint GLSLVertex1C::GetMembersCount() const
-    {
-        return 1;
-    }
-    
-    GLuint GLSLVertex1C::GetByteSize() const
-    {
-        return sizeof(GLColor);
-    }
-    
     
     
     GLSLVertex1P1C::GLSLVertex1P1C(): GLSLVertex1P1C(GLPoint(), GLColor())
@@ -98,7 +62,7 @@ namespace GLRenderer
         
     }
     
-    GLSLVertex1P1C::GLSLVertex1P1C(GLPoint position, GLColor color): m_position(GLSLVertex1P(position)), m_color(GLSLVertex1C(color))
+    GLSLVertex1P1C::GLSLVertex1P1C(GLPoint position, GLColor color): m_position(position), m_color(color)
     {
         
     }
@@ -115,45 +79,12 @@ namespace GLRenderer
     
     GLPoint GLSLVertex1P1C::GetPosition() const
     {
-        return m_position.GetPosition();
+        return m_position;
     }
     
     GLColor GLSLVertex1P1C::GetColor() const
     {
-        return m_color.GetColor();
-    }
-    
-    GLint GLSLVertex1P1C::GetSizeAtIndex(GLint index) const
-    {
-        GLint currentFirstIndex = 0;
-        GLint nextElementFirstIndex = currentFirstIndex + m_position.GetMembersCount();
-        
-        if (index < nextElementFirstIndex) {
-            GLint convertedIndex = index - currentFirstIndex;
-            return m_position.GetSizeAtIndex(convertedIndex);
-        }
-        
-        currentFirstIndex = nextElementFirstIndex;
-        nextElementFirstIndex = currentFirstIndex + m_color.GetMembersCount();
-        
-        if (index < nextElementFirstIndex) {
-            GLint convertedIndex = index - currentFirstIndex;
-            return m_color.GetSizeAtIndex(convertedIndex);
-        }
-        
-        return GLSL_FLOATS_0;
-    }
-    
-    GLint GLSLVertex1P1C::GetMembersCount() const
-    {
-        GLint membersCount = m_position.GetMembersCount() + m_color.GetMembersCount();
-        return membersCount;
-    }
-    
-    GLuint GLSLVertex1P1C::GetByteSize() const
-    {
-        GLuint byteSize = m_position.GetByteSize() + m_color.GetByteSize();
-        return byteSize;
+        return m_color;
     }
 }
 

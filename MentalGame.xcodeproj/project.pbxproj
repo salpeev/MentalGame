@@ -120,7 +120,6 @@
 				B4963F911800228F0037FC39 /* Primitive types */,
 				B4963F90180022770037FC39 /* Buffers */,
 				B4963F921800232C0037FC39 /* Shader values */,
-				B4963F931800301B0037FC39 /* Shader data */,
 				B4AFEF841809716C007846A1 /* Vertex data */,
 				B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */,
 				B47E8D9117DBD8E4008CE6DD /* GLRenderingEngine.h */,
@@ -193,15 +192,6 @@
 			name = "Shader values";
 			sourceTree = "<group>";
 		};
-		B4963F931800301B0037FC39 /* Shader data */ = {
-			isa = PBXGroup;
-			children = (
-				B469605B17F858BF002BCF6C /* GLSLVertex.cpp */,
-				B469605C17F858BF002BCF6C /* GLSLVertex.h */,
-			);
-			name = "Shader data";
-			sourceTree = "<group>";
-		};
 		B4963F9418003B490037FC39 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +203,8 @@
 		B4AFEF841809716C007846A1 /* Vertex data */ = {
 			isa = PBXGroup;
 			children = (
+				B469605B17F858BF002BCF6C /* GLSLVertex.cpp */,
+				B469605C17F858BF002BCF6C /* GLSLVertex.h */,
 				B469604B17F754BD002BCF6C /* GLSLVertexData.cpp */,
 				B469604C17F754BD002BCF6C /* GLSLVertexData.h */,
 			);
