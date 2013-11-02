@@ -38,7 +38,11 @@ namespace GLRenderer
     void GLSLVertexBuffer::LoadVertexData(GLSLVertexData *pVertexData, GLSL_BUFFER_USAGE usage) const
     {
         GLenum openGLUsage = OpenGLESUsageFromBufferUsage(usage);
-        glBufferData(GL_ARRAY_BUFFER, pVertexData->GetDataCount(), pVertexData->GetDataPointer(), openGLUsage);
+#warning Replase GLFloat with real type
+        GLsizeiptr dataSize = pVertexData->GetDataCount() * sizeof(GLfloat);
+        GLvoid *dataPointer = pVertexData->GetDataPointer();
+        
+        glBufferData(GL_ARRAY_BUFFER, dataSize, dataPointer, openGLUsage);
         CheckError();
     }
 }

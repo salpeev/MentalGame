@@ -30,7 +30,7 @@ namespace GLRenderer
             return NULL;
         }
         
-        return &m_data[0];
+        return &m_data->at(0);
     }
     
     GLsizeiptr GLSLVertexData::GetDataCount() const

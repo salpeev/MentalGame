@@ -57,13 +57,23 @@ namespace GLRenderer
             GLSLAttribute *attribute = program->GetAttributeAtIndex(i);
             attribute->EnableArray();
             
+            glEnableVertexAttribArray(attribute->GetLocation());
+            
             if (attribute->GetName()->compare("a_position") == 0)
             {
-                
+                GLuint attribLocation = attribute->GetLocation();
+                GLint size = vertexData->GetSizeAtIndex(0);
+                GLsizei stride = vertexData->GetElementByteSize();
+                GLvoid *offset = vertexData->GetOffetAtIndex(0);
+                glVertexAttribPointer(attribLocation, size, GL_FLOAT, GL_FALSE, stride, offset);
             }
             else if (attribute->GetName()->compare("a_color") == 0)
             {
-                
+                GLuint attribLocation = attribute->GetLocation();
+                GLint size = vertexData->GetSizeAtIndex(1);
+                GLsizei stride = vertexData->GetElementByteSize();
+                GLvoid *offset = vertexData->GetOffetAtIndex(1);
+                glVertexAttribPointer(attribLocation, size, GL_FLOAT, GL_FALSE, stride, offset);
             }
             
             cout << *(attribute->GetName()) << endl;
@@ -77,8 +87,10 @@ namespace GLRenderer
     
     void GLRenderingEngine::Render() const
     {
-        glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        glDrawArrays(GL_LINES, 0, 2);
     }
     
 }
