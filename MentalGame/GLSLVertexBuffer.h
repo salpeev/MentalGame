@@ -21,6 +21,6 @@ namespace GLRenderer
         
         void Bind() const;
         void Unbind() const;
-        void LoadVertexData(GLSLVertexData *pVertexData, GLSL_BUFFER_USAGE usage) const;
+        void LoadVertexData(GLvoid *vertexData, GLsizei dataSize, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW) const;
     };
 }

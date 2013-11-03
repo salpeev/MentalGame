@@ -13,6 +13,7 @@
 #include "GLSLProgram.h"
 #include "GLResourceManager.h"
 #include "GLSLVertexBuffer.h"
+#include "GLSLVertex.h"
 
 using namespace std;
 
@@ -41,39 +42,33 @@ namespace GLRenderer
         GLColor color0(1, 0, 0, 1);
         GLColor color1(0, 1, 0, 1);
         
-        GLSLVertex1P1C *vertex0 = new GLSLVertex1P1C(point0, color0);
-        GLSLVertex1P1C *vertex1 = new GLSLVertex1P1C(point1, color1);
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
         
-        GLSLVertexData1P1C *vertexData = new GLSLVertexData1P1C();
-        vertexData->AddVertex(vertex0);
-        vertexData->AddVertex(vertex1);
+        vector<GLSLVertex1P1C> vertexData;
+        vertexData.push_back(vertex0);
+        vertexData.push_back(vertex1);
         
         GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
         vertexBuffer->Bind();
-        vertexBuffer->LoadVertexData(vertexData, GLSL_BUFFER_USAGE_STATIC_DRAW);
+        vertexBuffer->LoadVertexData(&vertexData[0], sizeof(vertexData[0]) * vertexData.size());
         
         for (GLuint i = 0; i < program->GetAttributesCount(); i++)
         {
             GLSLAttribute *attribute = program->GetAttributeAtIndex(i);
             attribute->EnableArray();
             
+            GLuint attribLocation = attribute->GetLocation();
+            
             glEnableVertexAttribArray(attribute->GetLocation());
             
             if (attribute->GetName()->compare("a_position") == 0)
             {
-                GLuint attribLocation = attribute->GetLocation();
-                GLint size = vertexData->GetSizeAtIndex(0);
-                GLsizei stride = vertexData->GetElementByteSize();
-                GLvoid *offset = vertexData->GetOffetAtIndex(0);
-                glVertexAttribPointer(attribLocation, size, GL_FLOAT, GL_FALSE, stride, offset);
+                glVertexAttribPointer(attribLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), NULL);
             }
             else if (attribute->GetName()->compare("a_color") == 0)
             {
-                GLuint attribLocation = attribute->GetLocation();
-                GLint size = vertexData->GetSizeAtIndex(1);
-                GLsizei stride = vertexData->GetElementByteSize();
-                GLvoid *offset = vertexData->GetOffetAtIndex(1);
-                glVertexAttribPointer(attribLocation, size, GL_FLOAT, GL_FALSE, stride, offset);
+                glVertexAttribPointer(attribLocation, 4, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), (GLvoid *)(sizeof(GLfloat) * 3));
             }
             
             cout << *(attribute->GetName()) << endl;

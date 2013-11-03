@@ -35,10 +35,11 @@ namespace GLRenderer
         CheckError();
     }
     
-    void GLSLIndexBuffer::LoadVertexData(GLSLVertexData *pVertexData, GLSL_BUFFER_USAGE usage) const
+    void GLSLIndexBuffer::LoadVertexData(GLvoid *vertexData, GLsizei dataSize, GLSL_BUFFER_USAGE usage) const
     {
         GLenum openGLUsage = OpenGLESUsageFromBufferUsage(usage);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, pVertexData->GetDataCount(), pVertexData->GetDataPointer(), openGLUsage);
+        
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, vertexData, openGLUsage);
         CheckError();
     }
 }

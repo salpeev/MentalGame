@@ -8,7 +8,6 @@
 
 #pragma once
 #include <OpenglES/ES2/gl.h>
-#include "GLSLVertexData.h"
 
 
 
@@ -31,11 +30,11 @@ namespace GLRenderer
         
         virtual void Bind() const = 0;
         virtual void Unbind() const = 0;
-        virtual void LoadVertexData(GLSLVertexData *pVertexData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW) const = 0;
-        
-        GLenum OpenGLESUsageFromBufferUsage(GLSL_BUFFER_USAGE usage) const;
+        virtual void LoadVertexData(GLvoid *vertexData, GLsizei dataSize, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW) const = 0;
         
     protected:
+        GLenum OpenGLESUsageFromBufferUsage(GLSL_BUFFER_USAGE usage) const;
+        
         GLuint m_bufferHandle;
     };
 }

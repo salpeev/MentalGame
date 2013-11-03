@@ -14,12 +14,7 @@
 
 namespace GLRenderer
 {
-    class GLSLVertex
-    {
-        
-    };
-    
-    class GLSLVertex1P: public GLSLVertex
+    class GLSLVertex1P
     {
     public:
         GLSLVertex1P();
@@ -35,7 +30,7 @@ namespace GLRenderer
     
     
     
-    class GLSLVertex1C: public GLSLVertex
+    class GLSLVertex1C
     {
     public:
         GLSLVertex1C();
@@ -51,7 +46,7 @@ namespace GLRenderer
     
     
     
-    class GLSLVertex1P1C: public GLSLVertex
+    class GLSLVertex1P1C
     {
     public:
         GLSLVertex1P1C();
