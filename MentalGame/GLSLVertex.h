@@ -20,11 +20,6 @@ namespace GLRenderer
         GLSLVertex1P();
         GLSLVertex1P(GLPoint position);
         
-        void SetPosition(GLPoint position);
-        
-        GLPoint GetPosition() const;
-        
-    private:
         GLPoint m_position;
     };
     
@@ -36,11 +31,6 @@ namespace GLRenderer
         GLSLVertex1C();
         GLSLVertex1C(GLColor color);
         
-        void SetColor(GLColor color);
-        
-        GLColor GetColor() const;
-        
-    private:
         GLColor m_color;
     };
     
@@ -52,13 +42,6 @@ namespace GLRenderer
         GLSLVertex1P1C();
         GLSLVertex1P1C(GLPoint position, GLColor color);
         
-        void SetPosition(GLPoint position);
-        void SetColor(GLColor color);
-        
-        GLPoint GetPosition() const;
-        GLColor GetColor() const;
-        
-    private:
         GLPoint m_position;
         GLColor m_color;
     };
