@@ -14,7 +14,7 @@
 
 namespace GLRenderer
 {
-    GLSLProgram::GLSLProgram(): p_vertexShader(NULL), p_fragmentShader(NULL)
+    GLSLProgram::GLSLProgram(): p_vertexShader(NULL), p_fragmentShader(NULL), p_attributes(NULL), p_uniforms(NULL)
     {
         m_programHandle = glCreateProgram();
         
