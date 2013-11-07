@@ -68,7 +68,7 @@ namespace GLRenderer
             }
             else if (attribute->GetName()->compare("a_color") == 0)
             {
-                glVertexAttribPointer(attribLocation, 4, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), (GLvoid *)(sizeof(GLfloat) * 3));
+                glVertexAttribPointer(attribLocation, 4, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), (GLvoid *)(sizeof(GLSLVertex1P1C::m_position)));
             }
             
             cout << *(attribute->GetName()) << endl;
