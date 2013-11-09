@@ -26,8 +26,8 @@ namespace GLRenderer
     {
         glViewport(0, 0, width, height);
         
-        string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("Shader.vsh");
-        string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("Shader.fsh");
+        string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.vsh");
+        string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.fsh");
         
         GLSLShader *vertexShader = new GLSLShader(GL_VERTEX_SHADER, &vertexShaderSource);
         GLSLShader *fragmentShader = new GLSLShader(GL_FRAGMENT_SHADER, &fragmentShaderSource);
