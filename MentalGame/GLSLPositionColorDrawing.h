@@ -14,6 +14,12 @@ namespace GLRenderer
 {
     class GLSLPositionColorDrawing: public GLSLDrawing
     {
-        void LoadProgram();
+    public:
+        GLSLPositionColorDrawing();
+        ~GLSLPositionColorDrawing();
+        
+    private:
+        string VertexShaderName() const;
+        string FragmentShaderName() const;
     };
 }

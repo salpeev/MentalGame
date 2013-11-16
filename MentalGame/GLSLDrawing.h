@@ -6,6 +6,13 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
+#include <string>
+
+using namespace std;
+
+
+
 namespace GLRenderer
 {
     class GLSLProgram;
@@ -19,16 +26,21 @@ namespace GLRenderer
         GLSLDrawing();
         ~GLSLDrawing();
         
-    protected:
-        virtual void LoadProgram() = 0;
-        
-        void SetProgram(GLSLProgram *pProgram);
-        GLSLProgram * GetProgram() const;
+        void Initialize();
         
         void SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer);
         GLSLVertexBuffer * GetVertexBuffer() const;
         
+    protected:
+        virtual string VertexShaderName() const = 0;
+        virtual string FragmentShaderName() const = 0;
+        
     private:
+        void GenerateProgram();
+        
+        void SetProgram(GLSLProgram *pProgram);
+        GLSLProgram * GetProgram() const;
+        
         GLSLProgram *m_program;
         GLSLVertexBuffer *m_vertexBuffer;
     };

@@ -14,6 +14,7 @@
 #include "GLResourceManager.h"
 #include "GLSLVertexBuffer.h"
 #include "GLSLVertex.h"
+#include "GLSLPositionColorDrawing.h"
 
 using namespace std;
 
@@ -29,8 +30,8 @@ namespace GLRenderer
         string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.vsh");
         string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.fsh");
         
-        GLSLShader *vertexShader = new GLSLShader(GL_VERTEX_SHADER, &vertexShaderSource);
-        GLSLShader *fragmentShader = new GLSLShader(GL_FRAGMENT_SHADER, &fragmentShaderSource);
+        GLSLShader vertexShader = GLSLShader(GLSL_SHADER_TYPE_VERTEX, &vertexShaderSource);
+        GLSLShader fragmentShader = GLSLShader(GLSL_SHADER_TYPE_FRAGMENT, &fragmentShaderSource);
         
         GLSLProgram *program = new GLSLProgram(vertexShader, fragmentShader);
         program->Use();
@@ -73,6 +74,9 @@ namespace GLRenderer
             
             cout << *(attribute->GetName()) << endl;
         }
+        
+        GLSLPositionColorDrawing *positionColorDrawing = new GLSLPositionColorDrawing();
+        positionColorDrawing->Initialize();
     }
     
     GLRenderingEngine::~GLRenderingEngine()

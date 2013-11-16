@@ -8,22 +8,25 @@
 
 #include "GLSLShader.h"
 #include "GLLogger.h"
+#include "GLDataConverter.h"
 #include <iostream>
 
 
 
 namespace GLRenderer
 {
-    GLSLShader::GLSLShader(): m_shaderHandle(0)
-    {
-        
-    }
+#pragma mark - Lifecycle
     
-    GLSLShader::GLSLShader(GLenum type, const string *source): GLSLShader()
+    GLSLShader::GLSLShader(GLSL_SHADER_TYPE type, const string *source)
     {
         SetType(type);
         SetSource(source);
         Compile();
+    }
+    
+    GLSLShader::GLSLShader(const GLSLShader &shader)
+    {
+        m_shaderHandle = shader.m_shaderHandle;
     }
     
     GLSLShader::~GLSLShader()
@@ -32,29 +35,24 @@ namespace GLRenderer
         CheckError();
     }
     
-    void GLSLShader::SetType(GLenum type)
-    {
-        m_shaderHandle = glCreateShader(type);
-        CheckError();
-        
-        if (m_shaderHandle == 0)
-        {
-            Log("Unable to create shader");
-        }
-    }
-    
-    void GLSLShader::SetSource(const string *source)
-    {
-        const char *sourceCStr = source->c_str();
-        glShaderSource(m_shaderHandle, 1, &sourceCStr, NULL);
-        
-        CheckError();
-    }
+#pragma mark - Public Methods
     
     GLuint GLSLShader::GetShaderHandle() const
     {
         return m_shaderHandle;
     }
+    
+    bool GLSLShader::IsCompiled() const
+    {
+        GLint compileStatus;
+        glGetShaderiv(m_shaderHandle, GL_COMPILE_STATUS, &compileStatus);
+        
+        CheckError();
+        
+        return (compileStatus == GL_TRUE);
+    }
+    
+#pragma mark - Private Methods
     
     bool GLSLShader::Compile() const
     {
@@ -85,13 +83,24 @@ namespace GLRenderer
         return true;
     }
     
-    bool GLSLShader::IsCompiled() const
+    void GLSLShader::SetType(GLSL_SHADER_TYPE type)
     {
-        GLint compileStatus;
-        glGetShaderiv(m_shaderHandle, GL_COMPILE_STATUS, &compileStatus);
+        GLenum shaderType = GLDataConverter::OpenGLESShaderFromShaderType(type);
         
+        m_shaderHandle = glCreateShader(shaderType);
         CheckError();
         
-        return (compileStatus == GL_TRUE);
+        if (m_shaderHandle == 0)
+        {
+            Log("Unable to create shader");
+        }
+    }
+    
+    void GLSLShader::SetSource(const string *source)
+    {
+        const char *sourceCStr = source->c_str();
+        glShaderSource(m_shaderHandle, 1, &sourceCStr, NULL);
+        
+        CheckError();
     }
 }

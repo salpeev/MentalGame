@@ -8,6 +8,7 @@
 
 #include "GLSLVertexBuffer.h"
 #include "GLLogger.h"
+#include "GLDataConverter.h"
 
 
 
@@ -37,7 +38,7 @@ namespace GLRenderer
     
     void GLSLVertexBuffer::LoadVertexData(GLvoid *vertexData, GLsizei dataSize, GLSL_BUFFER_USAGE usage) const
     {
-        GLenum openGLUsage = OpenGLESUsageFromBufferUsage(usage);
+        GLenum openGLUsage = GLDataConverter::OpenGLESUsageFromBufferUsage(usage);
         
         glBufferData(GL_ARRAY_BUFFER, dataSize, vertexData, openGLUsage);
         CheckError();

@@ -23,14 +23,12 @@ namespace GLRenderer
     class GLSLProgram
     {
     public:
-        GLSLProgram();
-        GLSLProgram(GLSLShader *pVertexShader, GLSLShader *pFragmentShader);
+        GLSLProgram(GLSLShader &rVertexShader, GLSLShader &rFragmentShader);
         ~GLSLProgram();
         
-        void SetVertexShader(GLSLShader *pVertexShader);
-        void SetFragmentShader(GLSLShader *pFragmentShader);
         void Use() const;
         
+        bool IsLinked() const;
         GLuint GetProgramHandle() const;
         
         GLuint GetAttributesCount() const;
@@ -39,12 +37,9 @@ namespace GLRenderer
         GLuint GetUniformsCount() const;
         GLSLUniform * GetUniformAtIndex(GLuint index) const;
         
-        bool Link();
-        bool IsLinked() const;
-        
-        void Execute() const;
-        
     private:
+        void CreateProgram();
+        bool Link();
         void ExtractAttributes();
         void ExtractUniforms();
         void SetAttributes(vector<GLSLAttribute *> *pAttributes);
@@ -52,11 +47,11 @@ namespace GLRenderer
         
         GLuint m_programHandle;
         
-        GLSLShader *p_vertexShader;
-        GLSLShader *p_fragmentShader;
+        GLSLShader *m_vertexShader;
+        GLSLShader *m_fragmentShader;
         
-        vector<GLSLAttribute *> *p_attributes;
-        vector<GLSLUniform *> *p_uniforms;
+        vector<GLSLAttribute *> *m_attributes;
+        vector<GLSLUniform *> *m_uniforms;
     };
     
 }

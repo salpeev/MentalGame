@@ -12,8 +12,23 @@
 
 namespace GLRenderer
 {
-    void GLSLPositionColorDrawing::LoadProgram()
+    GLSLPositionColorDrawing::GLSLPositionColorDrawing(): GLSLDrawing()
     {
         
+    }
+    
+    GLSLPositionColorDrawing::~GLSLPositionColorDrawing()
+    {
+        
+    }
+    
+    string GLSLPositionColorDrawing::VertexShaderName() const
+    {
+        return "PositionColorShader.vsh";
+    }
+    
+    string GLSLPositionColorDrawing::FragmentShaderName() const
+    {
+        return "PositionColorShader.fsh";
     }
 }

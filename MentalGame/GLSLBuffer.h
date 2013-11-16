@@ -8,20 +8,12 @@
 
 #pragma once
 #include <OpenglES/ES2/gl.h>
+#include "GLConstants.h"
 
 
 
 namespace GLRenderer
 {
-    enum GLSL_BUFFER_USAGE
-    {
-        GLSL_BUFFER_USAGE_STREAM_DRAW,
-        GLSL_BUFFER_USAGE_STATIC_DRAW,
-        GLSL_BUFFER_USAGE_DYNAMIC_DRAW
-    };
-    
-    
-    
     class GLSLBuffer
     {
     public:
@@ -33,8 +25,6 @@ namespace GLRenderer
         virtual void LoadVertexData(GLvoid *vertexData, GLsizei dataSize, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW) const = 0;
         
     protected:
-        GLenum OpenGLESUsageFromBufferUsage(GLSL_BUFFER_USAGE usage) const;
-        
         GLuint m_bufferHandle;
     };
 }

@@ -11,6 +11,7 @@
 		B403F3C017F0FE0400A2A4E8 /* GLSLUniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B403F3BE17F0FE0400A2A4E8 /* GLSLUniform.cpp */; };
 		B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7317F6DD2A00CC6900 /* GLSLVertexBuffer.cpp */; };
 		B408BB7817F6DD3C00CC6900 /* GLSLIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7617F6DD3C00CC6900 /* GLSLIndexBuffer.cpp */; };
+		B421B2FF183776A6003BE74C /* GLDataConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B421B2FD183776A6003BE74C /* GLDataConverter.cpp */; };
 		B424616C182ED30000B51DB1 /* GLSLDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B424616A182ED30000B51DB1 /* GLSLDrawing.cpp */; };
 		B424616F182EE47800B51DB1 /* GLSLPositionColorDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B424616D182EE47800B51DB1 /* GLSLPositionColorDrawing.cpp */; };
 		B457A15817F6D486004EF4E0 /* GLSLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B457A15617F6D486004EF4E0 /* GLSLBuffer.cpp */; };
@@ -50,6 +51,8 @@
 		B408BB7417F6DD2A00CC6900 /* GLSLVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLVertexBuffer.h; sourceTree = "<group>"; };
 		B408BB7617F6DD3C00CC6900 /* GLSLIndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLIndexBuffer.cpp; sourceTree = "<group>"; };
 		B408BB7717F6DD3C00CC6900 /* GLSLIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLIndexBuffer.h; sourceTree = "<group>"; };
+		B421B2FD183776A6003BE74C /* GLDataConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLDataConverter.cpp; sourceTree = "<group>"; };
+		B421B2FE183776A6003BE74C /* GLDataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDataConverter.h; sourceTree = "<group>"; };
 		B424616A182ED30000B51DB1 /* GLSLDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLDrawing.cpp; sourceTree = "<group>"; };
 		B424616B182ED30000B51DB1 /* GLSLDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawing.h; sourceTree = "<group>"; };
 		B424616D182EE47800B51DB1 /* GLSLPositionColorDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLPositionColorDrawing.cpp; sourceTree = "<group>"; };
@@ -116,6 +119,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B421B2FC18377659003BE74C /* DataConverter */ = {
+			isa = PBXGroup;
+			children = (
+				B421B2FD183776A6003BE74C /* GLDataConverter.cpp */,
+				B421B2FE183776A6003BE74C /* GLDataConverter.h */,
+			);
+			name = DataConverter;
+			sourceTree = "<group>";
+		};
 		B4246169182ED2BC00B51DB1 /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +149,7 @@
 				B4963F921800232C0037FC39 /* Shader values */,
 				B4AFEF841809716C007846A1 /* Vertex data */,
 				B4246169182ED2BC00B51DB1 /* Drawing */,
+				B421B2FC18377659003BE74C /* DataConverter */,
 				B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */,
 				B47E8D9117DBD8E4008CE6DD /* GLRenderingEngine.h */,
 				B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */,
@@ -411,6 +424,7 @@
 				B469605017F756C6002BCF6C /* GLVector.cpp in Sources */,
 				B457A15817F6D486004EF4E0 /* GLSLBuffer.cpp in Sources */,
 				B403F3C017F0FE0400A2A4E8 /* GLSLUniform.cpp in Sources */,
+				B421B2FF183776A6003BE74C /* GLDataConverter.cpp in Sources */,
 				B4E0974417DB75DD00F4A436 /* MGOpenGLView.mm in Sources */,
 				B4E0974517DB75DD00F4A436 /* MGOpenGLViewController.m in Sources */,
 				B47E8D9217DBD8E4008CE6DD /* GLRenderingEngine.cpp in Sources */,

@@ -10,6 +10,7 @@
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 #include <string>
+#include "GLConstants.h"
 
 using namespace std;
 
@@ -20,19 +21,19 @@ namespace GLRenderer
     class GLSLShader
     {
     public:
-        GLSLShader();
-        GLSLShader(GLenum type, const string *source);
+        GLSLShader(GLSL_SHADER_TYPE type, const string *source);
+        GLSLShader(const GLSLShader &shader);
         ~GLSLShader();
         
-        void SetType(GLenum type);
-        void SetSource(const string *source);
-        
         GLuint GetShaderHandle() const;
-        
-        bool Compile() const;
         bool IsCompiled() const;
         
     private:
+        bool Compile() const;
+        
+        void SetType(GLSL_SHADER_TYPE type);
+        void SetSource(const string *source);
+        
         GLuint m_shaderHandle;
     };
 }

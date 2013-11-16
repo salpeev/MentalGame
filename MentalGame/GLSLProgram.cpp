@@ -14,21 +14,12 @@
 
 namespace GLRenderer
 {
-    GLSLProgram::GLSLProgram(): p_vertexShader(NULL), p_fragmentShader(NULL), p_attributes(NULL), p_uniforms(NULL)
+    GLSLProgram::GLSLProgram(GLSLShader &rVertexShader, GLSLShader &rFragmentShader): m_attributes(NULL), m_uniforms(NULL)
     {
-        m_programHandle = glCreateProgram();
+        m_vertexShader = new GLSLShader(rVertexShader);
+        m_fragmentShader = new GLSLShader(rFragmentShader);
         
-        if (m_programHandle == 0)
-        {
-            Log("Unable to create program");
-        }
-    }
-    
-    GLSLProgram::GLSLProgram(GLSLShader *pVertexShader, GLSLShader *pFragmentShader): GLSLProgram()
-    {
-        SetVertexShader(pVertexShader);
-        SetFragmentShader(pFragmentShader);
-        
+        CreateProgram();
         Link();
     }
     
@@ -37,24 +28,25 @@ namespace GLRenderer
         glDeleteProgram(m_programHandle);
         CheckError();
         
-        delete p_vertexShader;
-        delete p_fragmentShader;
-        delete p_attributes;
-    }
-    
-    void GLSLProgram::SetVertexShader(GLSLShader *pVertexShader)
-    {
-        p_vertexShader = pVertexShader;
-    }
-    
-    void GLSLProgram::SetFragmentShader(GLSLShader *pFragmentShader)
-    {
-        p_fragmentShader = pFragmentShader;
+        delete m_vertexShader;
+        delete m_fragmentShader;
+        delete m_attributes;
+        delete m_uniforms;
     }
     
     void GLSLProgram::Use() const
     {
         glUseProgram(m_programHandle);
+    }
+    
+    bool GLSLProgram::IsLinked() const
+    {
+        GLint linkStatus;
+        glGetProgramiv(m_programHandle, GL_LINK_STATUS, &linkStatus);
+        
+        CheckError();
+        
+        return (linkStatus == GL_TRUE);
     }
     
     GLuint GLSLProgram::GetProgramHandle() const
@@ -64,29 +56,41 @@ namespace GLRenderer
     
     GLuint GLSLProgram::GetAttributesCount() const
     {
-        return p_attributes->size();
+        return m_attributes->size();
     }
     
     GLSLAttribute * GLSLProgram::GetAttributeAtIndex(GLuint index) const
     {
-        return p_attributes->at(index);
+        return m_attributes->at(index);
     }
     
     GLuint GLSLProgram::GetUniformsCount() const
     {
-        return p_uniforms->size();
+        return m_uniforms->size();
     }
     
     GLSLUniform * GLSLProgram::GetUniformAtIndex(GLuint index) const
     {
-        return p_uniforms->at(index);
+        return m_uniforms->at(index);
+    }
+    
+#pragma mark - Private Methods
+    
+    void GLSLProgram::CreateProgram()
+    {
+        m_programHandle = glCreateProgram();
+        
+        if (m_programHandle == 0)
+        {
+            Log("Unable to create program");
+        }
     }
     
     bool GLSLProgram::Link()
     {
-        glAttachShader(m_programHandle, p_vertexShader->GetShaderHandle());
+        glAttachShader(m_programHandle, m_vertexShader->GetShaderHandle());
         CheckError();
-        glAttachShader(m_programHandle, p_fragmentShader->GetShaderHandle());
+        glAttachShader(m_programHandle, m_fragmentShader->GetShaderHandle());
         CheckError();
         
         glLinkProgram(m_programHandle);
@@ -114,21 +118,6 @@ namespace GLRenderer
         ExtractUniforms();
         
         return true;
-    }
-    
-    bool GLSLProgram::IsLinked() const
-    {
-        GLint linkStatus;
-        glGetProgramiv(m_programHandle, GL_LINK_STATUS, &linkStatus);
-        
-        CheckError();
-        
-        return (linkStatus == GL_TRUE);
-    }
-    
-    void GLSLProgram::Execute() const
-    {
-        
     }
     
     void GLSLProgram::ExtractAttributes()
@@ -197,21 +186,13 @@ namespace GLRenderer
     
     void GLSLProgram::SetAttributes(vector<GLSLAttribute *> *pAttributes)
     {
-        if (p_attributes)
-        {
-            delete p_attributes;
-        }
-        
-        p_attributes = pAttributes;
+        delete m_attributes;
+        m_attributes = pAttributes;
     }
     
     void GLSLProgram::SetUniforms(vector<GLSLUniform *> *pUniforms)
     {
-        if (p_uniforms)
-        {
-            delete p_uniforms;
-        }
-        
-        p_uniforms = pUniforms;
+        delete m_uniforms;
+        m_uniforms = pUniforms;
     }
 }
