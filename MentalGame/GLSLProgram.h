@@ -27,6 +27,7 @@ namespace GLRenderer
         ~GLSLProgram();
         
         void Use() const;
+        void Invalidate();
         
         bool IsLinked() const;
         GLuint GetProgramHandle() const;

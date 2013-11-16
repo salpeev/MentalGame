@@ -31,11 +31,18 @@ namespace GLRenderer
     
     GLSLShader::~GLSLShader()
     {
-        glDeleteShader(m_shaderHandle);
-        CheckError();
+        
     }
     
 #pragma mark - Public Methods
+    
+    void GLSLShader::Invalidate()
+    {
+        glDeleteShader(m_shaderHandle);
+        m_shaderHandle = 0;
+        
+        CheckError();
+    }
     
     GLuint GLSLShader::GetShaderHandle() const
     {

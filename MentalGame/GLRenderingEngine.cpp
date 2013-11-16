@@ -33,8 +33,8 @@ namespace GLRenderer
         GLSLShader vertexShader = GLSLShader(GLSL_SHADER_TYPE_VERTEX, &vertexShaderSource);
         GLSLShader fragmentShader = GLSLShader(GLSL_SHADER_TYPE_FRAGMENT, &fragmentShaderSource);
         
-        GLSLProgram *program = new GLSLProgram(vertexShader, fragmentShader);
-        program->Use();
+        GLSLProgram program(vertexShader, fragmentShader);
+        program.Use();
         
         
         GLPoint point0(-1, -1, 0);
@@ -54,9 +54,9 @@ namespace GLRenderer
         vertexBuffer->Bind();
         vertexBuffer->LoadVertexData(&vertexData[0], sizeof(vertexData[0]) * vertexData.size());
         
-        for (GLuint i = 0; i < program->GetAttributesCount(); i++)
+        for (GLuint i = 0; i < program.GetAttributesCount(); i++)
         {
-            GLSLAttribute *attribute = program->GetAttributeAtIndex(i);
+            GLSLAttribute *attribute = program.GetAttributeAtIndex(i);
             attribute->EnableArray();
             
             GLuint attribLocation = attribute->GetLocation();

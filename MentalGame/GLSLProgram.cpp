@@ -25,9 +25,6 @@ namespace GLRenderer
     
     GLSLProgram::~GLSLProgram()
     {
-        glDeleteProgram(m_programHandle);
-        CheckError();
-        
         delete m_vertexShader;
         delete m_fragmentShader;
         delete m_attributes;
@@ -37,6 +34,14 @@ namespace GLRenderer
     void GLSLProgram::Use() const
     {
         glUseProgram(m_programHandle);
+    }
+    
+    void GLSLProgram::Invalidate()
+    {
+        glDeleteProgram(m_programHandle);
+        m_programHandle = 0;
+        
+        CheckError();
     }
     
     bool GLSLProgram::IsLinked() const

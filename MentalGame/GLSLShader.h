@@ -25,6 +25,8 @@ namespace GLRenderer
         GLSLShader(const GLSLShader &shader);
         ~GLSLShader();
         
+        void Invalidate();
+        
         GLuint GetShaderHandle() const;
         bool IsCompiled() const;
         
