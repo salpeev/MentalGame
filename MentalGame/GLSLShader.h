@@ -21,20 +21,21 @@ namespace GLRenderer
     class GLSLShader
     {
     public:
-        GLSLShader(GLSL_SHADER_TYPE type, const string *source);
-        GLSLShader(const GLSLShader &shader);
+        GLSLShader(GLSL_SHADER_TYPE type, const string &rSource);
+        GLSLShader(const GLSLShader &shader) = delete;
         ~GLSLShader();
         
-        void Invalidate();
-        
         GLuint GetShaderHandle() const;
+        
         bool IsCompiled() const;
         
     private:
         bool Compile() const;
+        void Invalidate();
+        bool IsInvalidated() const;
         
         void SetType(GLSL_SHADER_TYPE type);
-        void SetSource(const string *source);
+        void SetSource(const string &source);
         
         GLuint m_shaderHandle;
     };

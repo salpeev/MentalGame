@@ -7,6 +7,7 @@
 //
 
 #include "GLSLPositionColorDrawing.h"
+#include "GLResourceManager.h"
 
 
 
@@ -22,13 +23,15 @@ namespace GLRenderer
         
     }
     
-    string GLSLPositionColorDrawing::VertexShaderName() const
+    string GLSLPositionColorDrawing::VertexShaderSource() const
     {
-        return "PositionColorShader.vsh";
+        string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.vsh");
+        return vertexShaderSource;
     }
     
-    string GLSLPositionColorDrawing::FragmentShaderName() const
+    string GLSLPositionColorDrawing::FragmentShaderSource() const
     {
-        return "PositionColorShader.fsh";
+        string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.fsh");
+        return fragmentShaderSource;
     }
 }

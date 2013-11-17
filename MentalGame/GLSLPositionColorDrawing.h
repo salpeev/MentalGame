@@ -19,7 +19,7 @@ namespace GLRenderer
         ~GLSLPositionColorDrawing();
         
     private:
-        string VertexShaderName() const;
-        string FragmentShaderName() const;
+        string VertexShaderSource() const;
+        string FragmentShaderSource() const;
     };
 }

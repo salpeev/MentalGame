@@ -23,11 +23,11 @@ namespace GLRenderer
     class GLSLProgram
     {
     public:
-        GLSLProgram(GLSLShader &rVertexShader, GLSLShader &rFragmentShader);
+        GLSLProgram(const string &rVertexShaderSource, const string &rFragmentShaderSource);
+        GLSLProgram(const GLSLProgram *program) = delete;
         ~GLSLProgram();
         
         void Use() const;
-        void Invalidate();
         
         bool IsLinked() const;
         GLuint GetProgramHandle() const;
@@ -41,6 +41,8 @@ namespace GLRenderer
     private:
         void CreateProgram();
         bool Link();
+        void Invalidate();
+        bool IsInvalidated() const;
         void ExtractAttributes();
         void ExtractUniforms();
         void SetAttributes(vector<GLSLAttribute *> *pAttributes);

@@ -30,12 +30,8 @@ namespace GLRenderer
         string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.vsh");
         string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.fsh");
         
-        GLSLShader vertexShader = GLSLShader(GLSL_SHADER_TYPE_VERTEX, &vertexShaderSource);
-        GLSLShader fragmentShader = GLSLShader(GLSL_SHADER_TYPE_FRAGMENT, &fragmentShaderSource);
-        
-        GLSLProgram program(vertexShader, fragmentShader);
+        GLSLProgram program(vertexShaderSource, fragmentShaderSource);
         program.Use();
-        
         
         GLPoint point0(-1, -1, 0);
         GLPoint point1(1, 1, 0);

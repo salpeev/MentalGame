@@ -54,11 +54,8 @@ namespace GLRenderer
     
     void GLSLDrawing::GenerateProgram()
     {
-        string vertexShaderName = VertexShaderName();
-        string fragmentShaderName = FragmentShaderName();
-        
-        string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed(vertexShaderName);
-        string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed(fragmentShaderName);
+        string vertexShaderSource = VertexShaderSource();
+        string fragmentShaderSource = FragmentShaderSource();
         
         cout << vertexShaderSource << endl;
         cout << fragmentShaderSource << endl;

@@ -32,8 +32,8 @@ namespace GLRenderer
         GLSLVertexBuffer * GetVertexBuffer() const;
         
     protected:
-        virtual string VertexShaderName() const = 0;
-        virtual string FragmentShaderName() const = 0;
+        virtual string VertexShaderSource() const = 0;
+        virtual string FragmentShaderSource() const = 0;
         
     private:
         void GenerateProgram();

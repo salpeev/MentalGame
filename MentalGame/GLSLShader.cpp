@@ -17,32 +17,19 @@ namespace GLRenderer
 {
 #pragma mark - Lifecycle
     
-    GLSLShader::GLSLShader(GLSL_SHADER_TYPE type, const string *source)
+    GLSLShader::GLSLShader(GLSL_SHADER_TYPE type, const string &rSource)
     {
         SetType(type);
-        SetSource(source);
+        SetSource(rSource);
         Compile();
-    }
-    
-    GLSLShader::GLSLShader(const GLSLShader &shader)
-    {
-        m_shaderHandle = shader.m_shaderHandle;
     }
     
     GLSLShader::~GLSLShader()
     {
-        
+        Invalidate();
     }
     
 #pragma mark - Public Methods
-    
-    void GLSLShader::Invalidate()
-    {
-        glDeleteShader(m_shaderHandle);
-        m_shaderHandle = 0;
-        
-        CheckError();
-    }
     
     GLuint GLSLShader::GetShaderHandle() const
     {
@@ -90,6 +77,27 @@ namespace GLRenderer
         return true;
     }
     
+    void GLSLShader::Invalidate()
+    {
+        if (!IsInvalidated())
+        {
+            glDeleteShader(m_shaderHandle);
+            m_shaderHandle = 0;
+            
+            CheckError();
+        }
+    }
+    
+    bool GLSLShader::IsInvalidated() const
+    {
+        GLint deleteStatus;
+        glGetShaderiv(m_shaderHandle, GL_DELETE_STATUS, &deleteStatus);
+        
+        CheckError();
+        
+        return (deleteStatus == GL_TRUE);
+    }
+    
     void GLSLShader::SetType(GLSL_SHADER_TYPE type)
     {
         GLenum shaderType = GLDataConverter::OpenGLESShaderFromShaderType(type);
@@ -103,9 +111,9 @@ namespace GLRenderer
         }
     }
     
-    void GLSLShader::SetSource(const string *source)
+    void GLSLShader::SetSource(const string &rSource)
     {
-        const char *sourceCStr = source->c_str();
+        const char *sourceCStr = rSource.c_str();
         glShaderSource(m_shaderHandle, 1, &sourceCStr, NULL);
         
         CheckError();

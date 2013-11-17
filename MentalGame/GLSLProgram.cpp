@@ -14,10 +14,10 @@
 
 namespace GLRenderer
 {
-    GLSLProgram::GLSLProgram(GLSLShader &rVertexShader, GLSLShader &rFragmentShader): m_attributes(NULL), m_uniforms(NULL)
+    GLSLProgram::GLSLProgram(const string &rVertexShaderSource, const string &rFragmentShaderSource): m_attributes(NULL), m_uniforms(NULL)
     {
-        m_vertexShader = new GLSLShader(rVertexShader);
-        m_fragmentShader = new GLSLShader(rFragmentShader);
+        m_vertexShader = new GLSLShader(GLSL_SHADER_TYPE_VERTEX, rVertexShaderSource);
+        m_fragmentShader = new GLSLShader(GLSL_SHADER_TYPE_FRAGMENT, rFragmentShaderSource);
         
         CreateProgram();
         Link();
@@ -25,6 +25,8 @@ namespace GLRenderer
     
     GLSLProgram::~GLSLProgram()
     {
+        Invalidate();
+        
         delete m_vertexShader;
         delete m_fragmentShader;
         delete m_attributes;
@@ -34,14 +36,6 @@ namespace GLRenderer
     void GLSLProgram::Use() const
     {
         glUseProgram(m_programHandle);
-    }
-    
-    void GLSLProgram::Invalidate()
-    {
-        glDeleteProgram(m_programHandle);
-        m_programHandle = 0;
-        
-        CheckError();
     }
     
     bool GLSLProgram::IsLinked() const
@@ -123,6 +117,26 @@ namespace GLRenderer
         ExtractUniforms();
         
         return true;
+    }
+    
+    void GLSLProgram::Invalidate()
+    {
+        if (!IsInvalidated()) {
+            glDeleteProgram(m_programHandle);
+            m_programHandle = 0;
+            
+            CheckError();
+        }
+    }
+    
+    bool GLSLProgram::IsInvalidated() const
+    {
+        GLint deleteStatus;
+        glGetProgramiv(m_programHandle, GL_DELETE_STATUS, &deleteStatus);
+        
+        CheckError();
+        
+        return (deleteStatus == GL_TRUE);
     }
     
     void GLSLProgram::ExtractAttributes()
