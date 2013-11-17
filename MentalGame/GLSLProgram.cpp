@@ -27,6 +27,16 @@ namespace GLRenderer
     {
         Invalidate();
         
+        for (map<string, GLSLAttribute *>::iterator iterator = m_attributes->begin(); iterator != m_attributes->end(); iterator++)
+        {
+            delete iterator->second;
+        }
+        
+        for (map<string, GLSLUniform *>::iterator iterator = m_uniforms->begin(); iterator != m_uniforms->end(); iterator++)
+        {
+            delete iterator->second;
+        }
+        
         delete m_vertexShader;
         delete m_fragmentShader;
         delete m_attributes;
@@ -53,24 +63,14 @@ namespace GLRenderer
         return m_programHandle;
     }
     
-    GLuint GLSLProgram::GetAttributesCount() const
+    GLSLAttribute * GLSLProgram::GetAttributeWithName(const string &rAttributeName) const
     {
-        return m_attributes->size();
+        return m_attributes->at(rAttributeName);
     }
     
-    GLSLAttribute * GLSLProgram::GetAttributeAtIndex(GLuint index) const
+    GLSLUniform * GLSLProgram::GetUniformWithName(const string &rUniformName) const
     {
-        return m_attributes->at(index);
-    }
-    
-    GLuint GLSLProgram::GetUniformsCount() const
-    {
-        return m_uniforms->size();
-    }
-    
-    GLSLUniform * GLSLProgram::GetUniformAtIndex(GLuint index) const
-    {
-        return m_uniforms->at(index);
+        return m_uniforms->at(rUniformName);
     }
     
 #pragma mark - Private Methods
@@ -149,7 +149,7 @@ namespace GLRenderer
         glGetProgramiv(m_programHandle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttributeNameLength);
         CheckError();
         
-        vector<GLSLAttribute *> *pAttributes = new vector<GLSLAttribute *>();
+        map<string, GLSLAttribute *> *pAttributes = new map<string, GLSLAttribute *>();
         
         for (GLint attributeIndex = 0; attributeIndex < attributesCount; attributeIndex++)
         {
@@ -165,7 +165,9 @@ namespace GLRenderer
             CheckError();
             
             GLSLAttribute *pAttribute = new GLSLAttribute(attributeName, attributeType, attributeSize, attributeLocation);
-            pAttributes->push_back(pAttribute);
+            pAttributes->insert(make_pair(attributeName, pAttribute));
+            
+            delete [] attributeName;
         }
         
         SetAttributes(pAttributes);
@@ -181,7 +183,7 @@ namespace GLRenderer
         glGetProgramiv(m_programHandle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxUniformNameLength);
         CheckError();
         
-        vector<GLSLUniform *> *pUniforms = new vector<GLSLUniform *>();
+        map<string, GLSLUniform *> *pUniforms = new map<string, GLSLUniform *>();
         
         for (GLint uniformIndex = 0; uniformIndex < uniformsCount; uniformIndex++)
         {
@@ -197,19 +199,21 @@ namespace GLRenderer
             CheckError();
             
             GLSLUniform *pUniform = new GLSLUniform(uniformName, uniformType, uniformSize, uniformLocation);
-            pUniforms->push_back(pUniform);
+            pUniforms->insert(make_pair(uniformName, pUniform));
+            
+            delete [] uniformName;
         }
         
         SetUniforms(pUniforms);
     }
     
-    void GLSLProgram::SetAttributes(vector<GLSLAttribute *> *pAttributes)
+    void GLSLProgram::SetAttributes(map<string, GLRenderer::GLSLAttribute *> *pAttributes)
     {
         delete m_attributes;
         m_attributes = pAttributes;
     }
     
-    void GLSLProgram::SetUniforms(vector<GLSLUniform *> *pUniforms)
+    void GLSLProgram::SetUniforms(map<string, GLRenderer::GLSLUniform *> *pUniforms)
     {
         delete m_uniforms;
         m_uniforms = pUniforms;

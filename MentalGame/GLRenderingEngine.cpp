@@ -8,6 +8,7 @@
 
 #include <OpenGLES/ES2/gl.h>
 #include <iostream>
+#include <vector>
 #include "GLRenderingEngine.h"
 #include "GLLogger.h"
 #include "GLSLProgram.h"
@@ -50,26 +51,18 @@ namespace GLRenderer
         vertexBuffer->Bind();
         vertexBuffer->LoadVertexData(&vertexData[0], sizeof(vertexData[0]) * vertexData.size());
         
-        for (GLuint i = 0; i < program.GetAttributesCount(); i++)
-        {
-            GLSLAttribute *attribute = program.GetAttributeAtIndex(i);
-            attribute->EnableArray();
-            
-            GLuint attribLocation = attribute->GetLocation();
-            
-            glEnableVertexAttribArray(attribute->GetLocation());
-            
-            if (attribute->GetName()->compare("a_position") == 0)
-            {
-                glVertexAttribPointer(attribLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), NULL);
-            }
-            else if (attribute->GetName()->compare("a_color") == 0)
-            {
-                glVertexAttribPointer(attribLocation, 4, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), (GLvoid *)(sizeof(GLSLVertex1P1C::m_position)));
-            }
-            
-            cout << *(attribute->GetName()) << endl;
-        }
+        
+        
+        GLSLAttribute *positionAttribute = program.GetAttributeWithName("a_position");
+        GLSLAttribute *colorAttribute = program.GetAttributeWithName("a_color");
+        
+        positionAttribute->EnableArray();
+        colorAttribute->EnableArray();
+        
+        glVertexAttribPointer(positionAttribute->GetLocation(), 3, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), NULL);
+        glVertexAttribPointer(colorAttribute->GetLocation(), 4, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), (GLvoid *)(sizeof(GLSLVertex1P1C::m_position)));
+        
+        
         
         GLSLPositionColorDrawing *positionColorDrawing = new GLSLPositionColorDrawing();
         positionColorDrawing->Initialize();
