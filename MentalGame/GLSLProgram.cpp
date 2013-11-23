@@ -63,14 +63,14 @@ namespace GLRenderer
         return m_programHandle;
     }
     
-    GLSLAttribute * GLSLProgram::GetAttributeWithName(const string &rAttributeName) const
+    map<string, GLSLAttribute *> * GLSLProgram::GetAttributes() const
     {
-        return m_attributes->at(rAttributeName);
+        return m_attributes;
     }
     
-    GLSLUniform * GLSLProgram::GetUniformWithName(const string &rUniformName) const
+    map<string, GLSLUniform *> * GLSLProgram::GetUniforms() const
     {
-        return m_uniforms->at(rUniformName);
+        return m_uniforms;
     }
     
 #pragma mark - Private Methods

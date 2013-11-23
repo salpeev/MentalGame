@@ -36,11 +36,18 @@ namespace GLRenderer
         CheckError();
     }
     
-    void GLSLVertexBuffer::LoadVertexData(GLvoid *vertexData, GLsizei dataSize, GLSL_BUFFER_USAGE usage) const
+    void GLSLVertexBuffer::LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage)
     {
+        SetElementsCount(elementsCount);
+        
+        GLfloat dataSize = elementSize * elementsCount;
         GLenum openGLUsage = GLDataConverter::OpenGLESUsageFromBufferUsage(usage);
+        
+        Bind();
         
         glBufferData(GL_ARRAY_BUFFER, dataSize, vertexData, openGLUsage);
         CheckError();
+        
+        Unbind();
     }
 }

@@ -32,8 +32,8 @@ namespace GLRenderer
         bool IsLinked() const;
         GLuint GetProgramHandle() const;
         
-        GLSLAttribute * GetAttributeWithName(const string &rAttributeName) const;
-        GLSLUniform * GetUniformWithName(const string &rUniformName) const;
+        map<string, GLSLAttribute *> * GetAttributes() const;
+        map<string, GLSLUniform *> * GetUniforms() const;
         
     private:
         void CreateProgram();

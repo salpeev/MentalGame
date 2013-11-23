@@ -8,6 +8,7 @@
 
 #pragma once
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ using namespace std;
 namespace GLRenderer
 {
     class GLSLProgram;
+    class GLSLAttribute;
     class GLSLVertexBuffer;
     
     
@@ -27,13 +29,14 @@ namespace GLRenderer
         ~GLSLDrawing();
         
         void Initialize();
+        void Draw() const;
         
         void SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer);
-        GLSLVertexBuffer * GetVertexBuffer() const;
         
     protected:
         virtual string VertexShaderSource() const = 0;
         virtual string FragmentShaderSource() const = 0;
+        virtual void InitializeAttributes(const map<string, GLSLAttribute *> *pAttributes) const = 0;
         
     private:
         void GenerateProgram();

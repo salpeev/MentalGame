@@ -28,7 +28,6 @@ namespace GLRenderer
     GLSLDrawing::~GLSLDrawing()
     {
         delete m_program;
-        delete m_vertexBuffer;
     }
     
 #pragma mark - Public Methods
@@ -36,18 +35,23 @@ namespace GLRenderer
     void GLSLDrawing::Initialize()
     {
         GenerateProgram();
+        InitializeAttributes(m_program->GetAttributes());
+    }
+    
+    void GLSLDrawing::Draw() const
+    {
+        m_program->Use();
+        m_vertexBuffer->Bind();
+        
+        GLuint elementsCount = m_vertexBuffer->GetElementsCount();
+        glDrawArrays(GL_LINES, 0, elementsCount);
+        
+        m_vertexBuffer->Unbind();
     }
     
     void GLSLDrawing::SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer)
     {
-        // TODO: Check ability to use copy constructor
-        delete m_vertexBuffer;
         m_vertexBuffer = pVertexBuffer;
-    }
-    
-    GLSLVertexBuffer * GLSLDrawing::GetVertexBuffer() const
-    {
-        return m_vertexBuffer;
     }
     
 #pragma mark - Private Methods
@@ -57,8 +61,8 @@ namespace GLRenderer
         string vertexShaderSource = VertexShaderSource();
         string fragmentShaderSource = FragmentShaderSource();
         
-        cout << vertexShaderSource << endl;
-        cout << fragmentShaderSource << endl;
+        GLSLProgram *pProgram = new GLSLProgram(vertexShaderSource, fragmentShaderSource);
+        SetProgram(pProgram);
     }
     
     void GLSLDrawing::SetProgram(GLSLProgram *pProgram)

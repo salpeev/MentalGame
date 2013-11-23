@@ -28,12 +28,6 @@ namespace GLRenderer
     {
         glViewport(0, 0, width, height);
         
-        string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.vsh");
-        string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.fsh");
-        
-        GLSLProgram program(vertexShaderSource, fragmentShaderSource);
-        program.Use();
-        
         GLPoint point0(-1, -1, 0);
         GLPoint point1(1, 1, 0);
         
@@ -48,24 +42,14 @@ namespace GLRenderer
         vertexData.push_back(vertex1);
         
         GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
+        vertexBuffer->LoadVertexData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
+        
+        
+        m_drawing = new GLSLPositionColorDrawing();
+        m_drawing->SetVertexBuffer(vertexBuffer);
+#warning Crashed without this line. Should be refactored
         vertexBuffer->Bind();
-        vertexBuffer->LoadVertexData(&vertexData[0], sizeof(vertexData[0]) * vertexData.size());
-        
-        
-        
-        GLSLAttribute *positionAttribute = program.GetAttributeWithName("a_position");
-        GLSLAttribute *colorAttribute = program.GetAttributeWithName("a_color");
-        
-        positionAttribute->EnableArray();
-        colorAttribute->EnableArray();
-        
-        glVertexAttribPointer(positionAttribute->GetLocation(), 3, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), NULL);
-        glVertexAttribPointer(colorAttribute->GetLocation(), 4, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), (GLvoid *)(sizeof(GLSLVertex1P1C::m_position)));
-        
-        
-        
-        GLSLPositionColorDrawing *positionColorDrawing = new GLSLPositionColorDrawing();
-        positionColorDrawing->Initialize();
+        m_drawing->Initialize();
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -78,7 +62,7 @@ namespace GLRenderer
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        glDrawArrays(GL_LINES, 0, 2);
+        m_drawing->Draw();
     }
     
 }

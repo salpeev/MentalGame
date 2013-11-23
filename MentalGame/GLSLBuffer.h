@@ -20,11 +20,17 @@ namespace GLRenderer
         GLSLBuffer();
         ~GLSLBuffer();
         
+        GLsizei GetElementsCount() const;
+        
         virtual void Bind() const = 0;
         virtual void Unbind() const = 0;
-        virtual void LoadVertexData(GLvoid *vertexData, GLsizei dataSize, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW) const = 0;
+        virtual void LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW) = 0;
+        
+    protected:
+        void SetElementsCount(GLuint elementsCount);
         
     protected:
         GLuint m_bufferHandle;
+        GLsizei m_elementsCount;
     };
 }

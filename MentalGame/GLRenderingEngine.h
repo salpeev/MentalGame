@@ -7,6 +7,7 @@
 //
 
 #pragma once
+#include "GLSLDrawing.h"
 
 
 
@@ -22,7 +23,7 @@ namespace GLRenderer
         void Render() const;
         
     private:
-        
+        GLSLDrawing *m_drawing;
     };
     
 }

@@ -24,4 +24,18 @@ namespace GLRenderer
         glDeleteBuffers(1, &m_bufferHandle);
         CheckError();
     }
+    
+#pragma mark - Public Methods
+    
+    GLsizei GLSLBuffer::GetElementsCount() const
+    {
+        return m_elementsCount;
+    }
+    
+#pragma mark - Protected methods
+    
+    void GLSLBuffer::SetElementsCount(GLuint elementsCount)
+    {
+        m_elementsCount = elementsCount;
+    }
 }
