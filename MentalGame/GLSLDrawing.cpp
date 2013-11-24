@@ -44,8 +44,6 @@ namespace GLRenderer
         
         GLuint elementsCount = m_vertexBuffer->GetElementsCount();
         glDrawArrays(GL_LINES, 0, elementsCount);
-        
-        m_vertexBuffer->Unbind();
     }
     
     void GLSLDrawing::SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer)
@@ -53,7 +51,6 @@ namespace GLRenderer
         m_vertexBuffer = pVertexBuffer;
         m_vertexBuffer->Bind();
         InitializeAttributes(m_program->GetAttributes());
-        m_vertexBuffer->Unbind();
     }
     
 #pragma mark - Private Methods

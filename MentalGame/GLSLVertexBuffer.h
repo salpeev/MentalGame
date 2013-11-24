@@ -17,5 +17,8 @@ namespace GLRenderer
     {
     public:
         GLSL_BUFFER TargetBuffer() const;
+        GLSL_GET_PARAMETER BufferBindingParameter() const;
+        
+        static void UnbindCurrentBuffer();
     };
 }

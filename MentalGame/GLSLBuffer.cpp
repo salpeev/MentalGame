@@ -35,16 +35,12 @@ namespace GLRenderer
     
     void GLSLBuffer::Bind() const
     {
-        GLenum openGLTargetBuffer = OpenGLTargetBuffer();
-        glBindBuffer(openGLTargetBuffer, m_bufferHandle);
-        CheckError();
-    }
-    
-    void GLSLBuffer::Unbind() const
-    {
-        GLenum openGLTargetBuffer = OpenGLTargetBuffer();
-        glBindBuffer(openGLTargetBuffer, 0);
-        CheckError();
+        if (!IsBound())
+        {
+            GLenum openGLTargetBuffer = OpenGLTargetBuffer();
+            glBindBuffer(openGLTargetBuffer, m_bufferHandle);
+            CheckError();
+        }
     }
     
     void GLSLBuffer::LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage)
@@ -59,8 +55,19 @@ namespace GLRenderer
         
         glBufferData(openGLTargetBuffer, dataSize, vertexData, openGLUsage);
         CheckError();
+    }
+    
+    bool GLSLBuffer::IsBound() const
+    {
+        GLSL_GET_PARAMETER getParameter = BufferBindingParameter();
+        GLenum openGLGetParameter = GLDataConverter::OpenGLESGetParameterFromGetParameter(getParameter);
         
-        Unbind();
+        GLint boundBufferHandle;
+        glGetIntegerv(openGLGetParameter, &boundBufferHandle);
+        CheckError();
+        
+        bool bound = (boundBufferHandle == m_bufferHandle);
+        return bound;
     }
     
 #pragma mark - Protected methods

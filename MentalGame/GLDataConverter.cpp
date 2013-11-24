@@ -38,4 +38,12 @@ namespace GLRenderer
             case GLSL_SHADER_TYPE_FRAGMENT: return GL_FRAGMENT_SHADER;
         }
     }
+    
+    GLenum GLDataConverter::OpenGLESGetParameterFromGetParameter(GLSL_GET_PARAMETER getParameter)
+    {
+        switch (getParameter) {
+            case GLSL_GET_PARAMETER_ARRAY_BUFFER_BINDING: return GL_ARRAY_BUFFER_BINDING;
+            case GLSL_GET_PARAMETER_ELEMENT_ARRAY_BUFFER_BINDING: return GL_ELEMENT_ARRAY_BUFFER_BINDING;
+        }
+    }
 }

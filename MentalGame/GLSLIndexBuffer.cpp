@@ -18,4 +18,15 @@ namespace GLRenderer
     {
         return GLSL_ELEMENT_ARRAY_BUFFER;
     }
+    
+    GLSL_GET_PARAMETER GLSLIndexBuffer::BufferBindingParameter() const
+    {
+        return GLSL_GET_PARAMETER_ELEMENT_ARRAY_BUFFER_BINDING;
+    }
+    
+    void GLSLIndexBuffer::UnbindCurrentBuffer()
+    {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        CheckError();
+    }
 }
