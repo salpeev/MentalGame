@@ -14,40 +14,8 @@
 
 namespace GLRenderer
 {
-    GLSLIndexBuffer::GLSLIndexBuffer()
+    GLSL_BUFFER GLSLIndexBuffer::TargetBuffer() const
     {
-        
-    }
-    
-    GLSLIndexBuffer::~GLSLIndexBuffer()
-    {
-        
-    }
-    
-    void GLSLIndexBuffer::Bind() const
-    {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_bufferHandle);
-        CheckError();
-    }
-    
-    void GLSLIndexBuffer::Unbind() const
-    {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-        CheckError();
-    }
-    
-    void GLSLIndexBuffer::LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage)
-    {
-        SetElementsCount(elementsCount);
-        
-        GLfloat dataSize = elementSize * elementsCount;
-        GLenum openGLUsage = GLDataConverter::OpenGLESUsageFromBufferUsage(usage);
-        
-        Bind();
-        
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, vertexData, openGLUsage);
-        CheckError();
-        
-        Unbind();
+        return GLSL_ELEMENT_ARRAY_BUFFER;
     }
 }

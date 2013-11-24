@@ -22,12 +22,15 @@ namespace GLRenderer
         
         GLsizei GetElementsCount() const;
         
-        virtual void Bind() const = 0;
-        virtual void Unbind() const = 0;
-        virtual void LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW) = 0;
+        void Bind() const;
+        void Unbind() const;
+        void LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        
+        virtual GLSL_BUFFER TargetBuffer() const = 0;
         
     protected:
         void SetElementsCount(GLuint elementsCount);
+        GLenum OpenGLTargetBuffer() const;
         
     protected:
         GLuint m_bufferHandle;

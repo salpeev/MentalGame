@@ -17,6 +17,7 @@ namespace GLRenderer
     class GLDataConverter
     {
     public:
+        static GLenum OpenGLESBufferFromBuffer(GLSL_BUFFER buffer);
         static GLenum OpenGLESUsageFromBufferUsage(GLSL_BUFFER_USAGE usage);
         static GLenum OpenGLESShaderFromShaderType(GLSL_SHADER_TYPE shaderType);
     };

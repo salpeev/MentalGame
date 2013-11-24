@@ -35,7 +35,6 @@ namespace GLRenderer
     void GLSLDrawing::Initialize()
     {
         GenerateProgram();
-        InitializeAttributes(m_program->GetAttributes());
     }
     
     void GLSLDrawing::Draw() const
@@ -52,6 +51,9 @@ namespace GLRenderer
     void GLSLDrawing::SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer)
     {
         m_vertexBuffer = pVertexBuffer;
+        m_vertexBuffer->Bind();
+        InitializeAttributes(m_program->GetAttributes());
+        m_vertexBuffer->Unbind();
     }
     
 #pragma mark - Private Methods

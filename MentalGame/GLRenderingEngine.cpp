@@ -27,6 +27,7 @@ namespace GLRenderer
     GLRenderingEngine::GLRenderingEngine(int width, int height)
     {
         glViewport(0, 0, width, height);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         GLPoint point0(-1, -1, 0);
         GLPoint point1(1, 1, 0);
@@ -46,10 +47,8 @@ namespace GLRenderer
         
         
         m_drawing = new GLSLPositionColorDrawing();
-        m_drawing->SetVertexBuffer(vertexBuffer);
-#warning Crashed without this line. Should be refactored
-        vertexBuffer->Bind();
         m_drawing->Initialize();
+        m_drawing->SetVertexBuffer(vertexBuffer);
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -59,7 +58,6 @@ namespace GLRenderer
     
     void GLRenderingEngine::Render() const
     {
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
         m_drawing->Draw();

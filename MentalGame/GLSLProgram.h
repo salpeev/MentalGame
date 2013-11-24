@@ -30,6 +30,7 @@ namespace GLRenderer
         void Use() const;
         
         bool IsLinked() const;
+        bool IsUsed() const;
         GLuint GetProgramHandle() const;
         
         map<string, GLSLAttribute *> * GetAttributes() const;

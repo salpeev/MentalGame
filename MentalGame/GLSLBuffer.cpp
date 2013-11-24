@@ -8,6 +8,7 @@
 
 #include "GLSLBuffer.h"
 #include "GLLogger.h"
+#include "GLDataConverter.h"
 
 
 
@@ -32,10 +33,47 @@ namespace GLRenderer
         return m_elementsCount;
     }
     
+    void GLSLBuffer::Bind() const
+    {
+        GLenum openGLTargetBuffer = OpenGLTargetBuffer();
+        glBindBuffer(openGLTargetBuffer, m_bufferHandle);
+        CheckError();
+    }
+    
+    void GLSLBuffer::Unbind() const
+    {
+        GLenum openGLTargetBuffer = OpenGLTargetBuffer();
+        glBindBuffer(openGLTargetBuffer, 0);
+        CheckError();
+    }
+    
+    void GLSLBuffer::LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage)
+    {
+        SetElementsCount(elementsCount);
+        
+        GLenum openGLTargetBuffer = OpenGLTargetBuffer();
+        GLfloat dataSize = elementSize * elementsCount;
+        GLenum openGLUsage = GLDataConverter::OpenGLESUsageFromBufferUsage(usage);
+        
+        Bind();
+        
+        glBufferData(openGLTargetBuffer, dataSize, vertexData, openGLUsage);
+        CheckError();
+        
+        Unbind();
+    }
+    
 #pragma mark - Protected methods
     
     void GLSLBuffer::SetElementsCount(GLuint elementsCount)
     {
         m_elementsCount = elementsCount;
+    }
+    
+    GLenum GLSLBuffer::OpenGLTargetBuffer() const
+    {
+        GLSL_BUFFER targetBuffer = TargetBuffer();
+        GLenum openGLBuffer = GLDataConverter::OpenGLESBufferFromBuffer(targetBuffer);
+        return openGLBuffer;
     }
 }

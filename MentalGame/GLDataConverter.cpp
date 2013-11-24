@@ -12,6 +12,14 @@
 
 namespace GLRenderer
 {
+    GLenum GLDataConverter::OpenGLESBufferFromBuffer(GLSL_BUFFER buffer)
+    {
+        switch (buffer) {
+            case GLSL_ARRAY_BUFFER: return GL_ARRAY_BUFFER;
+            case GLSL_ELEMENT_ARRAY_BUFFER: return GL_ELEMENT_ARRAY_BUFFER;
+        }
+    }
+    
     GLenum GLDataConverter::OpenGLESUsageFromBufferUsage(GLSL_BUFFER_USAGE usage)
     {
         switch (usage) {

@@ -45,7 +45,11 @@ namespace GLRenderer
     
     void GLSLProgram::Use() const
     {
-        glUseProgram(m_programHandle);
+        if (!IsUsed())
+        {
+            glUseProgram(m_programHandle);
+            CheckError();
+        }
     }
     
     bool GLSLProgram::IsLinked() const
@@ -56,6 +60,16 @@ namespace GLRenderer
         CheckError();
         
         return (linkStatus == GL_TRUE);
+    }
+    
+    bool GLSLProgram::IsUsed() const
+    {
+        GLint currentProgramHandle;
+        glGetIntegerv(GL_CURRENT_PROGRAM, &currentProgramHandle);
+        CheckError();
+        
+        bool used = (currentProgramHandle == m_programHandle);
+        return used;
     }
     
     GLuint GLSLProgram::GetProgramHandle() const
@@ -167,7 +181,7 @@ namespace GLRenderer
             GLSLAttribute *pAttribute = new GLSLAttribute(attributeName, attributeType, attributeSize, attributeLocation);
             pAttributes->insert(make_pair(attributeName, pAttribute));
             
-            delete [] attributeName;
+            delete attributeName;
         }
         
         SetAttributes(pAttributes);
@@ -201,7 +215,7 @@ namespace GLRenderer
             GLSLUniform *pUniform = new GLSLUniform(uniformName, uniformType, uniformSize, uniformLocation);
             pUniforms->insert(make_pair(uniformName, pUniform));
             
-            delete [] uniformName;
+            delete uniformName;
         }
         
         SetUniforms(pUniforms);

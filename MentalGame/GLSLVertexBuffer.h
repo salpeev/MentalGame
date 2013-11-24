@@ -16,11 +16,6 @@ namespace GLRenderer
     class GLSLVertexBuffer : public GLSLBuffer
     {
     public:
-        GLSLVertexBuffer();
-        ~GLSLVertexBuffer();
-        
-        void Bind() const;
-        void Unbind() const;
-        void LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        GLSL_BUFFER TargetBuffer() const;
     };
 }

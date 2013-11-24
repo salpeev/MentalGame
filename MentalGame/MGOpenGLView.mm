@@ -79,6 +79,7 @@ using namespace GLRenderer;
         
         glGenFramebuffers(1, &m_sampleFramebuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, m_sampleFramebuffer);
+        glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, m_sampleFramebuffer);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, m_sampleColorRenderbuffer);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
@@ -87,6 +88,7 @@ using namespace GLRenderer;
         
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+
     }
     return self;
 }
@@ -107,7 +109,7 @@ using namespace GLRenderer;
     m_renderingEngine->Render();
     
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, m_resolveFramebuffer);
-    glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, m_sampleFramebuffer);
+//    glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, m_sampleFramebuffer); // Moved to init method for improving performance
     glResolveMultisampleFramebufferAPPLE();
     
     const GLenum discards[] =
