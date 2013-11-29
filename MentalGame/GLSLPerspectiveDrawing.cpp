@@ -1,34 +1,34 @@
 //
-//  GLSLPositionColorDrawing.cpp
+//  GLSLPerspectiveDrawing.cpp
 //  MentalGame
 //
-//  Created by Sergey Alpeev on 09.11.13.
+//  Created by Sergey Alpeev on 30.11.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLPositionColorDrawing.h"
-#include "GLLogger.h"
+#include "GLSLPerspectiveDrawing.h"
 #include "GLResourceManager.h"
 #include "GLSLAttribute.h"
+#include "GLLogger.h"
 #include "GLSLVertex.h"
 
 
 
 namespace GLRenderer
 {
-    string GLSLPositionColorDrawing::VertexShaderSource() const
+    string GLSLPerspectiveDrawing::VertexShaderSource() const
     {
-        string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.vsh");
+        string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PerspectiveShader.vsh");
         return vertexShaderSource;
     }
     
-    string GLSLPositionColorDrawing::FragmentShaderSource() const
+    string GLSLPerspectiveDrawing::FragmentShaderSource() const
     {
-        string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.fsh");
+        string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PerspectiveShader.fsh");
         return fragmentShaderSource;
     }
     
-    void GLSLPositionColorDrawing::InitializeAttributes(const map<string, GLRenderer::GLSLAttribute *> *pAttributes) const
+    void GLSLPerspectiveDrawing::InitializeAttributes(const map<string, GLRenderer::GLSLAttribute *> *pAttributes) const
     {
         GLSLAttribute *positionAttribute = pAttributes->at("a_position");
         GLSLAttribute *colorAttribute = pAttributes->at("a_color");

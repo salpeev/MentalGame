@@ -1,18 +1,19 @@
 //
-//  GLSLPositionColorDrawing.h
+//  GLSLPerspectiveDrawing.h
 //  MentalGame
 //
-//  Created by Sergey Alpeev on 09.11.13.
+//  Created by Sergey Alpeev on 30.11.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
 #include "GLSLDrawing.h"
 
 
 
 namespace GLRenderer
 {
-    class GLSLPositionColorDrawing: public GLSLDrawing
+    class GLSLPerspectiveDrawing: public GLSLDrawing
     {
     private:
         string VertexShaderSource() const;

@@ -16,6 +16,7 @@
 #include "GLSLVertexBuffer.h"
 #include "GLSLVertex.h"
 #include "GLSLPositionColorDrawing.h"
+#include "GLSLPerspectiveDrawing.h"
 
 using namespace std;
 
@@ -31,6 +32,8 @@ namespace GLRenderer
         glViewport(0, 0, width, height);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
+        
+        // Zero
         GLPoint point0(-1, -1, 0);
         GLPoint point1(1, 1, 0);
         
@@ -47,11 +50,15 @@ namespace GLRenderer
         GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
         vertexBuffer->LoadVertexData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->Initialize();
-        drawing->SetVertexBuffer(vertexBuffer);
+        GLSLDrawing *drawing0 = new GLSLPositionColorDrawing();
+        drawing0->Initialize();
+        drawing0->SetVertexBuffer(vertexBuffer);
         
-        m_drawings->push_back(drawing);
+        m_drawings->push_back(drawing0);
+        
+        // One
+        GLSLDrawing *drawing1 = new GLSLPerspectiveDrawing();
+        drawing1->Initialize();
     }
     
     GLRenderingEngine::~GLRenderingEngine()
