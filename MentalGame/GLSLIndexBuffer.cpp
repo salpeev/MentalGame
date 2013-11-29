@@ -26,7 +26,14 @@ namespace GLRenderer
     
     void GLSLIndexBuffer::UnbindCurrentBuffer()
     {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        GLint boundBufferHandle;
+        glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &boundBufferHandle);
         CheckError();
+        
+        if (boundBufferHandle != 0)
+        {
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+            CheckError();
+        }
     }
 }

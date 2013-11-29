@@ -26,7 +26,14 @@ namespace GLRenderer
     
     void GLSLVertexBuffer::UnbindCurrentBuffer()
     {
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        GLint boundBufferHandle;
+        glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &boundBufferHandle);
         CheckError();
+        
+        if (boundBufferHandle != 0)
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            CheckError();
+        }
     }
 }
