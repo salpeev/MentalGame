@@ -26,6 +26,8 @@ namespace GLRenderer
     
     GLRenderingEngine::GLRenderingEngine(int width, int height)
     {
+        m_drawings = new vector<GLSLDrawing *>;
+        
         glViewport(0, 0, width, height);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
@@ -45,22 +47,32 @@ namespace GLRenderer
         GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
         vertexBuffer->LoadVertexData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
         
+        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
+        drawing->Initialize();
+        drawing->SetVertexBuffer(vertexBuffer);
         
-        m_drawing = new GLSLPositionColorDrawing();
-        m_drawing->Initialize();
-        m_drawing->SetVertexBuffer(vertexBuffer);
+        m_drawings->push_back(drawing);
     }
     
     GLRenderingEngine::~GLRenderingEngine()
     {
+        for (vector<GLSLDrawing *>::iterator iterator = m_drawings->begin(); iterator != m_drawings->end(); iterator++)
+        {
+            delete *iterator;
+        }
         
+        delete m_drawings;
     }
     
     void GLRenderingEngine::Render() const
     {
         glClear(GL_COLOR_BUFFER_BIT);
         
-        m_drawing->Draw();
+        for (vector<GLSLDrawing *>::iterator iterator = m_drawings->begin(); iterator != m_drawings->end(); iterator++)
+        {
+            GLSLDrawing *drawing = *iterator;
+            drawing->Draw();
+        }
     }
     
 }

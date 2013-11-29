@@ -18,6 +18,7 @@ namespace GLRenderer
     {
     public:
         GLSLBuffer();
+        GLSLBuffer(const GLSLBuffer &rBuffer) = delete;
         ~GLSLBuffer();
         
         GLsizei GetElementsCount() const;

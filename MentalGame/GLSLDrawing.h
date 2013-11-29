@@ -26,7 +26,7 @@ namespace GLRenderer
     {
     public:
         GLSLDrawing();
-        ~GLSLDrawing();
+        virtual ~GLSLDrawing();
         
         void Initialize();
         void Draw() const;

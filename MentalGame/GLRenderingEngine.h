@@ -8,6 +8,9 @@
 
 #pragma once
 #include "GLSLDrawing.h"
+#include <vector>
+
+using namespace std;
 
 
 
@@ -23,7 +26,7 @@ namespace GLRenderer
         void Render() const;
         
     private:
-        GLSLDrawing *m_drawing;
+        vector<GLSLDrawing *> *m_drawings;
     };
     
 }
