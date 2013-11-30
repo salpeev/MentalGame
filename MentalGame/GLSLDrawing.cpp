@@ -46,7 +46,12 @@ namespace GLRenderer
         glDrawArrays(GL_LINES, 0, elementsCount);
     }
     
-    void GLSLDrawing::SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer)
+    void GLSLDrawing::UseVertexAndIndexBuffers(GLRenderer::GLSLVertexBuffer *pVertexBuffer, GLRenderer::GLSLIndexBuffer *pIndexBuffer)
+    {
+        
+    }
+    
+    void GLSLDrawing::UseVertexBuffer(GLRenderer::GLSLVertexBuffer *pVertexBuffer)
     {
         m_vertexBuffer = pVertexBuffer;
         m_vertexBuffer->Bind();

@@ -52,7 +52,7 @@ namespace GLRenderer
         
         GLSLDrawing *drawing0 = new GLSLPositionColorDrawing();
         drawing0->Initialize();
-        drawing0->SetVertexBuffer(vertexBuffer);
+        drawing0->UseVertexBuffer(vertexBuffer);
         
         m_drawings->push_back(drawing0);
         

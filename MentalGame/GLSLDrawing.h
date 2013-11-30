@@ -19,6 +19,7 @@ namespace GLRenderer
     class GLSLProgram;
     class GLSLAttribute;
     class GLSLVertexBuffer;
+    class GLSLIndexBuffer;
     
     
     
@@ -31,7 +32,10 @@ namespace GLRenderer
         void Initialize();
         void Draw() const;
         
-        void SetVertexBuffer(GLSLVertexBuffer *pVertexBuffer);
+        void UseVertexAndIndexBuffers(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
+        void UseVertexBuffer(GLSLVertexBuffer *pVertexBuffer);
+        // TODO: Need to think about that
+//        void UseRawData(???);
         
     protected:
         virtual string VertexShaderSource() const = 0;
@@ -46,5 +50,6 @@ namespace GLRenderer
         
         GLSLProgram *m_program;
         GLSLVertexBuffer *m_vertexBuffer;
+        GLSLIndexBuffer *m_indexBuffer;
     };
 }
