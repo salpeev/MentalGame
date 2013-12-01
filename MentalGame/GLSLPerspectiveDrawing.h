@@ -18,6 +18,6 @@ namespace GLRenderer
     private:
         string VertexShaderSource() const;
         string FragmentShaderSource() const;
-        void InitializeAttributes(const map<string, GLSLAttribute *> *pAttributes) const;
+        void InitializeAttributes(const map<string, GLSLAttribute *> *pAttributes, GLvoid *pData = NULL) const;
     };
 }

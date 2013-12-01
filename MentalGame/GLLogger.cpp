@@ -38,6 +38,7 @@ namespace GLRenderer
             case GL_INVALID_OPERATION: cout << "ERROR: Invalid operation" << endl; break;
             case GL_INVALID_VALUE: cout << "ERROR: Invalid value" << endl; break;
             case GL_OUT_OF_MEMORY: cout << "ERROR: Out of memory" << endl; break;
+            case GL_INVALID_FRAMEBUFFER_OPERATION: cout << "ERROR: Invalid framebuffer operation" << endl; break;
             default: cout << "ERROR: Unknown error" << endl; break;
         }
         

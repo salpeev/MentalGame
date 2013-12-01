@@ -28,19 +28,8 @@ namespace GLRenderer
         return fragmentShaderSource;
     }
     
-    void GLSLPerspectiveDrawing::InitializeAttributes(const map<string, GLRenderer::GLSLAttribute *> *pAttributes) const
+    void GLSLPerspectiveDrawing::InitializeAttributes(const map<string, GLRenderer::GLSLAttribute *> *pAttributes, GLvoid *pData) const
     {
-        GLSLAttribute *positionAttribute = pAttributes->at("a_position");
-        GLSLAttribute *colorAttribute = pAttributes->at("a_color");
         
-        positionAttribute->EnableArray();
-        colorAttribute->EnableArray();
-        
-        // TODO: Can be optimized with two floats per attribute
-        glVertexAttribPointer(positionAttribute->GetLocation(), 3, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), NULL);
-        CheckError();
-        
-        glVertexAttribPointer(colorAttribute->GetLocation(), 4, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), (GLvoid *)(sizeof(GLSLVertex1P1C::m_position)));
-        CheckError();
     }
 }

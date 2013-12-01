@@ -20,15 +20,21 @@ namespace GLRenderer
     
     void GLSLAttribute::EnableArray() const
     {
-        glEnableVertexAttribArray(m_location);
-        CheckError();
+        if (!IsArrayEnabled())
+        {
+            glEnableVertexAttribArray(m_location);
+            CheckError();
+        }
         
     }
     
     void GLSLAttribute::DisableArray() const
     {
-        glDisableVertexAttribArray(m_location);
-        CheckError();
+        if (IsArrayEnabled())
+        {
+            glDisableVertexAttribArray(m_location);
+            CheckError();
+        }
     }
     
     bool GLSLAttribute::IsArrayEnabled() const
