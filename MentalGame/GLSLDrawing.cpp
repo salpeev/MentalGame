@@ -11,9 +11,7 @@
 #include "GLSLVertexBuffer.h"
 #include "GLSLIndexBuffer.h"
 #include "GLResourceManager.h"
-
-#include <iostream>
-using namespace std;
+#include "GLSLDrawingState.h"
 
 
 
@@ -33,7 +31,7 @@ namespace GLRenderer
     
 #pragma mark - Lifecycle
     
-    GLSLDrawing::GLSLDrawing(): m_program(NULL), m_vertexBuffer(NULL), m_indexBuffer(NULL), m_rawElementsCount(0)
+    GLSLDrawing::GLSLDrawing(): m_program(NULL), m_drawingState(NULL)
     {
         
     }
@@ -41,6 +39,7 @@ namespace GLRenderer
     GLSLDrawing::~GLSLDrawing()
     {
         delete m_program;
+        delete m_drawingState;
     }
     
 #pragma mark - Public Methods
@@ -54,7 +53,7 @@ namespace GLRenderer
     {
         m_program->Use();
         
-        if (m_vertexBuffer && m_indexBuffer)
+        /*if (m_vertexBuffer && m_indexBuffer)
         {
             m_vertexBuffer->Bind();
             m_indexBuffer->Bind();
@@ -76,53 +75,55 @@ namespace GLRenderer
             GLSLIndexBuffer::UnbindCurrentBuffer();
             
             glDrawArrays(GL_LINES, 0, m_rawElementsCount);
-        }
+        }*/
     }
     
-    void GLSLDrawing::UseVertexBufferWithIndexBuffer(GLRenderer::GLSLVertexBuffer *pVertexBuffer, GLRenderer::GLSLIndexBuffer *pIndexBuffer)
+    void GLSLDrawing::UseVertexBufferWithIndexBuffer(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer)
     {
-        m_vertexBuffer = pVertexBuffer;
-        m_indexBuffer = pIndexBuffer;
-        m_rawElementsCount = 0;
-        
-        m_vertexBuffer->Bind();
-        m_indexBuffer->Bind();
-        
-        InitializeAttributes(m_program->GetAttributes());
+        GLSLVertexBufferIndexBufferState *pDrawingState = new GLSLVertexBufferIndexBufferState(pVertexBuffer, pIndexBuffer);
+        SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseVertexBufferWithIndices(GLRenderer::GLSLVertexBuffer *pVertexBuffer, vector<GLushort> *pIndices)
+    void GLSLDrawing::UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices)
     {
-        
+        GLSLVertexBufferShortIndicesState *pDrawingState = new GLSLVertexBufferShortIndicesState(pVertexBuffer, rIndices);
+        SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseVertexBufferWithIndices(GLRenderer::GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> *pIndices)
+    void GLSLDrawing::UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices)
     {
-        
+        GLSLVertexBufferByteIndicesState *pDrawingState = new GLSLVertexBufferByteIndicesState(pVertexBuffer, rIndices);
+        SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseVertexBuffer(GLRenderer::GLSLVertexBuffer *pVertexBuffer)
+    void GLSLDrawing::UseVertexBuffer(GLSLVertexBuffer *pVertexBuffer)
     {
-        m_vertexBuffer = pVertexBuffer;
-        m_indexBuffer = NULL;
-        m_rawElementsCount = 0;
-        
-        m_vertexBuffer->Bind();
-//        GLSLIndexBuffer::UnbindCurrentBuffer();         // Should be disabled or not (for better performance)?
-        
-        InitializeAttributes(m_program->GetAttributes());
+        GLSLVertexBufferState *pDrawingState = new GLSLVertexBufferState(pVertexBuffer);
+        SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseRawVertexData(GLvoid *pVertexData, GLuint elementsCount)
+    void GLSLDrawing::UseRawVertexDataWithIndexBuffer(GLvoid *pVertexData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer)
     {
-        m_vertexBuffer = NULL;
-        m_indexBuffer = NULL;
-        m_rawElementsCount = elementsCount;
-        
-        GLSLVertexBuffer::UnbindCurrentBuffer();
-//        GLSLIndexBuffer::UnbindCurrentBuffer();         // Should be disabled or not (for better performance)?
-        
-        InitializeAttributes(m_program->GetAttributes(), pVertexData);
+        GLSLRawVertexDataIndexBufferState *pDrawingState = new GLSLRawVertexDataIndexBufferState(pVertexData, dataSize, pIndexBuffer);
+        SetDrawingState(pDrawingState);
+    }
+    
+    void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLushort> &rIndices)
+    {
+        GLSLRawVertexDataRawShortIndicesState *pDrawingState = new GLSLRawVertexDataRawShortIndicesState(pVertexData, dataSize, rIndices);
+        SetDrawingState(pDrawingState);
+    }
+    
+    void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices)
+    {
+        GLSLRawVertexDataRawByteIndicesState *pDrawingState = new GLSLRawVertexDataRawByteIndicesState(pVertexData, dataSize, rIndices);
+        SetDrawingState(pDrawingState);
+    }
+    
+    void GLSLDrawing::UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize)
+    {
+        GLSLRawVertexDataState *pDrawingState = new GLSLRawVertexDataState(pVertexData, dataSize);
+        SetDrawingState(pDrawingState);
     }
     
 #pragma mark - Private Methods
@@ -145,5 +146,11 @@ namespace GLRenderer
     GLSLProgram * GLSLDrawing::GetProgram() const
     {
         return m_program;
+    }
+    
+    void GLSLDrawing::SetDrawingState(GLRenderer::GLSLDrawingState *pDrawingState)
+    {
+        delete m_drawingState;
+        m_drawingState = pDrawingState;
     }
 }

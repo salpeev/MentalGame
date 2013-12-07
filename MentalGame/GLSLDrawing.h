@@ -22,6 +22,7 @@ namespace GLRenderer
     class GLSLAttribute;
     class GLSLVertexBuffer;
     class GLSLIndexBuffer;
+    class GLSLDrawingState;
     
     
     
@@ -37,13 +38,13 @@ namespace GLRenderer
         
 #warning Check and refactor all this methods
         void UseVertexBufferWithIndexBuffer(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
-        void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> *pIndices);
-        void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> *pIndices);
+        void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
+        void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
         void UseVertexBuffer(GLSLVertexBuffer *pVertexBuffer);
-//        void UseRawVertexDataWithIndexBuffer(GLvoid *pVertexData, GLSLIndexBuffer *pIndexBuffer);
-//        void UseRawVertexDataWithRawIndexData(GLushort);
-//        void UseRawVertexDataWithRawIndexData(GLubyte);
-        void UseRawVertexData(GLvoid *pVertexData, GLuint elementsCount);
+        void UseRawVertexDataWithIndexBuffer(GLvoid *pVertexData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer);
+        void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLushort> &rIndices);
+        void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices);
+        void UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize);
         
     protected:
         virtual string VertexShaderSource() const = 0;
@@ -56,9 +57,12 @@ namespace GLRenderer
         void SetProgram(GLSLProgram *pProgram);
         GLSLProgram * GetProgram() const;
         
+        void SetDrawingState(GLSLDrawingState *pDrawingState);
+        
         GLSLProgram *m_program;
-        GLSLVertexBuffer *m_vertexBuffer;
-        GLSLIndexBuffer *m_indexBuffer;
-        GLuint m_rawElementsCount;
+        GLSLDrawingState *m_drawingState;
+//        GLSLVertexBuffer *m_vertexBuffer;
+//        GLSLIndexBuffer *m_indexBuffer;
+//        GLuint m_rawElementsCount;
     };
 }
