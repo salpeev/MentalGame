@@ -31,7 +31,7 @@ namespace GLRenderer
         
     }
     
-    void GLSLVertexBufferIndexBufferState::Activate() const
+    void GLSLVertexBufferIndexBufferState::Draw() const
     {
         
     }
@@ -48,7 +48,7 @@ namespace GLRenderer
         delete m_indices;
     }
     
-    void GLSLVertexBufferShortIndicesState::Activate() const
+    void GLSLVertexBufferShortIndicesState::Draw() const
     {
         
     }
@@ -65,7 +65,7 @@ namespace GLRenderer
         delete m_indices;
     }
     
-    void GLSLVertexBufferByteIndicesState::Activate() const
+    void GLSLVertexBufferByteIndicesState::Draw() const
     {
         
     }
@@ -77,7 +77,7 @@ namespace GLRenderer
         
     }
     
-    void GLSLVertexBufferState::Activate() const
+    void GLSLVertexBufferState::Draw() const
     {
         
     }
@@ -95,7 +95,7 @@ namespace GLRenderer
         free(m_data);
     }
     
-    void GLSLRawVertexDataIndexBufferState::Activate() const
+    void GLSLRawVertexDataIndexBufferState::Draw() const
     {
         
     }
@@ -116,7 +116,7 @@ namespace GLRenderer
         delete m_indices;
     }
     
-    void GLSLRawVertexDataRawShortIndicesState::Activate() const
+    void GLSLRawVertexDataRawShortIndicesState::Draw() const
     {
         
     }
@@ -137,7 +137,7 @@ namespace GLRenderer
         delete m_indices;
     }
     
-    void GLSLRawVertexDataRawByteIndicesState::Activate() const
+    void GLSLRawVertexDataRawByteIndicesState::Draw() const
     {
         
     }
@@ -154,7 +154,7 @@ namespace GLRenderer
         free(m_data);
     }
     
-    void GLSLRawVertexDataState::Activate() const
+    void GLSLRawVertexDataState::Draw() const
     {
         
     }

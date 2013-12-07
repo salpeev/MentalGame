@@ -28,7 +28,7 @@ namespace GLRenderer
         GLSLDrawingState(const GLSLDrawingState &rDrawingState) = delete;
         virtual ~GLSLDrawingState();
         
-        virtual void Activate() const = 0;
+        virtual void Draw() const = 0;
     };
     
     
@@ -38,7 +38,7 @@ namespace GLRenderer
     public:
         GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
         
-        void Activate() const;
+        void Draw() const;
         
     private:
         GLSLVertexBuffer *m_vertexBuffer;
@@ -53,7 +53,7 @@ namespace GLRenderer
         GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
         ~GLSLVertexBufferShortIndicesState();
         
-        void Activate() const;
+        void Draw() const;
         
     private:
         GLSLVertexBuffer *m_vertexBuffer;
@@ -68,7 +68,7 @@ namespace GLRenderer
         GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
         ~GLSLVertexBufferByteIndicesState();
         
-        void Activate() const;
+        void Draw() const;
         
     private:
         GLSLVertexBuffer *m_vertexBuffer;
@@ -82,7 +82,7 @@ namespace GLRenderer
     public:
         GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer);
         
-        void Activate() const;
+        void Draw() const;
         
     private:
         GLSLVertexBuffer *m_vertexBuffer;
@@ -96,7 +96,7 @@ namespace GLRenderer
         GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer);
         ~GLSLRawVertexDataIndexBufferState();
         
-        void Activate() const;
+        void Draw() const;
         
     private:
         GLvoid *m_data;
@@ -111,7 +111,7 @@ namespace GLRenderer
         GLSLRawVertexDataRawShortIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLushort> &rIndices);
         ~GLSLRawVertexDataRawShortIndicesState();
         
-        void Activate() const;
+        void Draw() const;
         
     private:
         GLvoid *m_data;
@@ -126,7 +126,7 @@ namespace GLRenderer
         GLSLRawVertexDataRawByteIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLubyte> &rIndices);
         ~GLSLRawVertexDataRawByteIndicesState();
         
-        void Activate() const;
+        void Draw() const;
         
     private:
         GLvoid *m_data;
@@ -141,7 +141,7 @@ namespace GLRenderer
         GLSLRawVertexDataState(GLvoid *pData, GLsizei dataSize);
         ~GLSLRawVertexDataState();
         
-        void Activate() const;
+        void Draw() const;
         
     private:
         GLvoid *m_data;
