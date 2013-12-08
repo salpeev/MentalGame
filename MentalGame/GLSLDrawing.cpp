@@ -59,18 +59,24 @@ namespace GLRenderer
     {
         GLSLVertexBufferIndexBufferState *pDrawingState = new GLSLVertexBufferIndexBufferState(pVertexBuffer, pIndexBuffer);
         SetDrawingState(pDrawingState);
+        
+        InitializeAttributes(m_program->GetAttributes());
     }
     
     void GLSLDrawing::UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices)
     {
         GLSLVertexBufferShortIndicesState *pDrawingState = new GLSLVertexBufferShortIndicesState(pVertexBuffer, rIndices);
         SetDrawingState(pDrawingState);
+        
+        InitializeAttributes(m_program->GetAttributes());
     }
     
     void GLSLDrawing::UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices)
     {
         GLSLVertexBufferByteIndicesState *pDrawingState = new GLSLVertexBufferByteIndicesState(pVertexBuffer, rIndices);
         SetDrawingState(pDrawingState);
+        
+        InitializeAttributes(m_program->GetAttributes());
     }
     
     void GLSLDrawing::UseVertexBuffer(GLSLVertexBuffer *pVertexBuffer)
@@ -85,24 +91,32 @@ namespace GLRenderer
     {
         GLSLRawVertexDataIndexBufferState *pDrawingState = new GLSLRawVertexDataIndexBufferState(pVertexData, dataSize, pIndexBuffer);
         SetDrawingState(pDrawingState);
+        
+        InitializeAttributes(m_program->GetAttributes());
     }
     
     void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLushort> &rIndices)
     {
         GLSLRawVertexDataRawShortIndicesState *pDrawingState = new GLSLRawVertexDataRawShortIndicesState(pVertexData, dataSize, rIndices);
         SetDrawingState(pDrawingState);
+        
+        InitializeAttributes(m_program->GetAttributes());
     }
     
     void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices)
     {
         GLSLRawVertexDataRawByteIndicesState *pDrawingState = new GLSLRawVertexDataRawByteIndicesState(pVertexData, dataSize, rIndices);
         SetDrawingState(pDrawingState);
+        
+        InitializeAttributes(m_program->GetAttributes());
     }
     
     void GLSLDrawing::UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize, GLuint elementsCount)
     {
         GLSLRawVertexDataState *pDrawingState = new GLSLRawVertexDataState(pVertexData, dataSize, elementsCount);
         SetDrawingState(pDrawingState);
+        
+        InitializeAttributes(m_program->GetAttributes());
     }
     
 #pragma mark - Private Methods

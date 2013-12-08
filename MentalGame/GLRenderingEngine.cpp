@@ -33,32 +33,7 @@ namespace GLRenderer
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         
-        // Zero
-        GLPoint point0(-1, -1, 0);
-        GLPoint point1(1, 1, 0);
-        
-        GLColor color0(1, 0, 0, 1);
-        GLColor color1(0, 1, 0, 1);
-        
-        GLSLVertex1P1C vertex0(point0, color0);
-        GLSLVertex1P1C vertex1(point1, color1);
-        
-        vector<GLSLVertex1P1C> vertexData;
-        vertexData.push_back(vertex0);
-        vertexData.push_back(vertex1);
-        
-        GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
-        vertexBuffer->LoadBufferData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
-        
-        GLSLDrawing *drawing0 = new GLSLPositionColorDrawing();
-        drawing0->Initialize();
-        drawing0->UseVertexBuffer(vertexBuffer);
-        
-        m_drawings->push_back(drawing0);
-        
-        // One
-        GLSLDrawing *drawing1 = new GLSLPerspectiveDrawing();
-        drawing1->Initialize();
+        Test0();
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -82,4 +57,34 @@ namespace GLRenderer
         }
     }
     
+    void GLRenderingEngine::Test0() const
+    {
+        // Zero
+        GLPoint point0(-1, -1, 0);
+        GLPoint point1(1, 1, 0);
+        
+        GLColor color0(1, 0, 0, 1);
+        GLColor color1(0, 1, 0, 1);
+        
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
+        
+        vector<GLSLVertex1P1C> vertexData;
+        vertexData.push_back(vertex0);
+        vertexData.push_back(vertex1);
+        
+        GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
+        vertexBuffer->LoadBufferData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
+        
+        GLSLDrawing *drawing0 = new GLSLPositionColorDrawing();
+        drawing0->Initialize();
+        drawing0->UseVertexBuffer(vertexBuffer);
+        
+        m_drawings->push_back(drawing0);
+    }
+    
+    void GLRenderingEngine::Test1() const
+    {
+        
+    }
 }

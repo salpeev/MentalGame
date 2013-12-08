@@ -26,6 +26,9 @@ namespace GLRenderer
         void Render() const;
         
     private:
+        void Test0() const;
+        void Test1() const;
+        
         vector<GLSLDrawing *> *m_drawings;
     };
     
