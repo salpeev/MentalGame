@@ -43,20 +43,6 @@ namespace GLRenderer
         }
     }
     
-    void GLSLBuffer::LoadVertexData(GLvoid *vertexData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage)
-    {
-        SetElementsCount(elementsCount);
-        
-        GLenum openGLTargetBuffer = OpenGLTargetBuffer();
-        GLfloat dataSize = elementSize * elementsCount;
-        GLenum openGLUsage = GLDataConverter::OpenGLESUsageFromBufferUsage(usage);
-        
-        Bind();
-        
-        glBufferData(openGLTargetBuffer, dataSize, vertexData, openGLUsage);
-        CheckError();
-    }
-    
     bool GLSLBuffer::IsBound() const
     {
         GLSL_GET_PARAMETER getParameter = BufferBindingParameter();
@@ -71,6 +57,22 @@ namespace GLRenderer
     }
     
 #pragma mark - Protected methods
+    
+    void GLSLBuffer::LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage)
+    {
+        SetElementsCount(elementsCount);
+        
+        GLenum openGLTargetBuffer = OpenGLTargetBuffer();
+        GLfloat dataSize = elementSize * elementsCount;
+        GLenum openGLUsage = GLDataConverter::OpenGLESUsageFromBufferUsage(usage);
+        
+        Bind();
+        
+        glBufferData(openGLTargetBuffer, dataSize, bufferData, openGLUsage);
+        CheckError();
+    }
+    
+#pragma mark - Private Methods
     
     void GLSLBuffer::SetElementsCount(GLuint elementsCount)
     {

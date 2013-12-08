@@ -8,6 +8,9 @@
 
 #pragma once
 #include "GLSLBuffer.h"
+#include <vector>
+
+using namespace std;
 
 
 
@@ -16,6 +19,9 @@ namespace GLRenderer
     class GLSLVertexBuffer : public GLSLBuffer
     {
     public:
+        void LoadBufferData(vector<float> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        void LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        
         GLSL_BUFFER TargetBuffer() const;
         GLSL_GET_PARAMETER BufferBindingParameter() const;
         

@@ -52,30 +52,7 @@ namespace GLRenderer
     void GLSLDrawing::Draw() const
     {
         m_program->Use();
-        
-        /*if (m_vertexBuffer && m_indexBuffer)
-        {
-            m_vertexBuffer->Bind();
-            m_indexBuffer->Bind();
-            
-            GLuint elementsCount = m_indexBuffer->GetElementsCount();
-            glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_SHORT, NULL);       // TODO: check indices pointer
-        }
-        else if (m_vertexBuffer)
-        {
-            m_vertexBuffer->Bind();
-//            GLSLIndexBuffer::UnbindCurrentBuffer();         // Should be disabled or not (for better performance)?
-            
-            GLuint elementsCount = m_vertexBuffer->GetElementsCount();
-            glDrawArrays(GL_LINES, 0, elementsCount);
-        }
-        else if (m_rawElementsCount > 0)
-        {
-            GLSLVertexBuffer::UnbindCurrentBuffer();
-            GLSLIndexBuffer::UnbindCurrentBuffer();
-            
-            glDrawArrays(GL_LINES, 0, m_rawElementsCount);
-        }*/
+        m_drawingState->PerformDrawing();
     }
     
     void GLSLDrawing::UseVertexBufferWithIndexBuffer(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer)
@@ -100,6 +77,8 @@ namespace GLRenderer
     {
         GLSLVertexBufferState *pDrawingState = new GLSLVertexBufferState(pVertexBuffer);
         SetDrawingState(pDrawingState);
+        
+        InitializeAttributes(m_program->GetAttributes());
     }
     
     void GLSLDrawing::UseRawVertexDataWithIndexBuffer(GLvoid *pVertexData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer)
@@ -120,9 +99,9 @@ namespace GLRenderer
         SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize)
+    void GLSLDrawing::UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize, GLuint elementsCount)
     {
-        GLSLRawVertexDataState *pDrawingState = new GLSLRawVertexDataState(pVertexData, dataSize);
+        GLSLRawVertexDataState *pDrawingState = new GLSLRawVertexDataState(pVertexData, dataSize, elementsCount);
         SetDrawingState(pDrawingState);
     }
     

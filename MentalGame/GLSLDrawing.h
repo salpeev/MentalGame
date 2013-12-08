@@ -36,7 +36,6 @@ namespace GLRenderer
         void Initialize();
         void Draw() const;
         
-#warning Check and refactor all this methods
         void UseVertexBufferWithIndexBuffer(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
         void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
         void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
@@ -44,7 +43,7 @@ namespace GLRenderer
         void UseRawVertexDataWithIndexBuffer(GLvoid *pVertexData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer);
         void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLushort> &rIndices);
         void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices);
-        void UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize);
+        void UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize, GLuint elementsCount);
         
     protected:
         virtual string VertexShaderSource() const = 0;
@@ -61,8 +60,5 @@ namespace GLRenderer
         
         GLSLProgram *m_program;
         GLSLDrawingState *m_drawingState;
-//        GLSLVertexBuffer *m_vertexBuffer;
-//        GLSLIndexBuffer *m_indexBuffer;
-//        GLuint m_rawElementsCount;
     };
 }

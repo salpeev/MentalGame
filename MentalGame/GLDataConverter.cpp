@@ -46,4 +46,12 @@ namespace GLRenderer
             case GLSL_GET_PARAMETER_ELEMENT_ARRAY_BUFFER_BINDING: return GL_ELEMENT_ARRAY_BUFFER_BINDING;
         }
     }
+    
+    GLenum GLDataConverter::OpenGLESDataTypeFromDataType(GLSL_DATA_TYPE dataType)
+    {
+        switch (dataType) {
+            case GLSL_DATA_TYPE_BYTE: return GL_BYTE;
+            case GLSL_DATA_TYPE_UNSIGNED_SHORT: return GL_UNSIGNED_SHORT;
+        }
+    }
 }

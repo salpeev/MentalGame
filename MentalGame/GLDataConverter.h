@@ -21,5 +21,6 @@ namespace GLRenderer
         static GLenum OpenGLESUsageFromBufferUsage(GLSL_BUFFER_USAGE usage);
         static GLenum OpenGLESShaderFromShaderType(GLSL_SHADER_TYPE shaderType);
         static GLenum OpenGLESGetParameterFromGetParameter(GLSL_GET_PARAMETER getParameter);
+        static GLenum OpenGLESDataTypeFromDataType(GLSL_DATA_TYPE dataType);
     };
 }

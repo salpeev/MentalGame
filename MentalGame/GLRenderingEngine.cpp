@@ -48,7 +48,7 @@ namespace GLRenderer
         vertexData.push_back(vertex1);
         
         GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
-        vertexBuffer->LoadVertexData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
+        vertexBuffer->LoadBufferData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
         
         GLSLDrawing *drawing0 = new GLSLPositionColorDrawing();
         drawing0->Initialize();
