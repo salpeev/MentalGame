@@ -184,8 +184,10 @@ namespace GLRenderer
     
     
     
-    GLSLRawVertexDataState::GLSLRawVertexDataState(GLvoid *pData, GLsizei dataSize, GLuint elementsCount): GLSLDrawingState(), m_elementsCount(elementsCount)
+    GLSLRawVertexDataState::GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount): GLSLDrawingState(), m_elementsCount(elementsCount)
     {
+        GLsizei dataSize = elementSize * elementsCount;
+        
         m_data = malloc(dataSize);
         memcpy(m_data, pData, dataSize);
     }
@@ -199,7 +201,7 @@ namespace GLRenderer
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         // TODO: Should be disabled or not for improving performance?
-//        GLSLIndexBuffer::UnbindCurrentBuffer();
+        GLSLIndexBuffer::UnbindCurrentBuffer();
         
         // TODO: Implement partial buffer drawing
         glDrawArrays(GL_LINES, 0, m_elementsCount);

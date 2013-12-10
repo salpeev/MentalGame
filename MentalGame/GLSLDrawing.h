@@ -43,7 +43,7 @@ namespace GLRenderer
         void UseRawVertexDataWithIndexBuffer(GLvoid *pVertexData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer);
         void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLushort> &rIndices);
         void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices);
-        void UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize, GLuint elementsCount);
+        void UseRawVertexData(GLvoid *pVertexData, GLsizei elementSize, GLuint elementsCount);
         
     protected:
         virtual string VertexShaderSource() const = 0;

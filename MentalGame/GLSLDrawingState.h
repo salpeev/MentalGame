@@ -138,7 +138,7 @@ namespace GLRenderer
     class GLSLRawVertexDataState: public GLSLDrawingState
     {
     public:
-        GLSLRawVertexDataState(GLvoid *pData, GLsizei dataSize, GLuint elementsCount);
+        GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount);
         ~GLSLRawVertexDataState();
         
         void PerformDrawing() const;

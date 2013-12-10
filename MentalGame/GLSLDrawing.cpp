@@ -111,12 +111,15 @@ namespace GLRenderer
         InitializeAttributes(m_program->GetAttributes());
     }
     
-    void GLSLDrawing::UseRawVertexData(GLvoid *pVertexData, GLsizei dataSize, GLuint elementsCount)
+    void GLSLDrawing::UseRawVertexData(GLvoid *pVertexData, GLsizei elementSize, GLuint elementsCount)
     {
-        GLSLRawVertexDataState *pDrawingState = new GLSLRawVertexDataState(pVertexData, dataSize, elementsCount);
+        GLSLRawVertexDataState *pDrawingState = new GLSLRawVertexDataState(pVertexData, elementSize, elementsCount);
         SetDrawingState(pDrawingState);
         
-        InitializeAttributes(m_program->GetAttributes());
+        GLSLVertexBuffer::UnbindCurrentBuffer();
+        GLSLIndexBuffer::UnbindCurrentBuffer();
+        
+        InitializeAttributes(m_program->GetAttributes(), pVertexData);
     }
     
 #pragma mark - Private Methods
