@@ -17,7 +17,7 @@
 
 namespace GLRenderer
 {
-    GLSLDrawingState::GLSLDrawingState()
+    GLSLDrawingState::GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate): m_delegate(pDelegate)
     {
         
     }
@@ -27,9 +27,14 @@ namespace GLRenderer
         
     }
     
+    GLSLDrawingStateDelegate * GLSLDrawingState::GetDelegate() const
+    {
+        return m_delegate;
+    }
     
     
-    GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): GLSLDrawingState(), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
+    
+    GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
     {
         
     }
@@ -39,6 +44,8 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         m_indexBuffer->Bind();
         
+        GetDelegate()->InitializeAttributes();
+        
         GLuint elementsCount = m_indexBuffer->GetElementsCount();
         GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
         // TODO: Implement partial buffer drawing
@@ -47,7 +54,7 @@ namespace GLRenderer
     
     
     
-    GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): GLSLDrawingState(), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLushort>(rIndices);
     }
@@ -68,7 +75,7 @@ namespace GLRenderer
     
     
     
-    GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): GLSLDrawingState(), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLubyte>(rIndices);
     }
@@ -89,7 +96,7 @@ namespace GLRenderer
     
     
     
-    GLSLVertexBufferState::GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer): GLSLDrawingState(), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferState::GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
         
     }
@@ -100,13 +107,15 @@ namespace GLRenderer
         // TODO: Should be disabled or not for improving performance?
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
+        GetDelegate()->InitializeAttributes();
+        
         // TODO: Implement partial buffer drawing
         glDrawArrays(GL_LINES, 0, m_vertexBuffer->GetElementsCount());
     }
     
     
     
-    GLSLRawVertexDataIndexBufferState::GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer): GLSLDrawingState(), m_indexBuffer(pIndexBuffer)
+    GLSLRawVertexDataIndexBufferState::GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_indexBuffer(pIndexBuffer)
     {
         // TODO: Is this data should be copied? Not used in PerformDrawing()
         m_data = malloc(dataSize);
@@ -132,7 +141,7 @@ namespace GLRenderer
     
     
     
-    GLSLRawVertexDataRawShortIndicesState::GLSLRawVertexDataRawShortIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLushort> &rIndices)
+    GLSLRawVertexDataRawShortIndicesState::GLSLRawVertexDataRawShortIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
     {
         m_data = malloc(dataSize);
         memcpy(m_data, pData, dataSize);
@@ -158,7 +167,7 @@ namespace GLRenderer
     
     
     
-    GLSLRawVertexDataRawByteIndicesState::GLSLRawVertexDataRawByteIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLubyte> &rIndices)
+    GLSLRawVertexDataRawByteIndicesState::GLSLRawVertexDataRawByteIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
     {
         m_data = malloc(dataSize);
         memcpy(m_data, pData, dataSize);
@@ -184,7 +193,7 @@ namespace GLRenderer
     
     
     
-    GLSLRawVertexDataState::GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount): GLSLDrawingState(), m_elementsCount(elementsCount)
+    GLSLRawVertexDataState::GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_elementsCount(elementsCount)
     {
         GLsizei dataSize = elementSize * elementsCount;
         
@@ -201,7 +210,9 @@ namespace GLRenderer
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         // TODO: Should be disabled or not for improving performance?
-        GLSLIndexBuffer::UnbindCurrentBuffer();
+//        GLSLIndexBuffer::UnbindCurrentBuffer();
+        
+        GetDelegate()->InitializeAttributes(m_data);
         
         // TODO: Implement partial buffer drawing
         glDrawArrays(GL_LINES, 0, m_elementsCount);

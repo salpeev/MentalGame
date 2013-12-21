@@ -56,7 +56,6 @@ namespace GLRenderer
     {
         GLint linkStatus;
         glGetProgramiv(m_programHandle, GL_LINK_STATUS, &linkStatus);
-        
         CheckError();
         
         return (linkStatus == GL_TRUE);

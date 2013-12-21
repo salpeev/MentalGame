@@ -21,14 +21,27 @@ namespace GLRenderer
     
     
     
+    class GLSLDrawingStateDelegate
+    {
+    public:
+        virtual void InitializeAttributes(GLvoid *pData = NULL) const = 0;
+    };
+    
+    
+    
     class GLSLDrawingState
     {
     public:
-        GLSLDrawingState();
+        GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate);
         GLSLDrawingState(const GLSLDrawingState &rDrawingState) = delete;
         virtual ~GLSLDrawingState();
         
+        GLSLDrawingStateDelegate * GetDelegate() const;
+        
         virtual void PerformDrawing() const = 0;
+        
+    private:
+        GLSLDrawingStateDelegate *m_delegate;
     };
     
     
@@ -36,7 +49,7 @@ namespace GLRenderer
     class GLSLVertexBufferIndexBufferState: public GLSLDrawingState
     {
     public:
-        GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
+        GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate);
         
         void PerformDrawing() const;
         
@@ -50,7 +63,7 @@ namespace GLRenderer
     class GLSLVertexBufferShortIndicesState: public GLSLDrawingState
     {
     public:
-        GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
+        GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLVertexBufferShortIndicesState();
         
         void PerformDrawing() const;
@@ -65,7 +78,7 @@ namespace GLRenderer
     class GLSLVertexBufferByteIndicesState: public GLSLDrawingState
     {
     public:
-        GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
+        GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLVertexBufferByteIndicesState();
         
         void PerformDrawing() const;
@@ -80,7 +93,7 @@ namespace GLRenderer
     class GLSLVertexBufferState: public GLSLDrawingState
     {
     public:
-        GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer);
+        GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLDrawingStateDelegate *pDelegate);
         
         void PerformDrawing() const;
         
@@ -93,7 +106,7 @@ namespace GLRenderer
     class GLSLRawVertexDataIndexBufferState: public GLSLDrawingState
     {
     public:
-        GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer);
+        GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLRawVertexDataIndexBufferState();
         
         void PerformDrawing() const;
@@ -108,7 +121,7 @@ namespace GLRenderer
     class GLSLRawVertexDataRawShortIndicesState: public GLSLDrawingState
     {
     public:
-        GLSLRawVertexDataRawShortIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLushort> &rIndices);
+        GLSLRawVertexDataRawShortIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLRawVertexDataRawShortIndicesState();
         
         void PerformDrawing() const;
@@ -123,7 +136,7 @@ namespace GLRenderer
     class GLSLRawVertexDataRawByteIndicesState: public GLSLDrawingState
     {
     public:
-        GLSLRawVertexDataRawByteIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLubyte> &rIndices);
+        GLSLRawVertexDataRawByteIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLRawVertexDataRawByteIndicesState();
         
         void PerformDrawing() const;
@@ -138,7 +151,7 @@ namespace GLRenderer
     class GLSLRawVertexDataState: public GLSLDrawingState
     {
     public:
-        GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount);
+        GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLRawVertexDataState();
         
         void PerformDrawing() const;

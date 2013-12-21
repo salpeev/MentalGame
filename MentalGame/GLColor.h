@@ -17,6 +17,7 @@ namespace GLRenderer
     {
     public:
         GLColor();
+        GLColor(GLfloat r, GLfloat g, GLfloat b);
         GLColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
         
         GLfloat r;

@@ -11,6 +11,7 @@
 #include <map>
 #include <vector>
 #include <OpenGLES/ES2/gl.h>
+#include "GLSLDrawingState.h"
 
 using namespace std;
 
@@ -22,11 +23,10 @@ namespace GLRenderer
     class GLSLAttribute;
     class GLSLVertexBuffer;
     class GLSLIndexBuffer;
-    class GLSLDrawingState;
     
     
     
-    class GLSLDrawing
+    class GLSLDrawing: public GLSLDrawingStateDelegate
     {
     public:
         GLSLDrawing();
@@ -44,6 +44,8 @@ namespace GLRenderer
         void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLushort> &rIndices);
         void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices);
         void UseRawVertexData(GLvoid *pVertexData, GLsizei elementSize, GLuint elementsCount);
+        
+        void InitializeAttributes(GLvoid *pData = NULL) const;
         
     protected:
         virtual string VertexShaderSource() const = 0;

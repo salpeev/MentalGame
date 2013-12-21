@@ -13,7 +13,12 @@
 
 namespace GLRenderer
 {
-    GLColor::GLColor(): GLColor(0, 0, 0, 0)
+    GLColor::GLColor(): GLColor(0.0f, 0.0f, 0.0f, 0.0f)
+    {
+        
+    }
+    
+    GLColor::GLColor(GLfloat r, GLfloat g, GLfloat b): GLColor(r, g, b, 1.0f)
     {
         
     }

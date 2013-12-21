@@ -18,14 +18,14 @@ namespace GLRenderer
     {
         m_dataType = GLSL_DATA_TYPE_UNSIGNED_SHORT;
         // TODO: What happens if elements count is 0?
-        GLSLBuffer::LoadBufferData(&rBufferData, sizeof(rBufferData[0]), rBufferData.size());
+        GLSLBuffer::LoadBufferData(&rBufferData[0], sizeof(rBufferData[0]), rBufferData.size(), usage);
     }
     
     void GLSLIndexBuffer::LoadBufferData(vector<GLubyte> &rBufferData, GLSL_BUFFER_USAGE usage)
     {
-        m_dataType = GLSL_DATA_TYPE_BYTE;
+        m_dataType = GLSL_DATA_TYPE_UNSIGNED_BYTE;
         // TODO: What happens if elements count is 0?
-        GLSLBuffer::LoadBufferData(&rBufferData, sizeof(rBufferData[0]), rBufferData.size());
+        GLSLBuffer::LoadBufferData(&rBufferData[0], sizeof(rBufferData[0]), rBufferData.size(), usage);
     }
     
     GLSL_DATA_TYPE GLSLIndexBuffer::GetDataType() const

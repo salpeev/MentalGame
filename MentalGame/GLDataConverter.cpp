@@ -50,7 +50,7 @@ namespace GLRenderer
     GLenum GLDataConverter::OpenGLESDataTypeFromDataType(GLSL_DATA_TYPE dataType)
     {
         switch (dataType) {
-            case GLSL_DATA_TYPE_BYTE: return GL_BYTE;
+            case GLSL_DATA_TYPE_UNSIGNED_BYTE: return GL_UNSIGNED_BYTE;
             case GLSL_DATA_TYPE_UNSIGNED_SHORT: return GL_UNSIGNED_SHORT;
         }
     }

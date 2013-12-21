@@ -28,6 +28,12 @@ namespace GLRenderer
     private:
         void Test0() const;
         void Test1() const;
+        void Test2() const;
+        void Test3() const;
+        void Test4() const;
+        void Test5() const;
+        void Test6() const;
+        void Test7() const;
         
         vector<GLSLDrawing *> *m_drawings;
     };
