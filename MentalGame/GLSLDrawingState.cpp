@@ -176,7 +176,8 @@ namespace GLRenderer
         GetDelegate()->InitializeAttributes(m_data);
         
         // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_SHORT, (GLvoid *)(&m_indices[0]));
+        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_SHORT, (GLvoid *)(&m_indices->at(0)));
+        CheckError();
     }
     
     
@@ -198,13 +199,13 @@ namespace GLRenderer
     void GLSLRawVertexDataRawByteIndicesState::PerformDrawing() const
     {
         // TODO: Should be disabled or not for improving performance?
-        //        GLSLVertexBuffer::UnbindCurrentBuffer();
+        GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->InitializeAttributes();
+        GetDelegate()->InitializeAttributes(m_data);
         
         // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_BYTE, (GLvoid *)(&m_indices[0]));
+        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_BYTE, (GLvoid *)(&m_indices->at(0)));
         CheckError();
     }
     

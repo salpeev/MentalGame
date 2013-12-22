@@ -33,10 +33,9 @@ namespace GLRenderer
         glViewport(0, 0, width, height);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
-        
         Test0();
-//        Test1();
-//        Test2();
+//        /*Test1();
+//        Test2();*/
         Test3();
         Test4();
         Test5();
@@ -189,11 +188,11 @@ namespace GLRenderer
     
     void GLRenderingEngine::Test5() const
     {
-        GLPoint point0(-1, -1, 0);
-        GLPoint point1(1, 1, 0);
+        GLPoint point0(-1, 0, 0);
+        GLPoint point1(1, 0, 0);
         
-        GLColor color0(1, 0, 0);
-        GLColor color1(0, 1, 0);
+        GLColor color0(1, 1, 1);
+        GLColor color1(1, 0, 0);
         
         GLSLVertex1P1C vertex0(point0, color0);
         GLSLVertex1P1C vertex1(point1, color1);
@@ -215,7 +214,28 @@ namespace GLRenderer
     
     void GLRenderingEngine::Test6() const
     {
+        GLPoint point0(0, -1, 0);
+        GLPoint point1(0, 1, 0);
         
+        GLColor color0(1, 0, 1);
+        GLColor color1(0, 1, 0);
+        
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
+        
+        vector<GLSLVertex1P1C> vertexData;
+        vertexData.push_back(vertex0);
+        vertexData.push_back(vertex1);
+        
+        vector<GLubyte> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        
+        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
+        drawing->Initialize();
+        drawing->UseRawVertexDataWithRawIndexData(&vertexData[0], sizeof(vertexData[0]) * vertexData.size(), indexData);
+        
+        m_drawings->push_back(drawing);
     }
     
     void GLRenderingEngine::Test7() const
