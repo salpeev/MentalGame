@@ -35,8 +35,8 @@ namespace GLRenderer
         
         
         Test0();
-        Test1();
-        Test2();
+//        Test1();
+//        Test2();
         Test3();
         Test4();
         Test5();
@@ -99,12 +99,62 @@ namespace GLRenderer
     
     void GLRenderingEngine::Test1() const
     {
+#warning Not working
+        GLPoint point0(0.5, -0.5, 0);
+        GLPoint point1(0.5, 0.5, 0);
         
+        GLColor color0(1, 1, 1);
+        GLColor color1(0, 1, 1);
+        
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
+        
+        vector<GLSLVertex1P1C> vertexData;
+        vertexData.push_back(vertex0);
+        vertexData.push_back(vertex1);
+        
+        GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
+        vertexBuffer->LoadBufferData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
+        
+        vector<GLushort> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        
+        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
+        drawing->Initialize();
+        drawing->UseVertexBufferWithIndices(vertexBuffer, indexData);
+        
+        m_drawings->push_back(drawing);
     }
     
     void GLRenderingEngine::Test2() const
     {
+#warning Not working
+        GLPoint point0(0.5, 0.5, 0);
+        GLPoint point1(-0.5, 0.5, 0);
         
+        GLColor color0(1, 0, 0);
+        GLColor color1(0, 1, 1);
+        
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
+        
+        vector<GLSLVertex1P1C> vertexData;
+        vertexData.push_back(vertex0);
+        vertexData.push_back(vertex1);
+        
+        GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
+        vertexBuffer->LoadBufferData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
+        
+        vector<GLubyte> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        
+        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
+        drawing->Initialize();
+        drawing->UseVertexBufferWithIndices(vertexBuffer, indexData);
+        
+        m_drawings->push_back(drawing);
     }
     
     void GLRenderingEngine::Test3() const
@@ -139,7 +189,28 @@ namespace GLRenderer
     
     void GLRenderingEngine::Test5() const
     {
+        GLPoint point0(-1, -1, 0);
+        GLPoint point1(1, 1, 0);
         
+        GLColor color0(1, 0, 0);
+        GLColor color1(0, 1, 0);
+        
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
+        
+        vector<GLSLVertex1P1C> vertexData;
+        vertexData.push_back(vertex0);
+        vertexData.push_back(vertex1);
+        
+        vector<GLushort> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        
+        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
+        drawing->Initialize();
+        drawing->UseRawVertexDataWithRawIndexData(&vertexData[0], sizeof(vertexData[0]) * vertexData.size(), indexData);
+        
+        m_drawings->push_back(drawing);
     }
     
     void GLRenderingEngine::Test6() const

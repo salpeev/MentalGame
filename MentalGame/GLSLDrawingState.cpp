@@ -10,6 +10,7 @@
 #include "GLSLVertexBuffer.h"
 #include "GLSLIndexBuffer.h"
 #include "GLDataConverter.h"
+#include "GLLogger.h"
 #include <stdlib.h>
 
 
@@ -50,6 +51,7 @@ namespace GLRenderer
         GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
         // TODO: Implement partial buffer drawing
         glDrawElements(GL_LINES, elementsCount, type, NULL);
+        CheckError();
     }
     
     
@@ -69,8 +71,11 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
+        GetDelegate()->InitializeAttributes();
+        
         // TODO: Implement partial buffer drawing
         glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_SHORT, (GLvoid *)(&m_indices[0]));
+        CheckError();
     }
     
     
@@ -90,8 +95,11 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
+        GetDelegate()->InitializeAttributes();
+        
         // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_BYTE, (GLvoid *)(&m_indices[0]));
+        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_BYTE, (GLvoid *)(&m_indices[0]));
+        CheckError();
     }
     
     
@@ -111,6 +119,7 @@ namespace GLRenderer
         
         // TODO: Implement partial buffer drawing
         glDrawArrays(GL_LINES, 0, m_vertexBuffer->GetElementsCount());
+        CheckError();
     }
     
     
@@ -133,10 +142,13 @@ namespace GLRenderer
 //        GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
         
+        GetDelegate()->InitializeAttributes();
+        
         GLuint elementsCount = m_indexBuffer->GetElementsCount();
         GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
         // TODO: Implement partial buffer drawing
         glDrawElements(GL_LINES, elementsCount, type, NULL);
+        CheckError();
     }
     
     
@@ -158,8 +170,10 @@ namespace GLRenderer
     void GLSLRawVertexDataRawShortIndicesState::PerformDrawing() const
     {
         // TODO: Should be disabled or not for improving performance?
-//        GLSLVertexBuffer::UnbindCurrentBuffer();
+        GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
+        
+        GetDelegate()->InitializeAttributes(m_data);
         
         // TODO: Implement partial buffer drawing
         glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_SHORT, (GLvoid *)(&m_indices[0]));
@@ -187,8 +201,11 @@ namespace GLRenderer
         //        GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
+        GetDelegate()->InitializeAttributes();
+        
         // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_BYTE, (GLvoid *)(&m_indices[0]));
+        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_BYTE, (GLvoid *)(&m_indices[0]));
+        CheckError();
     }
     
     
@@ -216,5 +233,6 @@ namespace GLRenderer
         
         // TODO: Implement partial buffer drawing
         glDrawArrays(GL_LINES, 0, m_elementsCount);
+        CheckError();
     }
 }
