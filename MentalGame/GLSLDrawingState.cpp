@@ -139,10 +139,10 @@ namespace GLRenderer
     void GLSLRawVertexDataIndexBufferState::PerformDrawing() const
     {
         // TODO: Should be disabled or not for improving performance?
-//        GLSLVertexBuffer::UnbindCurrentBuffer();
+        GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
         
-        GetDelegate()->InitializeAttributes();
+        GetDelegate()->InitializeAttributes(m_data);
         
         GLuint elementsCount = m_indexBuffer->GetElementsCount();
         GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());

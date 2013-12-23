@@ -183,7 +183,31 @@ namespace GLRenderer
     
     void GLRenderingEngine::Test4() const
     {
+        GLPoint point0(-0.5, 0.5, 0);
+        GLPoint point1(-0.5, -0.5, 0);
         
+        GLColor color0(1, 0, 0.2);
+        GLColor color1(0.2, 1, 0);
+        
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
+        
+        vector<GLSLVertex1P1C> vertexData;
+        vertexData.push_back(vertex0);
+        vertexData.push_back(vertex1);
+        
+        vector<GLushort> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        
+        GLSLIndexBuffer *indexBuffer = new GLSLIndexBuffer();
+        indexBuffer->LoadBufferData(indexData);
+        
+        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
+        drawing->Initialize();
+        drawing->UseRawVertexDataWithIndexBuffer(&vertexData[0], sizeof(vertexData[0]) * vertexData.size(), indexBuffer);
+        
+        m_drawings->push_back(drawing);
     }
     
     void GLRenderingEngine::Test5() const
