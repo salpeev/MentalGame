@@ -123,8 +123,6 @@ namespace GLRenderer
     void GLSLVertexBufferState::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
-        // TODO: Should be disabled or not for improving performance?
-        GLSLIndexBuffer::UnbindCurrentBuffer();
         
         GetDelegate()->InitializeAttributes();
         
@@ -139,7 +137,6 @@ namespace GLRenderer
     
     GLSLRawVertexDataIndexBufferState::GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_indexBuffer(pIndexBuffer)
     {
-        // TODO: Is this data should be copied? Not used in PerformDrawing()
         m_data = malloc(dataSize);
         memcpy(m_data, pData, dataSize);
     }
@@ -151,7 +148,6 @@ namespace GLRenderer
     
     void GLSLRawVertexDataIndexBufferState::PerformDrawing() const
     {
-        // TODO: Should be disabled or not for improving performance?
         GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
         
@@ -184,7 +180,6 @@ namespace GLRenderer
     
     void GLSLRawVertexDataRawShortIndicesState::PerformDrawing() const
     {
-        // TODO: Should be disabled or not for improving performance?
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
@@ -215,7 +210,6 @@ namespace GLRenderer
     
     void GLSLRawVertexDataRawByteIndicesState::PerformDrawing() const
     {
-        // TODO: Should be disabled or not for improving performance?
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
@@ -245,8 +239,6 @@ namespace GLRenderer
     void GLSLRawVertexDataState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
-        // TODO: Should be disabled or not for improving performance?
-//        GLSLIndexBuffer::UnbindCurrentBuffer();
         
         GetDelegate()->InitializeAttributes(m_data);
         
