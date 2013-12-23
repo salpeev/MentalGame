@@ -20,6 +20,7 @@ namespace GLRenderer
     class GLSLIndexBuffer;
     
     
+#pragma mark - GLSLDrawingStateDelegate
     
     class GLSLDrawingStateDelegate
     {
@@ -28,6 +29,8 @@ namespace GLRenderer
     };
     
     
+    
+#pragma mark - GLSLDrawingState
     
     class GLSLDrawingState
     {
@@ -46,6 +49,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLVertexBufferIndexBufferState
+    
     class GLSLVertexBufferIndexBufferState: public GLSLDrawingState
     {
     public:
@@ -59,6 +64,8 @@ namespace GLRenderer
     };
     
     
+    
+#pragma mark - GLSLVertexBufferShortIndicesState
     
     class GLSLVertexBufferShortIndicesState: public GLSLDrawingState
     {
@@ -75,6 +82,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLVertexBufferByteIndicesState
+    
     class GLSLVertexBufferByteIndicesState: public GLSLDrawingState
     {
     public:
@@ -90,6 +99,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLVertexBufferState
+    
     class GLSLVertexBufferState: public GLSLDrawingState
     {
     public:
@@ -102,6 +113,8 @@ namespace GLRenderer
     };
     
     
+    
+#pragma mark - GLSLRawVertexDataIndexBufferState
     
     class GLSLRawVertexDataIndexBufferState: public GLSLDrawingState
     {
@@ -118,6 +131,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLRawVertexDataRawShortIndicesState
+    
     class GLSLRawVertexDataRawShortIndicesState: public GLSLDrawingState
     {
     public:
@@ -133,6 +148,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLRawVertexDataRawByteIndicesState
+    
     class GLSLRawVertexDataRawByteIndicesState: public GLSLDrawingState
     {
     public:
@@ -147,6 +164,8 @@ namespace GLRenderer
     };
     
     
+    
+#pragma mark - GLSLRawVertexDataState
     
     class GLSLRawVertexDataState: public GLSLDrawingState
     {

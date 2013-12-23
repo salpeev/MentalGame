@@ -18,6 +18,9 @@
 
 namespace GLRenderer
 {
+    
+#pragma mark - GLSLDrawingState
+    
     GLSLDrawingState::GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate): m_delegate(pDelegate)
     {
         
@@ -34,6 +37,8 @@ namespace GLRenderer
     }
     
     
+    
+#pragma mark - GLSLDrawingVertexBufferIndexBufferState
     
     GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
     {
@@ -55,6 +60,8 @@ namespace GLRenderer
     }
     
     
+    
+#pragma mark - GLSLVertexBufferShortIndicesState
     
     GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
@@ -80,6 +87,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLVertexBufferByteIndicesState
+    
     GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLubyte>(rIndices);
@@ -104,6 +113,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLVertexBufferState
+    
     GLSLVertexBufferState::GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
         
@@ -123,6 +134,8 @@ namespace GLRenderer
     }
     
     
+    
+#pragma mark - GLSLRawVertexDataIndexBufferState
     
     GLSLRawVertexDataIndexBufferState::GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_indexBuffer(pIndexBuffer)
     {
@@ -153,6 +166,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLRawVertexDataRawShortIndicesState
+    
     GLSLRawVertexDataRawShortIndicesState::GLSLRawVertexDataRawShortIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
     {
         m_data = malloc(dataSize);
@@ -182,6 +197,8 @@ namespace GLRenderer
     
     
     
+#pragma mark - GLSLRawVertexDataRawByteIndicesState
+    
     GLSLRawVertexDataRawByteIndicesState::GLSLRawVertexDataRawByteIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
     {
         m_data = malloc(dataSize);
@@ -210,6 +227,7 @@ namespace GLRenderer
     }
     
     
+#pragma mark - GLSLRawVertexDataState
     
     GLSLRawVertexDataState::GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_elementsCount(elementsCount)
     {
