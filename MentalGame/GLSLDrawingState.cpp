@@ -15,13 +15,12 @@
 
 
 
-
 namespace GLRenderer
 {
     
 #pragma mark - GLSLDrawingState
     
-    GLSLDrawingState::GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate): m_delegate(pDelegate)
+    GLSLDrawingState::GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate): m_delegate(pDelegate), m_startDrawIndex(0), m_drawElementsCount(0)
     {
         
     }
@@ -31,9 +30,74 @@ namespace GLRenderer
         
     }
     
+#pragma mark Public Methods
+    
     GLSLDrawingStateDelegate * GLSLDrawingState::GetDelegate() const
     {
         return m_delegate;
+    }
+    
+    void GLSLDrawingState::SetStartDrawIndex(GLint startDrawIndex)
+    {
+        if (startDrawIndex < GetElementsCount())
+        {
+            m_startDrawIndex = startDrawIndex;
+            
+            int lastDrawIndex = startDrawIndex + GetDrawElementsCount() - 1;
+            if (lastDrawIndex >= GetElementsCount())
+            {
+                Log("WARNING: Last draw index exeeds available bounds. Truncated drawing elements count");
+                int drawElementsCount = GetElementsCount() - startDrawIndex;
+                SetDrawElementsCount(drawElementsCount);
+            }
+        }
+        else
+        {
+            Log("ERROR: Wrong start draw index");
+            m_startDrawIndex = 0;
+            SetDrawElementsCount(0);
+        }
+    }
+    
+    GLint GLSLDrawingState::GetStartDrawIndex() const
+    {
+        return m_startDrawIndex;
+    }
+    
+    void GLSLDrawingState::SetDrawElementsCount(GLsizei drawElementsCount)
+    {
+        GLint lastDrawIndex = GetStartDrawIndex() + drawElementsCount - 1;
+        if (lastDrawIndex < GetElementsCount())
+        {
+            m_drawElementsCount = drawElementsCount;
+        }
+        else
+        {
+            Log("WARNING: Last draw index exeeds available bounds. Truncated drawing elements count");
+            m_drawElementsCount = GetElementsCount() - GetStartDrawIndex();
+        }
+    }
+    
+    GLsizei GLSLDrawingState::GetDrawElementsCount() const
+    {
+        return m_drawElementsCount;
+    }
+    
+    void GLSLDrawingState::ResetStartDrawIndex()
+    {
+        SetStartDrawIndex(0);
+    }
+    
+    void GLSLDrawingState::ResetDrawCount()
+    {
+        GLsizei drawCount = GetElementsCount() - GetStartDrawIndex();
+        SetDrawElementsCount(drawCount);
+    }
+    
+    void GLSLDrawingState::ResetStartDrawIndexAndDrawElementsCount()
+    {
+        ResetStartDrawIndex();
+        ResetDrawCount();
     }
     
     
@@ -42,7 +106,12 @@ namespace GLRenderer
     
     GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
     {
-        
+        ResetDrawCount();
+    }
+    
+    GLsizei GLSLVertexBufferIndexBufferState::GetElementsCount() const
+    {
+        return m_indexBuffer->GetElementsCount();
     }
     
     void GLSLVertexBufferIndexBufferState::PerformDrawing() const
@@ -52,10 +121,11 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes();
         
-        GLuint elementsCount = m_indexBuffer->GetElementsCount();
+        GLuint elementsCount = GetDrawElementsCount();
         GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
-        // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, elementsCount, type, NULL);
+        GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
+        
+        glDrawElements(GL_LINES, elementsCount, type, indicesOffset);
         CheckError();
     }
     
@@ -66,11 +136,18 @@ namespace GLRenderer
     GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLushort>(rIndices);
+        
+        ResetDrawCount();
     }
     
     GLSLVertexBufferShortIndicesState::~GLSLVertexBufferShortIndicesState()
     {
         delete m_indices;
+    }
+    
+    GLsizei GLSLVertexBufferShortIndicesState::GetElementsCount() const
+    {
+        return m_indices->size();
     }
     
     void GLSLVertexBufferShortIndicesState::PerformDrawing() const
@@ -80,8 +157,11 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes();
         
-        // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_SHORT, (GLvoid *)(&m_indices->at(0)));
+        GLuint elementsCount = GetDrawElementsCount();
+        GLint startIndex = GetStartDrawIndex();
+        GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
+        
+        glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -92,11 +172,18 @@ namespace GLRenderer
     GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLubyte>(rIndices);
+        
+        ResetDrawCount();
     }
     
     GLSLVertexBufferByteIndicesState::~GLSLVertexBufferByteIndicesState()
     {
         delete m_indices;
+    }
+    
+    GLsizei GLSLVertexBufferByteIndicesState::GetElementsCount() const
+    {
+        return m_indices->size();
     }
     
     void GLSLVertexBufferByteIndicesState::PerformDrawing() const
@@ -106,8 +193,11 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes();
         
-        // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_BYTE, (GLvoid *)(&m_indices->at(0)));
+        GLuint elementsCount = GetDrawElementsCount();
+        GLint startIndex = GetStartDrawIndex();
+        GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
+        
+        glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     
@@ -117,7 +207,12 @@ namespace GLRenderer
     
     GLSLVertexBufferState::GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
     {
-        
+        ResetDrawCount();
+    }
+    
+    GLsizei GLSLVertexBufferState::GetElementsCount() const
+    {
+        return m_vertexBuffer->GetElementsCount();
     }
     
     void GLSLVertexBufferState::PerformDrawing() const
@@ -126,8 +221,10 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes();
         
-        // TODO: Implement partial buffer drawing
-        glDrawArrays(GL_LINES, 0, m_vertexBuffer->GetElementsCount());
+        GLint startIndex = GetStartDrawIndex();
+        GLuint elementsCount = GetDrawElementsCount();
+        
+        glDrawArrays(GL_LINES, startIndex, elementsCount);
         CheckError();
     }
     
@@ -139,11 +236,18 @@ namespace GLRenderer
     {
         m_data = malloc(dataSize);
         memcpy(m_data, pData, dataSize);
+        
+        ResetDrawCount();
     }
     
     GLSLRawVertexDataIndexBufferState::~GLSLRawVertexDataIndexBufferState()
     {
         free(m_data);
+    }
+    
+    GLsizei GLSLRawVertexDataIndexBufferState::GetElementsCount() const
+    {
+        return m_indexBuffer->GetElementsCount();
     }
     
     void GLSLRawVertexDataIndexBufferState::PerformDrawing() const
@@ -153,10 +257,11 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes(m_data);
         
-        GLuint elementsCount = m_indexBuffer->GetElementsCount();
+        GLuint elementsCount = GetDrawElementsCount();
         GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
-        // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, elementsCount, type, NULL);
+        GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
+        
+        glDrawElements(GL_LINES, elementsCount, type, indicesOffset);
         CheckError();
     }
     
@@ -170,12 +275,19 @@ namespace GLRenderer
         memcpy(m_data, pData, dataSize);
         
         m_indices = new vector<GLushort>(rIndices);
+        
+        ResetDrawCount();
     }
     
     GLSLRawVertexDataRawShortIndicesState::~GLSLRawVertexDataRawShortIndicesState()
     {
         free(m_data);
         delete m_indices;
+    }
+    
+    GLsizei GLSLRawVertexDataRawShortIndicesState::GetElementsCount() const
+    {
+        return m_indices->size();
     }
     
     void GLSLRawVertexDataRawShortIndicesState::PerformDrawing() const
@@ -185,8 +297,11 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes(m_data);
         
-        // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_SHORT, (GLvoid *)(&m_indices->at(0)));
+        GLuint elementsCount = GetDrawElementsCount();
+        GLint startIndex = GetStartDrawIndex();
+        GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
+        
+        glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -200,12 +315,19 @@ namespace GLRenderer
         memcpy(m_data, pData, dataSize);
         
         m_indices = new vector<GLubyte>(rIndices);
+        
+        ResetDrawCount();
     }
     
     GLSLRawVertexDataRawByteIndicesState::~GLSLRawVertexDataRawByteIndicesState()
     {
         free(m_data);
         delete m_indices;
+    }
+    
+    GLsizei GLSLRawVertexDataRawByteIndicesState::GetElementsCount() const
+    {
+        return m_indices->size();
     }
     
     void GLSLRawVertexDataRawByteIndicesState::PerformDrawing() const
@@ -215,8 +337,11 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes(m_data);
         
-        // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_BYTE, (GLvoid *)(&m_indices->at(0)));
+        GLuint elementsCount = GetDrawElementsCount();
+        GLint startIndex = GetStartDrawIndex();
+        GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
+        
+        glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     
@@ -229,11 +354,18 @@ namespace GLRenderer
         
         m_data = malloc(dataSize);
         memcpy(m_data, pData, dataSize);
+        
+        ResetDrawCount();
     }
     
     GLSLRawVertexDataState::~GLSLRawVertexDataState()
     {
         free(m_data);
+    }
+    
+    GLsizei GLSLRawVertexDataState::GetElementsCount() const
+    {
+        return m_elementsCount;
     }
     
     void GLSLRawVertexDataState::PerformDrawing() const
@@ -242,8 +374,10 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes(m_data);
         
-        // TODO: Implement partial buffer drawing
-        glDrawArrays(GL_LINES, 0, m_elementsCount);
+        GLint startIndex = GetStartDrawIndex();
+        GLuint elementsCount = GetDrawElementsCount();
+        
+        glDrawArrays(GL_LINES, startIndex, elementsCount);
         CheckError();
     }
 }

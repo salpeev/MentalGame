@@ -21,7 +21,8 @@ namespace GLRenderer
         GLSLBuffer(const GLSLBuffer &rBuffer) = delete;
         ~GLSLBuffer();
         
-        GLsizei GetElementsCount() const;
+        GLuint GetElementsCount() const;
+        GLsizei GetElementSize() const;
         
         void Bind() const;
         bool IsBound() const;
@@ -34,9 +35,11 @@ namespace GLRenderer
         
     private:
         void SetElementsCount(GLuint elementsCount);
+        void SetElementSize(GLsizei elementSize);
         GLenum OpenGLTargetBuffer() const;
         
         GLuint m_bufferHandle;
-        GLsizei m_elementsCount;
+        GLuint m_elementsCount;
+        GLsizei m_elementSize;
     };
 }

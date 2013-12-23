@@ -43,6 +43,41 @@ namespace GLRenderer
         m_drawingState->PerformDrawing();
     }
     
+    void GLSLDrawing::SetStartDrawIndex(GLint startDrawIndex)
+    {
+        m_drawingState->SetStartDrawIndex(startDrawIndex);
+    }
+    
+    GLint GLSLDrawing::GetStartDrawIndex() const
+    {
+        return m_drawingState->GetStartDrawIndex();
+    }
+    
+    void GLSLDrawing::SetDrawElementsCount(GLsizei drawCount)
+    {
+        m_drawingState->SetDrawElementsCount(drawCount);
+    }
+    
+    GLsizei GLSLDrawing::GetDrawElementsCount() const
+    {
+        return m_drawingState->GetDrawElementsCount();
+    }
+    
+    void GLSLDrawing::ResetStartDrawIndex()
+    {
+        m_drawingState->ResetStartDrawIndex();
+    }
+    
+    void GLSLDrawing::ResetDrawElementsCount()
+    {
+        m_drawingState->ResetDrawCount();
+    }
+    
+    void GLSLDrawing::ResetStartDrawIndexAndDrawElementsCount()
+    {
+        m_drawingState->ResetStartDrawIndexAndDrawElementsCount();
+    }
+    
     void GLSLDrawing::UseVertexBufferWithIndexBuffer(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer)
     {
         GLSLVertexBufferIndexBufferState *pDrawingState = new GLSLVertexBufferIndexBufferState(pVertexBuffer, pIndexBuffer, this);

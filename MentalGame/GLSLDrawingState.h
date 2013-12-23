@@ -41,10 +41,24 @@ namespace GLRenderer
         
         GLSLDrawingStateDelegate * GetDelegate() const;
         
+        void SetStartDrawIndex(GLint startDrawIndex);
+        GLint GetStartDrawIndex() const;
+        
+        void SetDrawElementsCount(GLsizei drawElementsCount);
+        GLsizei GetDrawElementsCount() const;
+        
+        void ResetStartDrawIndex();
+        void ResetDrawCount();
+        void ResetStartDrawIndexAndDrawElementsCount();
+        
+        virtual GLsizei GetElementsCount() const = 0;
         virtual void PerformDrawing() const = 0;
         
     private:
         GLSLDrawingStateDelegate *m_delegate;
+        
+        GLint m_startDrawIndex;
+        GLsizei m_drawElementsCount;
     };
     
     
@@ -56,6 +70,7 @@ namespace GLRenderer
     public:
         GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate);
         
+        GLsizei GetElementsCount() const;
         void PerformDrawing() const;
         
     private:
@@ -73,6 +88,7 @@ namespace GLRenderer
         GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLVertexBufferShortIndicesState();
         
+        GLsizei GetElementsCount() const;
         void PerformDrawing() const;
         
     private:
@@ -90,6 +106,7 @@ namespace GLRenderer
         GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLVertexBufferByteIndicesState();
         
+        GLsizei GetElementsCount() const;
         void PerformDrawing() const;
         
     private:
@@ -106,6 +123,7 @@ namespace GLRenderer
     public:
         GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLDrawingStateDelegate *pDelegate);
         
+        GLsizei GetElementsCount() const;
         void PerformDrawing() const;
         
     private:
@@ -122,6 +140,7 @@ namespace GLRenderer
         GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLRawVertexDataIndexBufferState();
         
+        GLsizei GetElementsCount() const;
         void PerformDrawing() const;
         
     private:
@@ -139,6 +158,7 @@ namespace GLRenderer
         GLSLRawVertexDataRawShortIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLRawVertexDataRawShortIndicesState();
         
+        GLsizei GetElementsCount() const;
         void PerformDrawing() const;
         
     private:
@@ -156,6 +176,7 @@ namespace GLRenderer
         GLSLRawVertexDataRawByteIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLRawVertexDataRawByteIndicesState();
         
+        GLsizei GetElementsCount() const;
         void PerformDrawing() const;
         
     private:
@@ -173,6 +194,7 @@ namespace GLRenderer
         GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount, GLSLDrawingStateDelegate *pDelegate);
         ~GLSLRawVertexDataState();
         
+        GLsizei GetElementsCount() const;
         void PerformDrawing() const;
         
     private:

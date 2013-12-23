@@ -14,7 +14,7 @@
 
 namespace GLRenderer
 {
-    GLSLBuffer::GLSLBuffer()
+    GLSLBuffer::GLSLBuffer(): m_elementsCount(0), m_elementSize(0)
     {
         glGenBuffers(1, &m_bufferHandle);
         CheckError();
@@ -28,9 +28,14 @@ namespace GLRenderer
     
 #pragma mark - Public Methods
     
-    GLsizei GLSLBuffer::GetElementsCount() const
+    GLuint GLSLBuffer::GetElementsCount() const
     {
         return m_elementsCount;
+    }
+    
+    GLsizei GLSLBuffer::GetElementSize() const
+    {
+        return m_elementSize;
     }
     
     void GLSLBuffer::Bind() const
@@ -61,6 +66,7 @@ namespace GLRenderer
     void GLSLBuffer::LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage)
     {
         SetElementsCount(elementsCount);
+        SetElementSize(elementSize);
         
         GLenum openGLTargetBuffer = OpenGLTargetBuffer();
         GLfloat dataSize = elementSize * elementsCount;
@@ -77,6 +83,11 @@ namespace GLRenderer
     void GLSLBuffer::SetElementsCount(GLuint elementsCount)
     {
         m_elementsCount = elementsCount;
+    }
+    
+    void GLSLBuffer::SetElementSize(GLsizei elementSize)
+    {
+        m_elementSize = elementSize;
     }
     
     GLenum GLSLBuffer::OpenGLTargetBuffer() const

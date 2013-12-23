@@ -36,6 +36,16 @@ namespace GLRenderer
         void Initialize();
         void Draw() const;
         
+        void SetStartDrawIndex(GLint startDrawIndex);
+        GLint GetStartDrawIndex() const;
+        
+        void SetDrawElementsCount(GLsizei drawCount);
+        GLsizei GetDrawElementsCount() const;
+        
+        void ResetStartDrawIndex();
+        void ResetDrawElementsCount();
+        void ResetStartDrawIndexAndDrawElementsCount();
+        
         void UseVertexBufferWithIndexBuffer(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
         void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
         void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
@@ -45,6 +55,7 @@ namespace GLRenderer
         void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices);
         void UseRawVertexData(GLvoid *pVertexData, GLsizei elementSize, GLuint elementsCount);
         
+        // GLSLDrawingStateDelegate
         void InitializeAttributes(GLvoid *pData = NULL) const;
         
     protected:
