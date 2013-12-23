@@ -82,7 +82,7 @@ namespace GLRenderer
         GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
         vertexBuffer->LoadBufferData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
         
-        vector<GLubyte> indexData;
+        vector<GLushort> indexData;
         indexData.push_back(0);
         indexData.push_back(1);
         
