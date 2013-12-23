@@ -74,7 +74,7 @@ namespace GLRenderer
         GetDelegate()->InitializeAttributes();
         
         // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_SHORT, (GLvoid *)(&m_indices[0]));
+        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_SHORT, (GLvoid *)(&m_indices->at(0)));
         CheckError();
     }
     
@@ -98,7 +98,7 @@ namespace GLRenderer
         GetDelegate()->InitializeAttributes();
         
         // TODO: Implement partial buffer drawing
-        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_BYTE, (GLvoid *)(&m_indices[0]));
+        glDrawElements(GL_LINES, m_indices->size(), GL_UNSIGNED_BYTE, (GLvoid *)(&m_indices->at(0)));
         CheckError();
     }
     

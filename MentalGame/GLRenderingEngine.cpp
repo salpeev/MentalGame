@@ -34,8 +34,8 @@ namespace GLRenderer
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         Test0();
-//        /*Test1();
-//        Test2();*/
+        Test1();
+        Test2();
         Test3();
         Test4();
         Test5();
@@ -98,7 +98,6 @@ namespace GLRenderer
     
     void GLRenderingEngine::Test1() const
     {
-#warning Not working
         GLPoint point0(0.5, -0.5, 0);
         GLPoint point1(0.5, 0.5, 0);
         
@@ -128,7 +127,6 @@ namespace GLRenderer
     
     void GLRenderingEngine::Test2() const
     {
-#warning Not working
         GLPoint point0(0.5, 0.5, 0);
         GLPoint point1(-0.5, 0.5, 0);
         
