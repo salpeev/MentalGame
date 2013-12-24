@@ -32,11 +32,6 @@ namespace GLRenderer
     
 #pragma mark - Public Methods
     
-    void GLSLDrawing::Initialize()
-    {
-        GenerateProgram();
-    }
-    
     void GLSLDrawing::Draw() const
     {
         m_program->Use();
@@ -137,6 +132,14 @@ namespace GLRenderer
         SetProgram(pProgram);
     }
     
+    void GLSLDrawing::GenerateProgramIfNeeded()
+    {
+        if (m_program == NULL)
+        {
+            GenerateProgram();
+        }
+    }
+    
     void GLSLDrawing::SetProgram(GLSLProgram *pProgram)
     {
         delete m_program;
@@ -152,6 +155,8 @@ namespace GLRenderer
     {
         delete m_drawingState;
         m_drawingState = pDrawingState;
+        
+        GenerateProgramIfNeeded();
     }
     
 #pragma mark - GLSLDrawingStateDelegate

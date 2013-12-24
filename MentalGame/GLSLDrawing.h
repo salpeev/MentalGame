@@ -33,7 +33,6 @@ namespace GLRenderer
         GLSLDrawing(const GLSLDrawing &rDrawing) = delete;
         virtual ~GLSLDrawing();
         
-        void Initialize();
         void Draw() const;
         
         void SetStartDrawIndex(GLint startDrawIndex);
@@ -65,6 +64,7 @@ namespace GLRenderer
         
     private:
         void GenerateProgram();
+        void GenerateProgramIfNeeded();
         
         void SetProgram(GLSLProgram *pProgram);
         GLSLProgram * GetProgram() const;
