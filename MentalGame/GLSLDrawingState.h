@@ -9,6 +9,7 @@
 #pragma once
 #include <OpenGLES/ES2/gl.h>
 #include <vector>
+#include "GLConstants.h"
 
 using namespace std;
 
@@ -41,6 +42,9 @@ namespace GLRenderer
         
         GLSLDrawingStateDelegate * GetDelegate() const;
         
+        void SetRenderMode(GLSL_RENDER_MODE renderMode);
+        GLSL_RENDER_MODE GetRenderMode() const;
+        
         void SetStartDrawIndex(GLint startDrawIndex);
         GLint GetStartDrawIndex() const;
         
@@ -57,6 +61,7 @@ namespace GLRenderer
     private:
         GLSLDrawingStateDelegate *m_delegate;
         
+        GLSL_RENDER_MODE m_renderMode;
         GLint m_startDrawIndex;
         GLsizei m_drawElementsCount;
     };

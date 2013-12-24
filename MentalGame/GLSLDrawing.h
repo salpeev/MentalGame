@@ -11,6 +11,7 @@
 #include <map>
 #include <vector>
 #include <OpenGLES/ES2/gl.h>
+#include "GLConstants.h"
 #include "GLSLDrawingState.h"
 
 using namespace std;
@@ -34,6 +35,8 @@ namespace GLRenderer
         virtual ~GLSLDrawing();
         
         void Draw() const;
+        
+        void SetRenderMode(GLSL_RENDER_MODE renderMode);
         
         void SetStartDrawIndex(GLint startDrawIndex);
         GLint GetStartDrawIndex() const;

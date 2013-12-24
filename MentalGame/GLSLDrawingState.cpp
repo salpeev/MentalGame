@@ -20,7 +20,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLDrawingState
     
-    GLSLDrawingState::GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate): m_delegate(pDelegate), m_startDrawIndex(0), m_drawElementsCount(0)
+    GLSLDrawingState::GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate): m_delegate(pDelegate), m_startDrawIndex(0), m_drawElementsCount(0), m_renderMode(GLSL_RENDER_MODE_LINES)
     {
         
     }
@@ -35,6 +35,16 @@ namespace GLRenderer
     GLSLDrawingStateDelegate * GLSLDrawingState::GetDelegate() const
     {
         return m_delegate;
+    }
+    
+    void GLSLDrawingState::SetRenderMode(GLSL_RENDER_MODE renderMode)
+    {
+        m_renderMode = renderMode;
+    }
+    
+    GLSL_RENDER_MODE GLSLDrawingState::GetRenderMode() const
+    {
+        return m_renderMode;
     }
     
     void GLSLDrawingState::SetStartDrawIndex(GLint startDrawIndex)
@@ -121,11 +131,12 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes();
         
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
         GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
         
-        glDrawElements(GL_LINES, elementsCount, type, indicesOffset);
+        glDrawElements(renderMode, elementsCount, type, indicesOffset);
         CheckError();
     }
     
@@ -157,11 +168,12 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes();
         
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_SHORT, pIndices);
+        glDrawElements(renderMode, elementsCount, GL_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -193,11 +205,12 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes();
         
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_BYTE, pIndices);
+        glDrawElements(renderMode, elementsCount, GL_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     
@@ -221,10 +234,11 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes();
         
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
         GLuint elementsCount = GetDrawElementsCount();
         
-        glDrawArrays(GL_LINES, startIndex, elementsCount);
+        glDrawArrays(renderMode, startIndex, elementsCount);
         CheckError();
     }
     
@@ -257,11 +271,12 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes(m_data);
         
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
         GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
         
-        glDrawElements(GL_LINES, elementsCount, type, indicesOffset);
+        glDrawElements(renderMode, elementsCount, type, indicesOffset);
         CheckError();
     }
     
@@ -297,11 +312,12 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes(m_data);
         
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_SHORT, pIndices);
+        glDrawElements(renderMode, elementsCount, GL_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -337,11 +353,12 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes(m_data);
         
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(GL_LINES, elementsCount, GL_UNSIGNED_BYTE, pIndices);
+        glDrawElements(renderMode, elementsCount, GL_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     
@@ -374,10 +391,11 @@ namespace GLRenderer
         
         GetDelegate()->InitializeAttributes(m_data);
         
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
         GLuint elementsCount = GetDrawElementsCount();
         
-        glDrawArrays(GL_LINES, startIndex, elementsCount);
+        glDrawArrays(renderMode, startIndex, elementsCount);
         CheckError();
     }
 }

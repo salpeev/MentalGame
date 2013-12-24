@@ -38,6 +38,11 @@ namespace GLRenderer
         m_drawingState->PerformDrawing();
     }
     
+    void GLSLDrawing::SetRenderMode(GLSL_RENDER_MODE renderMode)
+    {
+        m_drawingState->SetRenderMode(renderMode);
+    }
+    
     void GLSLDrawing::SetStartDrawIndex(GLint startDrawIndex)
     {
         m_drawingState->SetStartDrawIndex(startDrawIndex);
