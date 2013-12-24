@@ -8,7 +8,6 @@
 
 #include "GLSLShader.h"
 #include "GLLogger.h"
-#include "GLDataConverter.h"
 #include <iostream>
 
 
@@ -100,9 +99,7 @@ namespace GLRenderer
     
     void GLSLShader::SetType(GLSL_SHADER_TYPE type)
     {
-        GLenum shaderType = GLDataConverter::OpenGLESShaderFromShaderType(type);
-        
-        m_shaderHandle = glCreateShader(shaderType);
+        m_shaderHandle = glCreateShader(type);
         CheckError();
         
         if (m_shaderHandle == 0)

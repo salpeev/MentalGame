@@ -36,7 +36,6 @@ namespace GLRenderer
     private:
         void SetElementsCount(GLuint elementsCount);
         void SetElementSize(GLsizei elementSize);
-        GLenum OpenGLTargetBuffer() const;
         
         GLuint m_bufferHandle;
         GLuint m_elementsCount;

@@ -9,7 +9,6 @@
 #include "GLSLDrawingState.h"
 #include "GLSLVertexBuffer.h"
 #include "GLSLIndexBuffer.h"
-#include "GLDataConverter.h"
 #include "GLLogger.h"
 #include <stdlib.h>
 
@@ -133,10 +132,10 @@ namespace GLRenderer
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
-        GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
+        GLSL_DATA_TYPE dataType = m_indexBuffer->GetDataType();
         GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
         
-        glDrawElements(renderMode, elementsCount, type, indicesOffset);
+        glDrawElements(renderMode, elementsCount, dataType, indicesOffset);
         CheckError();
     }
     
@@ -273,10 +272,10 @@ namespace GLRenderer
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
-        GLenum type = GLDataConverter::OpenGLESDataTypeFromDataType(m_indexBuffer->GetDataType());
+        GLSL_DATA_TYPE dataType = m_indexBuffer->GetDataType();
         GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
         
-        glDrawElements(renderMode, elementsCount, type, indicesOffset);
+        glDrawElements(renderMode, elementsCount, dataType, indicesOffset);
         CheckError();
     }
     

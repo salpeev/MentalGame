@@ -8,7 +8,6 @@
 
 #include "GLSLBuffer.h"
 #include "GLLogger.h"
-#include "GLDataConverter.h"
 
 
 
@@ -42,8 +41,8 @@ namespace GLRenderer
     {
         if (!IsBound())
         {
-            GLenum openGLTargetBuffer = OpenGLTargetBuffer();
-            glBindBuffer(openGLTargetBuffer, m_bufferHandle);
+            GLSL_BUFFER targetBuffer = TargetBuffer();
+            glBindBuffer(targetBuffer, m_bufferHandle);
             CheckError();
         }
     }
@@ -51,10 +50,9 @@ namespace GLRenderer
     bool GLSLBuffer::IsBound() const
     {
         GLSL_GET_PARAMETER getParameter = BufferBindingParameter();
-        GLenum openGLGetParameter = GLDataConverter::OpenGLESGetParameterFromGetParameter(getParameter);
         
         GLint boundBufferHandle;
-        glGetIntegerv(openGLGetParameter, &boundBufferHandle);
+        glGetIntegerv(getParameter, &boundBufferHandle);
         CheckError();
         
         bool bound = (boundBufferHandle == m_bufferHandle);
@@ -68,13 +66,12 @@ namespace GLRenderer
         SetElementsCount(elementsCount);
         SetElementSize(elementSize);
         
-        GLenum openGLTargetBuffer = OpenGLTargetBuffer();
+        GLSL_BUFFER targetBuffer = TargetBuffer();
         GLfloat dataSize = elementSize * elementsCount;
-        GLenum openGLUsage = GLDataConverter::OpenGLESUsageFromBufferUsage(usage);
         
         Bind();
         
-        glBufferData(openGLTargetBuffer, dataSize, bufferData, openGLUsage);
+        glBufferData(targetBuffer, dataSize, bufferData, usage);
         CheckError();
     }
     
@@ -88,12 +85,5 @@ namespace GLRenderer
     void GLSLBuffer::SetElementSize(GLsizei elementSize)
     {
         m_elementSize = elementSize;
-    }
-    
-    GLenum GLSLBuffer::OpenGLTargetBuffer() const
-    {
-        GLSL_BUFFER targetBuffer = TargetBuffer();
-        GLenum openGLBuffer = GLDataConverter::OpenGLESBufferFromBuffer(targetBuffer);
-        return openGLBuffer;
     }
 }
