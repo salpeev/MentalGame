@@ -22,6 +22,7 @@ namespace GLRenderer
 {
     class GLSLProgram;
     class GLSLAttribute;
+    class GLSLUniform;
     class GLSLVertexBuffer;
     class GLSLIndexBuffer;
     
@@ -59,11 +60,13 @@ namespace GLRenderer
         
         // GLSLDrawingStateDelegate
         void InitializeAttributes(GLvoid *pData = NULL) const;
+        void InitializeUniforms() const;
         
     protected:
         virtual string VertexShaderSource() const = 0;
         virtual string FragmentShaderSource() const = 0;
         virtual void InitializeAttributes(const map<string, GLSLAttribute *> *pAttributes, GLvoid *pData = NULL) const = 0;
+        virtual void InitializeUniforms(const map<string, GLSLUniform *> *pUniforms) const;
         
     private:
         void GenerateProgram();

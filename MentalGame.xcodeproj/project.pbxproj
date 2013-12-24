@@ -143,6 +143,7 @@
 		B47E8D8F17DBD7EE008CE6DD /* RenderingEngine */ = {
 			isa = PBXGroup;
 			children = (
+				B4EF84771869EA1F00234C28 /* Math */,
 				B4D70D5E182C2EBE00771FA8 /* Program */,
 				B4963F9418003B490037FC39 /* Constants */,
 				B4963F911800228F0037FC39 /* Primitive types */,
@@ -354,6 +355,13 @@
 				B4E0974117DB75DD00F4A436 /* MGOpenGLView.mm */,
 			);
 			name = MGOpenGLView;
+			sourceTree = "<group>";
+		};
+		B4EF84771869EA1F00234C28 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Math;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

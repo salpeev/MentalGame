@@ -41,6 +41,7 @@ namespace GLRenderer
         Test5();
         Test6();
         Test7();
+        Test8();
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -121,6 +122,7 @@ namespace GLRenderer
         
         GLSLDrawing *drawing = new GLSLPositionColorDrawing();
         drawing->UseVertexBufferWithIndexBuffer(vertexBuffer, indexBuffer);
+        drawing->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
         
         m_drawings->push_back(drawing);
     }
@@ -300,6 +302,83 @@ namespace GLRenderer
         
         GLSLDrawing *drawing = new GLSLPositionColorDrawing();
         drawing->UseRawVertexData(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
+        
+        m_drawings->push_back(drawing);
+    }
+    
+    void GLRenderingEngine::Test8() const
+    {
+        GLPoint point0(-0.3, -0.3, -0.3);
+        GLPoint point1(0.3, -0.3, -0.3);
+        GLPoint point2(0.3, 0.3, -0.3);
+        GLPoint point3(-0.3, 0.3, -0.3);
+        GLPoint point4(-0.3, -0.3, 0.3);
+        GLPoint point5(0.3, -0.3, 0.3);
+        GLPoint point6(0.3, 0.3, 0.3);
+        GLPoint point7(-0.3, 0.3, 0.3);
+        
+        GLColor color0(0.0, 0.0, 0.5);
+        GLColor color1(0.0, 0.5, 0.0);
+        GLColor color2(0.5, 0.0, 0.0);
+        GLColor color3(0.0, 0.5, 1.0);
+        GLColor color4(0.5, 1.0, 0.0);
+        GLColor color5(1.0, 0.0, 0.5);
+        GLColor color6(0.5, 1.0, 1.0);
+        GLColor color7(1.0, 1.0, 0.0);
+        
+        GLSLVertex1P1C vertex0(point0, color0);
+        GLSLVertex1P1C vertex1(point1, color1);
+        GLSLVertex1P1C vertex2(point2, color2);
+        GLSLVertex1P1C vertex3(point3, color3);
+        GLSLVertex1P1C vertex4(point4, color4);
+        GLSLVertex1P1C vertex5(point5, color5);
+        GLSLVertex1P1C vertex6(point6, color6);
+        GLSLVertex1P1C vertex7(point7, color7);
+        
+        vector<GLSLVertex1P1C> vertexData;
+        vertexData.push_back(vertex0);
+        vertexData.push_back(vertex1);
+        vertexData.push_back(vertex2);
+        vertexData.push_back(vertex3);
+        vertexData.push_back(vertex4);
+        vertexData.push_back(vertex5);
+        vertexData.push_back(vertex6);
+        vertexData.push_back(vertex7);
+        
+        vector<GLushort> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        indexData.push_back(1);
+        indexData.push_back(2);
+        indexData.push_back(2);
+        indexData.push_back(3);
+        indexData.push_back(3);
+        indexData.push_back(0);
+        indexData.push_back(4);
+        indexData.push_back(5);
+        indexData.push_back(5);
+        indexData.push_back(6);
+        indexData.push_back(6);
+        indexData.push_back(7);
+        indexData.push_back(7);
+        indexData.push_back(4);
+        indexData.push_back(0);
+        indexData.push_back(4);
+        indexData.push_back(1);
+        indexData.push_back(5);
+        indexData.push_back(2);
+        indexData.push_back(6);
+        indexData.push_back(3);
+        indexData.push_back(7);
+        
+        GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
+        vertexBuffer->LoadBufferData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
+        
+        GLSLIndexBuffer *indexBuffer = new GLSLIndexBuffer();
+        indexBuffer->LoadBufferData(indexData);
+        
+        GLSLDrawing *drawing = new GLSLPerspectiveDrawing();
+        drawing->UseVertexBufferWithIndexBuffer(vertexBuffer, indexBuffer);
         
         m_drawings->push_back(drawing);
     }

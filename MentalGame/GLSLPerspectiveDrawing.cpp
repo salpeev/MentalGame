@@ -9,6 +9,7 @@
 #include "GLSLPerspectiveDrawing.h"
 #include "GLResourceManager.h"
 #include "GLSLAttribute.h"
+#include "GLSLUniform.h"
 #include "GLLogger.h"
 #include "GLSLVertex.h"
 
@@ -30,6 +31,38 @@ namespace GLRenderer
     
     void GLSLPerspectiveDrawing::InitializeAttributes(const map<string, GLRenderer::GLSLAttribute *> *pAttributes, GLvoid *pData) const
     {
+        GLSLAttribute *positionAttribute = pAttributes->at("a_position");
+        GLSLAttribute *colorAttribute = pAttributes->at("a_color");
         
+        positionAttribute->EnableArray();
+        colorAttribute->EnableArray();
+        
+        GLint positionSize = 3;
+        GLint colorSize = 4;
+        
+        GLvoid *pPosition = NULL;
+        GLvoid *pColor = NULL;
+        
+        if (pData)
+        {
+            pPosition = pData;
+            pColor = (GLfloat *)pData + positionSize;
+        }
+        else
+        {
+            pPosition = NULL;
+            pColor = (GLvoid *)(sizeof(GLSLVertex1P1C::m_position));
+        }
+        
+        glVertexAttribPointer(positionAttribute->GetLocation(), positionSize, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), pPosition);
+        CheckError();
+        
+        glVertexAttribPointer(colorAttribute->GetLocation(), colorSize, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), pColor);
+        CheckError();
+    }
+    
+    void GLSLPerspectiveDrawing::InitializeUniforms(const map<string, GLRenderer::GLSLUniform *> *pUniforms) const
+    {
+        Log("Test");
     }
 }

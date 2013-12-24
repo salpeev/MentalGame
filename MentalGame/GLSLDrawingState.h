@@ -27,6 +27,7 @@ namespace GLRenderer
     {
     public:
         virtual void InitializeAttributes(GLvoid *pData = NULL) const = 0;
+        virtual void InitializeUniforms() const = 0;
     };
     
     

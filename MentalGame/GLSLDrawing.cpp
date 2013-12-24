@@ -126,6 +126,13 @@ namespace GLRenderer
         SetDrawingState(pDrawingState);
     }
     
+#pragma mark - Protected Methods
+    
+    void GLSLDrawing::InitializeUniforms(const map<string, GLRenderer::GLSLUniform *> *pUniforms) const
+    {
+        
+    }
+    
 #pragma mark - Private Methods
     
     void GLSLDrawing::GenerateProgram()
@@ -169,5 +176,10 @@ namespace GLRenderer
     void GLSLDrawing::InitializeAttributes(GLvoid *pData) const
     {
         InitializeAttributes(m_program->GetAttributes(), pData);
+    }
+    
+    void GLSLDrawing::InitializeUniforms() const
+    {
+        InitializeUniforms(m_program->GetUniforms());
     }
 }

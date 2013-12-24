@@ -123,12 +123,14 @@ namespace GLRenderer
         return m_indexBuffer->GetElementsCount();
     }
     
+    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
     void GLSLVertexBufferIndexBufferState::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
         m_indexBuffer->Bind();
         
         GetDelegate()->InitializeAttributes();
+        GetDelegate()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -160,12 +162,14 @@ namespace GLRenderer
         return m_indices->size();
     }
     
+    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
     void GLSLVertexBufferShortIndicesState::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
         GetDelegate()->InitializeAttributes();
+        GetDelegate()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -197,12 +201,14 @@ namespace GLRenderer
         return m_indices->size();
     }
     
+    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
     void GLSLVertexBufferByteIndicesState::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
         GetDelegate()->InitializeAttributes();
+        GetDelegate()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -227,11 +233,13 @@ namespace GLRenderer
         return m_vertexBuffer->GetElementsCount();
     }
     
+    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
     void GLSLVertexBufferState::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
         
         GetDelegate()->InitializeAttributes();
+        GetDelegate()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
@@ -263,12 +271,14 @@ namespace GLRenderer
         return m_indexBuffer->GetElementsCount();
     }
     
+    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
     void GLSLRawVertexDataIndexBufferState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
         
         GetDelegate()->InitializeAttributes(m_data);
+        GetDelegate()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -304,12 +314,14 @@ namespace GLRenderer
         return m_indices->size();
     }
     
+    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
     void GLSLRawVertexDataRawShortIndicesState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
         GetDelegate()->InitializeAttributes(m_data);
+        GetDelegate()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -345,12 +357,14 @@ namespace GLRenderer
         return m_indices->size();
     }
     
+    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
     void GLSLRawVertexDataRawByteIndicesState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
         GetDelegate()->InitializeAttributes(m_data);
+        GetDelegate()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -384,11 +398,13 @@ namespace GLRenderer
         return m_elementsCount;
     }
     
+    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
     void GLSLRawVertexDataState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         
         GetDelegate()->InitializeAttributes(m_data);
+        GetDelegate()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();

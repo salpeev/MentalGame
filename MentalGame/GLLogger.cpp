@@ -24,7 +24,7 @@ namespace GLRenderer
         va_start(params, formatString);
         vsprintf(buf, formatString, params);
         
-        printf("%s", buf);
+        printf("%s\n", buf);
         
         va_end(params);
     }

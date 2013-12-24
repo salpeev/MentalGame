@@ -19,5 +19,6 @@ namespace GLRenderer
         string VertexShaderSource() const;
         string FragmentShaderSource() const;
         void InitializeAttributes(const map<string, GLSLAttribute *> *pAttributes, GLvoid *pData = NULL) const;
+        void InitializeUniforms(const map<string, GLSLUniform *> *pUniforms) const;
     };
 }
