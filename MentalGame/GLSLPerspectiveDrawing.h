@@ -16,19 +16,16 @@ namespace GLRenderer
 {
     class GLSLPerspectiveDrawing: public GLSLDrawing
     {
-        void SetModelviewMatrix(GLSLMatrix4 &rModelviewMatrix);
-        GLSLMatrix4 GetModelviewMatrix() const;
-        
-        void SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix);
+        void SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix) const;
         GLSLMatrix4 GetProjectionMatrix() const;
+        
+        void SetModelviewMatrix(GLSLMatrix4 &rModelviewMatrix) const;
+        GLSLMatrix4 GetModelviewMatrix() const;
         
     private:
         string VertexShaderSource() const;
         string FragmentShaderSource() const;
-        void InitializeAttributes(const map<string, GLSLAttribute *> *pAttributes, GLvoid *pData = NULL) const;
-        void InitializeUniforms(const map<string, GLSLUniform *> *pUniforms) const;
-        
-        GLSLMatrix4 m_modelviewMatrix;
-        GLSLMatrix4 m_projectionMatrix;
+        void InitializeAttributes(GLvoid *pData = NULL) const;
+        void InitializeUniforms() const;
     };
 }

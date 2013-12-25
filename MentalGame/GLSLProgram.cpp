@@ -86,6 +86,18 @@ namespace GLRenderer
         return m_uniforms;
     }
     
+    GLSLAttribute * GLSLProgram::GetAttributeByName(string attributeName) const
+    {
+        GLSLAttribute *attribute = m_attributes->at(attributeName);
+        return attribute;
+    }
+    
+    GLSLUniform * GLSLProgram::GetUniformByName(string uniformName) const
+    {
+        GLSLUniform *uniform = m_uniforms->at(uniformName);
+        return uniform;
+    }
+    
 #pragma mark - Private Methods
     
     void GLSLProgram::CreateProgram()
@@ -177,7 +189,7 @@ namespace GLRenderer
             GLint attributeLocation = glGetAttribLocation(m_programHandle, attributeName);
             CheckError();
             
-            GLSLAttribute *pAttribute = new GLSLAttribute(attributeName, attributeType, attributeSize, attributeLocation);
+            GLSLAttribute *pAttribute = new GLSLAttribute(this, attributeName, attributeType, attributeSize, attributeLocation);
             pAttributes->insert(make_pair(attributeName, pAttribute));
             
             delete attributeName;
@@ -211,7 +223,7 @@ namespace GLRenderer
             GLint uniformLocation = glGetUniformLocation(m_programHandle, uniformName);
             CheckError();
             
-            GLSLUniform *pUniform = new GLSLUniform(uniformName, uniformType, uniformSize, uniformLocation);
+            GLSLUniform *pUniform = new GLSLUniform(this, uniformName, uniformType, uniformSize, uniformLocation);
             pUniforms->insert(make_pair(uniformName, pUniform));
             
             delete uniformName;

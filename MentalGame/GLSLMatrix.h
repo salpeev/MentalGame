@@ -16,6 +16,8 @@ namespace GLRenderer
     class GLSLMatrix3
     {
     public:
+        const float * Pointer() const;
+        
         GLSLVector3 x;
         GLSLVector3 y;
         GLSLVector3 z;
@@ -27,6 +29,8 @@ namespace GLRenderer
     {
     public:
         GLSLMatrix4();
+        
+        const float * Pointer() const;
         
         static GLSLMatrix4 Frustum(float left, float right, float bottom, float top, float near, float far);
         

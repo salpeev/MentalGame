@@ -33,14 +33,14 @@ namespace GLRenderer
         glViewport(0, 0, width, height);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
-        Test0();
-        Test1();
-        Test2();
-        Test3();
-        Test4();
-        Test5();
-        Test6();
-        Test7();
+//        Test0();
+//        Test1();
+//        Test2();
+//        Test3();
+//        Test4();
+//        Test5();
+//        Test6();
+//        Test7();
         Test8();
     }
     
@@ -308,14 +308,23 @@ namespace GLRenderer
     
     void GLRenderingEngine::Test8() const
     {
-        GLPoint point0(-0.3, -0.3, -0.3);
-        GLPoint point1(0.3, -0.3, -0.3);
-        GLPoint point2(0.3, 0.3, -0.3);
-        GLPoint point3(-0.3, 0.3, -0.3);
-        GLPoint point4(-0.3, -0.3, 0.3);
-        GLPoint point5(0.3, -0.3, 0.3);
-        GLPoint point6(0.3, 0.3, 0.3);
-        GLPoint point7(-0.3, 0.3, 0.3);
+        GLPoint point0(-2.0, -2.0, -5.0);
+        GLPoint point1(2.0, -2.0, -5.0);
+        GLPoint point2(2.0, 2.0, -5.0);
+        GLPoint point3(-2.0, 2.0, -5.0);
+        GLPoint point4(-2.0, -2.0, -7.0);
+        GLPoint point5(2.0, -2.0, -7.0);
+        GLPoint point6(2.0, 2.0, -7.0);
+        GLPoint point7(-2.0, 2.0, -7.0);
+        
+//        GLPoint point0(-0.25, -0.25, -0.25);
+//        GLPoint point1(0.25, -0.25, -0.25);
+//        GLPoint point2(0.25, 0.25, -0.25);
+//        GLPoint point3(-0.25, 0.25, -0.25);
+//        GLPoint point4(-0.25, -0.25, 0.25);
+//        GLPoint point5(0.25, -0.25, 0.25);
+//        GLPoint point6(0.25, 0.25, 0.25);
+//        GLPoint point7(-0.25, 0.25, 0.25);
         
         GLColor color0(0.0, 0.0, 0.5);
         GLColor color1(0.0, 0.5, 0.0);

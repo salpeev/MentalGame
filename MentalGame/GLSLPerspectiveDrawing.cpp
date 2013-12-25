@@ -18,24 +18,30 @@
 
 namespace GLRenderer
 {
-    void GLSLPerspectiveDrawing::SetModelviewMatrix(GLSLMatrix4 &rModelviewMatrix)
+    void GLSLPerspectiveDrawing::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix) const
     {
-        m_modelviewMatrix = rModelviewMatrix;
-    }
-    
-    GLSLMatrix4 GLSLPerspectiveDrawing::GetModelviewMatrix() const
-    {
-        return m_modelviewMatrix;
-    }
-    
-    void GLSLPerspectiveDrawing::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix)
-    {
-        m_projectionMatrix = rProjectionMatrix;
+        GLSLUniform *projectionUniform = GetUniformByName("u_projection");
+        projectionUniform->SetMatrix4(rProjectionMatrix);
     }
     
     GLSLMatrix4 GLSLPerspectiveDrawing::GetProjectionMatrix() const
     {
-        return m_projectionMatrix;
+        GLSLUniform *projectionUniform = GetUniformByName("u_projection");
+        GLSLMatrix4 projectionMatrix = projectionUniform->GetMatrix4();
+        return projectionMatrix;
+    }
+    
+    void GLSLPerspectiveDrawing::SetModelviewMatrix(GLSLMatrix4 &rModelviewMatrix) const
+    {
+        GLSLUniform *modelviewUniform = GetUniformByName("u_modelview");
+        modelviewUniform->SetMatrix4(rModelviewMatrix);
+    }
+    
+    GLSLMatrix4 GLSLPerspectiveDrawing::GetModelviewMatrix() const
+    {
+        GLSLUniform *modelviewUniform = GetUniformByName("u_modelview");
+        GLSLMatrix4 modelviewMatrix = modelviewUniform->GetMatrix4();
+        return modelviewMatrix;
     }
     
 #pragma mark - Private Methods
@@ -52,11 +58,12 @@ namespace GLRenderer
         return fragmentShaderSource;
     }
     
-    void GLSLPerspectiveDrawing::InitializeAttributes(const map<string, GLRenderer::GLSLAttribute *> *pAttributes, GLvoid *pData) const
+    void GLSLPerspectiveDrawing::InitializeAttributes(GLvoid *pData) const
     {
-        GLSLAttribute *positionAttribute = pAttributes->at("a_position");
-        GLSLAttribute *colorAttribute = pAttributes->at("a_color");
+        GLSLAttribute *positionAttribute = GetAttributeByName("a_position");
+        GLSLAttribute *colorAttribute = GetAttributeByName("a_color");
         
+        // TODO: Probably should be enabled in another place. Here should be initialized only if enabled.
         positionAttribute->EnableArray();
         colorAttribute->EnableArray();
         
@@ -84,8 +91,12 @@ namespace GLRenderer
         CheckError();
     }
     
-    void GLSLPerspectiveDrawing::InitializeUniforms(const map<string, GLRenderer::GLSLUniform *> *pUniforms) const
+    void GLSLPerspectiveDrawing::InitializeUniforms() const
     {
-        Log("Test");
+        GLSLMatrix4 projectionMatrix = GLSLMatrix4::Frustum(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f);
+        SetProjectionMatrix(projectionMatrix);
+        
+        GLSLMatrix4 modelviewMatrix;
+        SetModelviewMatrix(modelviewMatrix);
     }
 }

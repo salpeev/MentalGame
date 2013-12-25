@@ -14,6 +14,11 @@ namespace GLRenderer
 {
 #pragma mark - GLSLMatrix3T
     
+    const float * GLSLMatrix3::Pointer() const
+    {
+        return &x.x;
+    }
+    
 #pragma mark - GLSLMatrix4T
     
     GLSLMatrix4::GLSLMatrix4()
@@ -22,6 +27,11 @@ namespace GLRenderer
         y.x = 0.0; y.y = 1.0; y.z = 0.0; y.w = 0.0;
         z.x = 0.0; z.y = 0.0; z.z = 1.0; z.w = 0.0;
         w.x = 0.0; w.y = 0.0; w.z = 0.0; w.w = 1.0;
+    }
+    
+    const float * GLSLMatrix4::Pointer() const
+    {
+        return &x.x;
     }
     
     GLSLMatrix4 GLSLMatrix4::Frustum(float left, float right, float bottom, float top, float near, float far)

@@ -35,11 +35,12 @@ namespace GLRenderer
         return fragmentShaderSource;
     }
     
-    void GLSLPositionColorDrawing::InitializeAttributes(const map<string, GLRenderer::GLSLAttribute *> *pAttributes, GLvoid *pData) const
+    void GLSLPositionColorDrawing::InitializeAttributes(GLvoid *pData) const
     {
-        GLSLAttribute *positionAttribute = pAttributes->at("a_position");
-        GLSLAttribute *colorAttribute = pAttributes->at("a_color");
+        GLSLAttribute *positionAttribute = GetAttributeByName("a_position");
+        GLSLAttribute *colorAttribute = GetAttributeByName("a_color");
         
+        // TODO: Probably should be enabled in another place. Here should be initialized only if enabled.
         positionAttribute->EnableArray();
         colorAttribute->EnableArray();
         

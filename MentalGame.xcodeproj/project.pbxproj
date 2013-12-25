@@ -88,8 +88,8 @@
 		B4CE1DE617DFBBD9009094E8 /* GLSLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLShader.h; sourceTree = "<group>"; };
 		B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLLogger.cpp; sourceTree = "<group>"; };
 		B4CE1DE917DFCCE9009094E8 /* GLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLLogger.h; sourceTree = "<group>"; };
-		B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLResourceManager.h; sourceTree = "<group>"; };
-		B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLResourceManager.mm; sourceTree = "<group>"; };
+		B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLResourceManager.h; path = MentalGame/GLResourceManager.h; sourceTree = "<group>"; };
+		B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GLResourceManager.mm; path = MentalGame/GLResourceManager.mm; sourceTree = "<group>"; };
 		B4DB8F99185343B800FD292D /* GLSLDrawingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLDrawingState.cpp; sourceTree = "<group>"; };
 		B4DB8F9A185343B800FD292D /* GLSLDrawingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawingState.h; sourceTree = "<group>"; };
 		B4E0971017DB671400F4A436 /* MentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +152,7 @@
 		B47E8D8F17DBD7EE008CE6DD /* RenderingEngine */ = {
 			isa = PBXGroup;
 			children = (
+				B4EF8485186B3CA900234C28 /* GLLogger */,
 				B4EF84771869EA1F00234C28 /* Math */,
 				B4D70D5E182C2EBE00771FA8 /* Program */,
 				B4963F9418003B490037FC39 /* Constants */,
@@ -160,12 +161,9 @@
 				B4963F921800232C0037FC39 /* Shader values */,
 				B4AFEF841809716C007846A1 /* Vertex data */,
 				B4246169182ED2BC00B51DB1 /* Drawing */,
+				B48BCB2A17DFAB50005DBC3D /* ResourceManager */,
 				B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */,
 				B47E8D9117DBD8E4008CE6DD /* GLRenderingEngine.h */,
-				B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */,
-				B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */,
-				B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */,
-				B4CE1DE917DFCCE9009094E8 /* GLLogger.h */,
 			);
 			name = RenderingEngine;
 			sourceTree = "<group>";
@@ -185,6 +183,8 @@
 		B48BCB2A17DFAB50005DBC3D /* ResourceManager */ = {
 			isa = PBXGroup;
 			children = (
+				B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */,
+				B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */,
 			);
 			name = ResourceManager;
 			path = ..;
@@ -300,7 +300,6 @@
 			children = (
 				B47E8DCA17DBE022008CE6DD /* Shaders */,
 				B47E8D8F17DBD7EE008CE6DD /* RenderingEngine */,
-				B48BCB2A17DFAB50005DBC3D /* ResourceManager */,
 				B4E0974C17DB762500F4A436 /* Views */,
 				B4E0974B17DB761E00F4A436 /* View Controllers */,
 				B4E0974A17DB761700F4A436 /* Main */,
@@ -377,6 +376,15 @@
 				B4EF847F186AE08300234C28 /* GLSLQuaternion.h */,
 			);
 			name = Math;
+			sourceTree = "<group>";
+		};
+		B4EF8485186B3CA900234C28 /* GLLogger */ = {
+			isa = PBXGroup;
+			children = (
+				B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */,
+				B4CE1DE917DFCCE9009094E8 /* GLLogger.h */,
+			);
+			name = GLLogger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

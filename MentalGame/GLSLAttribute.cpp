@@ -13,7 +13,7 @@
 
 namespace GLRenderer
 {
-    GLSLAttribute::GLSLAttribute(GLchar *name, GLenum type, GLint size, GLint location): GLSLShaderValue(name, type, size, location)
+    GLSLAttribute::GLSLAttribute(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location): GLSLShaderValue(pProgram, name, type, size, location)
     {
         
     }

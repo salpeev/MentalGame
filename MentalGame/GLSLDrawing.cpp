@@ -126,9 +126,28 @@ namespace GLRenderer
         SetDrawingState(pDrawingState);
     }
     
+#pragma mark - GLSLDrawingStateDelegate
+    
+    void GLSLDrawing::PerformAttributesInitialization(GLvoid *pData) const
+    {
+        InitializeAttributes(pData);
+    }
+    
 #pragma mark - Protected Methods
     
-    void GLSLDrawing::InitializeUniforms(const map<string, GLRenderer::GLSLUniform *> *pUniforms) const
+    GLSLAttribute * GLSLDrawing::GetAttributeByName(string attributeName) const
+    {
+        GLSLAttribute *attribute = m_program->GetAttributeByName(attributeName);
+        return attribute;
+    }
+    
+    GLSLUniform * GLSLDrawing::GetUniformByName(string uniformName) const
+    {
+        GLSLUniform *uniform = m_program->GetUniformByName(uniformName);
+        return uniform;
+    }
+    
+    void GLSLDrawing::InitializeUniforms() const
     {
         
     }
@@ -141,7 +160,10 @@ namespace GLRenderer
         string fragmentShaderSource = FragmentShaderSource();
         
         GLSLProgram *pProgram = new GLSLProgram(vertexShaderSource, fragmentShaderSource);
+        pProgram->Use();
         SetProgram(pProgram);
+        
+        InitializeUniforms();
     }
     
     void GLSLDrawing::GenerateProgramIfNeeded()
@@ -169,17 +191,5 @@ namespace GLRenderer
         m_drawingState = pDrawingState;
         
         GenerateProgramIfNeeded();
-    }
-    
-#pragma mark - GLSLDrawingStateDelegate
-    
-    void GLSLDrawing::InitializeAttributes(GLvoid *pData) const
-    {
-        InitializeAttributes(m_program->GetAttributes(), pData);
-    }
-    
-    void GLSLDrawing::InitializeUniforms() const
-    {
-        InitializeUniforms(m_program->GetUniforms());
     }
 }

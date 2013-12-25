@@ -16,6 +16,9 @@ namespace GLRenderer
     class GLSLUniform: public GLSLShaderValue
     {
     public:
-        GLSLUniform(GLchar *name, GLenum type, GLint size, GLint location);
+        GLSLUniform(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
+        
+        void SetMatrix4(const GLSLMatrix4 &rMatrix) const;
+        GLSLMatrix4 GetMatrix4() const;
     };
 }

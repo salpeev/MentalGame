@@ -18,10 +18,12 @@ namespace GLRenderer
     class GLSLAttribute: public GLSLShaderValue
     {
     public:
-        GLSLAttribute(GLchar *name, GLenum type, GLint size, GLint location);
+        GLSLAttribute(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
         
         void EnableArray() const;
         void DisableArray() const;
         bool IsArrayEnabled() const;
+        
+        // TODO: Add methods to setup value without VAO
     };
 }

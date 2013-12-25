@@ -129,8 +129,7 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         m_indexBuffer->Bind();
         
-        GetDelegate()->InitializeAttributes();
-        GetDelegate()->InitializeUniforms();
+        GetDelegate()->PerformAttributesInitialization();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -168,8 +167,7 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->InitializeAttributes();
-        GetDelegate()->InitializeUniforms();
+        GetDelegate()->PerformAttributesInitialization();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -207,8 +205,7 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->InitializeAttributes();
-        GetDelegate()->InitializeUniforms();
+        GetDelegate()->PerformAttributesInitialization();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -238,8 +235,7 @@ namespace GLRenderer
     {
         m_vertexBuffer->Bind();
         
-        GetDelegate()->InitializeAttributes();
-        GetDelegate()->InitializeUniforms();
+        GetDelegate()->PerformAttributesInitialization();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
@@ -277,8 +273,7 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
         
-        GetDelegate()->InitializeAttributes(m_data);
-        GetDelegate()->InitializeUniforms();
+        GetDelegate()->PerformAttributesInitialization(m_data);
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -320,8 +315,7 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->InitializeAttributes(m_data);
-        GetDelegate()->InitializeUniforms();
+        GetDelegate()->PerformAttributesInitialization(m_data);
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -363,8 +357,7 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->InitializeAttributes(m_data);
-        GetDelegate()->InitializeUniforms();
+        GetDelegate()->PerformAttributesInitialization(m_data);
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -403,8 +396,7 @@ namespace GLRenderer
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->InitializeAttributes(m_data);
-        GetDelegate()->InitializeUniforms();
+        GetDelegate()->PerformAttributesInitialization(m_data);
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();

@@ -59,14 +59,16 @@ namespace GLRenderer
         void UseRawVertexData(GLvoid *pVertexData, GLsizei elementSize, GLuint elementsCount);
         
         // GLSLDrawingStateDelegate
-        void InitializeAttributes(GLvoid *pData = NULL) const;
-        void InitializeUniforms() const;
+        void PerformAttributesInitialization(GLvoid *pData = NULL) const;
         
     protected:
+        GLSLAttribute * GetAttributeByName(string attributeName) const;
+        GLSLUniform * GetUniformByName(string uniformName) const;
+        
         virtual string VertexShaderSource() const = 0;
         virtual string FragmentShaderSource() const = 0;
-        virtual void InitializeAttributes(const map<string, GLSLAttribute *> *pAttributes, GLvoid *pData = NULL) const = 0;
-        virtual void InitializeUniforms(const map<string, GLSLUniform *> *pUniforms) const;
+        virtual void InitializeAttributes(GLvoid *pData = NULL) const = 0;
+        virtual void InitializeUniforms() const;
         
     private:
         void GenerateProgram();

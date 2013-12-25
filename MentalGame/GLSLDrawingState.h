@@ -26,8 +26,7 @@ namespace GLRenderer
     class GLSLDrawingStateDelegate
     {
     public:
-        virtual void InitializeAttributes(GLvoid *pData = NULL) const = 0;
-        virtual void InitializeUniforms() const = 0;
+        virtual void PerformAttributesInitialization(GLvoid *pData = NULL) const = 0;
     };
     
     

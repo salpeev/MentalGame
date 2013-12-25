@@ -15,6 +15,8 @@ namespace GLRenderer
     class GLSLVector2
     {
     public:
+        const float * Pointer() const;
+        
         float x;
         float y;
     };
@@ -24,6 +26,8 @@ namespace GLRenderer
     class GLSLVector3
     {
     public:
+        const float * Pointer() const;
+        
         float x;
         float y;
         float z;
@@ -34,6 +38,8 @@ namespace GLRenderer
     class GLSLVector4
     {
     public:
+        const float * Pointer() const;
+        
         float x;
         float y;
         float z;
