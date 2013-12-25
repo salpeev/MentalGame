@@ -12,11 +12,34 @@
 #include "GLSLUniform.h"
 #include "GLLogger.h"
 #include "GLSLVertex.h"
+#include "GLSLMatrix.h"
 
 
 
 namespace GLRenderer
 {
+    void GLSLPerspectiveDrawing::SetModelviewMatrix(GLSLMatrix4 &rModelviewMatrix)
+    {
+        m_modelviewMatrix = rModelviewMatrix;
+    }
+    
+    GLSLMatrix4 GLSLPerspectiveDrawing::GetModelviewMatrix() const
+    {
+        return m_modelviewMatrix;
+    }
+    
+    void GLSLPerspectiveDrawing::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix)
+    {
+        m_projectionMatrix = rProjectionMatrix;
+    }
+    
+    GLSLMatrix4 GLSLPerspectiveDrawing::GetProjectionMatrix() const
+    {
+        return m_projectionMatrix;
+    }
+    
+#pragma mark - Private Methods
+    
     string GLSLPerspectiveDrawing::VertexShaderSource() const
     {
         string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PerspectiveShader.vsh");
