@@ -117,6 +117,7 @@
 		B4EF847C186AE07900234C28 /* GLSLMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLMatrix.h; sourceTree = "<group>"; };
 		B4EF847E186AE08300234C28 /* GLSLQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLQuaternion.cpp; sourceTree = "<group>"; };
 		B4EF847F186AE08300234C28 /* GLSLQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLQuaternion.h; sourceTree = "<group>"; };
+		B4EF8488186C2FD000234C28 /* GLDefaultConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLDefaultConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				B4963F9518003B650037FC39 /* GLConstants.h */,
+				B4EF8488186C2FD000234C28 /* GLDefaultConstants.h */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
