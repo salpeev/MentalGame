@@ -30,6 +30,8 @@ namespace GLRenderer
     public:
         GLSLMatrix4();
         
+        GLSLMatrix4 operator * (const GLSLMatrix4 &rMatrix) const;
+        
         const float * Pointer() const;
         
         static GLSLMatrix4 Frustum(float left, float right, float bottom, float top, float near, float far);
