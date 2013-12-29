@@ -174,7 +174,7 @@ namespace GLRenderer
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GL_UNSIGNED_SHORT, pIndices);
+        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -212,7 +212,7 @@ namespace GLRenderer
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GL_UNSIGNED_BYTE, pIndices);
+        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     
@@ -322,7 +322,7 @@ namespace GLRenderer
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GL_UNSIGNED_SHORT, pIndices);
+        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -364,7 +364,7 @@ namespace GLRenderer
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GL_UNSIGNED_BYTE, pIndices);
+        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     

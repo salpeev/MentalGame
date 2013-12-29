@@ -21,7 +21,7 @@ namespace GLRenderer
     
     void GLSLUniform::SetMatrix4(const GLSLMatrix4 &rMatrix) const
     {
-        glUniformMatrix4fv(m_location, m_size, GL_FALSE, rMatrix.Pointer());
+        glUniformMatrix4fv(m_location, m_size, GLSL_FALSE, rMatrix.Pointer());
         CheckError();
     }
     

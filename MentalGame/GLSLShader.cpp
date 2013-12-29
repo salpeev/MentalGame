@@ -38,11 +38,11 @@ namespace GLRenderer
     bool GLSLShader::IsCompiled() const
     {
         GLint compileStatus;
-        glGetShaderiv(m_shaderHandle, GL_COMPILE_STATUS, &compileStatus);
+        glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_COMPILE_STATUS, &compileStatus);
         
         CheckError();
         
-        return (compileStatus == GL_TRUE);
+        return (compileStatus == GLSL_TRUE);
     }
     
 #pragma mark - Private Methods
@@ -58,7 +58,7 @@ namespace GLRenderer
         if (!IsCompiled())
         {
             GLint infoLength;
-            glGetShaderiv(m_shaderHandle, GL_INFO_LOG_LENGTH, &infoLength);
+            glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_INFO_LOG_LENGTH, &infoLength);
             
             if (infoLength > 1)
             {
@@ -90,11 +90,11 @@ namespace GLRenderer
     bool GLSLShader::IsInvalidated() const
     {
         GLint deleteStatus;
-        glGetShaderiv(m_shaderHandle, GL_DELETE_STATUS, &deleteStatus);
+        glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_DELETE_STATUS, &deleteStatus);
         
         CheckError();
         
-        return (deleteStatus == GL_TRUE);
+        return (deleteStatus == GLSL_TRUE);
     }
     
     void GLSLShader::SetType(GLSL_SHADER_TYPE type)

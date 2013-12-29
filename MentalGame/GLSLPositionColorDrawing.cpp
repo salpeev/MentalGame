@@ -62,10 +62,10 @@ namespace GLRenderer
         }
         
         // TODO: Can be optimized with two floats per attribute
-        glVertexAttribPointer(positionAttribute->GetLocation(), positionSize, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), pPosition);
+        glVertexAttribPointer(positionAttribute->GetLocation(), positionSize, GL_FLOAT, GLSL_FALSE, sizeof(GLSLVertex1P1C), pPosition);
         CheckError();
         
-        glVertexAttribPointer(colorAttribute->GetLocation(), colorSize, GL_FLOAT, GL_FALSE, sizeof(GLSLVertex1P1C), pColor);
+        glVertexAttribPointer(colorAttribute->GetLocation(), colorSize, GL_FLOAT, GLSL_FALSE, sizeof(GLSLVertex1P1C), pColor);
         CheckError();
     }
 }

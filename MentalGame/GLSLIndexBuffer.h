@@ -25,7 +25,7 @@ namespace GLRenderer
         GLSL_DATA_TYPE GetDataType() const;
         
         GLSL_BUFFER TargetBuffer() const;
-        GLSL_GET_PARAMETER BufferBindingParameter() const;
+        GLSL_GET BufferBindingParameter() const;
         
         static void UnbindCurrentBuffer();
         

@@ -33,14 +33,14 @@ namespace GLRenderer
         glViewport(0, 0, width, height);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
-//        Test0();
-//        Test1();
-//        Test2();
-//        Test3();
-//        Test4();
-//        Test5();
-//        Test6();
-//        Test7();
+        Test0();
+        Test1();
+        Test2();
+        Test3();
+        Test4();
+        Test5();
+        Test6();
+        Test7();
         Test8();
     }
     

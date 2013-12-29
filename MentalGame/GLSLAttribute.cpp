@@ -7,6 +7,7 @@
 //
 
 #include "GLSLAttribute.h"
+#include "GLConstants.h"
 #include "GLLogger.h"
 
 
@@ -43,7 +44,7 @@ namespace GLRenderer
         glGetVertexAttribiv(m_location, GL_VERTEX_ATTRIB_ARRAY_ENABLED, &arrayEnabled);
         CheckError();
         
-        bool enabled = (arrayEnabled == GL_TRUE);
+        bool enabled = (arrayEnabled == GLSL_TRUE);
         return enabled;
     }
 }

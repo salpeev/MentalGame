@@ -7,6 +7,7 @@
 //
 
 #include "GLLogger.h"
+#include "GLConstants.h"
 #include <iostream>
 #include <OpenGLES/ES2/gl.h>
 
@@ -33,12 +34,12 @@ namespace GLRenderer
     {
         GLenum errorType = glGetError();
         switch (errorType) {
-            case GL_NO_ERROR: return false;
-            case GL_INVALID_ENUM: cout << "ERROR: Invalid enum" << endl; break;
-            case GL_INVALID_OPERATION: cout << "ERROR: Invalid operation" << endl; break;
-            case GL_INVALID_VALUE: cout << "ERROR: Invalid value" << endl; break;
-            case GL_OUT_OF_MEMORY: cout << "ERROR: Out of memory" << endl; break;
-            case GL_INVALID_FRAMEBUFFER_OPERATION: cout << "ERROR: Invalid framebuffer operation" << endl; break;
+            case GLSL_ERROR_NO_ERROR: return false;
+            case GLSL_ERROR_INVALID_ENUM: cout << "ERROR: Invalid enum" << endl; break;
+            case GLSL_ERROR_INVALID_OPERATION: cout << "ERROR: Invalid operation" << endl; break;
+            case GLSL_ERROR_INVALID_VALUE: cout << "ERROR: Invalid value" << endl; break;
+            case GLSL_ERROR_OUT_OF_MEMORY: cout << "ERROR: Out of memory" << endl; break;
+            case GLSL_ERROR_INVALID_FRAMEBUFFER_OPERATION: cout << "ERROR: Invalid framebuffer operation" << endl; break;
             default: cout << "ERROR: Unknown error" << endl; break;
         }
         

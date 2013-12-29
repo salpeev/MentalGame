@@ -7,6 +7,7 @@
 //
 
 #include "GLSLProgram.h"
+#include "GLConstants.h"
 #include "GLLogger.h"
 #include <iostream>
 
@@ -55,16 +56,16 @@ namespace GLRenderer
     bool GLSLProgram::IsLinked() const
     {
         GLint linkStatus;
-        glGetProgramiv(m_programHandle, GL_LINK_STATUS, &linkStatus);
+        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_LINK_STATUS, &linkStatus);
         CheckError();
         
-        return (linkStatus == GL_TRUE);
+        return (linkStatus == GLSL_TRUE);
     }
     
     bool GLSLProgram::IsUsed() const
     {
         GLint currentProgramHandle;
-        glGetIntegerv(GL_CURRENT_PROGRAM, &currentProgramHandle);
+        glGetIntegerv(GLSL_GET_CURRENT_PROGRAM, &currentProgramHandle);
         CheckError();
         
         bool used = (currentProgramHandle == m_programHandle);
@@ -123,7 +124,7 @@ namespace GLRenderer
         if (!IsLinked())
         {
             GLint infoLength;
-            glGetProgramiv(m_programHandle, GL_INFO_LOG_LENGTH, &infoLength);
+            glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_INFO_LOG_LENGTH, &infoLength);
             
             if (infoLength > 1)
             {
@@ -157,21 +158,21 @@ namespace GLRenderer
     bool GLSLProgram::IsInvalidated() const
     {
         GLint deleteStatus;
-        glGetProgramiv(m_programHandle, GL_DELETE_STATUS, &deleteStatus);
+        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_DELETE_STATUS, &deleteStatus);
         
         CheckError();
         
-        return (deleteStatus == GL_TRUE);
+        return (deleteStatus == GLSL_TRUE);
     }
     
     void GLSLProgram::ExtractAttributes()
     {
         GLint attributesCount;
-        glGetProgramiv(m_programHandle, GL_ACTIVE_ATTRIBUTES, &attributesCount);
+        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_ATTRIBUTES, &attributesCount);
         CheckError();
         
         GLint maxAttributeNameLength;
-        glGetProgramiv(m_programHandle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttributeNameLength);
+        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttributeNameLength);
         CheckError();
         
         map<string, GLSLAttribute *> *pAttributes = new map<string, GLSLAttribute *>();
@@ -201,11 +202,11 @@ namespace GLRenderer
     void GLSLProgram::ExtractUniforms()
     {
         GLint uniformsCount;
-        glGetProgramiv(m_programHandle, GL_ACTIVE_UNIFORMS, &uniformsCount);
+        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_UNIFORMS, &uniformsCount);
         CheckError();
         
         GLint maxUniformNameLength;
-        glGetProgramiv(m_programHandle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxUniformNameLength);
+        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_UNIFORM_MAX_LENGTH, &maxUniformNameLength);
         CheckError();
         
         map<string, GLSLUniform *> *pUniforms = new map<string, GLSLUniform *>();
