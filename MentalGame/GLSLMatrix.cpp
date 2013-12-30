@@ -12,14 +12,22 @@
 
 namespace GLRenderer
 {
-#pragma mark - GLSLMatrix3T
+    
+#pragma mark - GLSLMatrix2
+    
+    const float * GLSLMatrix2::Pointer() const
+    {
+        return &x.x;
+    }
+    
+#pragma mark - GLSLMatrix3
     
     const float * GLSLMatrix3::Pointer() const
     {
         return &x.x;
     }
     
-#pragma mark - GLSLMatrix4T
+#pragma mark - GLSLMatrix4
     
     GLSLMatrix4::GLSLMatrix4()
     {

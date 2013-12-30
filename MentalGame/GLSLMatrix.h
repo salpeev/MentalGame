@@ -13,6 +13,16 @@
 
 namespace GLRenderer
 {
+    class GLSLMatrix2
+    {
+    public:
+        
+        const float * Pointer() const;
+        
+        GLSLVector2 x;
+        GLSLVector2 y;
+    };
+    
     class GLSLMatrix3
     {
     public:

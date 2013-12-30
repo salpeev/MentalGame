@@ -21,26 +21,26 @@ namespace GLRenderer
     void GLSLPerspectiveDrawing::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix) const
     {
         GLSLUniform *projectionUniform = GetUniformByName("u_projection");
-        projectionUniform->SetMatrix4(rProjectionMatrix);
+        projectionUniform->SetMatrix4f(rProjectionMatrix);
     }
     
     GLSLMatrix4 GLSLPerspectiveDrawing::GetProjectionMatrix() const
     {
         GLSLUniform *projectionUniform = GetUniformByName("u_projection");
-        GLSLMatrix4 projectionMatrix = projectionUniform->GetMatrix4();
+        GLSLMatrix4 projectionMatrix = projectionUniform->GetMatrix4f();
         return projectionMatrix;
     }
     
     void GLSLPerspectiveDrawing::SetModelviewMatrix(GLSLMatrix4 &rModelviewMatrix) const
     {
         GLSLUniform *modelviewUniform = GetUniformByName("u_modelview");
-        modelviewUniform->SetMatrix4(rModelviewMatrix);
+        modelviewUniform->SetMatrix4f(rModelviewMatrix);
     }
     
     GLSLMatrix4 GLSLPerspectiveDrawing::GetModelviewMatrix() const
     {
         GLSLUniform *modelviewUniform = GetUniformByName("u_modelview");
-        GLSLMatrix4 modelviewMatrix = modelviewUniform->GetMatrix4();
+        GLSLMatrix4 modelviewMatrix = modelviewUniform->GetMatrix4f();
         return modelviewMatrix;
     }
     
