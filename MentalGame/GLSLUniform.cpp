@@ -61,42 +61,42 @@ namespace GLRenderer
         
     }
     
-    void GLSLUniform::Set1fv(GLsizei count, GLfloat *pValue) const
+    void GLSLUniform::Set1fv(GLsizei count, const GLfloat *pValue) const
     {
         
     }
     
-    void GLSLUniform::Set2fv(GLsizei count, GLfloat *pValue) const
+    void GLSLUniform::Set2fv(GLsizei count, const GLfloat *pValue) const
     {
         
     }
     
-    void GLSLUniform::Set3fv(GLsizei count, GLfloat *pValue) const
+    void GLSLUniform::Set3fv(GLsizei count, const GLfloat *pValue) const
     {
         
     }
     
-    void GLSLUniform::Set4fv(GLsizei count, GLfloat *pValue) const
+    void GLSLUniform::Set4fv(GLsizei count, const GLfloat *pValue) const
     {
         
     }
     
-    void GLSLUniform::Set1iv(GLsizei count, GLint *pValue) const
+    void GLSLUniform::Set1iv(GLsizei count, const GLint *pValue) const
     {
         
     }
     
-    void GLSLUniform::Set2iv(GLsizei count, GLint *pValue) const
+    void GLSLUniform::Set2iv(GLsizei count, const GLint *pValue) const
     {
         
     }
     
-    void GLSLUniform::Set3iv(GLsizei count, GLint *pValue) const
+    void GLSLUniform::Set3iv(GLsizei count, const GLint *pValue) const
     {
         
     }
     
-    void GLSLUniform::Set4iv(GLsizei count, GLint *pValue) const
+    void GLSLUniform::Set4iv(GLsizei count, const GLint *pValue) const
     {
         
     }
@@ -236,17 +236,17 @@ namespace GLRenderer
         return matrix;
     }
     
-    void GLSLUniform::GetMatrix2fv(const GLSLMatrix2 *pMatrix) const
+    void GLSLUniform::GetMatrix2fv(GLSLMatrix2 *pMatrix) const
     {
         
     }
     
-    void GLSLUniform::GetMatrix3fv(const GLSLMatrix3 *pMatrix) const
+    void GLSLUniform::GetMatrix3fv(GLSLMatrix3 *pMatrix) const
     {
         
     }
     
-    void GLSLUniform::GetMatrix4fv(const GLSLMatrix4 *pMatrix) const
+    void GLSLUniform::GetMatrix4fv(GLSLMatrix4 *pMatrix) const
     {
         
     }

@@ -26,14 +26,14 @@ namespace GLRenderer
         void Set2i(GLint value0, GLint value1) const;
         void Set3i(GLint value0, GLint value1, GLint value2) const;
         void Set4i(GLint value0, GLint value1, GLint value2, GLint value3) const;
-        void Set1fv(GLsizei count, GLfloat *pValue) const;
-        void Set2fv(GLsizei count, GLfloat *pValue) const;
-        void Set3fv(GLsizei count, GLfloat *pValue) const;
-        void Set4fv(GLsizei count, GLfloat *pValue) const;
-        void Set1iv(GLsizei count, GLint *pValue) const;
-        void Set2iv(GLsizei count, GLint *pValue) const;
-        void Set3iv(GLsizei count, GLint *pValue) const;
-        void Set4iv(GLsizei count, GLint *pValue) const;
+        void Set1fv(GLsizei count, const GLfloat *pValue) const;
+        void Set2fv(GLsizei count, const GLfloat *pValue) const;
+        void Set3fv(GLsizei count, const GLfloat *pValue) const;
+        void Set4fv(GLsizei count, const GLfloat *pValue) const;
+        void Set1iv(GLsizei count, const GLint *pValue) const;
+        void Set2iv(GLsizei count, const GLint *pValue) const;
+        void Set3iv(GLsizei count, const GLint *pValue) const;
+        void Set4iv(GLsizei count, const GLint *pValue) const;
         void SetMatrix2f(const GLSLMatrix2 &rMatrix) const;
         void SetMatrix3f(const GLSLMatrix3 &rMatrix) const;
         void SetMatrix4f(const GLSLMatrix4 &rMatrix) const;
@@ -60,9 +60,9 @@ namespace GLRenderer
         GLSLMatrix2 GetMatrix2f() const;
         GLSLMatrix3 GetMatrix3f() const;
         GLSLMatrix4 GetMatrix4f() const;
-        void GetMatrix2fv(const GLSLMatrix2 *pMatrix) const;
-        void GetMatrix3fv(const GLSLMatrix3 *pMatrix) const;
-        void GetMatrix4fv(const GLSLMatrix4 *pMatrix) const;
+        void GetMatrix2fv(GLSLMatrix2 *pMatrix) const;
+        void GetMatrix3fv(GLSLMatrix3 *pMatrix) const;
+        void GetMatrix4fv(GLSLMatrix4 *pMatrix) const;
         
     private:
         void GetValue(GLfloat *pValue) const;
