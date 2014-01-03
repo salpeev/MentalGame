@@ -48,6 +48,16 @@ namespace GLRenderer
         return enabled;
     }
     
+    void GLSLAttribute::SetBufferPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, GLuint offset) const
+    {
+        
+    }
+    
+    void GLSLAttribute::SetDataPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, const GLvoid *pData) const
+    {
+        
+    }
+    
     void GLSLAttribute::Set1f(GLfloat value) const
     {
         
@@ -68,22 +78,22 @@ namespace GLRenderer
         
     }
     
-    void GLSLAttribute::Set1fv(const GLfloat *pValue)
+    void GLSLAttribute::Set1fv(const GLfloat *pValue) const
     {
         
     }
     
-    void GLSLAttribute::Set2fv(const GLfloat *pValue)
+    void GLSLAttribute::Set2fv(const GLfloat *pValue) const
     {
         
     }
     
-    void GLSLAttribute::Set3fv(const GLfloat *pValue)
+    void GLSLAttribute::Set3fv(const GLfloat *pValue) const
     {
         
     }
     
-    void GLSLAttribute::Set4fv(const GLfloat *pValue)
+    void GLSLAttribute::Set4fv(const GLfloat *pValue) const
     {
         
     }
@@ -108,22 +118,22 @@ namespace GLRenderer
         
     }
     
-    void GLSLAttribute::Get1fv(GLfloat *pValue)
+    void GLSLAttribute::Get1fv(GLfloat *pValue) const
     {
         
     }
     
-    void GLSLAttribute::Get2fv(GLfloat *pValue)
+    void GLSLAttribute::Get2fv(GLfloat *pValue) const
     {
         
     }
     
-    void GLSLAttribute::Get3fv(GLfloat *pValue)
+    void GLSLAttribute::Get3fv(GLfloat *pValue) const
     {
         
     }
     
-    void GLSLAttribute::Get4fv(GLfloat *pValue)
+    void GLSLAttribute::Get4fv(GLfloat *pValue) const
     {
         
     }
