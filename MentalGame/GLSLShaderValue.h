@@ -34,7 +34,7 @@ namespace GLRenderer
         GLint GetSize() const;
         GLint GetLocation() const;
         
-    protected:
+    private:
         GLSLProgram *m_program;
         string *p_name;
         GLenum m_type;

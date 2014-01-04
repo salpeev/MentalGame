@@ -63,32 +63,22 @@ namespace GLRenderer
         GLSLAttribute *positionAttribute = GetAttributeByName("a_position");
         GLSLAttribute *colorAttribute = GetAttributeByName("a_color");
         
-        // TODO: Probably should be enabled in another place. Here should be initialized only if enabled.
-        positionAttribute->EnableArray();
-        colorAttribute->EnableArray();
-        
         GLint positionSize = 3;
         GLint colorSize = 4;
         
-        GLvoid *pPosition = NULL;
-        GLvoid *pColor = NULL;
-        
         if (pData)
         {
-            pPosition = pData;
-            pColor = (GLfloat *)pData + positionSize;
+            GLvoid *pPosition = pData;
+            GLvoid *pColor = (GLfloat *)pData + positionSize;
+            
+            positionAttribute->SetDataPointer(positionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), pPosition);
+            colorAttribute->SetDataPointer(colorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), pColor);
         }
         else
         {
-            pPosition = NULL;
-            pColor = (GLvoid *)(sizeof(GLSLVertex1P1C::m_position));
+            positionAttribute->SetBufferPointer(positionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), 0);
+            colorAttribute->SetBufferPointer(colorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), sizeof(GLSLVertex1P1C::m_position));
         }
-        
-        glVertexAttribPointer(positionAttribute->GetLocation(), positionSize, GL_FLOAT, GLSL_FALSE, sizeof(GLSLVertex1P1C), pPosition);
-        CheckError();
-        
-        glVertexAttribPointer(colorAttribute->GetLocation(), colorSize, GL_FLOAT, GLSL_FALSE, sizeof(GLSLVertex1P1C), pColor);
-        CheckError();
     }
     
     void GLSLPerspectiveDrawing::InitializeUniforms() const
