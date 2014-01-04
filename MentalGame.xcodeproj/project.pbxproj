@@ -46,6 +46,7 @@
 		B4EF847A186AE06E00234C28 /* GLSLVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF8478186AE06E00234C28 /* GLSLVector.cpp */; };
 		B4EF847D186AE07900234C28 /* GLSLMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF847B186AE07900234C28 /* GLSLMatrix.cpp */; };
 		B4EF8480186AE08300234C28 /* GLSLQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF847E186AE08300234C28 /* GLSLQuaternion.cpp */; };
+		B4EF8494187863D900234C28 /* GLSLVertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF8492187863D900234C28 /* GLSLVertexArray.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,8 @@
 		B4EF847E186AE08300234C28 /* GLSLQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLQuaternion.cpp; sourceTree = "<group>"; };
 		B4EF847F186AE08300234C28 /* GLSLQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLQuaternion.h; sourceTree = "<group>"; };
 		B4EF8488186C2FD000234C28 /* GLDefaultConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLDefaultConstants.h; sourceTree = "<group>"; };
+		B4EF8492187863D900234C28 /* GLSLVertexArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLVertexArray.cpp; sourceTree = "<group>"; };
+		B4EF8493187863D900234C28 /* GLSLVertexArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLVertexArray.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +163,8 @@
 				B4963F911800228F0037FC39 /* Primitive types */,
 				B4963F90180022770037FC39 /* Buffers */,
 				B4963F921800232C0037FC39 /* Shader values */,
-				B4AFEF841809716C007846A1 /* Vertex data */,
+				B4AFEF841809716C007846A1 /* Vertex */,
+				B4EF8491187863C300234C28 /* Vertex Array */,
 				B4246169182ED2BC00B51DB1 /* Drawing */,
 				B48BCB2A17DFAB50005DBC3D /* ResourceManager */,
 				B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */,
@@ -239,13 +243,13 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-		B4AFEF841809716C007846A1 /* Vertex data */ = {
+		B4AFEF841809716C007846A1 /* Vertex */ = {
 			isa = PBXGroup;
 			children = (
 				B469605B17F858BF002BCF6C /* GLSLVertex.cpp */,
 				B469605C17F858BF002BCF6C /* GLSLVertex.h */,
 			);
-			name = "Vertex data";
+			name = Vertex;
 			sourceTree = "<group>";
 		};
 		B4D70D5E182C2EBE00771FA8 /* Program */ = {
@@ -389,6 +393,15 @@
 			name = GLLogger;
 			sourceTree = "<group>";
 		};
+		B4EF8491187863C300234C28 /* Vertex Array */ = {
+			isa = PBXGroup;
+			children = (
+				B4EF8492187863D900234C28 /* GLSLVertexArray.cpp */,
+				B4EF8493187863D900234C28 /* GLSLVertexArray.h */,
+			);
+			name = "Vertex Array";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -480,6 +493,7 @@
 				B408BB7817F6DD3C00CC6900 /* GLSLIndexBuffer.cpp in Sources */,
 				B469605A17F8526F002BCF6C /* GLSLShaderValue.cpp in Sources */,
 				B4CE1DE417DFB72C009094E8 /* GLSLProgram.cpp in Sources */,
+				B4EF8494187863D900234C28 /* GLSLVertexArray.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* GLSLDrawingState.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */,

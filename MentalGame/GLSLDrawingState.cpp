@@ -405,4 +405,13 @@ namespace GLRenderer
         glDrawArrays(renderMode, startIndex, elementsCount);
         CheckError();
     }
+    
+#pragma mark - GLSLRawVertexDataArraysIndexBufferState
+    
+#pragma mark - GLSLRawVertexDataArraysRawShortIndicesState
+    
+#pragma mark - GLSLRawVertexDataArraysRawByteIndicesState
+    
+#pragma mark - GLSLRawVertexDataArraysState
+    
 }
