@@ -14,9 +14,9 @@
 
 namespace GLRenderer
 {
-    GLSLVertexArray::GLSLVertexArray(GLvoid *pData, GLsizei vertexSize, GLuint vertexesCount): m_vertexSize(vertexSize), m_vertexesCount(vertexesCount)
+    GLSLVertexArray::GLSLVertexArray(GLvoid *pData, GLsizei vertexSize, GLuint verticesCount): m_vertexSize(vertexSize), m_verticesCount(verticesCount)
     {
-        m_dataSize = vertexSize * vertexesCount;
+        m_dataSize = vertexSize * verticesCount;
         
         m_data = malloc(m_dataSize);
         memcpy(m_data, pData, m_dataSize);
@@ -26,7 +26,7 @@ namespace GLRenderer
     {
         m_dataSize = rVertexArray.m_dataSize;
         m_vertexSize = rVertexArray.m_vertexSize;
-        m_vertexesCount = rVertexArray.m_vertexesCount;
+        m_verticesCount = rVertexArray.m_verticesCount;
         
         m_data = malloc(m_dataSize);
         memcpy(m_data, rVertexArray.GetData(), m_dataSize);
@@ -52,8 +52,8 @@ namespace GLRenderer
         return m_vertexSize;
     }
     
-    GLuint GLSLVertexArray::GetVertexesCount() const
+    GLuint GLSLVertexArray::GetVerticesCount() const
     {
-        return m_vertexesCount;
+        return m_verticesCount;
     }
 }

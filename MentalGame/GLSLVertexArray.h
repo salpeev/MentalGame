@@ -16,19 +16,19 @@ namespace GLRenderer
     class GLSLVertexArray
     {
     public:
-        GLSLVertexArray(GLvoid *pData, GLsizei vertexSize, GLuint vertexesCount);
+        GLSLVertexArray(GLvoid *pData, GLsizei vertexSize, GLuint verticesCount);
         GLSLVertexArray(const GLSLVertexArray &rVertexArray);
         ~GLSLVertexArray();
         
         GLvoid *GetData() const;
         GLsizei GetDataSize() const;
         GLsizei GetVertexSize() const;
-        GLuint GetVertexesCount() const;
+        GLuint GetVerticesCount() const;
         
     private:
         GLvoid *m_data;
         GLsizei m_dataSize;
         GLsizei m_vertexSize;
-        GLuint m_vertexesCount;
+        GLuint m_verticesCount;
     };
 }
