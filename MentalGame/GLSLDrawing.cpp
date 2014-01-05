@@ -102,27 +102,27 @@ namespace GLRenderer
         SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseRawVertexDataWithIndexBuffer(GLvoid *pVertexData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer)
+    void GLSLDrawing::UseRawVertexDataWithIndexBuffer(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer)
     {
-        GLSLRawVertexDataIndexBufferState *pDrawingState = new GLSLRawVertexDataIndexBufferState(pVertexData, dataSize, pIndexBuffer, this);
+        GLSLVertexArrayIndexBufferState *pDrawingState = new GLSLVertexArrayIndexBufferState(rVertexArray, pIndexBuffer, this);
         SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLushort> &rIndices)
+    void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices)
     {
-        GLSLRawVertexDataRawShortIndicesState *pDrawingState = new GLSLRawVertexDataRawShortIndicesState(pVertexData, dataSize, rIndices, this);
+        GLSLVertexArrayShortIndicesState *pDrawingState = new GLSLVertexArrayShortIndicesState(rVertexArray, rIndices, this);
         SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices)
+    void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices)
     {
-        GLSLRawVertexDataRawByteIndicesState *pDrawingState = new GLSLRawVertexDataRawByteIndicesState(pVertexData, dataSize, rIndices, this);
+        GLSLVertexArrayByteIndicesState *pDrawingState = new GLSLVertexArrayByteIndicesState(rVertexArray, rIndices, this);
         SetDrawingState(pDrawingState);
     }
     
-    void GLSLDrawing::UseRawVertexData(GLvoid *pVertexData, GLsizei elementSize, GLuint elementsCount)
+    void GLSLDrawing::UseRawVertexData(GLSLVertexArray &rVertexArray)
     {
-        GLSLRawVertexDataState *pDrawingState = new GLSLRawVertexDataState(pVertexData, elementSize, elementsCount, this);
+        GLSLVertexArrayState *pDrawingState = new GLSLVertexArrayState(rVertexArray, this);
         SetDrawingState(pDrawingState);
     }
     

@@ -226,11 +226,13 @@ namespace GLRenderer
         indexData.push_back(0);
         indexData.push_back(1);
         
+        GLSLVertexArray vertexArray(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
+        
         GLSLIndexBuffer *indexBuffer = new GLSLIndexBuffer();
         indexBuffer->LoadBufferData(indexData);
         
         GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseRawVertexDataWithIndexBuffer(&vertexData[0], sizeof(vertexData[0]) * vertexData.size(), indexBuffer);
+        drawing->UseRawVertexDataWithIndexBuffer(vertexArray, indexBuffer);
         
         m_drawings->push_back(drawing);
     }
@@ -254,8 +256,10 @@ namespace GLRenderer
         indexData.push_back(0);
         indexData.push_back(1);
         
+        GLSLVertexArray vertexArray(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
+        
         GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseRawVertexDataWithRawIndexData(&vertexData[0], sizeof(vertexData[0]) * vertexData.size(), indexData);
+        drawing->UseRawVertexDataWithRawIndexData(vertexArray, indexData);
         
         m_drawings->push_back(drawing);
     }
@@ -279,8 +283,10 @@ namespace GLRenderer
         indexData.push_back(0);
         indexData.push_back(1);
         
+        GLSLVertexArray vertexArray(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
+        
         GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseRawVertexDataWithRawIndexData(&vertexData[0], sizeof(vertexData[0]) * vertexData.size(), indexData);
+        drawing->UseRawVertexDataWithRawIndexData(vertexArray, indexData);
         
         m_drawings->push_back(drawing);
     }
@@ -300,8 +306,10 @@ namespace GLRenderer
         vertexData.push_back(vertex0);
         vertexData.push_back(vertex1);
         
+        GLSLVertexArray vertexArray(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
+        
         GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseRawVertexData(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
+        drawing->UseRawVertexData(vertexArray);
         
         m_drawings->push_back(drawing);
     }

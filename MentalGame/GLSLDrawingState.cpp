@@ -247,33 +247,32 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLRawVertexDataIndexBufferState
+#pragma mark - GLSLVertexArrayIndexBufferState
     
-    GLSLRawVertexDataIndexBufferState::GLSLRawVertexDataIndexBufferState(GLvoid *pData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_indexBuffer(pIndexBuffer)
+    GLSLVertexArrayIndexBufferState::GLSLVertexArrayIndexBufferState(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_indexBuffer(pIndexBuffer)
     {
-        m_data = malloc(dataSize);
-        memcpy(m_data, pData, dataSize);
+        m_vertexArray = new GLSLVertexArray(rVertexArray);
         
         ResetDrawCount();
     }
     
-    GLSLRawVertexDataIndexBufferState::~GLSLRawVertexDataIndexBufferState()
+    GLSLVertexArrayIndexBufferState::~GLSLVertexArrayIndexBufferState()
     {
-        free(m_data);
+        delete m_vertexArray;
     }
     
-    GLsizei GLSLRawVertexDataIndexBufferState::GetElementsCount() const
+    GLsizei GLSLVertexArrayIndexBufferState::GetElementsCount() const
     {
         return m_indexBuffer->GetElementsCount();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLRawVertexDataIndexBufferState::PerformDrawing() const
+    void GLSLVertexArrayIndexBufferState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
         
-        GetDelegate()->PerformAttributesInitialization(m_data);
+        GetDelegate()->PerformAttributesInitialization(m_vertexArray->GetData());
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -286,36 +285,34 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLRawVertexDataRawShortIndicesState
+#pragma mark - GLSLVertexArrayShortIndicesState
     
-    GLSLRawVertexDataRawShortIndicesState::GLSLRawVertexDataRawShortIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
+    GLSLVertexArrayShortIndicesState::GLSLVertexArrayShortIndicesState(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
     {
-        m_data = malloc(dataSize);
-        memcpy(m_data, pData, dataSize);
-        
+        m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLushort>(rIndices);
         
         ResetDrawCount();
     }
     
-    GLSLRawVertexDataRawShortIndicesState::~GLSLRawVertexDataRawShortIndicesState()
+    GLSLVertexArrayShortIndicesState::~GLSLVertexArrayShortIndicesState()
     {
-        free(m_data);
+        delete m_vertexArray;
         delete m_indices;
     }
     
-    GLsizei GLSLRawVertexDataRawShortIndicesState::GetElementsCount() const
+    GLsizei GLSLVertexArrayShortIndicesState::GetElementsCount() const
     {
         return m_indices->size();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLRawVertexDataRawShortIndicesState::PerformDrawing() const
+    void GLSLVertexArrayShortIndicesState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->PerformAttributesInitialization(m_data);
+        GetDelegate()->PerformAttributesInitialization(m_vertexArray->GetData());
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -328,36 +325,34 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLRawVertexDataRawByteIndicesState
+#pragma mark - GLSLVertexArrayByteIndicesState
     
-    GLSLRawVertexDataRawByteIndicesState::GLSLRawVertexDataRawByteIndicesState(GLvoid *pData, GLsizei dataSize, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
+    GLSLVertexArrayByteIndicesState::GLSLVertexArrayByteIndicesState(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
     {
-        m_data = malloc(dataSize);
-        memcpy(m_data, pData, dataSize);
-        
+        m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLubyte>(rIndices);
         
         ResetDrawCount();
     }
     
-    GLSLRawVertexDataRawByteIndicesState::~GLSLRawVertexDataRawByteIndicesState()
+    GLSLVertexArrayByteIndicesState::~GLSLVertexArrayByteIndicesState()
     {
-        free(m_data);
+        delete m_vertexArray;
         delete m_indices;
     }
     
-    GLsizei GLSLRawVertexDataRawByteIndicesState::GetElementsCount() const
+    GLsizei GLSLVertexArrayByteIndicesState::GetElementsCount() const
     {
         return m_indices->size();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLRawVertexDataRawByteIndicesState::PerformDrawing() const
+    void GLSLVertexArrayByteIndicesState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->PerformAttributesInitialization(m_data);
+        GetDelegate()->PerformAttributesInitialization(m_vertexArray->GetData());
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -369,34 +364,31 @@ namespace GLRenderer
     }
     
     
-#pragma mark - GLSLRawVertexDataState
+#pragma mark - GLSLVertexArrayState
     
-    GLSLRawVertexDataState::GLSLRawVertexDataState(GLvoid *pData, GLsizei elementSize, GLuint elementsCount, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_elementsCount(elementsCount)
+    GLSLVertexArrayState::GLSLVertexArrayState(GLSLVertexArray &rVertexArray, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
     {
-        GLsizei dataSize = elementSize * elementsCount;
-        
-        m_data = malloc(dataSize);
-        memcpy(m_data, pData, dataSize);
+        m_vertexArray = new GLSLVertexArray(rVertexArray);
         
         ResetDrawCount();
     }
     
-    GLSLRawVertexDataState::~GLSLRawVertexDataState()
+    GLSLVertexArrayState::~GLSLVertexArrayState()
     {
-        free(m_data);
+        delete m_vertexArray;
     }
     
-    GLsizei GLSLRawVertexDataState::GetElementsCount() const
+    GLsizei GLSLVertexArrayState::GetElementsCount() const
     {
-        return m_elementsCount;
+        return m_vertexArray->GetVerticesCount();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLRawVertexDataState::PerformDrawing() const
+    void GLSLVertexArrayState::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->PerformAttributesInitialization(m_data);
+        GetDelegate()->PerformAttributesInitialization(m_vertexArray->GetData());
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();

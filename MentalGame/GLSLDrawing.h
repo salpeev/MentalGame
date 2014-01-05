@@ -53,10 +53,10 @@ namespace GLRenderer
         void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
         void UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
         void UseVertexBuffer(GLSLVertexBuffer *pVertexBuffer);
-        void UseRawVertexDataWithIndexBuffer(GLvoid *pVertexData, GLsizei dataSize, GLSLIndexBuffer *pIndexBuffer);
-        void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLushort> &rIndices);
-        void UseRawVertexDataWithRawIndexData(GLvoid *pVertexData, GLsizei dataSize, vector<GLubyte> &rIndices);
-        void UseRawVertexData(GLvoid *pVertexData, GLsizei elementSize, GLuint elementsCount);
+        void UseRawVertexDataWithIndexBuffer(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer);
+        void UseRawVertexDataWithRawIndexData(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices);
+        void UseRawVertexDataWithRawIndexData(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices);
+        void UseRawVertexData(GLSLVertexArray &rVertexArray);
         
         // GLSLDrawingStateDelegate
         void PerformAttributesInitialization(GLvoid *pData = NULL) const;
