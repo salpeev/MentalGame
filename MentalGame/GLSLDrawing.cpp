@@ -38,118 +38,18 @@ namespace GLRenderer
         m_drawingState->PerformDrawing();
     }
     
-    void GLSLDrawing::SetRenderMode(GLSL_RENDER_MODE renderMode)
-    {
-        m_drawingState->SetRenderMode(renderMode);
-    }
-    
-    void GLSLDrawing::SetStartDrawIndex(GLint startDrawIndex)
-    {
-        m_drawingState->SetStartDrawIndex(startDrawIndex);
-    }
-    
-    GLint GLSLDrawing::GetStartDrawIndex() const
-    {
-        return m_drawingState->GetStartDrawIndex();
-    }
-    
-    void GLSLDrawing::SetDrawElementsCount(GLsizei drawCount)
-    {
-        m_drawingState->SetDrawElementsCount(drawCount);
-    }
-    
-    GLsizei GLSLDrawing::GetDrawElementsCount() const
-    {
-        return m_drawingState->GetDrawElementsCount();
-    }
-    
-    void GLSLDrawing::ResetStartDrawIndex()
-    {
-        m_drawingState->ResetStartDrawIndex();
-    }
-    
-    void GLSLDrawing::ResetDrawElementsCount()
-    {
-        m_drawingState->ResetDrawCount();
-    }
-    
-    void GLSLDrawing::ResetStartDrawIndexAndDrawElementsCount()
-    {
-        m_drawingState->ResetStartDrawIndexAndDrawElementsCount();
-    }
-    
-    void GLSLDrawing::UseVertexBufferWithIndexBuffer(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer)
-    {
-        GLSLVertexBufferIndexBufferState *pDrawingState = new GLSLVertexBufferIndexBufferState(pVertexBuffer, pIndexBuffer, this);
-        SetDrawingState(pDrawingState);
-    }
-    
-    void GLSLDrawing::UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices)
-    {
-        GLSLVertexBufferShortIndicesState *pDrawingState = new GLSLVertexBufferShortIndicesState(pVertexBuffer, rIndices, this);
-        SetDrawingState(pDrawingState);
-    }
-    
-    void GLSLDrawing::UseVertexBufferWithIndices(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices)
-    {
-        GLSLVertexBufferByteIndicesState *pDrawingState = new GLSLVertexBufferByteIndicesState(pVertexBuffer, rIndices, this);
-        SetDrawingState(pDrawingState);
-    }
-    
-    void GLSLDrawing::UseVertexBuffer(GLSLVertexBuffer *pVertexBuffer)
-    {
-        GLSLVertexBufferState *pDrawingState = new GLSLVertexBufferState(pVertexBuffer, this);
-        SetDrawingState(pDrawingState);
-    }
-    
-    void GLSLDrawing::UseRawVertexDataWithIndexBuffer(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer)
-    {
-        GLSLVertexArrayIndexBufferState *pDrawingState = new GLSLVertexArrayIndexBufferState(rVertexArray, pIndexBuffer, this);
-        SetDrawingState(pDrawingState);
-    }
-    
-    void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices)
-    {
-        GLSLVertexArrayShortIndicesState *pDrawingState = new GLSLVertexArrayShortIndicesState(rVertexArray, rIndices, this);
-        SetDrawingState(pDrawingState);
-    }
-    
-    void GLSLDrawing::UseRawVertexDataWithRawIndexData(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices)
-    {
-        GLSLVertexArrayByteIndicesState *pDrawingState = new GLSLVertexArrayByteIndicesState(rVertexArray, rIndices, this);
-        SetDrawingState(pDrawingState);
-    }
-    
-    void GLSLDrawing::UseRawVertexData(GLSLVertexArray &rVertexArray)
-    {
-        GLSLVertexArrayState *pDrawingState = new GLSLVertexArrayState(rVertexArray, this);
-        SetDrawingState(pDrawingState);
-    }
-    
-#pragma mark - GLSLDrawingStateDelegate
-    
-    void GLSLDrawing::PerformAttributesInitialization(GLvoid *pData) const
-    {
-        InitializeAttributes(pData);
-    }
-    
 #pragma mark - Protected Methods
     
-    GLSLAttribute * GLSLDrawing::GetAttributeByName(string attributeName) const
+    GLSLAttribute * GLSLDrawing::GetAttributeByName(const string &rAttributeName) const
     {
-        GLSLAttribute *attribute = m_program->GetAttributeByName(attributeName);
+        GLSLAttribute *attribute = m_program->GetAttributeByName(rAttributeName);
         return attribute;
     }
     
-    GLSLUniform * GLSLDrawing::GetUniformByName(string uniformName) const
+    GLSLUniform * GLSLDrawing::GetUniformByName(const string &rUniformName) const
     {
-        GLSLUniform *uniform = m_program->GetUniformByName(uniformName);
+        GLSLUniform *uniform = m_program->GetUniformByName(rUniformName);
         return uniform;
-    }
-    
-    void GLSLDrawing::InitializeUniforms() const
-    {
-        
     }
     
 #pragma mark - Private Methods

@@ -87,15 +87,15 @@ namespace GLRenderer
         return m_uniforms;
     }
     
-    GLSLAttribute * GLSLProgram::GetAttributeByName(string attributeName) const
+    GLSLAttribute * GLSLProgram::GetAttributeByName(const string &rAttributeName) const
     {
-        GLSLAttribute *attribute = m_attributes->at(attributeName);
+        GLSLAttribute *attribute = m_attributes->at(rAttributeName);
         return attribute;
     }
     
-    GLSLUniform * GLSLProgram::GetUniformByName(string uniformName) const
+    GLSLUniform * GLSLProgram::GetUniformByName(const string &rUniformName) const
     {
-        GLSLUniform *uniform = m_uniforms->at(uniformName);
+        GLSLUniform *uniform = m_uniforms->at(rUniformName);
         return uniform;
     }
     

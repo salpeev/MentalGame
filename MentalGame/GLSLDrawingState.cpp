@@ -19,7 +19,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLDrawingState
     
-    GLSLDrawingState::GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate): m_delegate(pDelegate), m_startDrawIndex(0), m_drawElementsCount(0), m_renderMode(GLSL_RENDER_MODE_LINES)
+    GLSLDrawingState::GLSLDrawingState(): m_startDrawIndex(0), m_drawElementsCount(0), m_renderMode(GLSL_RENDER_MODE_LINES)
     {
         
     }
@@ -30,11 +30,6 @@ namespace GLRenderer
     }
     
 #pragma mark Public Methods
-    
-    GLSLDrawingStateDelegate * GLSLDrawingState::GetDelegate() const
-    {
-        return m_delegate;
-    }
     
     void GLSLDrawingState::SetRenderMode(GLSL_RENDER_MODE renderMode)
     {
@@ -48,15 +43,15 @@ namespace GLRenderer
     
     void GLSLDrawingState::SetStartDrawIndex(GLint startDrawIndex)
     {
-        if (startDrawIndex < GetElementsCount())
+        if (startDrawIndex < GetVerticesCount())
         {
             m_startDrawIndex = startDrawIndex;
             
             int lastDrawIndex = startDrawIndex + GetDrawElementsCount() - 1;
-            if (lastDrawIndex >= GetElementsCount())
+            if (lastDrawIndex >= GetVerticesCount())
             {
                 Log("WARNING: Last draw index exeeds available bounds. Truncated drawing elements count");
-                int drawElementsCount = GetElementsCount() - startDrawIndex;
+                int drawElementsCount = GetVerticesCount() - startDrawIndex;
                 SetDrawElementsCount(drawElementsCount);
             }
         }
@@ -76,14 +71,14 @@ namespace GLRenderer
     void GLSLDrawingState::SetDrawElementsCount(GLsizei drawElementsCount)
     {
         GLint lastDrawIndex = GetStartDrawIndex() + drawElementsCount - 1;
-        if (lastDrawIndex < GetElementsCount())
+        if (lastDrawIndex < GetVerticesCount())
         {
             m_drawElementsCount = drawElementsCount;
         }
         else
         {
             Log("WARNING: Last draw index exeeds available bounds. Truncated drawing elements count");
-            m_drawElementsCount = GetElementsCount() - GetStartDrawIndex();
+            m_drawElementsCount = GetVerticesCount() - GetStartDrawIndex();
         }
     }
     
@@ -99,7 +94,7 @@ namespace GLRenderer
     
     void GLSLDrawingState::ResetDrawCount()
     {
-        GLsizei drawCount = GetElementsCount() - GetStartDrawIndex();
+        GLsizei drawCount = GetVerticesCount() - GetStartDrawIndex();
         SetDrawElementsCount(drawCount);
     }
     
@@ -113,12 +108,12 @@ namespace GLRenderer
     
 #pragma mark - GLSLDrawingVertexBufferIndexBufferState
     
-    GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
+    GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
     {
         ResetDrawCount();
     }
     
-    GLsizei GLSLVertexBufferIndexBufferState::GetElementsCount() const
+    GLsizei GLSLVertexBufferIndexBufferState::GetVerticesCount() const
     {
         return m_indexBuffer->GetElementsCount();
     }
@@ -144,7 +139,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferShortIndicesState
     
-    GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLushort>(rIndices);
         
@@ -156,7 +151,7 @@ namespace GLRenderer
         delete m_indices;
     }
     
-    GLsizei GLSLVertexBufferShortIndicesState::GetElementsCount() const
+    GLsizei GLSLVertexBufferShortIndicesState::GetVerticesCount() const
     {
         return m_indices->size();
     }
@@ -182,7 +177,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferByteIndicesState
     
-    GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLubyte>(rIndices);
         
@@ -194,7 +189,7 @@ namespace GLRenderer
         delete m_indices;
     }
     
-    GLsizei GLSLVertexBufferByteIndicesState::GetElementsCount() const
+    GLsizei GLSLVertexBufferByteIndicesState::GetVerticesCount() const
     {
         return m_indices->size();
     }
@@ -220,12 +215,12 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferState
     
-    GLSLVertexBufferState::GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferState::GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer): m_vertexBuffer(pVertexBuffer)
     {
         ResetDrawCount();
     }
     
-    GLsizei GLSLVertexBufferState::GetElementsCount() const
+    GLsizei GLSLVertexBufferState::GetVerticesCount() const
     {
         return m_vertexBuffer->GetElementsCount();
     }
@@ -249,7 +244,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayIndexBufferState
     
-    GLSLVertexArrayIndexBufferState::GLSLVertexArrayIndexBufferState(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate), m_indexBuffer(pIndexBuffer)
+    GLSLVertexArrayIndexBufferState::GLSLVertexArrayIndexBufferState(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer): m_indexBuffer(pIndexBuffer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
@@ -261,7 +256,7 @@ namespace GLRenderer
         delete m_vertexArray;
     }
     
-    GLsizei GLSLVertexArrayIndexBufferState::GetElementsCount() const
+    GLsizei GLSLVertexArrayIndexBufferState::GetVerticesCount() const
     {
         return m_indexBuffer->GetElementsCount();
     }
@@ -287,7 +282,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayShortIndicesState
     
-    GLSLVertexArrayShortIndicesState::GLSLVertexArrayShortIndicesState(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
+    GLSLVertexArrayShortIndicesState::GLSLVertexArrayShortIndicesState(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLushort>(rIndices);
@@ -301,7 +296,7 @@ namespace GLRenderer
         delete m_indices;
     }
     
-    GLsizei GLSLVertexArrayShortIndicesState::GetElementsCount() const
+    GLsizei GLSLVertexArrayShortIndicesState::GetVerticesCount() const
     {
         return m_indices->size();
     }
@@ -327,7 +322,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayByteIndicesState
     
-    GLSLVertexArrayByteIndicesState::GLSLVertexArrayByteIndicesState(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
+    GLSLVertexArrayByteIndicesState::GLSLVertexArrayByteIndicesState(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLubyte>(rIndices);
@@ -341,7 +336,7 @@ namespace GLRenderer
         delete m_indices;
     }
     
-    GLsizei GLSLVertexArrayByteIndicesState::GetElementsCount() const
+    GLsizei GLSLVertexArrayByteIndicesState::GetVerticesCount() const
     {
         return m_indices->size();
     }
@@ -366,7 +361,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayState
     
-    GLSLVertexArrayState::GLSLVertexArrayState(GLSLVertexArray &rVertexArray, GLSLDrawingStateDelegate *pDelegate): GLSLDrawingState(pDelegate)
+    GLSLVertexArrayState::GLSLVertexArrayState(GLSLVertexArray &rVertexArray)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
@@ -378,7 +373,7 @@ namespace GLRenderer
         delete m_vertexArray;
     }
     
-    GLsizei GLSLVertexArrayState::GetElementsCount() const
+    GLsizei GLSLVertexArrayState::GetVerticesCount() const
     {
         return m_vertexArray->GetVerticesCount();
     }

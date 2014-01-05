@@ -22,26 +22,15 @@ namespace GLRenderer
     class GLSLIndexBuffer;
     
     
-#pragma mark - GLSLDrawingStateDelegate
-    
-    class GLSLDrawingStateDelegate
-    {
-    public:
-        virtual void PerformAttributesInitialization(GLvoid *pData = NULL) const = 0;
-    };
-    
-    
     
 #pragma mark - GLSLDrawingState
     
     class GLSLDrawingState
     {
     public:
-        GLSLDrawingState(GLSLDrawingStateDelegate *pDelegate);
+        GLSLDrawingState();
         GLSLDrawingState(const GLSLDrawingState &rDrawingState) = delete;
         virtual ~GLSLDrawingState();
-        
-        GLSLDrawingStateDelegate * GetDelegate() const;
         
         void SetRenderMode(GLSL_RENDER_MODE renderMode);
         GLSL_RENDER_MODE GetRenderMode() const;
@@ -56,13 +45,10 @@ namespace GLRenderer
         void ResetDrawCount();
         void ResetStartDrawIndexAndDrawElementsCount();
         
-        // TODO: Why elements? Maybe should be renamed
-        virtual GLsizei GetElementsCount() const = 0;
+        virtual GLsizei GetVerticesCount() const = 0;
         virtual void PerformDrawing() const = 0;
         
     private:
-        GLSLDrawingStateDelegate *m_delegate;
-        
         GLSL_RENDER_MODE m_renderMode;
         GLint m_startDrawIndex;
         GLsizei m_drawElementsCount;
@@ -75,9 +61,9 @@ namespace GLRenderer
     class GLSLVertexBufferIndexBufferState: public GLSLDrawingState
     {
     public:
-        GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
@@ -92,10 +78,10 @@ namespace GLRenderer
     class GLSLVertexBufferShortIndicesState: public GLSLDrawingState
     {
     public:
-        GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
         ~GLSLVertexBufferShortIndicesState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
@@ -110,10 +96,10 @@ namespace GLRenderer
     class GLSLVertexBufferByteIndicesState: public GLSLDrawingState
     {
     public:
-        GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
         ~GLSLVertexBufferByteIndicesState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
@@ -128,9 +114,9 @@ namespace GLRenderer
     class GLSLVertexBufferState: public GLSLDrawingState
     {
     public:
-        GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer);
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
@@ -144,11 +130,10 @@ namespace GLRenderer
     class GLSLVertexArrayIndexBufferState: public GLSLDrawingState
     {
     public:
-        // TODO: All this parameters can be wrapped in a single object. For example GLSLVertexData. Then pass GLSLVertexData pointer instead
-        GLSLVertexArrayIndexBufferState(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexArrayIndexBufferState(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer);
         ~GLSLVertexArrayIndexBufferState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
@@ -163,11 +148,10 @@ namespace GLRenderer
     class GLSLVertexArrayShortIndicesState: public GLSLDrawingState
     {
     public:
-        // TODO: All this parameters can be wrapped in a single object. For example GLSLVertexData. Then pass GLSLVertexData pointer instead
-        GLSLVertexArrayShortIndicesState(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexArrayShortIndicesState(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices);
         ~GLSLVertexArrayShortIndicesState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
@@ -182,11 +166,10 @@ namespace GLRenderer
     class GLSLVertexArrayByteIndicesState: public GLSLDrawingState
     {
     public:
-        // TODO: All this parameters can be wrapped in a single object. For example GLSLVertexData. Then pass GLSLVertexData pointer instead
-        GLSLVertexArrayByteIndicesState(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexArrayByteIndicesState(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices);
         ~GLSLVertexArrayByteIndicesState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
@@ -201,11 +184,10 @@ namespace GLRenderer
     class GLSLVertexArrayState: public GLSLDrawingState
     {
     public:
-        // TODO: All this parameters can be wrapped in a single object. For example GLSLVertexData. Then pass GLSLVertexData pointer instead
-        GLSLVertexArrayState(GLSLVertexArray &rVertexArray, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexArrayState(GLSLVertexArray &rVertexArray);
         ~GLSLVertexArrayState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
@@ -219,15 +201,14 @@ namespace GLRenderer
     class GLSLVertexArraysIndexBufferState: public GLSLDrawingState
     {
     public:
-        // TODO: All this parameters can be wrapped in a single object. For example GLSLVertexData. Then pass vector<GLSLVertexData *> instead
-        GLSLVertexArraysIndexBufferState(vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexArraysIndexBufferState(vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer);
         ~GLSLVertexArraysIndexBufferState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
-        vector<GLSLVertexArray *> m_vertexArrays;
+        vector<GLSLVertexArray *> *m_vertexArrays;
         GLSLIndexBuffer *m_indexBuffer;
     };
     
@@ -238,15 +219,14 @@ namespace GLRenderer
     class GLSLVertexArraysShortIndicesState: public GLSLDrawingState
     {
     public:
-        // TODO: All this parameters can be wrapped in a single object. For example GLSLVertexData. Then pass vector<GLSLVertexData *> instead
-        GLSLVertexArraysShortIndicesState(vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexArraysShortIndicesState(vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices);
         ~GLSLVertexArraysShortIndicesState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
-        vector<GLSLVertexArray *> m_vertexArrays;
+        vector<GLSLVertexArray *> *m_vertexArrays;
         vector<GLushort> *m_indices;
     };
     
@@ -257,15 +237,14 @@ namespace GLRenderer
     class GLSLVertexArraysByteIndicesState: public GLSLDrawingState
     {
     public:
-        // TODO: All this parameters can be wrapped in a single object. For example GLSLVertexData. Then pass vector<GLSLVertexData *> instead
-        GLSLVertexArraysByteIndicesState(vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexArraysByteIndicesState(vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices);
         ~GLSLVertexArraysByteIndicesState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
-        vector<GLSLVertexArray *> m_vertexArrays;
+        vector<GLSLVertexArray *> *m_vertexArrays;
         vector<GLubyte> *m_indices;
     };
     
@@ -276,14 +255,13 @@ namespace GLRenderer
     class GLSLVertexArraysState: public GLSLDrawingState
     {
     public:
-        // TODO: All this parameters can be wrapped in a single object. For example GLSLVertexData. Then pass vector<GLSLVertexData *> instead
-        GLSLVertexArraysState(vector<GLSLVertexArray *> &rVertexArrays, vector<GLuint> &rElementsCounts, GLSLDrawingStateDelegate *pDelegate);
+        GLSLVertexArraysState(vector<GLSLVertexArray *> &rVertexArrays, vector<GLuint> &rElementsCounts);
         ~GLSLVertexArraysState();
         
-        GLsizei GetElementsCount() const;
+        GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
         
     private:
-        vector<GLSLVertexArray *> m_vertexArrays;
+        vector<GLSLVertexArray *> *m_vertexArrays;
     };
 }
