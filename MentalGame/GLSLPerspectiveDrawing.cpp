@@ -16,6 +16,11 @@
 
 
 
+static const GLsizei PositionSize = 3;
+static const GLsizei ColorSize = 4;
+
+
+
 namespace GLRenderer
 {
     void GLSLPerspectiveDrawing::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix) const
@@ -58,27 +63,42 @@ namespace GLRenderer
         return fragmentShaderSource;
     }
     
-    void GLSLPerspectiveDrawing::InitializeAttributes(GLvoid *pData) const
+    void GLSLPerspectiveDrawing::InitializeAttributesWithCurrentBuffer() const
     {
         GLSLAttribute *positionAttribute = GetAttributeByName("a_position");
         GLSLAttribute *colorAttribute = GetAttributeByName("a_color");
         
-        GLint positionSize = 3;
-        GLint colorSize = 4;
+        positionAttribute->SetBufferPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), 0);
+        colorAttribute->SetBufferPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), PositionSize);
+    }
+    
+    void GLSLPerspectiveDrawing::InitializeAttributesWithVertexArray(GLSLVertexArray *pVertexArray) const
+    {
+        GLSLAttribute *positionAttribute = GetAttributeByName("a_position");
+        GLSLAttribute *colorAttribute = GetAttributeByName("a_color");
         
-        if (pData)
-        {
-            GLvoid *pPosition = pData;
-            GLvoid *pColor = (GLfloat *)pData + positionSize;
-            
-            positionAttribute->SetDataPointer(positionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), pPosition);
-            colorAttribute->SetDataPointer(colorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), pColor);
-        }
-        else
-        {
-            positionAttribute->SetBufferPointer(positionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), 0);
-            colorAttribute->SetBufferPointer(colorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), sizeof(GLSLVertex1P1C::m_position));
-        }
+        GLvoid *pPosition = pVertexArray->GetData();
+        GLvoid *pColor = (GLfloat *)pPosition + PositionSize;
+        
+        GLsizei vertexSize = pVertexArray->GetVertexSize();
+        
+        positionAttribute->SetDataPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, vertexSize, pPosition);
+        colorAttribute->SetDataPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, vertexSize, pColor);
+    }
+    
+    void GLSLPerspectiveDrawing::InitializeAttributesWithVertexArrays(vector<GLSLVertexArray *> *pVertexArrays) const
+    {
+        GLSLAttribute *positionAttribute = GetAttributeByName("a_position");
+        GLSLAttribute *colorAttribute = GetAttributeByName("a_color");
+        
+        GLSLVertexArray *pPositionArray = pVertexArrays->at(0);
+        GLSLVertexArray *pColorArray = pVertexArrays->at(1);
+        
+        GLvoid *pPosition = pPositionArray->GetData();
+        GLvoid *pColor = pColorArray->GetData();
+        
+        positionAttribute->SetDataPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, 0, pPosition);
+        colorAttribute->SetDataPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, 0, pColor);
     }
     
     void GLSLPerspectiveDrawing::InitializeUniforms() const

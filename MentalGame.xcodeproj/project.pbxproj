@@ -152,8 +152,6 @@
 				B424616E182EE47800B51DB1 /* GLSLPositionColorDrawing.h */,
 				B4659E8418494AFC00D40A95 /* GLSLPerspectiveDrawing.cpp */,
 				B4659E8518494AFC00D40A95 /* GLSLPerspectiveDrawing.h */,
-				B4A98DA01879ADE900D05BBB /* GLSLProgramInitializer.cpp */,
-				B4A98DA11879ADE900D05BBB /* GLSLProgramInitializer.h */,
 			);
 			name = Drawing;
 			sourceTree = "<group>";
@@ -248,6 +246,15 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
+		B4A98DA3187C288300D05BBB /* Program Initializer */ = {
+			isa = PBXGroup;
+			children = (
+				B4A98DA01879ADE900D05BBB /* GLSLProgramInitializer.cpp */,
+				B4A98DA11879ADE900D05BBB /* GLSLProgramInitializer.h */,
+			);
+			name = "Program Initializer";
+			sourceTree = "<group>";
+		};
 		B4AFEF841809716C007846A1 /* Vertex */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +267,7 @@
 		B4D70D5E182C2EBE00771FA8 /* Program */ = {
 			isa = PBXGroup;
 			children = (
+				B4A98DA3187C288300D05BBB /* Program Initializer */,
 				B4CE1DE217DFB72C009094E8 /* GLSLProgram.cpp */,
 				B4CE1DE317DFB72C009094E8 /* GLSLProgram.h */,
 				B4CE1DE517DFBBD9009094E8 /* GLSLShader.cpp */,

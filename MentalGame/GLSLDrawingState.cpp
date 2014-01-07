@@ -31,6 +31,16 @@ namespace GLRenderer
     
 #pragma mark Public Methods
     
+    void GLSLDrawingState::SetProgramInitializer(GLSLProgramInitializer *pProgramInitializer)
+    {
+        m_programInitializer = pProgramInitializer;
+    }
+    
+    GLSLProgramInitializer * GLSLDrawingState::GetProgramInitializer() const
+    {
+        return m_programInitializer;
+    }
+    
     void GLSLDrawingState::SetRenderMode(GLSL_RENDER_MODE renderMode)
     {
         m_renderMode = renderMode;
@@ -124,7 +134,8 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         m_indexBuffer->Bind();
         
-        GetDelegate()->PerformAttributesInitialization();
+        GetProgramInitializer()->InitializeAttributesWithCurrentBuffer();
+        GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -162,7 +173,8 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->PerformAttributesInitialization();
+        GetProgramInitializer()->InitializeAttributesWithCurrentBuffer();
+        GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -200,7 +212,8 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->PerformAttributesInitialization();
+        GetProgramInitializer()->InitializeAttributesWithCurrentBuffer();
+        GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -230,7 +243,8 @@ namespace GLRenderer
     {
         m_vertexBuffer->Bind();
         
-        GetDelegate()->PerformAttributesInitialization();
+        GetProgramInitializer()->InitializeAttributesWithCurrentBuffer();
+        GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
@@ -267,7 +281,8 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
         
-        GetDelegate()->PerformAttributesInitialization(m_vertexArray->GetData());
+        GetProgramInitializer()->InitializeAttributesWithVertexArray(m_vertexArray);
+        GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -307,7 +322,8 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->PerformAttributesInitialization(m_vertexArray->GetData());
+        GetProgramInitializer()->InitializeAttributesWithVertexArray(m_vertexArray);
+        GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -347,7 +363,8 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->PerformAttributesInitialization(m_vertexArray->GetData());
+        GetProgramInitializer()->InitializeAttributesWithVertexArray(m_vertexArray);
+        GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -383,7 +400,8 @@ namespace GLRenderer
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         
-        GetDelegate()->PerformAttributesInitialization(m_vertexArray->GetData());
+        GetProgramInitializer()->InitializeAttributesWithVertexArray(m_vertexArray);
+        GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();

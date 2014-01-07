@@ -10,10 +10,3 @@
 
 
 
-namespace GLRenderer
-{
-    void GLSLProgramInitializer::InitializeUniforms() const
-    {
-        
-    }
-}

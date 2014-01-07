@@ -20,12 +20,19 @@ namespace GLRenderer
     
     
     
-    class GLSLProgramInitializer
+    class GLSLAttributeInitializer
     {
     public:
         virtual void InitializeAttributesWithCurrentBuffer() const = 0;
         virtual void InitializeAttributesWithVertexArray(GLSLVertexArray *pVertexArray) const = 0;
         virtual void InitializeAttributesWithVertexArrays(vector<GLSLVertexArray *> *pVertexArrays) const = 0;
+    };
+    
+    
+    
+    class GLSLUniformInitializer
+    {
+    public:
         virtual void InitializeUniforms() const;
     };
 }
