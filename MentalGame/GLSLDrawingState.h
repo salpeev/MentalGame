@@ -33,9 +33,6 @@ namespace GLRenderer
         GLSLDrawingState(const GLSLDrawingState &rDrawingState) = delete;
         virtual ~GLSLDrawingState();
         
-        void SetProgramInitializer(GLSLProgramInitializer *pProgramInitializer);
-        GLSLProgramInitializer * GetProgramInitializer() const;
-        
         void SetRenderMode(GLSL_RENDER_MODE renderMode);
         GLSL_RENDER_MODE GetRenderMode() const;
         
@@ -53,7 +50,6 @@ namespace GLRenderer
         virtual void PerformDrawing() const = 0;
         
     private:
-        GLSLProgramInitializer *m_programInitializer;
         GLSL_RENDER_MODE m_renderMode;
         GLint m_startDrawIndex;
         GLsizei m_drawElementsCount;

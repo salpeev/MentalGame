@@ -31,16 +31,6 @@ namespace GLRenderer
     
 #pragma mark Public Methods
     
-    void GLSLDrawingState::SetProgramInitializer(GLSLProgramInitializer *pProgramInitializer)
-    {
-        m_programInitializer = pProgramInitializer;
-    }
-    
-    GLSLProgramInitializer * GLSLDrawingState::GetProgramInitializer() const
-    {
-        return m_programInitializer;
-    }
-    
     void GLSLDrawingState::SetRenderMode(GLSL_RENDER_MODE renderMode)
     {
         m_renderMode = renderMode;

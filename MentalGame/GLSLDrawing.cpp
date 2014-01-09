@@ -40,17 +40,7 @@ namespace GLRenderer
     
 #pragma mark - Protected Methods
     
-    GLSLAttribute * GLSLDrawing::GetAttributeByName(const string &rAttributeName) const
-    {
-        GLSLAttribute *attribute = m_program->GetAttributeByName(rAttributeName);
-        return attribute;
-    }
     
-    GLSLUniform * GLSLDrawing::GetUniformByName(const string &rUniformName) const
-    {
-        GLSLUniform *uniform = m_program->GetUniformByName(rUniformName);
-        return uniform;
-    }
     
 #pragma mark - Private Methods
     
@@ -62,8 +52,6 @@ namespace GLRenderer
         GLSLProgram *pProgram = new GLSLProgram(vertexShaderSource, fragmentShaderSource);
         pProgram->Use();
         SetProgram(pProgram);
-        
-        InitializeUniforms();
     }
     
     void GLSLDrawing::GenerateProgramIfNeeded()

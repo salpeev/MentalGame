@@ -27,7 +27,7 @@ namespace GLRenderer
     
     
     
-    class GLSLDrawing: public GLSLProgramInitializer
+    class GLSLDrawing
     {
     public:
         GLSLDrawing();
@@ -37,9 +37,6 @@ namespace GLRenderer
         void Draw() const;
         
     protected:
-        GLSLAttribute * GetAttributeByName(const string &rAttributeName) const;
-        GLSLUniform * GetUniformByName(const string &rUniformName) const;
-        
         virtual string VertexShaderSource() const = 0;
         virtual string FragmentShaderSource() const = 0;
         
