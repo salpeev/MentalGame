@@ -21,7 +21,6 @@
 		B469605A17F8526F002BCF6C /* GLSLShaderValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605817F8526F002BCF6C /* GLSLShaderValue.cpp */; };
 		B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605B17F858BF002BCF6C /* GLSLVertex.cpp */; };
 		B47E8D9217DBD8E4008CE6DD /* GLRenderingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */; };
-		B4A98DA21879ADE900D05BBB /* GLSLProgramInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A98DA01879ADE900D05BBB /* GLSLProgramInitializer.cpp */; };
 		B4CE1DE417DFB72C009094E8 /* GLSLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE217DFB72C009094E8 /* GLSLProgram.cpp */; };
 		B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE517DFBBD9009094E8 /* GLSLShader.cpp */; };
 		B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */; };
@@ -30,6 +29,10 @@
 		B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F78187F3877005E78AC /* PositionColorShader.fsh */; };
 		B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */; };
 		B4D64F81187F3D3E005E78AC /* PerspectiveShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F7C187F3891005E78AC /* PerspectiveShader.fsh */; };
+		B4D64F84188179A6005E78AC /* GLSLPositionColorInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F82188179A5005E78AC /* GLSLPositionColorInitializer.cpp */; };
+		B4D64F87188179F6005E78AC /* GLSLAttributeInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F85188179F6005E78AC /* GLSLAttributeInitializer.cpp */; };
+		B4D64F8A18817A02005E78AC /* GLSLUniformInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8818817A02005E78AC /* GLSLUniformInitializer.cpp */; };
+		B4D64F8F18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8D18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp */; };
 		B4DB8F9B185343B800FD292D /* GLSLDrawingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* GLSLDrawingState.cpp */; };
 		B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971317DB671400F4A436 /* UIKit.framework */; };
 		B4E0971617DB671400F4A436 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971517DB671400F4A436 /* Foundation.framework */; };
@@ -80,8 +83,6 @@
 		B47E8D9017DBD8E4008CE6DD /* GLRenderingEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLRenderingEngine.cpp; sourceTree = "<group>"; };
 		B47E8D9117DBD8E4008CE6DD /* GLRenderingEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRenderingEngine.h; sourceTree = "<group>"; };
 		B4963F9518003B650037FC39 /* GLConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLConstants.h; sourceTree = "<group>"; };
-		B4A98DA01879ADE900D05BBB /* GLSLProgramInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLProgramInitializer.cpp; sourceTree = "<group>"; };
-		B4A98DA11879ADE900D05BBB /* GLSLProgramInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLProgramInitializer.h; sourceTree = "<group>"; };
 		B4CE1DE217DFB72C009094E8 /* GLSLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLProgram.cpp; sourceTree = "<group>"; };
 		B4CE1DE317DFB72C009094E8 /* GLSLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLProgram.h; sourceTree = "<group>"; };
 		B4CE1DE517DFBBD9009094E8 /* GLSLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLShader.cpp; sourceTree = "<group>"; };
@@ -94,6 +95,14 @@
 		B4D64F78187F3877005E78AC /* PositionColorShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.fsh; sourceTree = "<group>"; };
 		B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PerspectiveShader.vsh; sourceTree = "<group>"; };
 		B4D64F7C187F3891005E78AC /* PerspectiveShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PerspectiveShader.fsh; sourceTree = "<group>"; };
+		B4D64F82188179A5005E78AC /* GLSLPositionColorInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLPositionColorInitializer.cpp; sourceTree = "<group>"; };
+		B4D64F83188179A5005E78AC /* GLSLPositionColorInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLPositionColorInitializer.h; sourceTree = "<group>"; };
+		B4D64F85188179F6005E78AC /* GLSLAttributeInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLAttributeInitializer.cpp; sourceTree = "<group>"; };
+		B4D64F86188179F6005E78AC /* GLSLAttributeInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLAttributeInitializer.h; sourceTree = "<group>"; };
+		B4D64F8818817A02005E78AC /* GLSLUniformInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLUniformInitializer.cpp; sourceTree = "<group>"; };
+		B4D64F8918817A02005E78AC /* GLSLUniformInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLUniformInitializer.h; sourceTree = "<group>"; };
+		B4D64F8D18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLProjectionModelviewInitializer.cpp; sourceTree = "<group>"; };
+		B4D64F8E18817BCC005E78AC /* GLSLProjectionModelviewInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLProjectionModelviewInitializer.h; sourceTree = "<group>"; };
 		B4DB8F99185343B800FD292D /* GLSLDrawingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLDrawingState.cpp; sourceTree = "<group>"; };
 		B4DB8F9A185343B800FD292D /* GLSLDrawingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawingState.h; sourceTree = "<group>"; };
 		B4E0971017DB671400F4A436 /* MentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,8 +257,8 @@
 		B4A98DA3187C288300D05BBB /* Program Initializer */ = {
 			isa = PBXGroup;
 			children = (
-				B4A98DA01879ADE900D05BBB /* GLSLProgramInitializer.cpp */,
-				B4A98DA11879ADE900D05BBB /* GLSLProgramInitializer.h */,
+				B4D64F8C18817A76005E78AC /* Uniforms */,
+				B4D64F8B18817A68005E78AC /* Attributes */,
 			);
 			name = "Program Initializer";
 			sourceTree = "<group>";
@@ -261,6 +270,28 @@
 				B469605C17F858BF002BCF6C /* GLSLVertex.h */,
 			);
 			name = Vertex;
+			sourceTree = "<group>";
+		};
+		B4D64F8B18817A68005E78AC /* Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				B4D64F85188179F6005E78AC /* GLSLAttributeInitializer.cpp */,
+				B4D64F86188179F6005E78AC /* GLSLAttributeInitializer.h */,
+				B4D64F82188179A5005E78AC /* GLSLPositionColorInitializer.cpp */,
+				B4D64F83188179A5005E78AC /* GLSLPositionColorInitializer.h */,
+			);
+			name = Attributes;
+			sourceTree = "<group>";
+		};
+		B4D64F8C18817A76005E78AC /* Uniforms */ = {
+			isa = PBXGroup;
+			children = (
+				B4D64F8818817A02005E78AC /* GLSLUniformInitializer.cpp */,
+				B4D64F8918817A02005E78AC /* GLSLUniformInitializer.h */,
+				B4D64F8D18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp */,
+				B4D64F8E18817BCC005E78AC /* GLSLProjectionModelviewInitializer.h */,
+			);
+			name = Uniforms;
 			sourceTree = "<group>";
 		};
 		B4D70D5E182C2EBE00771FA8 /* Program */ = {
@@ -489,9 +520,10 @@
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
 				B4659E8618494AFC00D40A95 /* GLSLPerspectiveDrawing.cpp in Sources */,
 				B4EF847A186AE06E00234C28 /* GLSLVector.cpp in Sources */,
+				B4D64F8F18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp in Sources */,
 				B424616C182ED30000B51DB1 /* GLSLDrawing.cpp in Sources */,
 				B403F3BD17EE0D5700A2A4E8 /* GLSLAttribute.cpp in Sources */,
-				B4A98DA21879ADE900D05BBB /* GLSLProgramInitializer.cpp in Sources */,
+				B4D64F84188179A6005E78AC /* GLSLPositionColorInitializer.cpp in Sources */,
 				B4EF847D186AE07900234C28 /* GLSLMatrix.cpp in Sources */,
 				B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */,
 				B469605717F76B5E002BCF6C /* GLPoint.cpp in Sources */,
@@ -501,6 +533,7 @@
 				B457A15817F6D486004EF4E0 /* GLSLBuffer.cpp in Sources */,
 				B403F3C017F0FE0400A2A4E8 /* GLSLUniform.cpp in Sources */,
 				B4E0974417DB75DD00F4A436 /* MGOpenGLView.mm in Sources */,
+				B4D64F8A18817A02005E78AC /* GLSLUniformInitializer.cpp in Sources */,
 				B4E0974517DB75DD00F4A436 /* MGOpenGLViewController.m in Sources */,
 				B47E8D9217DBD8E4008CE6DD /* GLRenderingEngine.cpp in Sources */,
 				B408BB7817F6DD3C00CC6900 /* GLSLIndexBuffer.cpp in Sources */,
@@ -510,6 +543,7 @@
 				B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* GLSLDrawingState.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */,
+				B4D64F87188179F6005E78AC /* GLSLAttributeInitializer.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */,
 				B4CE1DF017DFD906009094E8 /* GLResourceManager.mm in Sources */,
 			);
