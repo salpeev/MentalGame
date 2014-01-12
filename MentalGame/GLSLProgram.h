@@ -36,9 +36,6 @@ namespace GLRenderer
         map<string, GLSLAttribute *> * GetAttributes() const;
         map<string, GLSLUniform *> * GetUniforms() const;
         
-        GLSLAttribute * GetAttributeByName(const string &rAttributeName) const;
-        GLSLUniform * GetUniformByName(const string &rUniformName) const;
-        
     private:
         void CreateProgram();
         bool Link();

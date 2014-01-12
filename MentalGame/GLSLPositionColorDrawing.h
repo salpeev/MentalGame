@@ -17,10 +17,5 @@ namespace GLRenderer
     private:
         string VertexShaderSource() const;
         string FragmentShaderSource() const;
-        
-        void InitializeAttributesWithCurrentBuffer() const;
-        void InitializeAttributesWithVertexArray(GLSLVertexArray *pVertexArray) const;
-        void InitializeAttributesWithVertexArrays(vector<GLSLVertexArray *> *pVertexArrays) const;
-        void InitializeUniforms() const;
     };
 }

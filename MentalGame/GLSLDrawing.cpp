@@ -19,7 +19,7 @@ namespace GLRenderer
     
 #pragma mark - Lifecycle
     
-    GLSLDrawing::GLSLDrawing(): m_program(NULL), m_drawingState(NULL)
+    GLSLDrawing::GLSLDrawing(): m_program(NULL), m_attributeInitializer(NULL), m_uniformInitializer(NULL), m_drawingState(NULL)
     {
         
     }
@@ -32,15 +32,65 @@ namespace GLRenderer
     
 #pragma mark - Public Methods
     
+    void GLSLDrawing::SetAttributeInitializer(GLSLAttributeInitializer *pAttributeinitializer)
+    {
+        m_attributeInitializer = pAttributeinitializer;
+    }
+    
+    void GLSLDrawing::SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer)
+    {
+        m_uniformInitializer = pUniformInitializer;
+    }
+    
+    void GLSLDrawing::SetDrawingState(GLRenderer::GLSLDrawingState *pDrawingState)
+    {
+        m_drawingState = pDrawingState;
+        
+        GenerateProgramIfNeeded();
+    }
+    
+    GLSLAttributeInitializer * GLSLDrawing::GetAttributeInitializer() const
+    {
+        return m_attributeInitializer;
+    }
+    
+    GLSLUniformInitializer * GLSLDrawing::GetUniformInitializer() const
+    {
+        return m_uniformInitializer;
+    }
+    
+    GLSLDrawingState * GLSLDrawing::GetDrawingState() const
+    {
+        return m_drawingState;
+    }
+    
     void GLSLDrawing::Draw() const
     {
         m_program->Use();
         m_drawingState->PerformDrawing();
     }
     
-#pragma mark - Protected Methods
+#pragma mark - GLSLProgramInitializer
     
+    void GLSLDrawing::InitializeAttributes() const
+    {
+        m_attributeInitializer->InitializeAttributes(m_program->GetAttributes());
+    }
     
+    void GLSLDrawing::InitializeAttributes(GLSLVertexArray *pVertexArray) const
+    {
+        m_attributeInitializer->InitializeAttributes(m_program->GetAttributes(), pVertexArray);
+    }
+    
+    void GLSLDrawing::InitializeAttributes(vector<GLSLVertexArray *> *pVertexArrays) const
+    {
+        m_attributeInitializer->InitializeAttributes(m_program->GetAttributes(), pVertexArrays);
+    }
+    
+    void GLSLDrawing::InitializeUniforms() const
+    {
+        m_uniformInitializer->InitializeUniforms(m_program->GetUniforms());
+    }
     
 #pragma mark - Private Methods
     
@@ -49,9 +99,7 @@ namespace GLRenderer
         string vertexShaderSource = VertexShaderSource();
         string fragmentShaderSource = FragmentShaderSource();
         
-        GLSLProgram *pProgram = new GLSLProgram(vertexShaderSource, fragmentShaderSource);
-        pProgram->Use();
-        SetProgram(pProgram);
+        m_program = new GLSLProgram(vertexShaderSource, fragmentShaderSource);
     }
     
     void GLSLDrawing::GenerateProgramIfNeeded()
@@ -60,24 +108,5 @@ namespace GLRenderer
         {
             GenerateProgram();
         }
-    }
-    
-    void GLSLDrawing::SetProgram(GLSLProgram *pProgram)
-    {
-        delete m_program;
-        m_program = pProgram;
-    }
-    
-    GLSLProgram * GLSLDrawing::GetProgram() const
-    {
-        return m_program;
-    }
-    
-    void GLSLDrawing::SetDrawingState(GLRenderer::GLSLDrawingState *pDrawingState)
-    {
-        delete m_drawingState;
-        m_drawingState = pDrawingState;
-        
-        GenerateProgramIfNeeded();
     }
 }

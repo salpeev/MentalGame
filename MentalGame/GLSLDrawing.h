@@ -14,6 +14,8 @@
 #include "GLConstants.h"
 #include "GLSLDrawingState.h"
 #include "GLSLProgramInitializer.h"
+#include "GLSLAttributeInitializer.h"
+#include "GLSLUniformInitializer.h"
 
 using namespace std;
 
@@ -27,16 +29,30 @@ namespace GLRenderer
     
     
     
-    class GLSLDrawing
+    class GLSLDrawing: GLSLProgramInitializer
     {
     public:
         GLSLDrawing();
         GLSLDrawing(const GLSLDrawing &rDrawing) = delete;
         virtual ~GLSLDrawing();
         
+        void SetAttributeInitializer(GLSLAttributeInitializer *pAttributeinitializer);
+        void SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer);
+        void SetDrawingState(GLSLDrawingState *pDrawingState);
+        
+        GLSLAttributeInitializer * GetAttributeInitializer() const;
+        GLSLUniformInitializer * GetUniformInitializer() const;
+        GLSLDrawingState * GetDrawingState() const;
+        
         void Draw() const;
         
+        void InitializeAttributes() const;
+        void InitializeAttributes(GLSLVertexArray *pVertexArray) const;
+        void InitializeAttributes(vector<GLSLVertexArray *> *pVertexArrays) const;
+        void InitializeUniforms() const;
+        
     protected:
+        // TODO: Move to interface?
         virtual string VertexShaderSource() const = 0;
         virtual string FragmentShaderSource() const = 0;
         
@@ -44,12 +60,9 @@ namespace GLRenderer
         void GenerateProgram();
         void GenerateProgramIfNeeded();
         
-        void SetProgram(GLSLProgram *pProgram);
-        GLSLProgram * GetProgram() const;
-        
-        void SetDrawingState(GLSLDrawingState *pDrawingState);
-        
         GLSLProgram *m_program;
+        GLSLAttributeInitializer *m_attributeInitializer;
+        GLSLUniformInitializer *m_uniformInitializer;
         GLSLDrawingState *m_drawingState;
     };
 }

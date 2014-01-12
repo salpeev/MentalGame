@@ -8,7 +8,6 @@
 
 #pragma once
 #include <OpenGLES/ES2/gl.h>
-#include <vector>
 #include <map>
 
 using namespace std;
@@ -24,12 +23,9 @@ namespace GLRenderer
     class GLSLUniformInitializer
     {
     public:
-        GLSLUniformInitializer(map<string, GLSLUniform *> *pUniforms);
+        virtual ~GLSLUniformInitializer();
         
-        virtual void InitializeUniforms() const;
-        
-    private:
-        map<string, GLSLUniform *> *m_uniforms;
+        virtual void InitializeUniforms(map<string, GLSLUniform *> *pUniforms) const = 0;
     };
 }
 

@@ -10,10 +10,9 @@
 
 
 
-
 namespace GLRenderer
 {
-    GLSLUniformInitializer::GLSLUniformInitializer(map<string, GLSLUniform *> *pUniforms): m_uniforms(pUniforms)
+    GLSLUniformInitializer::~GLSLUniformInitializer()
     {
         
     }

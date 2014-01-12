@@ -19,7 +19,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLDrawingState
     
-    GLSLDrawingState::GLSLDrawingState(): m_startDrawIndex(0), m_drawElementsCount(0), m_renderMode(GLSL_RENDER_MODE_LINES)
+    GLSLDrawingState::GLSLDrawingState(GLSLProgramInitializer *pProgramInitializer): m_programInitializer(pProgramInitializer), m_startDrawIndex(0), m_drawElementsCount(0), m_renderMode(GLSL_RENDER_MODE_LINES)
     {
         
     }
@@ -34,11 +34,6 @@ namespace GLRenderer
     void GLSLDrawingState::SetRenderMode(GLSL_RENDER_MODE renderMode)
     {
         m_renderMode = renderMode;
-    }
-    
-    GLSL_RENDER_MODE GLSLDrawingState::GetRenderMode() const
-    {
-        return m_renderMode;
     }
     
     void GLSLDrawingState::SetStartDrawIndex(GLint startDrawIndex)
@@ -63,11 +58,6 @@ namespace GLRenderer
         }
     }
     
-    GLint GLSLDrawingState::GetStartDrawIndex() const
-    {
-        return m_startDrawIndex;
-    }
-    
     void GLSLDrawingState::SetDrawElementsCount(GLsizei drawElementsCount)
     {
         GLint lastDrawIndex = GetStartDrawIndex() + drawElementsCount - 1;
@@ -82,9 +72,24 @@ namespace GLRenderer
         }
     }
     
+    GLSL_RENDER_MODE GLSLDrawingState::GetRenderMode() const
+    {
+        return m_renderMode;
+    }
+    
+    GLint GLSLDrawingState::GetStartDrawIndex() const
+    {
+        return m_startDrawIndex;
+    }
+    
     GLsizei GLSLDrawingState::GetDrawElementsCount() const
     {
         return m_drawElementsCount;
+    }
+    
+    GLSLProgramInitializer * GLSLDrawingState::GetProgramInitializer() const
+    {
+        return m_programInitializer;
     }
     
     void GLSLDrawingState::ResetStartDrawIndex()
@@ -108,7 +113,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLDrawingVertexBufferIndexBufferState
     
-    GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
+    GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): GLSLDrawingState(pProgramInitializer), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
     {
         ResetDrawCount();
     }
@@ -124,7 +129,7 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         m_indexBuffer->Bind();
         
-        GetProgramInitializer()->InitializeAttributesWithCurrentBuffer();
+        GetProgramInitializer()->InitializeAttributes();
         GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
@@ -140,7 +145,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferShortIndicesState
     
-    GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): GLSLDrawingState(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLushort>(rIndices);
         
@@ -163,7 +168,7 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetProgramInitializer()->InitializeAttributesWithCurrentBuffer();
+        GetProgramInitializer()->InitializeAttributes();
         GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
@@ -179,7 +184,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferByteIndicesState
     
-    GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): GLSLDrawingState(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLubyte>(rIndices);
         
@@ -202,7 +207,7 @@ namespace GLRenderer
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetProgramInitializer()->InitializeAttributesWithCurrentBuffer();
+        GetProgramInitializer()->InitializeAttributes();
         GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
@@ -218,7 +223,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferState
     
-    GLSLVertexBufferState::GLSLVertexBufferState(GLSLVertexBuffer *pVertexBuffer): m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferState::GLSLVertexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer): GLSLDrawingState(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
     {
         ResetDrawCount();
     }
@@ -233,7 +238,7 @@ namespace GLRenderer
     {
         m_vertexBuffer->Bind();
         
-        GetProgramInitializer()->InitializeAttributesWithCurrentBuffer();
+        GetProgramInitializer()->InitializeAttributes();
         GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
@@ -248,7 +253,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayIndexBufferState
     
-    GLSLVertexArrayIndexBufferState::GLSLVertexArrayIndexBufferState(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer): m_indexBuffer(pIndexBuffer)
+    GLSLVertexArrayIndexBufferState::GLSLVertexArrayIndexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer): GLSLDrawingState(pProgramInitializer), m_indexBuffer(pIndexBuffer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
@@ -271,7 +276,7 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
         
-        GetProgramInitializer()->InitializeAttributesWithVertexArray(m_vertexArray);
+        GetProgramInitializer()->InitializeAttributes(m_vertexArray);
         GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
@@ -287,7 +292,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayShortIndicesState
     
-    GLSLVertexArrayShortIndicesState::GLSLVertexArrayShortIndicesState(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices)
+    GLSLVertexArrayShortIndicesState::GLSLVertexArrayShortIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices): GLSLDrawingState(pProgramInitializer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLushort>(rIndices);
@@ -312,7 +317,7 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetProgramInitializer()->InitializeAttributesWithVertexArray(m_vertexArray);
+        GetProgramInitializer()->InitializeAttributes(m_vertexArray);
         GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
@@ -328,7 +333,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayByteIndicesState
     
-    GLSLVertexArrayByteIndicesState::GLSLVertexArrayByteIndicesState(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices)
+    GLSLVertexArrayByteIndicesState::GLSLVertexArrayByteIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices): GLSLDrawingState(pProgramInitializer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLubyte>(rIndices);
@@ -353,7 +358,7 @@ namespace GLRenderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
         
-        GetProgramInitializer()->InitializeAttributesWithVertexArray(m_vertexArray);
+        GetProgramInitializer()->InitializeAttributes(m_vertexArray);
         GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();
@@ -368,7 +373,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayState
     
-    GLSLVertexArrayState::GLSLVertexArrayState(GLSLVertexArray &rVertexArray)
+    GLSLVertexArrayState::GLSLVertexArrayState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray): GLSLDrawingState(pProgramInitializer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
@@ -390,7 +395,7 @@ namespace GLRenderer
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         
-        GetProgramInitializer()->InitializeAttributesWithVertexArray(m_vertexArray);
+        GetProgramInitializer()->InitializeAttributes(m_vertexArray);
         GetProgramInitializer()->InitializeUniforms();
         
         GLSL_RENDER_MODE renderMode = GetRenderMode();

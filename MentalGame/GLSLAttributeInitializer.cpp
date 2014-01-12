@@ -12,7 +12,7 @@
 
 namespace GLRenderer
 {
-    GLSLAttributeInitializer::GLSLAttributeInitializer(map<string, GLSLAttribute *> *pAttributes): m_attributes(pAttributes)
+    GLSLAttributeInitializer::~GLSLAttributeInitializer()
     {
         
     }

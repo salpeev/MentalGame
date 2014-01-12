@@ -25,13 +25,10 @@ namespace GLRenderer
     class GLSLAttributeInitializer
     {
     public:
-        GLSLAttributeInitializer(map<string, GLSLAttribute *> *pAttributes);
+        virtual ~GLSLAttributeInitializer();
         
-        virtual void InitializeAttributesWithCurrentBuffer() const = 0;
-        virtual void InitializeAttributesWithVertexArray(GLSLVertexArray *pVertexArray) const = 0;
-        virtual void InitializeAttributesWithVertexArrays(vector<GLSLVertexArray *> *pVertexArrays) const = 0;
-        
-    private:
-        map<string, GLSLAttribute *> *m_attributes;
+        virtual void InitializeAttributes(map<string, GLSLAttribute *> *pAttributes) const = 0;
+        virtual void InitializeAttributes(map<string, GLSLAttribute *> *pAttributes, GLSLVertexArray *pVertexArray) const = 0;
+        virtual void InitializeAttributes(map<string, GLSLAttribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const = 0;
     };
 }

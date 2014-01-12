@@ -16,8 +16,8 @@ namespace GLRenderer
     class GLSLPositionColorInitializer: public GLSLAttributeInitializer
     {
     public:
-        void InitializeAttributesWithCurrentBuffer() const;
-        void InitializeAttributesWithVertexArray(GLSLVertexArray *pVertexArray) const;
-        void InitializeAttributesWithVertexArrays(vector<GLSLVertexArray *> *pVertexArrays) const;
+        void InitializeAttributes(map<string, GLSLAttribute *> *pAttributes) const;
+        void InitializeAttributes(map<string, GLSLAttribute *> *pAttributes, GLSLVertexArray *pVertexArray) const;
+        void InitializeAttributes(map<string, GLSLAttribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const;
     };
 }
