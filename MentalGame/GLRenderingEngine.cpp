@@ -20,7 +20,6 @@
 #include "GLSLPerspectiveDrawing.h"
 #include "GLSLPositionColorInitializer.h"
 #include "GLSLProjectionModelviewInitializer.h"
-#include "GLSLProgramInitializer.h"
 
 using namespace std;
 

@@ -9,9 +9,8 @@
 #pragma once
 #include <OpenGLES/ES2/gl.h>
 #include <vector>
+#include <map>
 #include "GLConstants.h"
-#include "GLSLVertexArray.h"
-#include "GLSLProgramInitializer.h"
 
 using namespace std;
 
@@ -21,6 +20,11 @@ namespace GLRenderer
 {
     class GLSLVertexBuffer;
     class GLSLIndexBuffer;
+    class GLSLVertexArray;
+    class GLSLAttributeInitializer;
+    class GLSLUniformInitializer;
+    class GLSLAttribute;
+    class GLSLUniform;
     
     
     
@@ -29,28 +33,38 @@ namespace GLRenderer
     class GLSLDrawRequest
     {
     public:
-        GLSLDrawRequest(GLSLProgramInitializer *pProgramInitializer);
+        GLSLDrawRequest();
         GLSLDrawRequest(const GLSLDrawRequest &rDrawRequest) = delete;
         virtual ~GLSLDrawRequest();
         
+        void SetAttributeInitializer(GLSLAttributeInitializer *pAttributeInitializer);
+        void SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer);
         void SetRenderMode(GLSL_RENDER_MODE renderMode);
         void SetStartDrawIndex(GLint startDrawIndex);
         void SetDrawElementsCount(GLsizei drawElementsCount);
         
+        GLSLAttributeInitializer * GetAttributeInitializer() const;
+        GLSLUniformInitializer * GetUniformInitializer() const;
         GLSL_RENDER_MODE GetRenderMode() const;
         GLint GetStartDrawIndex() const;
         GLsizei GetDrawElementsCount() const;
-        GLSLProgramInitializer * GetProgramInitializer() const;
         
         void ResetStartDrawIndex();
         void ResetDrawCount();
         void ResetStartDrawIndexAndDrawElementsCount();
         
+        void Draw(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        
         virtual GLsizei GetVerticesCount() const = 0;
-        virtual void PerformDrawing() const = 0;
+        
+    protected:
+        virtual void Activate() const = 0;
+        virtual void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const = 0;
+        virtual void Draw() const = 0;
         
     private:
-        GLSLProgramInitializer *m_programInitializer;
+        GLSLAttributeInitializer *m_attributeInitializer;
+        GLSLUniformInitializer *m_uniformInitalizer;
         GLSL_RENDER_MODE m_renderMode;
         GLint m_startDrawIndex;
         GLsizei m_drawElementsCount;
@@ -63,10 +77,14 @@ namespace GLRenderer
     class GLSLVertexBufferIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
+        GLSLVertexBufferIndexBufferRequest(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         GLSLVertexBuffer *m_vertexBuffer;
@@ -80,11 +98,15 @@ namespace GLRenderer
     class GLSLVertexBufferShortIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
+        GLSLVertexBufferShortIndicesRequest(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
         ~GLSLVertexBufferShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         GLSLVertexBuffer *m_vertexBuffer;
@@ -98,11 +120,15 @@ namespace GLRenderer
     class GLSLVertexBufferByteIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
+        GLSLVertexBufferByteIndicesRequest(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
         ~GLSLVertexBufferByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         GLSLVertexBuffer *m_vertexBuffer;
@@ -116,10 +142,14 @@ namespace GLRenderer
     class GLSLVertexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer);
+        GLSLVertexBufferRequest(GLSLVertexBuffer *pVertexBuffer);
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         GLSLVertexBuffer *m_vertexBuffer;
@@ -132,11 +162,15 @@ namespace GLRenderer
     class GLSLVertexArrayIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer);
+        GLSLVertexArrayIndexBufferRequest(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer);
         ~GLSLVertexArrayIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         GLSLVertexArray *m_vertexArray;
@@ -150,11 +184,15 @@ namespace GLRenderer
     class GLSLVertexArrayShortIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices);
+        GLSLVertexArrayShortIndicesRequest(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices);
         ~GLSLVertexArrayShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         GLSLVertexArray *m_vertexArray;
@@ -168,11 +206,15 @@ namespace GLRenderer
     class GLSLVertexArrayByteIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices);
+        GLSLVertexArrayByteIndicesRequest(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices);
         ~GLSLVertexArrayByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         GLSLVertexArray *m_vertexArray;
@@ -186,11 +228,15 @@ namespace GLRenderer
     class GLSLVertexArrayRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray);
+        GLSLVertexArrayRequest(GLSLVertexArray &rVertexArray);
         ~GLSLVertexArrayRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         GLSLVertexArray *m_vertexArray;
@@ -203,11 +249,10 @@ namespace GLRenderer
     class GLSLVertexArraysIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer);
+        GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer);
         ~GLSLVertexArraysIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
         
     private:
         vector<GLSLVertexArray *> *m_vertexArrays;
@@ -221,11 +266,15 @@ namespace GLRenderer
     class GLSLVertexArraysShortIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices);
+        GLSLVertexArraysShortIndicesRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices);
         ~GLSLVertexArraysShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         vector<GLSLVertexArray *> *m_vertexArrays;
@@ -239,11 +288,15 @@ namespace GLRenderer
     class GLSLVertexArraysByteIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices);
+        GLSLVertexArraysByteIndicesRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices);
         ~GLSLVertexArraysByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         vector<GLSLVertexArray *> *m_vertexArrays;
@@ -257,11 +310,15 @@ namespace GLRenderer
     class GLSLVertexArraysRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysRequest(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLuint> &rElementsCounts);
+        GLSLVertexArraysRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLuint> &rElementsCounts);
         ~GLSLVertexArraysRequest();
         
         GLsizei GetVerticesCount() const;
-        void PerformDrawing() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         vector<GLSLVertexArray *> *m_vertexArrays;

@@ -33,7 +33,6 @@
 		B4D64F87188179F6005E78AC /* GLSLAttributeInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F85188179F6005E78AC /* GLSLAttributeInitializer.cpp */; };
 		B4D64F8A18817A02005E78AC /* GLSLUniformInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8818817A02005E78AC /* GLSLUniformInitializer.cpp */; };
 		B4D64F8F18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8D18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp */; };
-		B4D64F921882ADFD005E78AC /* GLSLProgramInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F901882ADFD005E78AC /* GLSLProgramInitializer.cpp */; };
 		B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */; };
 		B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971317DB671400F4A436 /* UIKit.framework */; };
 		B4E0971617DB671400F4A436 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971517DB671400F4A436 /* Foundation.framework */; };
@@ -104,8 +103,6 @@
 		B4D64F8918817A02005E78AC /* GLSLUniformInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLUniformInitializer.h; sourceTree = "<group>"; };
 		B4D64F8D18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLProjectionModelviewInitializer.cpp; sourceTree = "<group>"; };
 		B4D64F8E18817BCC005E78AC /* GLSLProjectionModelviewInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLProjectionModelviewInitializer.h; sourceTree = "<group>"; };
-		B4D64F901882ADFD005E78AC /* GLSLProgramInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLProgramInitializer.cpp; sourceTree = "<group>"; };
-		B4D64F911882ADFD005E78AC /* GLSLProgramInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLProgramInitializer.h; sourceTree = "<group>"; };
 		B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLDrawRequest.cpp; sourceTree = "<group>"; };
 		B4DB8F9A185343B800FD292D /* GLSLDrawRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawRequest.h; sourceTree = "<group>"; };
 		B4E0971017DB671400F4A436 /* MentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,8 +259,6 @@
 			children = (
 				B4D64F8B18817A68005E78AC /* Attributes */,
 				B4D64F8C18817A76005E78AC /* Uniforms */,
-				B4D64F901882ADFD005E78AC /* GLSLProgramInitializer.cpp */,
-				B4D64F911882ADFD005E78AC /* GLSLProgramInitializer.h */,
 			);
 			name = "Program Initializer";
 			sourceTree = "<group>";
@@ -545,7 +540,6 @@
 				B469605A17F8526F002BCF6C /* GLSLShaderValue.cpp in Sources */,
 				B4CE1DE417DFB72C009094E8 /* GLSLProgram.cpp in Sources */,
 				B4EF8494187863D900234C28 /* GLSLVertexArray.cpp in Sources */,
-				B4D64F921882ADFD005E78AC /* GLSLProgramInitializer.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */,

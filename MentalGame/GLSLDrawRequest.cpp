@@ -7,9 +7,12 @@
 //
 
 #include "GLSLDrawRequest.h"
+#include "GLLogger.h"
 #include "GLSLVertexBuffer.h"
 #include "GLSLIndexBuffer.h"
-#include "GLLogger.h"
+#include "GLSLVertexArray.h"
+#include "GLSLAttributeInitializer.h"
+#include "GLSLUniformInitializer.h"
 #include <stdlib.h>
 
 
@@ -19,7 +22,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLDrawRequest
     
-    GLSLDrawRequest::GLSLDrawRequest(GLSLProgramInitializer *pProgramInitializer): m_programInitializer(pProgramInitializer), m_startDrawIndex(0), m_drawElementsCount(0), m_renderMode(GLSL_RENDER_MODE_LINES)
+    GLSLDrawRequest::GLSLDrawRequest(): m_attributeInitializer(NULL), m_uniformInitalizer(NULL), m_renderMode(GLSL_RENDER_MODE_LINES), m_startDrawIndex(0), m_drawElementsCount(0)
     {
         
     }
@@ -30,6 +33,16 @@ namespace GLRenderer
     }
     
 #pragma mark Public Methods
+    
+    void GLSLDrawRequest::SetAttributeInitializer(GLSLAttributeInitializer *pAttributeInitializer)
+    {
+        m_attributeInitializer = pAttributeInitializer;
+    }
+    
+    void GLSLDrawRequest::SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer)
+    {
+        m_uniformInitalizer = pUniformInitializer;
+    }
     
     void GLSLDrawRequest::SetRenderMode(GLSL_RENDER_MODE renderMode)
     {
@@ -72,6 +85,16 @@ namespace GLRenderer
         }
     }
     
+    GLSLAttributeInitializer * GLSLDrawRequest::GetAttributeInitializer() const
+    {
+        return m_attributeInitializer;
+    }
+    
+    GLSLUniformInitializer * GLSLDrawRequest::GetUniformInitializer() const
+    {
+        return m_uniformInitalizer;
+    }
+    
     GLSL_RENDER_MODE GLSLDrawRequest::GetRenderMode() const
     {
         return m_renderMode;
@@ -85,11 +108,6 @@ namespace GLRenderer
     GLsizei GLSLDrawRequest::GetDrawElementsCount() const
     {
         return m_drawElementsCount;
-    }
-    
-    GLSLProgramInitializer * GLSLDrawRequest::GetProgramInitializer() const
-    {
-        return m_programInitializer;
     }
     
     void GLSLDrawRequest::ResetStartDrawIndex()
@@ -109,11 +127,18 @@ namespace GLRenderer
         ResetDrawCount();
     }
     
+    void GLSLDrawRequest::Draw(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        Activate();
+        Initialize(pAttributes, pUniforms);
+        Draw();
+    }
+    
     
     
 #pragma mark - GLSLDrawingVertexBufferIndexBufferRequest
     
-    GLSLVertexBufferIndexBufferRequest::GLSLVertexBufferIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): GLSLDrawRequest(pProgramInitializer), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
+    GLSLVertexBufferIndexBufferRequest::GLSLVertexBufferIndexBufferRequest(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
     {
         ResetDrawCount();
     }
@@ -123,15 +148,30 @@ namespace GLRenderer
         return m_indexBuffer->GetElementsCount();
     }
     
-    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexBufferIndexBufferRequest::PerformDrawing() const
+    void GLSLVertexBufferIndexBufferRequest::Activate() const
     {
         m_vertexBuffer->Bind();
         m_indexBuffer->Bind();
+    }
+    
+    void GLSLVertexBufferIndexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
-        GetProgramInitializer()->InitializeAttributes();
-        GetProgramInitializer()->InitializeUniforms();
+        if (pAttributeInitializer)
+        {
+            pAttributeInitializer->InitializeAttributes(pAttributes);
+        }
         
+        if (pUniformInitializer)
+        {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
+    }
+    
+    void GLSLVertexBufferIndexBufferRequest::Draw() const
+    {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLSL_DATA_TYPE dataType = m_indexBuffer->GetDataType();
@@ -145,7 +185,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferShortIndicesRequest
     
-    GLSLVertexBufferShortIndicesRequest::GLSLVertexBufferShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): GLSLDrawRequest(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferShortIndicesRequest::GLSLVertexBufferShortIndicesRequest(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLushort>(rIndices);
         
@@ -162,15 +202,30 @@ namespace GLRenderer
         return m_indices->size();
     }
     
-    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexBufferShortIndicesRequest::PerformDrawing() const
+    void GLSLVertexBufferShortIndicesRequest::Activate() const
     {
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
+    }
+    
+    void GLSLVertexBufferShortIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
-        GetProgramInitializer()->InitializeAttributes();
-        GetProgramInitializer()->InitializeUniforms();
+        if (pAttributeInitializer)
+        {
+            pAttributeInitializer->InitializeAttributes(pAttributes);
+        }
         
+        if (pUniformInitializer)
+        {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
+    }
+    
+    void GLSLVertexBufferShortIndicesRequest::Draw() const
+    {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
@@ -184,7 +239,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferByteIndicesRequest
     
-    GLSLVertexBufferByteIndicesRequest::GLSLVertexBufferByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): GLSLDrawRequest(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferByteIndicesRequest::GLSLVertexBufferByteIndicesRequest(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLubyte>(rIndices);
         
@@ -201,15 +256,30 @@ namespace GLRenderer
         return m_indices->size();
     }
     
-    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexBufferByteIndicesRequest::PerformDrawing() const
+    void GLSLVertexBufferByteIndicesRequest::Activate() const
     {
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
+    }
+    
+    void GLSLVertexBufferByteIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
-        GetProgramInitializer()->InitializeAttributes();
-        GetProgramInitializer()->InitializeUniforms();
+        if (pAttributeInitializer)
+        {
+            pAttributeInitializer->InitializeAttributes(pAttributes);
+        }
         
+        if (pUniformInitializer)
+        {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
+    }
+    
+    void GLSLVertexBufferByteIndicesRequest::Draw() const
+    {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
@@ -223,7 +293,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexBufferRequest
     
-    GLSLVertexBufferRequest::GLSLVertexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer): GLSLDrawRequest(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferRequest::GLSLVertexBufferRequest(GLSLVertexBuffer *pVertexBuffer): m_vertexBuffer(pVertexBuffer)
     {
         ResetDrawCount();
     }
@@ -233,14 +303,29 @@ namespace GLRenderer
         return m_vertexBuffer->GetElementsCount();
     }
     
-    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexBufferRequest::PerformDrawing() const
+    void GLSLVertexBufferRequest::Activate() const
     {
         m_vertexBuffer->Bind();
+    }
+    
+    void GLSLVertexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
-        GetProgramInitializer()->InitializeAttributes();
-        GetProgramInitializer()->InitializeUniforms();
+        if (pAttributeInitializer)
+        {
+            pAttributeInitializer->InitializeAttributes(pAttributes);
+        }
         
+        if (pUniformInitializer)
+        {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
+    }
+    
+    void GLSLVertexBufferRequest::Draw() const
+    {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
         GLuint elementsCount = GetDrawElementsCount();
@@ -253,7 +338,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayIndexBufferRequest
     
-    GLSLVertexArrayIndexBufferRequest::GLSLVertexArrayIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer): GLSLDrawRequest(pProgramInitializer), m_indexBuffer(pIndexBuffer)
+    GLSLVertexArrayIndexBufferRequest::GLSLVertexArrayIndexBufferRequest(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer): m_indexBuffer(pIndexBuffer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
@@ -270,15 +355,30 @@ namespace GLRenderer
         return m_indexBuffer->GetElementsCount();
     }
     
-    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexArrayIndexBufferRequest::PerformDrawing() const
+    void GLSLVertexArrayIndexBufferRequest::Activate() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
+    }
+    
+    void GLSLVertexArrayIndexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
-        GetProgramInitializer()->InitializeAttributes(m_vertexArray);
-        GetProgramInitializer()->InitializeUniforms();
+        if (pAttributeInitializer)
+        {
+            pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArray);
+        }
         
+        if (pUniformInitializer)
+        {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
+    }
+    
+    void GLSLVertexArrayIndexBufferRequest::Draw() const
+    {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLSL_DATA_TYPE dataType = m_indexBuffer->GetDataType();
@@ -292,7 +392,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayShortIndicesRequest
     
-    GLSLVertexArrayShortIndicesRequest::GLSLVertexArrayShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices): GLSLDrawRequest(pProgramInitializer)
+    GLSLVertexArrayShortIndicesRequest::GLSLVertexArrayShortIndicesRequest(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLushort>(rIndices);
@@ -311,15 +411,30 @@ namespace GLRenderer
         return m_indices->size();
     }
     
-    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexArrayShortIndicesRequest::PerformDrawing() const
+    void GLSLVertexArrayShortIndicesRequest::Activate() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
+    }
+    
+    void GLSLVertexArrayShortIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
-        GetProgramInitializer()->InitializeAttributes(m_vertexArray);
-        GetProgramInitializer()->InitializeUniforms();
+        if (pAttributeInitializer)
+        {
+            pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArray);
+        }
         
+        if (pUniformInitializer)
+        {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
+    }
+    
+    void GLSLVertexArrayShortIndicesRequest::Draw() const
+    {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
@@ -333,7 +448,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayByteIndicesRequest
     
-    GLSLVertexArrayByteIndicesRequest::GLSLVertexArrayByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices): GLSLDrawRequest(pProgramInitializer)
+    GLSLVertexArrayByteIndicesRequest::GLSLVertexArrayByteIndicesRequest(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLubyte>(rIndices);
@@ -352,15 +467,30 @@ namespace GLRenderer
         return m_indices->size();
     }
     
-    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexArrayByteIndicesRequest::PerformDrawing() const
+    void GLSLVertexArrayByteIndicesRequest::Activate() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
+    }
+    
+    void GLSLVertexArrayByteIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
-        GetProgramInitializer()->InitializeAttributes(m_vertexArray);
-        GetProgramInitializer()->InitializeUniforms();
+        if (pAttributeInitializer)
+        {
+            pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArray);
+        }
         
+        if (pUniformInitializer)
+        {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
+    }
+    
+    void GLSLVertexArrayByteIndicesRequest::Draw() const
+    {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
@@ -373,7 +503,7 @@ namespace GLRenderer
     
 #pragma mark - GLSLVertexArrayRequest
     
-    GLSLVertexArrayRequest::GLSLVertexArrayRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray): GLSLDrawRequest(pProgramInitializer)
+    GLSLVertexArrayRequest::GLSLVertexArrayRequest(GLSLVertexArray &rVertexArray)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
@@ -390,14 +520,29 @@ namespace GLRenderer
         return m_vertexArray->GetVerticesCount();
     }
     
-    // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexArrayRequest::PerformDrawing() const
+    void GLSLVertexArrayRequest::Activate() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
+    }
+    
+    void GLSLVertexArrayRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
-        GetProgramInitializer()->InitializeAttributes(m_vertexArray);
-        GetProgramInitializer()->InitializeUniforms();
+        if (pAttributeInitializer)
+        {
+            pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArray);
+        }
         
+        if (pUniformInitializer)
+        {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
+    }
+    
+    void GLSLVertexArrayRequest::Draw() const
+    {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
         GLuint elementsCount = GetDrawElementsCount();

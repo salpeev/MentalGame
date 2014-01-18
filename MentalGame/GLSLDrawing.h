@@ -8,14 +8,8 @@
 
 #pragma once
 #include <string>
-#include <map>
-#include <vector>
 #include <OpenGLES/ES2/gl.h>
-#include "GLConstants.h"
 #include "GLSLDrawRequest.h"
-#include "GLSLProgramInitializer.h"
-#include "GLSLAttributeInitializer.h"
-#include "GLSLUniformInitializer.h"
 
 using namespace std;
 
@@ -29,27 +23,14 @@ namespace GLRenderer
     
     
     
-    class GLSLDrawing: public GLSLProgramInitializer
+    class GLSLDrawing
     {
     public:
         GLSLDrawing();
         GLSLDrawing(const GLSLDrawing &rDrawing) = delete;
         virtual ~GLSLDrawing();
         
-        void SetAttributeInitializer(GLSLAttributeInitializer *pAttributeinitializer);
-        void SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer);
-        void SetDrawRequest(GLSLDrawRequest *pDrawRequest);
-        
-        GLSLAttributeInitializer * GetAttributeInitializer() const;
-        GLSLUniformInitializer * GetUniformInitializer() const;
-        GLSLDrawRequest * GetDrawRequest() const;
-        
-        void Draw() const;
-        
-        void InitializeAttributes() const;
-        void InitializeAttributes(GLSLVertexArray *pVertexArray) const;
-        void InitializeAttributes(vector<GLSLVertexArray *> *pVertexArrays) const;
-        void InitializeUniforms() const;
+        void ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const;
         
     protected:
         // TODO: Move to interface?
@@ -61,8 +42,5 @@ namespace GLRenderer
         void GenerateProgramIfNeeded();
         
         GLSLProgram *m_program;
-        GLSLAttributeInitializer *m_attributeInitializer;
-        GLSLUniformInitializer *m_uniformInitializer;
-        GLSLDrawRequest *m_drawRequest;
     };
 }
