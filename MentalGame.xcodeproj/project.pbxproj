@@ -34,7 +34,7 @@
 		B4D64F8A18817A02005E78AC /* GLSLUniformInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8818817A02005E78AC /* GLSLUniformInitializer.cpp */; };
 		B4D64F8F18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8D18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp */; };
 		B4D64F921882ADFD005E78AC /* GLSLProgramInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F901882ADFD005E78AC /* GLSLProgramInitializer.cpp */; };
-		B4DB8F9B185343B800FD292D /* GLSLDrawingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* GLSLDrawingState.cpp */; };
+		B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */; };
 		B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971317DB671400F4A436 /* UIKit.framework */; };
 		B4E0971617DB671400F4A436 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971517DB671400F4A436 /* Foundation.framework */; };
 		B4E0971817DB671400F4A436 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971717DB671400F4A436 /* CoreGraphics.framework */; };
@@ -106,8 +106,8 @@
 		B4D64F8E18817BCC005E78AC /* GLSLProjectionModelviewInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLProjectionModelviewInitializer.h; sourceTree = "<group>"; };
 		B4D64F901882ADFD005E78AC /* GLSLProgramInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLProgramInitializer.cpp; sourceTree = "<group>"; };
 		B4D64F911882ADFD005E78AC /* GLSLProgramInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLProgramInitializer.h; sourceTree = "<group>"; };
-		B4DB8F99185343B800FD292D /* GLSLDrawingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLDrawingState.cpp; sourceTree = "<group>"; };
-		B4DB8F9A185343B800FD292D /* GLSLDrawingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawingState.h; sourceTree = "<group>"; };
+		B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLDrawRequest.cpp; sourceTree = "<group>"; };
+		B4DB8F9A185343B800FD292D /* GLSLDrawRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawRequest.h; sourceTree = "<group>"; };
 		B4E0971017DB671400F4A436 /* MentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E0971317DB671400F4A436 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4E0971517DB671400F4A436 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -314,8 +314,8 @@
 		B4DB8F98185343A400FD292D /* GLSLDrawingState */ = {
 			isa = PBXGroup;
 			children = (
-				B4DB8F99185343B800FD292D /* GLSLDrawingState.cpp */,
-				B4DB8F9A185343B800FD292D /* GLSLDrawingState.h */,
+				B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */,
+				B4DB8F9A185343B800FD292D /* GLSLDrawRequest.h */,
 			);
 			name = GLSLDrawingState;
 			sourceTree = "<group>";
@@ -547,7 +547,7 @@
 				B4EF8494187863D900234C28 /* GLSLVertexArray.cpp in Sources */,
 				B4D64F921882ADFD005E78AC /* GLSLProgramInitializer.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */,
-				B4DB8F9B185343B800FD292D /* GLSLDrawingState.cpp in Sources */,
+				B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */,
 				B4D64F87188179F6005E78AC /* GLSLAttributeInitializer.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */,

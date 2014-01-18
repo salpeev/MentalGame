@@ -19,7 +19,7 @@ namespace GLRenderer
     
 #pragma mark - Lifecycle
     
-    GLSLDrawing::GLSLDrawing(): m_program(NULL), m_attributeInitializer(NULL), m_uniformInitializer(NULL), m_drawingState(NULL)
+    GLSLDrawing::GLSLDrawing(): m_program(NULL), m_attributeInitializer(NULL), m_uniformInitializer(NULL), m_drawRequest(NULL)
     {
         
     }
@@ -27,7 +27,7 @@ namespace GLRenderer
     GLSLDrawing::~GLSLDrawing()
     {
         delete m_program;
-        delete m_drawingState;
+        delete m_drawRequest;
     }
     
 #pragma mark - Public Methods
@@ -42,9 +42,9 @@ namespace GLRenderer
         m_uniformInitializer = pUniformInitializer;
     }
     
-    void GLSLDrawing::SetDrawingState(GLRenderer::GLSLDrawingState *pDrawingState)
+    void GLSLDrawing::SetDrawRequest(GLSLDrawRequest *pDrawRequest)
     {
-        m_drawingState = pDrawingState;
+        m_drawRequest = pDrawRequest;
         
         GenerateProgramIfNeeded();
     }
@@ -59,15 +59,15 @@ namespace GLRenderer
         return m_uniformInitializer;
     }
     
-    GLSLDrawingState * GLSLDrawing::GetDrawingState() const
+    GLSLDrawRequest * GLSLDrawing::GetDrawRequest() const
     {
-        return m_drawingState;
+        return m_drawRequest;
     }
     
     void GLSLDrawing::Draw() const
     {
         m_program->Use();
-        m_drawingState->PerformDrawing();
+        m_drawRequest->PerformDrawing();
     }
     
 #pragma mark - GLSLProgramInitializer

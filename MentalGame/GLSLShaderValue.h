@@ -25,6 +25,7 @@ namespace GLRenderer
     {
     public:
         // TODO: Probably should be initialized only with program and location, another values can be requested
+        // TODO: Replace type with enum
         GLSLShaderValue(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
         ~GLSLShaderValue();
         

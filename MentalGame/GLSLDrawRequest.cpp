@@ -1,12 +1,12 @@
 //
-//  GLSLDrawingState.cpp
+//  GLSLDrawRequest.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 07.12.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLDrawingState.h"
+#include "GLSLDrawRequest.h"
 #include "GLSLVertexBuffer.h"
 #include "GLSLIndexBuffer.h"
 #include "GLLogger.h"
@@ -17,26 +17,26 @@
 namespace GLRenderer
 {
     
-#pragma mark - GLSLDrawingState
+#pragma mark - GLSLDrawRequest
     
-    GLSLDrawingState::GLSLDrawingState(GLSLProgramInitializer *pProgramInitializer): m_programInitializer(pProgramInitializer), m_startDrawIndex(0), m_drawElementsCount(0), m_renderMode(GLSL_RENDER_MODE_LINES)
+    GLSLDrawRequest::GLSLDrawRequest(GLSLProgramInitializer *pProgramInitializer): m_programInitializer(pProgramInitializer), m_startDrawIndex(0), m_drawElementsCount(0), m_renderMode(GLSL_RENDER_MODE_LINES)
     {
         
     }
     
-    GLSLDrawingState::~GLSLDrawingState()
+    GLSLDrawRequest::~GLSLDrawRequest()
     {
         
     }
     
 #pragma mark Public Methods
     
-    void GLSLDrawingState::SetRenderMode(GLSL_RENDER_MODE renderMode)
+    void GLSLDrawRequest::SetRenderMode(GLSL_RENDER_MODE renderMode)
     {
         m_renderMode = renderMode;
     }
     
-    void GLSLDrawingState::SetStartDrawIndex(GLint startDrawIndex)
+    void GLSLDrawRequest::SetStartDrawIndex(GLint startDrawIndex)
     {
         if (startDrawIndex < GetVerticesCount())
         {
@@ -58,7 +58,7 @@ namespace GLRenderer
         }
     }
     
-    void GLSLDrawingState::SetDrawElementsCount(GLsizei drawElementsCount)
+    void GLSLDrawRequest::SetDrawElementsCount(GLsizei drawElementsCount)
     {
         GLint lastDrawIndex = GetStartDrawIndex() + drawElementsCount - 1;
         if (lastDrawIndex < GetVerticesCount())
@@ -72,38 +72,38 @@ namespace GLRenderer
         }
     }
     
-    GLSL_RENDER_MODE GLSLDrawingState::GetRenderMode() const
+    GLSL_RENDER_MODE GLSLDrawRequest::GetRenderMode() const
     {
         return m_renderMode;
     }
     
-    GLint GLSLDrawingState::GetStartDrawIndex() const
+    GLint GLSLDrawRequest::GetStartDrawIndex() const
     {
         return m_startDrawIndex;
     }
     
-    GLsizei GLSLDrawingState::GetDrawElementsCount() const
+    GLsizei GLSLDrawRequest::GetDrawElementsCount() const
     {
         return m_drawElementsCount;
     }
     
-    GLSLProgramInitializer * GLSLDrawingState::GetProgramInitializer() const
+    GLSLProgramInitializer * GLSLDrawRequest::GetProgramInitializer() const
     {
         return m_programInitializer;
     }
     
-    void GLSLDrawingState::ResetStartDrawIndex()
+    void GLSLDrawRequest::ResetStartDrawIndex()
     {
         SetStartDrawIndex(0);
     }
     
-    void GLSLDrawingState::ResetDrawCount()
+    void GLSLDrawRequest::ResetDrawCount()
     {
         GLsizei drawCount = GetVerticesCount() - GetStartDrawIndex();
         SetDrawElementsCount(drawCount);
     }
     
-    void GLSLDrawingState::ResetStartDrawIndexAndDrawElementsCount()
+    void GLSLDrawRequest::ResetStartDrawIndexAndDrawElementsCount()
     {
         ResetStartDrawIndex();
         ResetDrawCount();
@@ -111,20 +111,20 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLDrawingVertexBufferIndexBufferState
+#pragma mark - GLSLDrawingVertexBufferIndexBufferRequest
     
-    GLSLVertexBufferIndexBufferState::GLSLVertexBufferIndexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): GLSLDrawingState(pProgramInitializer), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
+    GLSLVertexBufferIndexBufferRequest::GLSLVertexBufferIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): GLSLDrawRequest(pProgramInitializer), m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
     {
         ResetDrawCount();
     }
     
-    GLsizei GLSLVertexBufferIndexBufferState::GetVerticesCount() const
+    GLsizei GLSLVertexBufferIndexBufferRequest::GetVerticesCount() const
     {
         return m_indexBuffer->GetElementsCount();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexBufferIndexBufferState::PerformDrawing() const
+    void GLSLVertexBufferIndexBufferRequest::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
         m_indexBuffer->Bind();
@@ -143,27 +143,27 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexBufferShortIndicesState
+#pragma mark - GLSLVertexBufferShortIndicesRequest
     
-    GLSLVertexBufferShortIndicesState::GLSLVertexBufferShortIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): GLSLDrawingState(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferShortIndicesRequest::GLSLVertexBufferShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): GLSLDrawRequest(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLushort>(rIndices);
         
         ResetDrawCount();
     }
     
-    GLSLVertexBufferShortIndicesState::~GLSLVertexBufferShortIndicesState()
+    GLSLVertexBufferShortIndicesRequest::~GLSLVertexBufferShortIndicesRequest()
     {
         delete m_indices;
     }
     
-    GLsizei GLSLVertexBufferShortIndicesState::GetVerticesCount() const
+    GLsizei GLSLVertexBufferShortIndicesRequest::GetVerticesCount() const
     {
         return m_indices->size();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexBufferShortIndicesState::PerformDrawing() const
+    void GLSLVertexBufferShortIndicesRequest::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
@@ -182,27 +182,27 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexBufferByteIndicesState
+#pragma mark - GLSLVertexBufferByteIndicesRequest
     
-    GLSLVertexBufferByteIndicesState::GLSLVertexBufferByteIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): GLSLDrawingState(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferByteIndicesRequest::GLSLVertexBufferByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): GLSLDrawRequest(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLubyte>(rIndices);
         
         ResetDrawCount();
     }
     
-    GLSLVertexBufferByteIndicesState::~GLSLVertexBufferByteIndicesState()
+    GLSLVertexBufferByteIndicesRequest::~GLSLVertexBufferByteIndicesRequest()
     {
         delete m_indices;
     }
     
-    GLsizei GLSLVertexBufferByteIndicesState::GetVerticesCount() const
+    GLsizei GLSLVertexBufferByteIndicesRequest::GetVerticesCount() const
     {
         return m_indices->size();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexBufferByteIndicesState::PerformDrawing() const
+    void GLSLVertexBufferByteIndicesRequest::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
         GLSLIndexBuffer::UnbindCurrentBuffer();
@@ -221,20 +221,20 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexBufferState
+#pragma mark - GLSLVertexBufferRequest
     
-    GLSLVertexBufferState::GLSLVertexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer): GLSLDrawingState(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
+    GLSLVertexBufferRequest::GLSLVertexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer): GLSLDrawRequest(pProgramInitializer), m_vertexBuffer(pVertexBuffer)
     {
         ResetDrawCount();
     }
     
-    GLsizei GLSLVertexBufferState::GetVerticesCount() const
+    GLsizei GLSLVertexBufferRequest::GetVerticesCount() const
     {
         return m_vertexBuffer->GetElementsCount();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexBufferState::PerformDrawing() const
+    void GLSLVertexBufferRequest::PerformDrawing() const
     {
         m_vertexBuffer->Bind();
         
@@ -251,27 +251,27 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArrayIndexBufferState
+#pragma mark - GLSLVertexArrayIndexBufferRequest
     
-    GLSLVertexArrayIndexBufferState::GLSLVertexArrayIndexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer): GLSLDrawingState(pProgramInitializer), m_indexBuffer(pIndexBuffer)
+    GLSLVertexArrayIndexBufferRequest::GLSLVertexArrayIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer): GLSLDrawRequest(pProgramInitializer), m_indexBuffer(pIndexBuffer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
         ResetDrawCount();
     }
     
-    GLSLVertexArrayIndexBufferState::~GLSLVertexArrayIndexBufferState()
+    GLSLVertexArrayIndexBufferRequest::~GLSLVertexArrayIndexBufferRequest()
     {
         delete m_vertexArray;
     }
     
-    GLsizei GLSLVertexArrayIndexBufferState::GetVerticesCount() const
+    GLsizei GLSLVertexArrayIndexBufferRequest::GetVerticesCount() const
     {
         return m_indexBuffer->GetElementsCount();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexArrayIndexBufferState::PerformDrawing() const
+    void GLSLVertexArrayIndexBufferRequest::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
@@ -290,9 +290,9 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArrayShortIndicesState
+#pragma mark - GLSLVertexArrayShortIndicesRequest
     
-    GLSLVertexArrayShortIndicesState::GLSLVertexArrayShortIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices): GLSLDrawingState(pProgramInitializer)
+    GLSLVertexArrayShortIndicesRequest::GLSLVertexArrayShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices): GLSLDrawRequest(pProgramInitializer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLushort>(rIndices);
@@ -300,19 +300,19 @@ namespace GLRenderer
         ResetDrawCount();
     }
     
-    GLSLVertexArrayShortIndicesState::~GLSLVertexArrayShortIndicesState()
+    GLSLVertexArrayShortIndicesRequest::~GLSLVertexArrayShortIndicesRequest()
     {
         delete m_vertexArray;
         delete m_indices;
     }
     
-    GLsizei GLSLVertexArrayShortIndicesState::GetVerticesCount() const
+    GLsizei GLSLVertexArrayShortIndicesRequest::GetVerticesCount() const
     {
         return m_indices->size();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexArrayShortIndicesState::PerformDrawing() const
+    void GLSLVertexArrayShortIndicesRequest::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
@@ -331,9 +331,9 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArrayByteIndicesState
+#pragma mark - GLSLVertexArrayByteIndicesRequest
     
-    GLSLVertexArrayByteIndicesState::GLSLVertexArrayByteIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices): GLSLDrawingState(pProgramInitializer)
+    GLSLVertexArrayByteIndicesRequest::GLSLVertexArrayByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices): GLSLDrawRequest(pProgramInitializer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         m_indices = new vector<GLubyte>(rIndices);
@@ -341,19 +341,19 @@ namespace GLRenderer
         ResetDrawCount();
     }
     
-    GLSLVertexArrayByteIndicesState::~GLSLVertexArrayByteIndicesState()
+    GLSLVertexArrayByteIndicesRequest::~GLSLVertexArrayByteIndicesRequest()
     {
         delete m_vertexArray;
         delete m_indices;
     }
     
-    GLsizei GLSLVertexArrayByteIndicesState::GetVerticesCount() const
+    GLsizei GLSLVertexArrayByteIndicesRequest::GetVerticesCount() const
     {
         return m_indices->size();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexArrayByteIndicesState::PerformDrawing() const
+    void GLSLVertexArrayByteIndicesRequest::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         GLSLIndexBuffer::UnbindCurrentBuffer();
@@ -371,27 +371,27 @@ namespace GLRenderer
     }
     
     
-#pragma mark - GLSLVertexArrayState
+#pragma mark - GLSLVertexArrayRequest
     
-    GLSLVertexArrayState::GLSLVertexArrayState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray): GLSLDrawingState(pProgramInitializer)
+    GLSLVertexArrayRequest::GLSLVertexArrayRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray): GLSLDrawRequest(pProgramInitializer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
         ResetDrawCount();
     }
     
-    GLSLVertexArrayState::~GLSLVertexArrayState()
+    GLSLVertexArrayRequest::~GLSLVertexArrayRequest()
     {
         delete m_vertexArray;
     }
     
-    GLsizei GLSLVertexArrayState::GetVerticesCount() const
+    GLsizei GLSLVertexArrayRequest::GetVerticesCount() const
     {
         return m_vertexArray->GetVerticesCount();
     }
     
     // TODO: Probably all PerformDrawing() methods can be refactored to eliminate duplicated code
-    void GLSLVertexArrayState::PerformDrawing() const
+    void GLSLVertexArrayRequest::PerformDrawing() const
     {
         GLSLVertexBuffer::UnbindCurrentBuffer();
         
@@ -406,12 +406,12 @@ namespace GLRenderer
         CheckError();
     }
     
-#pragma mark - GLSLRawVertexDataArraysIndexBufferState
+#pragma mark - GLSLRawVertexDataArraysIndexBufferRequest
     
-#pragma mark - GLSLRawVertexDataArraysRawShortIndicesState
+#pragma mark - GLSLRawVertexDataArraysRawShortIndicesRequest
     
-#pragma mark - GLSLRawVertexDataArraysRawByteIndicesState
+#pragma mark - GLSLRawVertexDataArraysRawByteIndicesRequest
     
-#pragma mark - GLSLRawVertexDataArraysState
+#pragma mark - GLSLRawVertexDataArraysRequest
     
 }

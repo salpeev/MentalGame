@@ -12,7 +12,7 @@
 #include <vector>
 #include <OpenGLES/ES2/gl.h>
 #include "GLConstants.h"
-#include "GLSLDrawingState.h"
+#include "GLSLDrawRequest.h"
 #include "GLSLProgramInitializer.h"
 #include "GLSLAttributeInitializer.h"
 #include "GLSLUniformInitializer.h"
@@ -29,7 +29,7 @@ namespace GLRenderer
     
     
     
-    class GLSLDrawing: GLSLProgramInitializer
+    class GLSLDrawing: public GLSLProgramInitializer
     {
     public:
         GLSLDrawing();
@@ -38,11 +38,11 @@ namespace GLRenderer
         
         void SetAttributeInitializer(GLSLAttributeInitializer *pAttributeinitializer);
         void SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer);
-        void SetDrawingState(GLSLDrawingState *pDrawingState);
+        void SetDrawRequest(GLSLDrawRequest *pDrawRequest);
         
         GLSLAttributeInitializer * GetAttributeInitializer() const;
         GLSLUniformInitializer * GetUniformInitializer() const;
-        GLSLDrawingState * GetDrawingState() const;
+        GLSLDrawRequest * GetDrawRequest() const;
         
         void Draw() const;
         
@@ -63,6 +63,6 @@ namespace GLRenderer
         GLSLProgram *m_program;
         GLSLAttributeInitializer *m_attributeInitializer;
         GLSLUniformInitializer *m_uniformInitializer;
-        GLSLDrawingState *m_drawingState;
+        GLSLDrawRequest *m_drawRequest;
     };
 }

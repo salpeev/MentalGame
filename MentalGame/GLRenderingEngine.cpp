@@ -18,6 +18,9 @@
 #include "GLSLVertex.h"
 #include "GLSLPositionColorDrawing.h"
 #include "GLSLPerspectiveDrawing.h"
+#include "GLSLPositionColorInitializer.h"
+#include "GLSLProjectionModelviewInitializer.h"
+#include "GLSLProgramInitializer.h"
 
 using namespace std;
 
@@ -34,14 +37,14 @@ namespace GLRenderer
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         Test0();
-        Test1();
-        Test2();
-        Test3();
-        Test4();
-        Test5();
-        Test6();
-        Test7();
-        Test8();
+//        Test1();
+//        Test2();
+//        Test3();
+//        Test4();
+//        Test5();
+//        Test6();
+//        Test7();
+//        Test8();
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -120,14 +123,22 @@ namespace GLRenderer
         GLSLIndexBuffer *indexBuffer = new GLSLIndexBuffer();
         indexBuffer->LoadBufferData(indexData);
         
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
+        GLSLProjectionModelviewInitializer *uniformInitizlier = new GLSLProjectionModelviewInitializer();
+        
         GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseVertexBufferWithIndexBuffer(vertexBuffer, indexBuffer);
-        drawing->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
+        
+        GLSLVertexBufferIndexBufferRequest *drawRequest = new GLSLVertexBufferIndexBufferRequest(drawing, vertexBuffer, indexBuffer);
+        drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
+        
+        drawing->SetAttributeInitializer(attribInitizlizer);
+        drawing->SetUniformInitializer(uniformInitizlier);
+        drawing->SetDrawRequest(drawRequest);
         
         m_drawings->push_back(drawing);
     }
     
-    void GLRenderingEngine::Test1() const
+    /*void GLRenderingEngine::Test1() const
     {
         GLPoint point0(0.5, -0.5, 0);
         GLPoint point1(0.5, 0.5, 0);
@@ -398,5 +409,5 @@ namespace GLRenderer
         drawing->UseVertexBufferWithIndexBuffer(vertexBuffer, indexBuffer);
         
         m_drawings->push_back(drawing);
-    }
+    }*/
 }

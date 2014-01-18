@@ -1,5 +1,5 @@
 
-varying vec4 v_color;
+varying highp vec4 v_color;
 
 
 

@@ -27,8 +27,10 @@ namespace GLRenderer
         GLSLAttribute *positionAttribute = pAttributes->at(PositionAttributeName);
         GLSLAttribute *colorAttribute = pAttributes->at(ColorAttributeName);
         
+        GLsizei colorOffset = PositionSize * sizeof(GLfloat);
+        
         positionAttribute->SetBufferPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), 0);
-        colorAttribute->SetBufferPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), PositionSize);
+        colorAttribute->SetBufferPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), colorOffset);
     }
     
     void GLSLPositionColorInitializer::InitializeAttributes(map<string, GLSLAttribute *> *pAttributes, GLSLVertexArray *pVertexArray) const

@@ -178,7 +178,8 @@ namespace GLRenderer
             GLint attributeLocation = glGetAttribLocation(m_programHandle, attributeName);
             CheckError();
             
-            GLSLAttribute *pAttribute = new GLSLAttribute(this, attributeName, attributeType, attributeSize, attributeLocation);
+            GLSL_DATA_TYPE type = (GLSL_DATA_TYPE)attributeType;
+            GLSLAttribute *pAttribute = new GLSLAttribute(this, attributeName, type, attributeSize, attributeLocation);
             pAttributes->insert(make_pair(attributeName, pAttribute));
             
             delete attributeName;
@@ -212,7 +213,7 @@ namespace GLRenderer
             GLint uniformLocation = glGetUniformLocation(m_programHandle, uniformName);
             CheckError();
             
-            GLSLUniform *pUniform = new GLSLUniform(this, uniformName, uniformType, uniformSize, uniformLocation);
+            GLSLUniform *pUniform = new GLSLUniform(this, uniformName, (GLSL_DATA_TYPE)uniformType, uniformSize, uniformLocation);
             pUniforms->insert(make_pair(uniformName, pUniform));
             
             delete uniformName;

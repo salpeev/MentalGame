@@ -1,5 +1,5 @@
 //
-//  GLSLDrawingState.h
+//  GLSLDrawRequest.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 07.12.13.
@@ -24,14 +24,14 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLDrawingState
+#pragma mark - GLSLDrawRequest
     
-    class GLSLDrawingState
+    class GLSLDrawRequest
     {
     public:
-        GLSLDrawingState(GLSLProgramInitializer *pProgramInitializer);
-        GLSLDrawingState(const GLSLDrawingState &rDrawingState) = delete;
-        virtual ~GLSLDrawingState();
+        GLSLDrawRequest(GLSLProgramInitializer *pProgramInitializer);
+        GLSLDrawRequest(const GLSLDrawRequest &rDrawRequest) = delete;
+        virtual ~GLSLDrawRequest();
         
         void SetRenderMode(GLSL_RENDER_MODE renderMode);
         void SetStartDrawIndex(GLint startDrawIndex);
@@ -58,12 +58,12 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexBufferIndexBufferState
+#pragma mark - GLSLVertexBufferIndexBufferRequest
     
-    class GLSLVertexBufferIndexBufferState: public GLSLDrawingState
+    class GLSLVertexBufferIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferIndexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
+        GLSLVertexBufferIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -75,13 +75,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexBufferShortIndicesState
+#pragma mark - GLSLVertexBufferShortIndicesRequest
     
-    class GLSLVertexBufferShortIndicesState: public GLSLDrawingState
+    class GLSLVertexBufferShortIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferShortIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
-        ~GLSLVertexBufferShortIndicesState();
+        GLSLVertexBufferShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
+        ~GLSLVertexBufferShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -93,13 +93,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexBufferByteIndicesState
+#pragma mark - GLSLVertexBufferByteIndicesRequest
     
-    class GLSLVertexBufferByteIndicesState: public GLSLDrawingState
+    class GLSLVertexBufferByteIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferByteIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
-        ~GLSLVertexBufferByteIndicesState();
+        GLSLVertexBufferByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
+        ~GLSLVertexBufferByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -111,12 +111,12 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexBufferState
+#pragma mark - GLSLVertexBufferRequest
     
-    class GLSLVertexBufferState: public GLSLDrawingState
+    class GLSLVertexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer);
+        GLSLVertexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexBuffer *pVertexBuffer);
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -127,13 +127,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArrayIndexBufferState
+#pragma mark - GLSLVertexArrayIndexBufferRequest
     
-    class GLSLVertexArrayIndexBufferState: public GLSLDrawingState
+    class GLSLVertexArrayIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayIndexBufferState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer);
-        ~GLSLVertexArrayIndexBufferState();
+        GLSLVertexArrayIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer);
+        ~GLSLVertexArrayIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -145,13 +145,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArrayShortIndicesState
+#pragma mark - GLSLVertexArrayShortIndicesRequest
     
-    class GLSLVertexArrayShortIndicesState: public GLSLDrawingState
+    class GLSLVertexArrayShortIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayShortIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices);
-        ~GLSLVertexArrayShortIndicesState();
+        GLSLVertexArrayShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices);
+        ~GLSLVertexArrayShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -163,13 +163,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArrayByteIndicesState
+#pragma mark - GLSLVertexArrayByteIndicesRequest
     
-    class GLSLVertexArrayByteIndicesState: public GLSLDrawingState
+    class GLSLVertexArrayByteIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayByteIndicesState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices);
-        ~GLSLVertexArrayByteIndicesState();
+        GLSLVertexArrayByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices);
+        ~GLSLVertexArrayByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -181,13 +181,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArrayState
+#pragma mark - GLSLVertexArrayRequest
     
-    class GLSLVertexArrayState: public GLSLDrawingState
+    class GLSLVertexArrayRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayState(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray);
-        ~GLSLVertexArrayState();
+        GLSLVertexArrayRequest(GLSLProgramInitializer *pProgramInitializer, GLSLVertexArray &rVertexArray);
+        ~GLSLVertexArrayRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -198,13 +198,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArraysIndexBufferState
+#pragma mark - GLSLVertexArraysIndexBufferRequest
     
-    class GLSLVertexArraysIndexBufferState: public GLSLDrawingState
+    class GLSLVertexArraysIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysIndexBufferState(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer);
-        ~GLSLVertexArraysIndexBufferState();
+        GLSLVertexArraysIndexBufferRequest(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer);
+        ~GLSLVertexArraysIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -216,13 +216,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArraysShortIndicesState
+#pragma mark - GLSLVertexArraysShortIndicesRequest
     
-    class GLSLVertexArraysShortIndicesState: public GLSLDrawingState
+    class GLSLVertexArraysShortIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysShortIndicesState(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices);
-        ~GLSLVertexArraysShortIndicesState();
+        GLSLVertexArraysShortIndicesRequest(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices);
+        ~GLSLVertexArraysShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -234,13 +234,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArraysByteIndicesState
+#pragma mark - GLSLVertexArraysByteIndicesRequest
     
-    class GLSLVertexArraysByteIndicesState: public GLSLDrawingState
+    class GLSLVertexArraysByteIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysByteIndicesState(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices);
-        ~GLSLVertexArraysByteIndicesState();
+        GLSLVertexArraysByteIndicesRequest(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices);
+        ~GLSLVertexArraysByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
@@ -252,13 +252,13 @@ namespace GLRenderer
     
     
     
-#pragma mark - GLSLVertexArraysState
+#pragma mark - GLSLVertexArraysRequest
     
-    class GLSLVertexArraysState: public GLSLDrawingState
+    class GLSLVertexArraysRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysState(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLuint> &rElementsCounts);
-        ~GLSLVertexArraysState();
+        GLSLVertexArraysRequest(GLSLProgramInitializer *pProgramInitializer, vector<GLSLVertexArray *> &rVertexArrays, vector<GLuint> &rElementsCounts);
+        ~GLSLVertexArraysRequest();
         
         GLsizei GetVerticesCount() const;
         void PerformDrawing() const;
