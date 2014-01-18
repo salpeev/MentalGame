@@ -30,7 +30,7 @@ namespace GLRenderer
         GLSLDrawing(const GLSLDrawing &rDrawing) = delete;
         virtual ~GLSLDrawing();
         
-        void ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const;
+        void ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest);
         
     protected:
         // TODO: Move to interface?

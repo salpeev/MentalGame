@@ -58,13 +58,13 @@ namespace GLRenderer
     
     void GLRenderingEngine::Render() const
     {
-        glClear(GL_COLOR_BUFFER_BIT);
-        
-        for (vector<GLSLDrawing *>::iterator iterator = m_drawings->begin(); iterator != m_drawings->end(); iterator++)
-        {
-            GLSLDrawing *drawing = *iterator;
-            drawing->Draw();
-        }
+//        glClear(GL_COLOR_BUFFER_BIT);
+//        
+//        for (vector<GLSLDrawing *>::iterator iterator = m_drawings->begin(); iterator != m_drawings->end(); iterator++)
+//        {
+//            GLSLDrawing *drawing = *iterator;
+////            drawing->Draw();
+//        }
     }
     
     void GLRenderingEngine::Test0() const
@@ -123,18 +123,18 @@ namespace GLRenderer
         indexBuffer->LoadBufferData(indexData);
         
         GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
-        GLSLProjectionModelviewInitializer *uniformInitizlier = new GLSLProjectionModelviewInitializer();
+//        GLSLProjectionModelviewInitializer *uniformInitizlier = new GLSLProjectionModelviewInitializer();
+        
+        GLSLVertexBufferIndexBufferRequest *drawRequest = new GLSLVertexBufferIndexBufferRequest(vertexBuffer, indexBuffer);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+//        drawRequest->SetUniformInitializer(uniformInitizlier);
+        drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
         
         GLSLDrawing *drawing = new GLSLPositionColorDrawing();
         
-        GLSLVertexBufferIndexBufferRequest *drawRequest = new GLSLVertexBufferIndexBufferRequest(drawing, vertexBuffer, indexBuffer);
-        drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
+        drawing->ExecuteDrawRequest(drawRequest);
         
-        drawing->SetAttributeInitializer(attribInitizlizer);
-        drawing->SetUniformInitializer(uniformInitizlier);
-        drawing->SetDrawRequest(drawRequest);
-        
-        m_drawings->push_back(drawing);
+//        m_drawings->push_back(drawing);
     }
     
     /*void GLRenderingEngine::Test1() const

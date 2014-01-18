@@ -28,9 +28,11 @@ namespace GLRenderer
     
 #pragma mark - Public Methods
     
-    void GLSLDrawing::ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const
+    void GLSLDrawing::ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest)
     {
+        GenerateProgramIfNeeded();
         m_program->Use();
+        pDrawRequest->Draw(m_program->GetAttributes(), m_program->GetUniforms());
     }
     
 #pragma mark - Private Methods
