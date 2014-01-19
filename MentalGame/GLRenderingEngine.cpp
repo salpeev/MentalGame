@@ -16,10 +16,10 @@
 #include "GLSLVertexBuffer.h"
 #include "GLSLIndexBuffer.h"
 #include "GLSLVertex.h"
-#include "GLSLPositionColorDrawing.h"
-#include "GLSLPerspectiveDrawing.h"
 #include "GLSLPositionColorInitializer.h"
 #include "GLSLProjectionModelviewInitializer.h"
+#include "GLSLProgramContainer.h"
+#include "GLSLDrawRequest.h"
 
 using namespace std;
 
@@ -30,8 +30,6 @@ namespace GLRenderer
     
     GLRenderingEngine::GLRenderingEngine(int width, int height)
     {
-        m_drawings = new vector<GLSLDrawing *>;
-        
         glViewport(0, 0, width, height);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
@@ -48,12 +46,7 @@ namespace GLRenderer
     
     GLRenderingEngine::~GLRenderingEngine()
     {
-        for (vector<GLSLDrawing *>::iterator iterator = m_drawings->begin(); iterator != m_drawings->end(); iterator++)
-        {
-            delete *iterator;
-        }
         
-        delete m_drawings;
     }
     
     void GLRenderingEngine::Render() const
@@ -123,16 +116,13 @@ namespace GLRenderer
         indexBuffer->LoadBufferData(indexData);
         
         GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
-//        GLSLProjectionModelviewInitializer *uniformInitizlier = new GLSLProjectionModelviewInitializer();
         
         GLSLVertexBufferIndexBufferRequest *drawRequest = new GLSLVertexBufferIndexBufferRequest(vertexBuffer, indexBuffer);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
-//        drawRequest->SetUniformInitializer(uniformInitizlier);
         drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        
-        drawing->ExecuteDrawRequest(drawRequest);
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
         
 //        m_drawings->push_back(drawing);
     }

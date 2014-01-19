@@ -28,7 +28,7 @@ namespace GLRenderer
         
     private:
         GLResourceManager(){}
-        GLResourceManager(const GLResourceManager &resourceManager);
+        GLResourceManager(const GLResourceManager &);
         GLResourceManager & operator= (const GLResourceManager &);
     };
 }

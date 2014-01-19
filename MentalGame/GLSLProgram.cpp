@@ -9,6 +9,8 @@
 #include "GLSLProgram.h"
 #include "GLConstants.h"
 #include "GLLogger.h"
+#include "GLSLAttribute.h"
+#include "GLSLUniform.h"
 #include <iostream>
 
 
@@ -44,47 +46,17 @@ namespace GLRenderer
         delete m_uniforms;
     }
     
-    void GLSLProgram::Use() const
-    {
-        if (!IsUsed())
-        {
-            glUseProgram(m_programHandle);
-            CheckError();
-        }
-    }
+#pragma mark - Public Mehods
     
-    bool GLSLProgram::IsLinked() const
+    void GLSLProgram::ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const
     {
-        GLint linkStatus;
-        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_LINK_STATUS, &linkStatus);
-        CheckError();
-        
-        return (linkStatus == GLSL_TRUE);
-    }
-    
-    bool GLSLProgram::IsUsed() const
-    {
-        GLint currentProgramHandle;
-        glGetIntegerv(GLSL_GET_CURRENT_PROGRAM, &currentProgramHandle);
-        CheckError();
-        
-        bool used = (currentProgramHandle == m_programHandle);
-        return used;
+        Use();
+        pDrawRequest->Draw(m_attributes, m_uniforms);
     }
     
     GLuint GLSLProgram::GetProgramHandle() const
     {
         return m_programHandle;
-    }
-    
-    map<string, GLSLAttribute *> * GLSLProgram::GetAttributes() const
-    {
-        return m_attributes;
-    }
-    
-    map<string, GLSLUniform *> * GLSLProgram::GetUniforms() const
-    {
-        return m_uniforms;
     }
     
 #pragma mark - Private Methods
@@ -99,7 +71,7 @@ namespace GLRenderer
         }
     }
     
-    bool GLSLProgram::Link()
+    void GLSLProgram::Link()
     {
         glAttachShader(m_programHandle, m_vertexShader->GetShaderHandle());
         CheckError();
@@ -124,13 +96,20 @@ namespace GLRenderer
                 free(infoLog);
             }
             
-            return false;
+            return;
         }
         
         ExtractAttributes();
         ExtractUniforms();
-        
-        return true;
+    }
+    
+    void GLSLProgram::Use() const
+    {
+        if (!IsUsed())
+        {
+            glUseProgram(m_programHandle);
+            CheckError();
+        }
     }
     
     void GLSLProgram::Invalidate()
@@ -141,16 +120,6 @@ namespace GLRenderer
             
             CheckError();
         }
-    }
-    
-    bool GLSLProgram::IsInvalidated() const
-    {
-        GLint deleteStatus;
-        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_DELETE_STATUS, &deleteStatus);
-        
-        CheckError();
-        
-        return (deleteStatus == GLSL_TRUE);
     }
     
     void GLSLProgram::ExtractAttributes()
@@ -185,7 +154,7 @@ namespace GLRenderer
             delete attributeName;
         }
         
-        SetAttributes(pAttributes);
+        m_attributes = pAttributes;
     }
     
     void GLSLProgram::ExtractUniforms()
@@ -219,18 +188,35 @@ namespace GLRenderer
             delete uniformName;
         }
         
-        SetUniforms(pUniforms);
-    }
-    
-    void GLSLProgram::SetAttributes(map<string, GLRenderer::GLSLAttribute *> *pAttributes)
-    {
-        delete m_attributes;
-        m_attributes = pAttributes;
-    }
-    
-    void GLSLProgram::SetUniforms(map<string, GLRenderer::GLSLUniform *> *pUniforms)
-    {
-        delete m_uniforms;
         m_uniforms = pUniforms;
+    }
+    
+    bool GLSLProgram::IsLinked() const
+    {
+        GLint linkStatus;
+        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_LINK_STATUS, &linkStatus);
+        CheckError();
+        
+        return (linkStatus == GLSL_TRUE);
+    }
+    
+    bool GLSLProgram::IsUsed() const
+    {
+        GLint currentProgramHandle;
+        glGetIntegerv(GLSL_GET_CURRENT_PROGRAM, &currentProgramHandle);
+        CheckError();
+        
+        bool used = (currentProgramHandle == m_programHandle);
+        return used;
+    }
+    
+    bool GLSLProgram::IsInvalidated() const
+    {
+        GLint deleteStatus;
+        glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_DELETE_STATUS, &deleteStatus);
+        
+        CheckError();
+        
+        return (deleteStatus == GLSL_TRUE);
     }
 }

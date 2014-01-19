@@ -8,9 +8,7 @@
 
 #pragma once
 #include "GLSLShader.h"
-#include "GLSLAttribute.h"
-#include "GLSLUniform.h"
-#include "GLSLVertexBuffer.h"
+#include "GLSLDrawRequest.h"
 #include <map>
 
 using namespace std;
@@ -19,6 +17,8 @@ using namespace std;
 
 namespace GLRenderer
 {
+    class GLSLAttribute;
+    class GLSLUniform;
     
     class GLSLProgram
     {
@@ -27,24 +27,21 @@ namespace GLRenderer
         GLSLProgram(const GLSLProgram *program) = delete;
         ~GLSLProgram();
         
-        void Use() const;
+        void ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const;
         
-        bool IsLinked() const;
-        bool IsUsed() const;
         GLuint GetProgramHandle() const;
-        
-        map<string, GLSLAttribute *> * GetAttributes() const;
-        map<string, GLSLUniform *> * GetUniforms() const;
         
     private:
         void CreateProgram();
-        bool Link();
+        void Link();
+        void Use() const;
         void Invalidate();
-        bool IsInvalidated() const;
         void ExtractAttributes();
         void ExtractUniforms();
-        void SetAttributes(map<string, GLSLAttribute *> *pAttributes);
-        void SetUniforms(map<string, GLSLUniform *> *pUniforms);
+        
+        bool IsLinked() const;
+        bool IsUsed() const;
+        bool IsInvalidated() const;
         
         GLuint m_programHandle;
         
