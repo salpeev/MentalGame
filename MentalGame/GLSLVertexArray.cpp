@@ -12,7 +12,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     GLSLVertexArray::GLSLVertexArray(GLvoid *pData, GLsizei vertexSize, GLuint verticesCount): m_vertexSize(vertexSize), m_verticesCount(verticesCount)
     {

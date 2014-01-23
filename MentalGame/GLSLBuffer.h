@@ -12,14 +12,14 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLSLBuffer
     {
     public:
         GLSLBuffer();
         GLSLBuffer(const GLSLBuffer &rBuffer) = delete;
-        ~GLSLBuffer();
+        virtual ~GLSLBuffer();
         
         GLuint GetElementsCount() const;
         GLsizei GetElementSize() const;

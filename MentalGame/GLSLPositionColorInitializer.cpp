@@ -20,7 +20,7 @@ static const GLsizei ColorSize = 4;
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     void GLSLPositionColorInitializer::InitializeAttributes(map<string, GLSLAttribute *> *pAttributes) const
     {

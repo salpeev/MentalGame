@@ -11,7 +11,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     void GLSLVertexBuffer::LoadBufferData(vector<float> &rBufferData, GLSL_BUFFER_USAGE usage)
     {

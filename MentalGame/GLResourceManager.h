@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLResourceManager
     {

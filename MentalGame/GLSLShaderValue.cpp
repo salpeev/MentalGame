@@ -10,7 +10,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     GLSLShaderValue::GLSLShaderValue(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location): m_program(pProgram), m_type(type), m_size(size), m_location(location)
     {

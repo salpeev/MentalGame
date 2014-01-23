@@ -11,7 +11,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLSLUniform: public GLSLShaderValue
     {

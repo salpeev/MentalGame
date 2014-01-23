@@ -10,7 +10,7 @@
 #include <cmath>
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLSLVector2
     {

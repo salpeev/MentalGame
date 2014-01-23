@@ -15,7 +15,7 @@ using namespace std;
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLSLAttribute;
     class GLSLVertexArray;

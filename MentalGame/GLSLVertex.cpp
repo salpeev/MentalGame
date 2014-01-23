@@ -11,7 +11,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     GLSLVertex1P::GLSLVertex1P(): GLSLVertex1P(GLPoint())
     {

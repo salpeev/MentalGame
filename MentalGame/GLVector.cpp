@@ -10,7 +10,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     GLVector2::GLVector2(): GLVector2(0, 0)
     {

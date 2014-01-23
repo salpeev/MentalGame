@@ -15,7 +15,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     GLSLProgram::GLSLProgram(const string &rVertexShaderSource, const string &rFragmentShaderSource): m_attributes(NULL), m_uniforms(NULL)
     {

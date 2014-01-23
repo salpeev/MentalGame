@@ -16,7 +16,7 @@ using namespace std;
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLSLVertexBuffer;
     class GLSLIndexBuffer;

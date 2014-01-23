@@ -25,7 +25,7 @@ using namespace std;
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     
     GLRenderingEngine::GLRenderingEngine(int width, int height)
@@ -123,8 +123,6 @@ namespace GLRenderer
         
         GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
-        
-//        m_drawings->push_back(drawing);
     }
     
     /*void GLRenderingEngine::Test1() const

@@ -10,7 +10,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     GLSLAttributeInitializer::~GLSLAttributeInitializer()
     {

@@ -11,7 +11,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     GLSLBuffer::GLSLBuffer(): m_elementsCount(0), m_elementSize(0)
     {

@@ -11,7 +11,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     void GLSLIndexBuffer::LoadBufferData(vector<GLushort> &rBufferData, GLSL_BUFFER_USAGE usage)
     {

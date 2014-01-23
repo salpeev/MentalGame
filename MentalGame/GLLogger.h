@@ -10,7 +10,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     void Log(const char *formatString, ...);
     bool CheckError();

@@ -10,7 +10,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     GLPoint::GLPoint(): GLPoint(0, 0, 0)
     {

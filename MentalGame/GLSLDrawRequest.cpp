@@ -17,7 +17,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     
 #pragma mark - GLSLDrawRequest

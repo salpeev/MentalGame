@@ -14,7 +14,7 @@ using namespace std;
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     string GLResourceManager::LoadTextFileNamed(const string &fileName) const
     {

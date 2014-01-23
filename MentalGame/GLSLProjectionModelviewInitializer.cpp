@@ -16,7 +16,7 @@ static const char *ModelviewUniformName = "u_modelview";
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     void GLSLProjectionModelviewInitializer::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix)
     {
@@ -38,7 +38,7 @@ namespace GLRenderer
         return m_modelview;
     }
     
-    void GLSLProjectionModelviewInitializer::InitializeUniforms(map<string, GLRenderer::GLSLUniform *> *pUniforms) const
+    void GLSLProjectionModelviewInitializer::InitializeUniforms(map<string, GLSLUniform *> *pUniforms) const
     {
         GLSLUniform *projectionUniform = pUniforms->at(ProjectionUniformName);
         GLSLUniform *modelviewUniform = pUniforms->at(ModelviewUniformName);

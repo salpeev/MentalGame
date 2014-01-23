@@ -12,7 +12,7 @@
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
-using namespace GLRenderer;
+using namespace Renderer;
 
 
 

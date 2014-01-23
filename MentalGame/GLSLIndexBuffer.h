@@ -14,7 +14,7 @@ using namespace std;
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLSLIndexBuffer : public GLSLBuffer
     {

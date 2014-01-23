@@ -12,7 +12,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLSLProjectionModelviewInitializer: public GLSLUniformInitializer
     {

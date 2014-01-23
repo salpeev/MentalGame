@@ -12,7 +12,7 @@
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     class GLSLVertex1P
     {

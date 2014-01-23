@@ -15,7 +15,7 @@ using namespace std;
 
 
 
-namespace GLRenderer
+namespace Renderer
 {
     void Log(const char *formatString, ...)
     {
