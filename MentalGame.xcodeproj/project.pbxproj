@@ -33,6 +33,7 @@
 		B4D64F8F18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8D18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp */; };
 		B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */; };
 		B4E069D71891C11300F2E995 /* Drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4E069D51891C11300F2E995 /* Drawing.cpp */; };
+		B4E069DA1891E06200F2E995 /* PlainDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4E069D81891E06200F2E995 /* PlainDrawing.cpp */; };
 		B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971317DB671400F4A436 /* UIKit.framework */; };
 		B4E0971617DB671400F4A436 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971517DB671400F4A436 /* Foundation.framework */; };
 		B4E0971817DB671400F4A436 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971717DB671400F4A436 /* CoreGraphics.framework */; };
@@ -102,6 +103,8 @@
 		B4DB8F9A185343B800FD292D /* GLSLDrawRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawRequest.h; sourceTree = "<group>"; };
 		B4E069D51891C11300F2E995 /* Drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drawing.cpp; sourceTree = "<group>"; };
 		B4E069D61891C11300F2E995 /* Drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drawing.h; sourceTree = "<group>"; };
+		B4E069D81891E06200F2E995 /* PlainDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlainDrawing.cpp; sourceTree = "<group>"; };
+		B4E069D91891E06200F2E995 /* PlainDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainDrawing.h; sourceTree = "<group>"; };
 		B4E0971017DB671400F4A436 /* MentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E0971317DB671400F4A436 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4E0971517DB671400F4A436 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -314,6 +317,8 @@
 			children = (
 				B4E069D51891C11300F2E995 /* Drawing.cpp */,
 				B4E069D61891C11300F2E995 /* Drawing.h */,
+				B4E069D81891E06200F2E995 /* PlainDrawing.cpp */,
+				B4E069D91891E06200F2E995 /* PlainDrawing.h */,
 			);
 			name = Drawing;
 			sourceTree = "<group>";
@@ -519,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4E0972017DB671400F4A436 /* main.m in Sources */,
+				B4E069DA1891E06200F2E995 /* PlainDrawing.cpp in Sources */,
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
 				B4EF847A186AE06E00234C28 /* GLSLVector.cpp in Sources */,
 				B4D64F8F18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp in Sources */,

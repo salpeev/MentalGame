@@ -12,13 +12,33 @@
 
 namespace Renderer {
     
+    Drawing::Drawing() {
+        
+    }
+    
+    Drawing::Drawing(GLSLDrawRequest *pDrawRequest) {
+        
+    }
+    
     Drawing::~Drawing() {
         
     }
     
+#pragma mark - Protected Methods
     
-    
-    void PlainDrawing::Draw() const {
+    void Drawing::SetAttributeInitializer(GLSLAttributeInitializer *pAttributeInitializer) {
         
+    }
+    
+    void Drawing::SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer) {
+        
+    }
+    
+    GLSLAttributeInitializer * Drawing::GetAttributeInitializer() const {
+        return m_attributeInitializer;
+    }
+    
+    GLSLUniformInitializer * Drawing::GetUniformInitializer() const {
+        return m_uniformInitializer;
     }
 }
