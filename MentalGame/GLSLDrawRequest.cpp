@@ -551,12 +551,107 @@ namespace Renderer
         CheckError();
     }
     
-#pragma mark - GLSLRawVertexDataArraysIndexBufferRequest
+#pragma mark - GLSLVertexArraysIndexBufferRequest
     
-#pragma mark - GLSLRawVertexDataArraysRawShortIndicesRequest
+    GLSLVertexArraysIndexBufferRequest::GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer) {
+        
+    }
     
-#pragma mark - GLSLRawVertexDataArraysRawByteIndicesRequest
+    GLSLVertexArraysIndexBufferRequest::~GLSLVertexArraysIndexBufferRequest() {
+        
+    }
     
-#pragma mark - GLSLRawVertexDataArraysRequest
+    GLsizei GLSLVertexArraysIndexBufferRequest::GetVerticesCount() const {
+        return 0;
+    }
     
+    void GLSLVertexArraysIndexBufferRequest::Activate() const {
+        
+    }
+    
+    void GLSLVertexArraysIndexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+        
+    }
+    
+    void GLSLVertexArraysIndexBufferRequest::Draw() const {
+        
+    }
+    
+#pragma mark - GLSLVertexArraysShortIndicesRequest
+    
+    GLSLVertexArraysShortIndicesRequest::GLSLVertexArraysShortIndicesRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices) {
+        
+    }
+    
+    GLSLVertexArraysShortIndicesRequest::~GLSLVertexArraysShortIndicesRequest() {
+        
+    }
+    
+    GLsizei GLSLVertexArraysShortIndicesRequest::GetVerticesCount() const {
+        return 0;
+    }
+    
+    void GLSLVertexArraysShortIndicesRequest::Activate() const {
+        
+    }
+    
+    void GLSLVertexArraysShortIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+        
+    }
+    
+    void GLSLVertexArraysShortIndicesRequest::Draw() const {
+        
+    }
+    
+#pragma mark - GLSLVertexArraysByteIndicesRequest
+    
+    GLSLVertexArraysByteIndicesRequest::GLSLVertexArraysByteIndicesRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices) {
+        
+    }
+    
+    GLSLVertexArraysByteIndicesRequest::~GLSLVertexArraysByteIndicesRequest() {
+        
+    }
+    
+    GLsizei GLSLVertexArraysByteIndicesRequest::GetVerticesCount() const {
+        return 0;
+    }
+    
+    void GLSLVertexArraysByteIndicesRequest::Activate() const {
+        
+    }
+    
+    void GLSLVertexArraysByteIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+        
+    }
+    
+    void GLSLVertexArraysByteIndicesRequest::Draw() const {
+        
+    }
+    
+#pragma mark - GLSLVertexArraysRequest
+    
+    GLSLVertexArraysRequest::GLSLVertexArraysRequest(vector<GLSLVertexArray *> &rVertexArrays) {
+        
+    }
+    
+    GLSLVertexArraysRequest::~GLSLVertexArraysRequest() {
+        
+    }
+    
+    GLsizei GLSLVertexArraysRequest::GetVerticesCount() const {
+        return 0;
+    }
+    
+    void GLSLVertexArraysRequest::Activate() const {
+        
+    }
+    
+    void GLSLVertexArraysRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+        
+    }
+    
+    void GLSLVertexArraysRequest::Draw() const {
+        
+    }
 }

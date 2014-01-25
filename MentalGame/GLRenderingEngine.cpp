@@ -20,6 +20,7 @@
 #include "GLSLProjectionModelviewInitializer.h"
 #include "GLSLProgramContainer.h"
 #include "GLSLDrawRequest.h"
+#include "GLSLVertexArray.h"
 
 using namespace std;
 
@@ -34,14 +35,14 @@ namespace Renderer
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         Test0();
-//        Test1();
-//        Test2();
-//        Test3();
-//        Test4();
-//        Test5();
-//        Test6();
-//        Test7();
-//        Test8();
+        Test1();
+        Test2();
+        Test3();
+        Test4();
+        Test5();
+        Test6();
+        Test7();
+        Test8();
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -125,7 +126,7 @@ namespace Renderer
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
-    /*void GLRenderingEngine::Test1() const
+    void GLRenderingEngine::Test1() const
     {
         GLPoint point0(0.5, -0.5, 0);
         GLPoint point1(0.5, 0.5, 0);
@@ -147,10 +148,13 @@ namespace Renderer
         indexData.push_back(0);
         indexData.push_back(1);
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseVertexBufferWithIndices(vertexBuffer, indexData);
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
         
-        m_drawings->push_back(drawing);
+        GLSLDrawRequest *drawRequest = new GLSLVertexBufferShortIndicesRequest(vertexBuffer, indexData);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
     }
     
     void GLRenderingEngine::Test2() const
@@ -175,10 +179,13 @@ namespace Renderer
         indexData.push_back(0);
         indexData.push_back(1);
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseVertexBufferWithIndices(vertexBuffer, indexData);
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
         
-        m_drawings->push_back(drawing);
+        GLSLDrawRequest *drawRequest = new GLSLVertexBufferByteIndicesRequest(vertexBuffer, indexData);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
     }
     
     void GLRenderingEngine::Test3() const
@@ -199,10 +206,13 @@ namespace Renderer
         GLSLVertexBuffer *vertexBuffer = new GLSLVertexBuffer();
         vertexBuffer->LoadBufferData(&vertexData[0], sizeof(GLSLVertex1P1C), vertexData.size());
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseVertexBuffer(vertexBuffer);
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
         
-        m_drawings->push_back(drawing);
+        GLSLDrawRequest *drawRequest = new GLSLVertexBufferRequest(vertexBuffer);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
     }
     
     void GLRenderingEngine::Test4() const
@@ -229,10 +239,13 @@ namespace Renderer
         GLSLIndexBuffer *indexBuffer = new GLSLIndexBuffer();
         indexBuffer->LoadBufferData(indexData);
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseRawVertexDataWithIndexBuffer(vertexArray, indexBuffer);
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
         
-        m_drawings->push_back(drawing);
+        GLSLDrawRequest *drawRequest = new GLSLVertexArrayIndexBufferRequest(vertexArray, indexBuffer);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
     }
     
     void GLRenderingEngine::Test5() const
@@ -256,10 +269,13 @@ namespace Renderer
         
         GLSLVertexArray vertexArray(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseRawVertexDataWithRawIndexData(vertexArray, indexData);
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
         
-        m_drawings->push_back(drawing);
+        GLSLDrawRequest *drawRequest = new GLSLVertexArrayShortIndicesRequest(vertexArray, indexData);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
     }
     
     void GLRenderingEngine::Test6() const
@@ -283,10 +299,13 @@ namespace Renderer
         
         GLSLVertexArray vertexArray(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseRawVertexDataWithRawIndexData(vertexArray, indexData);
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
         
-        m_drawings->push_back(drawing);
+        GLSLDrawRequest *drawRequest = new GLSLVertexArrayByteIndicesRequest(vertexArray, indexData);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
     }
     
     void GLRenderingEngine::Test7() const
@@ -306,10 +325,13 @@ namespace Renderer
         
         GLSLVertexArray vertexArray(&vertexData[0], sizeof(vertexData[0]), vertexData.size());
         
-        GLSLDrawing *drawing = new GLSLPositionColorDrawing();
-        drawing->UseRawVertexData(vertexArray);
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
         
-        m_drawings->push_back(drawing);
+        GLSLDrawRequest *drawRequest = new GLSLVertexArrayRequest(vertexArray);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
     }
     
     void GLRenderingEngine::Test8() const
@@ -392,9 +414,14 @@ namespace Renderer
         GLSLIndexBuffer *indexBuffer = new GLSLIndexBuffer();
         indexBuffer->LoadBufferData(indexData);
         
-        GLSLDrawing *drawing = new GLSLPerspectiveDrawing();
-        drawing->UseVertexBufferWithIndexBuffer(vertexBuffer, indexBuffer);
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
+        GLSLProjectionModelviewInitializer *uniformInitializer = new GLSLProjectionModelviewInitializer();
         
-        m_drawings->push_back(drawing);
-    }*/
+        GLSLDrawRequest *drawRequest = new GLSLVertexBufferIndexBufferRequest(vertexBuffer, indexBuffer);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        drawRequest->SetUniformInitializer(uniformInitializer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
+    }
 }

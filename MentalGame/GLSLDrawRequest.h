@@ -249,10 +249,16 @@ namespace Renderer
     class GLSLVertexArraysIndexBufferRequest: public GLSLDrawRequest
     {
     public:
+        // TODO: Replace pointer with value?
         GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer);
         ~GLSLVertexArraysIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
+        
+    protected:
+        void Activate() const;
+        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw() const;
         
     private:
         vector<GLSLVertexArray *> *m_vertexArrays;
@@ -266,6 +272,7 @@ namespace Renderer
     class GLSLVertexArraysShortIndicesRequest: public GLSLDrawRequest
     {
     public:
+        // TODO: Replace pointer with value?
         GLSLVertexArraysShortIndicesRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices);
         ~GLSLVertexArraysShortIndicesRequest();
         
@@ -288,6 +295,7 @@ namespace Renderer
     class GLSLVertexArraysByteIndicesRequest: public GLSLDrawRequest
     {
     public:
+        // TODO: Replace pointer with value?
         GLSLVertexArraysByteIndicesRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices);
         ~GLSLVertexArraysByteIndicesRequest();
         
@@ -310,7 +318,8 @@ namespace Renderer
     class GLSLVertexArraysRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArraysRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLuint> &rElementsCounts);
+        // TODO: Replace pointer with value?
+        GLSLVertexArraysRequest(vector<GLSLVertexArray *> &rVertexArrays);
         ~GLSLVertexArraysRequest();
         
         GLsizei GetVerticesCount() const;
