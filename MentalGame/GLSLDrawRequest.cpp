@@ -553,105 +553,235 @@ namespace Renderer
     
 #pragma mark - GLSLVertexArraysIndexBufferRequest
     
-    GLSLVertexArraysIndexBufferRequest::GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray *> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer) {
+    GLSLVertexArraysIndexBufferRequest::GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer): m_indexBuffer(pIndexBuffer) {
+        m_vertexArrays = new vector<GLSLVertexArray *>;
+        for (int vertexArrayIndex = 0; vertexArrayIndex < rVertexArrays.size(); vertexArrayIndex++) {
+            GLSLVertexArray vertexArray = rVertexArrays.at(vertexArrayIndex);
+            GLSLVertexArray *pVertexArray = new GLSLVertexArray(vertexArray);
+            m_vertexArrays->push_back(pVertexArray);
+        }
         
+        ResetDrawCount();
     }
     
     GLSLVertexArraysIndexBufferRequest::~GLSLVertexArraysIndexBufferRequest() {
+        for (int vertexArrayIndex = 0; vertexArrayIndex < m_vertexArrays->size(); vertexArrayIndex++) {
+            GLSLVertexArray *pVertexArray = m_vertexArrays->at(vertexArrayIndex);
+            delete pVertexArray;
+        }
         
+        delete m_vertexArrays;
+        delete m_indexBuffer;
     }
     
     GLsizei GLSLVertexArraysIndexBufferRequest::GetVerticesCount() const {
-        return 0;
+        return m_indexBuffer->GetElementsCount();
     }
     
     void GLSLVertexArraysIndexBufferRequest::Activate() const {
-        
+        GLSLVertexBuffer::UnbindCurrentBuffer();
+        m_indexBuffer->Bind();
     }
     
     void GLSLVertexArraysIndexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
+        if (pAttributeInitializer) {
+            pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArrays);
+        }
+        
+        if (pUniformInitializer) {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
     }
     
     void GLSLVertexArraysIndexBufferRequest::Draw() const {
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        GLuint elementsCount = GetDrawElementsCount();
+        GLSL_DATA_TYPE dataType = m_indexBuffer->GetDataType();
+        GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
         
+        glDrawElements(renderMode, elementsCount, dataType, indicesOffset);
+        CheckError();
     }
     
 #pragma mark - GLSLVertexArraysShortIndicesRequest
     
-    GLSLVertexArraysShortIndicesRequest::GLSLVertexArraysShortIndicesRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLushort> &rIndices) {
+    GLSLVertexArraysShortIndicesRequest::GLSLVertexArraysShortIndicesRequest(vector<GLSLVertexArray> &rVertexArrays, vector<GLushort> &rIndices) {
+        m_vertexArrays = new vector<GLSLVertexArray *>;
+        for (int vertexArrayIndex = 0; vertexArrayIndex < rVertexArrays.size(); vertexArrayIndex++) {
+            GLSLVertexArray vertexArray = rVertexArrays.at(vertexArrayIndex);
+            GLSLVertexArray *pVertexArray = new GLSLVertexArray(vertexArray);
+            m_vertexArrays->push_back(pVertexArray);
+        }
         
+        m_indices = new vector<GLushort>(rIndices);
+        
+        ResetDrawCount();
     }
     
     GLSLVertexArraysShortIndicesRequest::~GLSLVertexArraysShortIndicesRequest() {
+        for (int vertexArrayIndex = 0; vertexArrayIndex < m_vertexArrays->size(); vertexArrayIndex++) {
+            GLSLVertexArray *pVertexArray = m_vertexArrays->at(vertexArrayIndex);
+            delete pVertexArray;
+        }
         
+        delete m_vertexArrays;
+        delete m_indices;
     }
     
     GLsizei GLSLVertexArraysShortIndicesRequest::GetVerticesCount() const {
-        return 0;
+        return m_indices->size();
     }
     
     void GLSLVertexArraysShortIndicesRequest::Activate() const {
-        
+        GLSLVertexBuffer::UnbindCurrentBuffer();
+        GLSLIndexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArraysShortIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
+        if (pAttributeInitializer) {
+            pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArrays);
+        }
+        
+        if (pUniformInitializer) {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
     }
     
     void GLSLVertexArraysShortIndicesRequest::Draw() const {
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        GLuint elementsCount = GetDrawElementsCount();
+        GLint startIndex = GetStartDrawIndex();
+        GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
+        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_SHORT, pIndices);
+        CheckError();
     }
     
 #pragma mark - GLSLVertexArraysByteIndicesRequest
     
-    GLSLVertexArraysByteIndicesRequest::GLSLVertexArraysByteIndicesRequest(vector<GLSLVertexArray *> &rVertexArrays, vector<GLubyte> &rIndices) {
+    GLSLVertexArraysByteIndicesRequest::GLSLVertexArraysByteIndicesRequest(vector<GLSLVertexArray> &rVertexArrays, vector<GLubyte> &rIndices) {
+        m_vertexArrays = new vector<GLSLVertexArray *>;
+        for (int vertexArrayIndex = 0; vertexArrayIndex < rVertexArrays.size(); vertexArrayIndex++) {
+            GLSLVertexArray vertexArray = rVertexArrays.at(vertexArrayIndex);
+            GLSLVertexArray *pVertexArray = new GLSLVertexArray(vertexArray);
+            m_vertexArrays->push_back(pVertexArray);
+        }
         
+        m_indices = new vector<GLubyte>(rIndices);
+        
+        ResetDrawCount();
     }
     
     GLSLVertexArraysByteIndicesRequest::~GLSLVertexArraysByteIndicesRequest() {
+        for (int vertexArrayIndex = 0; vertexArrayIndex < m_vertexArrays->size(); vertexArrayIndex++) {
+            GLSLVertexArray *pVertexArray = m_vertexArrays->at(vertexArrayIndex);
+            delete pVertexArray;
+        }
         
+        delete m_vertexArrays;
+        delete m_indices;
     }
     
     GLsizei GLSLVertexArraysByteIndicesRequest::GetVerticesCount() const {
-        return 0;
+        return m_indices->size();
     }
     
     void GLSLVertexArraysByteIndicesRequest::Activate() const {
-        
+        GLSLVertexBuffer::UnbindCurrentBuffer();
+        GLSLIndexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArraysByteIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
+        if (pAttributeInitializer) {
+            pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArrays);
+        }
+        
+        if (pUniformInitializer) {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
     }
     
     void GLSLVertexArraysByteIndicesRequest::Draw() const {
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        GLuint elementsCount = GetDrawElementsCount();
+        GLint startIndex = GetStartDrawIndex();
+        GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
+        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_BYTE, pIndices);
+        CheckError();
     }
     
 #pragma mark - GLSLVertexArraysRequest
     
-    GLSLVertexArraysRequest::GLSLVertexArraysRequest(vector<GLSLVertexArray *> &rVertexArrays) {
+    GLSLVertexArraysRequest::GLSLVertexArraysRequest(vector<GLSLVertexArray> &rVertexArrays) {
+        m_vertexArrays = new vector<GLSLVertexArray *>;
+        for (int vertexArrayIndex = 0; vertexArrayIndex < rVertexArrays.size(); vertexArrayIndex++) {
+            GLSLVertexArray vertexArray = rVertexArrays.at(vertexArrayIndex);
+            GLSLVertexArray *pVertexArray = new GLSLVertexArray(vertexArray);
+            m_vertexArrays->push_back(pVertexArray);
+        }
         
+        CalculateVerticesCount();
+        ResetDrawCount();
     }
     
     GLSLVertexArraysRequest::~GLSLVertexArraysRequest() {
+        for (int vertexArrayIndex = 0; vertexArrayIndex < m_vertexArrays->size(); vertexArrayIndex++) {
+            GLSLVertexArray *pVertexArray = m_vertexArrays->at(vertexArrayIndex);
+            delete pVertexArray;
+        }
         
+        delete m_vertexArrays;
     }
     
     GLsizei GLSLVertexArraysRequest::GetVerticesCount() const {
-        return 0;
+        return m_verticesCount;
     }
     
     void GLSLVertexArraysRequest::Activate() const {
-        
+        GLSLVertexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArraysRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+        GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
+        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
+        if (pAttributeInitializer) {
+            pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArrays);
+        }
+        
+        if (pUniformInitializer) {
+            pUniformInitializer->InitializeUniforms(pUniforms);
+        }
     }
     
     void GLSLVertexArraysRequest::Draw() const {
+        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        GLint startIndex = GetStartDrawIndex();
+        GLuint elementsCount = GetDrawElementsCount();
         
+        glDrawArrays(renderMode, startIndex, elementsCount);
+        CheckError();
+    }
+    
+    void GLSLVertexArraysRequest::CalculateVerticesCount() {
+        for (int vertexArrayIndex = 0; vertexArrayIndex < m_vertexArrays->size(); vertexArrayIndex++) {
+            GLSLVertexArray *pVertexArray = m_vertexArrays->at(vertexArrayIndex);
+            
+            if (vertexArrayIndex == 0) {
+                m_verticesCount = pVertexArray->GetVerticesCount();
+            } else if (pVertexArray->GetVerticesCount() < m_verticesCount) {
+                m_verticesCount = pVertexArray->GetVerticesCount();
+            }
+        }
     }
 }

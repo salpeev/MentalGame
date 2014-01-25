@@ -58,7 +58,7 @@ namespace Renderer
         GLvoid *pPosition = pPositionArray->GetData();
         GLvoid *pColor = pColorArray->GetData();
         
-        positionAttribute->SetDataPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, 0, pPosition);
+        positionAttribute->SetDataPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLfloat) * 3, pPosition);
         colorAttribute->SetDataPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, 0, pColor);
     }
 }

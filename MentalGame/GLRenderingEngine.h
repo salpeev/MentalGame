@@ -34,6 +34,10 @@ namespace Renderer
         void Test6() const;
         void Test7() const;
         void Test8() const;
+        void Test9() const;
+        void Test10() const;
+        void Test11() const;
+        void Test12() const;
     };
     
 }

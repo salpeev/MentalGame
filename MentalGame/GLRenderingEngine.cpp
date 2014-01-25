@@ -43,6 +43,10 @@ namespace Renderer
         Test6();
         Test7();
         Test8();
+        Test9();
+        Test10();
+        Test11();
+        Test12();
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -422,6 +426,145 @@ namespace Renderer
         drawRequest->SetUniformInitializer(uniformInitializer);
         
         GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
+    }
+    
+    void GLRenderingEngine::Test9() const {
+        GLPoint point0(-1.0, 0.0, 0.0);
+        GLPoint point1(0.0, -1.0, 0.0);
+        
+        GLColor color0(0.7, 0.1, 0.3);
+        GLColor color1(1.0, 1.0, 1.0);
+        
+        vector<GLPoint> pointData;
+        pointData.push_back(point0);
+        pointData.push_back(point1);
+        
+        vector<GLColor> colorData;
+        colorData.push_back(color0);
+        colorData.push_back(color1);
+        
+        GLSLVertexArray pointArray(&pointData[0], sizeof(GLPoint), pointData.size());
+        GLSLVertexArray colorArray(&colorData[0], sizeof(GLColor), colorData.size());
+        
+        vector<GLSLVertexArray> vertexArrays;
+        vertexArrays.push_back(pointArray);
+        vertexArrays.push_back(colorArray);
+        
+        vector<GLushort> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        
+        GLSLIndexBuffer *indexBuffer = new GLSLIndexBuffer();
+        indexBuffer->LoadBufferData(indexData);
+        
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
+        
+        GLSLDrawRequest *drawRequest = new GLSLVertexArraysIndexBufferRequest(vertexArrays, indexBuffer);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
+    }
+    
+    void GLRenderingEngine::Test10() const {
+        GLPoint point0(0.0, -1.0, 0.0);
+        GLPoint point1(1.0, 0.0, 0.0);
+        
+        GLColor color0(0.0, 1.0, 0.0);
+        GLColor color1(1.0, 0.0, 1.0);
+        
+        vector<GLPoint> pointData;
+        pointData.push_back(point0);
+        pointData.push_back(point1);
+        
+        vector<GLColor> colorData;
+        colorData.push_back(color0);
+        colorData.push_back(color1);
+        
+        GLSLVertexArray pointArray(&pointData[0], sizeof(GLPoint), pointData.size());
+        GLSLVertexArray colorArray(&colorData[0], sizeof(GLColor), colorData.size());
+        
+        vector<GLSLVertexArray> vertexArrays;
+        vertexArrays.push_back(pointArray);
+        vertexArrays.push_back(colorArray);
+        
+        vector<GLushort> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
+        
+        GLSLDrawRequest *drawRequest = new GLSLVertexArraysShortIndicesRequest(vertexArrays, indexData);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
+    }
+    
+    void GLRenderingEngine::Test11() const {
+        GLPoint point0(1.0, 0.0, 0.0);
+        GLPoint point1(0.0, 1.0, 0.0);
+        
+        GLColor color0(0.5, 1.0, 0.0);
+        GLColor color1(0.5, 0.0, 1.0);
+        
+        vector<GLPoint> pointData;
+        pointData.push_back(point0);
+        pointData.push_back(point1);
+        
+        vector<GLColor> colorData;
+        colorData.push_back(color0);
+        colorData.push_back(color1);
+        
+        GLSLVertexArray pointArray(&pointData[0], sizeof(GLPoint), pointData.size());
+        GLSLVertexArray colorArray(&colorData[0], sizeof(GLColor), colorData.size());
+        
+        vector<GLSLVertexArray> vertexArrays;
+        vertexArrays.push_back(pointArray);
+        vertexArrays.push_back(colorArray);
+        
+        vector<GLubyte> indexData;
+        indexData.push_back(0);
+        indexData.push_back(1);
+        
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
+        
+        GLSLDrawRequest *drawRequest = new GLSLVertexArraysByteIndicesRequest(vertexArrays, indexData);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        pProgram->ExecuteDrawRequest(drawRequest);
+    }
+    
+    void GLRenderingEngine::Test12() const {
+        GLPoint point0(0.0, 1.0, 0.0);
+        GLPoint point1(-1.0, 0.0, 0.0);
+        
+        GLColor color0(0.5, 0.5, 1.0);
+        GLColor color1(0.0, 1.0, 0.5);
+        
+        vector<GLPoint> pointData;
+        pointData.push_back(point0);
+        pointData.push_back(point1);
+        
+        vector<GLColor> colorData;
+        colorData.push_back(color0);
+        colorData.push_back(color1);
+        
+        GLSLVertexArray pointArray(&pointData[0], sizeof(GLPoint), pointData.size());
+        GLSLVertexArray colorArray(&colorData[0], sizeof(GLColor), colorData.size());
+        
+        vector<GLSLVertexArray> vertexArrays;
+        vertexArrays.push_back(pointArray);
+        vertexArrays.push_back(colorArray);
+        
+        GLSLPositionColorInitializer *attribInitizlizer = new GLSLPositionColorInitializer();
+        
+        GLSLDrawRequest *drawRequest = new GLSLVertexArraysRequest(vertexArrays);
+        drawRequest->SetAttributeInitializer(attribInitizlizer);
+        
+        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
 }

@@ -14,7 +14,7 @@ namespace Renderer {
     
     class PlainDrawing: public Drawing {
     public:
-        PlainDrawing(GLSLDrawRequest *pDrawRequest);
+        PlainDrawing();
         ~PlainDrawing();
         
         void Draw() const;
