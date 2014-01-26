@@ -15,6 +15,9 @@ using namespace std;
 
 namespace Renderer
 {
+    class Drawing;
+    
+    
     
     class GLRenderingEngine
     {
@@ -38,6 +41,9 @@ namespace Renderer
         void Test10() const;
         void Test11() const;
         void Test12() const;
+        void Test13() const;
+        
+        vector<Drawing *> *m_drawings;
     };
     
 }

@@ -21,6 +21,7 @@
 #include "GLSLProgramContainer.h"
 #include "GLSLDrawRequest.h"
 #include "GLSLVertexArray.h"
+#include "ColorGlassDrawing.h"
 
 using namespace std;
 
@@ -31,22 +32,25 @@ namespace Renderer
     
     GLRenderingEngine::GLRenderingEngine(int width, int height)
     {
+        m_drawings = new vector<Drawing *>();
+        
         glViewport(0, 0, width, height);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
-        Test0();
-        Test1();
-        Test2();
-        Test3();
-        Test4();
-        Test5();
-        Test6();
-        Test7();
-        Test8();
-        Test9();
-        Test10();
-        Test11();
-        Test12();
+//        Test0();
+//        Test1();
+//        Test2();
+//        Test3();
+//        Test4();
+//        Test5();
+//        Test6();
+//        Test7();
+//        Test8();
+//        Test9();
+//        Test10();
+//        Test11();
+//        Test12();
+        Test13();
     }
     
     GLRenderingEngine::~GLRenderingEngine()
@@ -56,13 +60,13 @@ namespace Renderer
     
     void GLRenderingEngine::Render() const
     {
-//        glClear(GL_COLOR_BUFFER_BIT);
-//        
-//        for (vector<GLSLDrawing *>::iterator iterator = m_drawings->begin(); iterator != m_drawings->end(); iterator++)
-//        {
-//            GLSLDrawing *drawing = *iterator;
-////            drawing->Draw();
-//        }
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        for (vector<Drawing *>::iterator iterator = m_drawings->begin(); iterator != m_drawings->end(); iterator++)
+        {
+            Drawing *drawing = *iterator;
+            drawing->Draw();
+        }
     }
     
     void GLRenderingEngine::Test0() const
@@ -566,5 +570,10 @@ namespace Renderer
         
         GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
+    }
+    
+    void GLRenderingEngine::Test13() const {
+        ColorGlassDrawing *colorGlassDrawing = new ColorGlassDrawing();
+        m_drawings->push_back(colorGlassDrawing);
     }
 }

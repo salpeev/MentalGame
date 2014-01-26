@@ -18,35 +18,35 @@ static const char *ModelviewUniformName = "u_modelview";
 
 namespace Renderer
 {
-    void GLSLProjectionModelviewInitializer::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix)
-    {
+    GLSLProjectionModelviewInitializer::GLSLProjectionModelviewInitializer () {
+        m_projection = GLSLMatrix4::Frustum(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f);
+    }
+    
+    GLSLProjectionModelviewInitializer::~GLSLProjectionModelviewInitializer() {
+        
+    }
+    
+    void GLSLProjectionModelviewInitializer::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix) {
         m_projection = rProjectionMatrix;
     }
     
-    void GLSLProjectionModelviewInitializer::SetModelviewMatrix(GLSLMatrix4 &rModelviewMatix)
-    {
+    void GLSLProjectionModelviewInitializer::SetModelviewMatrix(GLSLMatrix4 &rModelviewMatix) {
         m_modelview = rModelviewMatix;
     }
     
-    GLSLMatrix4 GLSLProjectionModelviewInitializer::GetProjectionMatrix() const
-    {
+    GLSLMatrix4 & GLSLProjectionModelviewInitializer::GetProjectionMatrix() {
         return m_projection;
     }
     
-    GLSLMatrix4 GLSLProjectionModelviewInitializer::GetModelviewMatrix() const
-    {
+    GLSLMatrix4 & GLSLProjectionModelviewInitializer::GetModelviewMatrix() {
         return m_modelview;
     }
     
-    void GLSLProjectionModelviewInitializer::InitializeUniforms(map<string, GLSLUniform *> *pUniforms) const
-    {
+    void GLSLProjectionModelviewInitializer::InitializeUniforms(map<string, GLSLUniform *> *pUniforms) const {
         GLSLUniform *projectionUniform = pUniforms->at(ProjectionUniformName);
         GLSLUniform *modelviewUniform = pUniforms->at(ModelviewUniformName);
         
-        GLSLMatrix4 projectionMatrix = GLSLMatrix4::Frustum(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f);
-        GLSLMatrix4 modelviewMatrix;
-        
-        projectionUniform->SetMatrix4f(projectionMatrix);
-        modelviewUniform->SetMatrix4f(modelviewMatrix);
+        projectionUniform->SetMatrix4f(m_projection);
+        modelviewUniform->SetMatrix4f(m_modelview);
     }
 }
