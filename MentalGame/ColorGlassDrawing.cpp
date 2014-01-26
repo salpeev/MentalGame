@@ -23,14 +23,14 @@ namespace Renderer {
         glEnable(GL_CULL_FACE);
         
         vector<GLSLVertex1P1C> vertices;
-        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, -0.5, -0.25), GLColor(1.0, 0.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, -0.5, -0.25), GLColor(0.0, 1.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, 0.5, -0.25), GLColor(0.0, 0.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, 0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, -0.5, 0.25), GLColor(1.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, -0.5, 0.25), GLColor(1.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, 0.5, 0.25), GLColor(1.0, 1.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, -0.5, 0.25), GLColor(1.0, 0.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, -0.5, 0.25), GLColor(0.0, 1.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, 0.5, 0.25), GLColor(0.0, 0.0, 1.0)));
         vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, 0.5, 0.25), GLColor(1.0, 1.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, -0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, -0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, 0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, 0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
         
         vector<GLushort> indices;
         indices.push_back(0);
