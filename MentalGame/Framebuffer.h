@@ -18,9 +18,13 @@ namespace Renderer {
         Framebuffer(const Framebuffer &rFramebuffer) = delete;
         ~Framebuffer();
         
+        void Bind() const;
+        
     private:
         void Generate();
         void Delete();
+        
+        bool IsBound() const;
         
         GLuint m_name;
     };

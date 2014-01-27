@@ -6,9 +6,26 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#ifndef __MentalGame__Renderbuffer__
-#define __MentalGame__Renderbuffer__
+#include <OpenGLES/ES2/gl.h>
 
-#include <iostream>
 
-#endif /* defined(__MentalGame__Renderbuffer__) */
+
+namespace Renderer {
+    
+    class Renderbuffer {
+    public:
+        Renderbuffer();
+        Renderbuffer(const Renderbuffer &rRenderbuffer) = delete;
+        ~Renderbuffer();
+        
+        void Bind() const;
+        
+    private:
+        void Generate();
+        void Delete();
+        
+        bool IsBound() const;
+        
+        GLuint m_name;
+    };
+}
