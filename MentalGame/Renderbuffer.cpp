@@ -24,6 +24,20 @@ namespace Renderer {
     
 #pragma mark - Public Methods
     
+    void Renderbuffer::EstablishStorage(int width, int height) {
+        if (m_storageEstablished) {
+            Log("Renderbuffer storage already established");
+            return;
+        }
+        
+        CreateStorage(width, height);
+        
+        bool errorOccurred = CheckError();
+        if (!errorOccurred) {
+            m_storageEstablished = true;
+        }
+    }
+    
     void Renderbuffer::Bind() const {
         if (!IsBound()) {
             glBindRenderbuffer(FRAMEBUFFER_OBJECT_RENDERBUFFER, m_name);

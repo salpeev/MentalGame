@@ -18,7 +18,11 @@ namespace Renderer {
         Renderbuffer(const Renderbuffer &rRenderbuffer) = delete;
         ~Renderbuffer();
         
+        void EstablishStorage(int width, int height);
         void Bind() const;
+        
+    protected:
+        virtual void CreateStorage(int width, int height) const = 0;
         
     private:
         void Generate();
@@ -27,5 +31,6 @@ namespace Renderer {
         bool IsBound() const;
         
         GLuint m_name;
+        bool m_storageEstablished;
     };
 }
