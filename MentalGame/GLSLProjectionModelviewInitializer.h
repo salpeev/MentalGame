@@ -26,7 +26,7 @@ namespace Renderer
         GLSLMatrix4 & GetProjectionMatrix();
         GLSLMatrix4 & GetModelviewMatrix();
         
-        void InitializeUniforms(map<string, GLSLUniform *> *pUniforms) const;
+        void InitializeUniforms(map<string, Uniform *> *pUniforms) const;
         
     private:
         GLSLMatrix4 m_projection;

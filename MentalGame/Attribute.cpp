@@ -1,44 +1,40 @@
 //
-//  GLSLAttribute.cpp
+//  Attribute.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 21.09.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLAttribute.h"
+#include "Attribute.h"
 #include "GLConstants.h"
 #include "GLLogger.h"
 
 
 
-namespace Renderer
-{
-    GLSLAttribute::GLSLAttribute(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location): GLSLShaderValue(pProgram, name, type, size, location)
-    {
+namespace Renderer {
+    
+    Attribute::Attribute(Program *pProgram, GLchar *name, GLenum type, GLint size, GLint location): ShaderValue(pProgram, name, type, size, location) {
         
     }
     
 #pragma mark - Public Methods
     
-    void GLSLAttribute::SetBufferPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, GLsizei offset) const
-    {
+    void Attribute::SetBufferPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, GLsizei offset) const {
         EnableArray();
         
         glVertexAttribPointer(GetLocation(), size, type, normalized, stride, (GLvoid *)offset);
         CheckError();
     }
     
-    void GLSLAttribute::SetDataPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, const GLvoid *pData) const
-    {
+    void Attribute::SetDataPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, const GLvoid *pData) const {
         EnableArray();
         
         glVertexAttribPointer(GetLocation(), size, type, normalized, stride, pData);
         CheckError();
     }
     
-    void GLSLAttribute::Set1f(GLfloat value) const
-    {
+    void Attribute::Set1f(GLfloat value) const {
         // TODO: Should be tested
         DisableArray();
         
@@ -46,8 +42,7 @@ namespace Renderer
         CheckError();
     }
     
-    void GLSLAttribute::Set2f(GLfloat value0, GLfloat value1) const
-    {
+    void Attribute::Set2f(GLfloat value0, GLfloat value1) const {
         // TODO: Should be tested
         DisableArray();
         
@@ -55,8 +50,7 @@ namespace Renderer
         CheckError();
     }
     
-    void GLSLAttribute::Set3f(GLfloat value0, GLfloat value1, GLfloat value2) const
-    {
+    void Attribute::Set3f(GLfloat value0, GLfloat value1, GLfloat value2) const {
         // TODO: Should be tested
         DisableArray();
         
@@ -64,8 +58,7 @@ namespace Renderer
         CheckError();
     }
     
-    void GLSLAttribute::Set4f(GLfloat value0, GLfloat value1, GLfloat value2, GLfloat value3) const
-    {
+    void Attribute::Set4f(GLfloat value0, GLfloat value1, GLfloat value2, GLfloat value3) const {
         // TODO: Should be tested
         DisableArray();
         
@@ -73,8 +66,7 @@ namespace Renderer
         CheckError();
     }
     
-    void GLSLAttribute::Set1fv(const GLfloat *pValue) const
-    {
+    void Attribute::Set1fv(const GLfloat *pValue) const {
         // TODO: Should be tested
         DisableArray();
         
@@ -82,8 +74,7 @@ namespace Renderer
         CheckError();
     }
     
-    void GLSLAttribute::Set2fv(const GLfloat *pValues) const
-    {
+    void Attribute::Set2fv(const GLfloat *pValues) const {
         // TODO: Should be tested
         DisableArray();
         
@@ -91,8 +82,7 @@ namespace Renderer
         CheckError();
     }
     
-    void GLSLAttribute::Set3fv(const GLfloat *pValues) const
-    {
+    void Attribute::Set3fv(const GLfloat *pValues) const {
         // TODO: Should be tested
         DisableArray();
         
@@ -100,8 +90,7 @@ namespace Renderer
         CheckError();
     }
     
-    void GLSLAttribute::Set4fv(const GLfloat *pValues) const
-    {
+    void Attribute::Set4fv(const GLfloat *pValues) const {
         // TODO: Should be tested
         DisableArray();
         
@@ -109,8 +98,7 @@ namespace Renderer
         CheckError();
     }
     
-    GLfloat GLSLAttribute::Get1f() const
-    {
+    GLfloat Attribute::Get1f() const {
         // TODO: Should be tested
         GLfloat *pValue = NULL;
         glGetVertexAttribfv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_CURRENT_VERTEX_ATTRIB, pValue);
@@ -120,8 +108,7 @@ namespace Renderer
         return value;
     }
     
-    void GLSLAttribute::Get2f(GLfloat *pValue0, GLfloat *pValue1) const
-    {
+    void Attribute::Get2f(GLfloat *pValue0, GLfloat *pValue1) const {
         // TODO: Should be tested
         GLfloat *pValues = NULL;
         glGetVertexAttribfv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_CURRENT_VERTEX_ATTRIB, pValues);
@@ -131,8 +118,7 @@ namespace Renderer
         *pValue1 = pValues[1];
     }
     
-    void GLSLAttribute::Get3f(GLfloat *pValue0, GLfloat *pValue1, GLfloat *pValue2) const
-    {
+    void Attribute::Get3f(GLfloat *pValue0, GLfloat *pValue1, GLfloat *pValue2) const {
         // TODO: Should be tested
         GLfloat *pValues = NULL;
         glGetVertexAttribfv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_CURRENT_VERTEX_ATTRIB, pValues);
@@ -143,8 +129,7 @@ namespace Renderer
         *pValue2 = pValues[2];
     }
     
-    void GLSLAttribute::Get4f(GLfloat *pValue0, GLfloat *pValue1, GLfloat *pValue2, GLfloat *pValue3) const
-    {
+    void Attribute::Get4f(GLfloat *pValue0, GLfloat *pValue1, GLfloat *pValue2, GLfloat *pValue3) const {
         // TODO: Should be tested
         GLfloat *pValues = NULL;
         glGetVertexAttribfv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_CURRENT_VERTEX_ATTRIB, pValues);
@@ -156,29 +141,25 @@ namespace Renderer
         *pValue3 = pValues[3];
     }
     
-    void GLSLAttribute::Get1fv(GLfloat *pValue) const
-    {
+    void Attribute::Get1fv(GLfloat *pValue) const {
         // TODO: Should be tested
         glGetVertexAttribfv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_CURRENT_VERTEX_ATTRIB, pValue);
         CheckError();
     }
     
-    void GLSLAttribute::Get2fv(GLfloat *pValues) const
-    {
+    void Attribute::Get2fv(GLfloat *pValues) const {
         // TODO: Should be tested
         glGetVertexAttribfv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_CURRENT_VERTEX_ATTRIB, pValues);
         CheckError();
     }
     
-    void GLSLAttribute::Get3fv(GLfloat *pValues) const
-    {
+    void Attribute::Get3fv(GLfloat *pValues) const {
         // TODO: Should be tested
         glGetVertexAttribfv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_CURRENT_VERTEX_ATTRIB, pValues);
         CheckError();
     }
     
-    void GLSLAttribute::Get4fv(GLfloat *pValues) const
-    {
+    void Attribute::Get4fv(GLfloat *pValues) const {
         // TODO: Should be tested
         glGetVertexAttribfv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_CURRENT_VERTEX_ATTRIB, pValues);
         CheckError();
@@ -186,27 +167,21 @@ namespace Renderer
     
 #pragma mark - Private Methods
     
-    void GLSLAttribute::EnableArray() const
-    {
-        if (!IsArrayEnabled())
-        {
+    void Attribute::EnableArray() const {
+        if (!IsArrayEnabled()) {
             glEnableVertexAttribArray(GetLocation());
             CheckError();
         }
-        
     }
     
-    void GLSLAttribute::DisableArray() const
-    {
-        if (IsArrayEnabled())
-        {
+    void Attribute::DisableArray() const {
+        if (IsArrayEnabled()) {
             glDisableVertexAttribArray(GetLocation());
             CheckError();
         }
     }
     
-    bool GLSLAttribute::IsArrayEnabled() const
-    {
+    bool Attribute::IsArrayEnabled() const {
         GLint arrayEnabled;
         glGetVertexAttribiv(GetLocation(), GLSL_GET_VERTEX_ATTRIB_ARRAY_ENABLED, &arrayEnabled);
         CheckError();

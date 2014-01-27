@@ -127,7 +127,7 @@ namespace Renderer
         ResetDrawCount();
     }
     
-    void GLSLDrawRequest::Draw(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLDrawRequest::Draw(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         Activate();
         Initialize(pAttributes, pUniforms);
@@ -154,7 +154,7 @@ namespace Renderer
         m_indexBuffer->Bind();
     }
     
-    void GLSLVertexBufferIndexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLVertexBufferIndexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -208,7 +208,7 @@ namespace Renderer
         GLSLIndexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexBufferShortIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLVertexBufferShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -262,7 +262,7 @@ namespace Renderer
         GLSLIndexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexBufferByteIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLVertexBufferByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -308,7 +308,7 @@ namespace Renderer
         m_vertexBuffer->Bind();
     }
     
-    void GLSLVertexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLVertexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -361,7 +361,7 @@ namespace Renderer
         m_indexBuffer->Bind();
     }
     
-    void GLSLVertexArrayIndexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLVertexArrayIndexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -417,7 +417,7 @@ namespace Renderer
         GLSLIndexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexArrayShortIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLVertexArrayShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -473,7 +473,7 @@ namespace Renderer
         GLSLIndexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexArrayByteIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLVertexArrayByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -525,7 +525,7 @@ namespace Renderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexArrayRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const
+    void GLSLVertexArrayRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -583,7 +583,7 @@ namespace Renderer
         m_indexBuffer->Bind();
     }
     
-    void GLSLVertexArraysIndexBufferRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+    void GLSLVertexArraysIndexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
@@ -640,7 +640,7 @@ namespace Renderer
         GLSLIndexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexArraysShortIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+    void GLSLVertexArraysShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
@@ -697,7 +697,7 @@ namespace Renderer
         GLSLIndexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexArraysByteIndicesRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+    void GLSLVertexArraysByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         
@@ -751,7 +751,7 @@ namespace Renderer
         GLSLVertexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexArraysRequest::Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const {
+    void GLSLVertexArraysRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
         

@@ -7,7 +7,7 @@
 //
 
 #pragma once
-#include "GLSLProgram.h"
+#include "Program.h"
 
 
 
@@ -22,8 +22,8 @@ namespace Renderer
             return programContainer;
         }
         
-        GLSLProgram * GetPositionColorProgram() const;
-        GLSLProgram * GetPerspectiveProgram() const;
+        Program * GetPositionColorProgram() const;
+        Program * GetPerspectiveProgram() const;
         
     private:
         GLSLProgramContainer();
@@ -33,7 +33,7 @@ namespace Renderer
         void LoadPositionColorProgram();
         void LoadPerspectiveProgram();
         
-        GLSLProgram *m_positionColorProgram;
-        GLSLProgram *m_perspectiveProgram;
+        Program *m_positionColorProgram;
+        Program *m_perspectiveProgram;
     };
 }

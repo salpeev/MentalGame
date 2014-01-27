@@ -1,5 +1,5 @@
 //
-//  GLSLShaderValue.h
+//  ShaderValue.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 29.09.13.
@@ -17,26 +17,25 @@ using namespace std;
 
 namespace Renderer
 {
-    class GLSLProgram;
+    class Program;
     
     
     
-    class GLSLShaderValue
-    {
+    class ShaderValue {
     public:
         // TODO: Probably should be initialized only with program and location, another values can be requested
         // TODO: Replace type with enum
-        GLSLShaderValue(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
-        ~GLSLShaderValue();
+        ShaderValue(Program *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
+        ~ShaderValue();
         
-        GLSLProgram * GetProgram() const;
+        Program * GetProgram() const;
         string * GetName() const;
         GLenum GetType() const;
         GLint GetSize() const;
         GLint GetLocation() const;
         
     private:
-        GLSLProgram *m_program;
+        Program *m_program;
         string *p_name;
         GLenum m_type;
         GLint m_size;

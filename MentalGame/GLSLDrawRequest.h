@@ -23,8 +23,8 @@ namespace Renderer
     class GLSLVertexArray;
     class GLSLAttributeInitializer;
     class GLSLUniformInitializer;
-    class GLSLAttribute;
-    class GLSLUniform;
+    class Attribute;
+    class Uniform;
     
     
     
@@ -53,13 +53,13 @@ namespace Renderer
         void ResetDrawCount();
         void ResetStartDrawIndexAndDrawElementsCount();
         
-        void Draw(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Draw(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         
         virtual GLsizei GetVerticesCount() const = 0;
         
     protected:
         virtual void Activate() const = 0;
-        virtual void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const = 0;
+        virtual void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const = 0;
         virtual void Draw() const = 0;
         
     private:
@@ -83,7 +83,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -105,7 +105,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -127,7 +127,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -148,7 +148,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -169,7 +169,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -191,7 +191,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -213,7 +213,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -235,7 +235,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -257,7 +257,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -280,7 +280,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -303,7 +303,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
     private:
@@ -326,7 +326,7 @@ namespace Renderer
         
     protected:
         void Activate() const;
-        void Initialize(map<string, GLSLAttribute *> *pAttributes, map<string, GLSLUniform *> *pUniforms) const;
+        void Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const;
         void Draw() const;
         
         void CalculateVerticesCount();

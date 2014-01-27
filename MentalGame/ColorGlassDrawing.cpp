@@ -94,7 +94,7 @@ namespace Renderer {
     }
     
     void ColorGlassDrawing::Draw() const {
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }
 }

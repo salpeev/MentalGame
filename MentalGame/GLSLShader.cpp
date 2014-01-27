@@ -25,7 +25,7 @@ namespace Renderer
     
     GLSLShader::~GLSLShader()
     {
-        Invalidate();
+        Delete();
     }
     
 #pragma mark - Public Methods
@@ -47,56 +47,6 @@ namespace Renderer
     
 #pragma mark - Private Methods
     
-    bool GLSLShader::Compile() const
-    {
-        glCompileShader(m_shaderHandle);
-        
-        if (CheckError()) {
-            return false;
-        }
-        
-        if (!IsCompiled())
-        {
-            GLint infoLength;
-            glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_INFO_LOG_LENGTH, &infoLength);
-            
-            if (infoLength > 1)
-            {
-                char *infoLog = (char *)malloc(sizeof(char) * infoLength);
-                
-                glGetShaderInfoLog(m_shaderHandle, infoLength, NULL, infoLog);
-                Log("SHADER: %s", infoLog);
-                
-                free(infoLog);
-            }
-            
-            return false;
-        }
-        
-        return true;
-    }
-    
-    void GLSLShader::Invalidate()
-    {
-        if (!IsInvalidated())
-        {
-            glDeleteShader(m_shaderHandle);
-            m_shaderHandle = 0;
-            
-            CheckError();
-        }
-    }
-    
-    bool GLSLShader::IsInvalidated() const
-    {
-        GLint deleteStatus;
-        glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_DELETE_STATUS, &deleteStatus);
-        
-        CheckError();
-        
-        return (deleteStatus == GLSL_TRUE);
-    }
-    
     void GLSLShader::SetType(GLSL_SHADER_TYPE type)
     {
         m_shaderHandle = glCreateShader(type);
@@ -114,5 +64,48 @@ namespace Renderer
         glShaderSource(m_shaderHandle, 1, &sourceCStr, NULL);
         
         CheckError();
+    }
+    
+    void GLSLShader::Compile() const
+    {
+        glCompileShader(m_shaderHandle);
+        CheckError();
+        
+        if (!IsCompiled())
+        {
+            GLint infoLength;
+            glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_INFO_LOG_LENGTH, &infoLength);
+            
+            if (infoLength > 1)
+            {
+                char *infoLog = (char *)malloc(sizeof(char) * infoLength);
+                
+                glGetShaderInfoLog(m_shaderHandle, infoLength, NULL, infoLog);
+                Log("SHADER: %s", infoLog);
+                
+                free(infoLog);
+            }
+        }
+    }
+    
+    void GLSLShader::Delete()
+    {
+        if (!IsDeleted())
+        {
+            glDeleteShader(m_shaderHandle);
+            m_shaderHandle = 0;
+            
+            CheckError();
+        }
+    }
+    
+    bool GLSLShader::IsDeleted() const
+    {
+        GLint deleteStatus;
+        glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_DELETE_STATUS, &deleteStatus);
+        
+        CheckError();
+        
+        return (deleteStatus == GLSL_TRUE);
     }
 }

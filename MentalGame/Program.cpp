@@ -6,37 +6,33 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLProgram.h"
+#include "Program.h"
 #include "GLConstants.h"
 #include "GLLogger.h"
-#include "GLSLAttribute.h"
-#include "GLSLUniform.h"
+#include "Attribute.h"
+#include "Uniform.h"
 #include <iostream>
 
 
 
-namespace Renderer
-{
-    GLSLProgram::GLSLProgram(const string &rVertexShaderSource, const string &rFragmentShaderSource): m_attributes(NULL), m_uniforms(NULL)
-    {
+namespace Renderer {
+    
+    Program::Program(const string &rVertexShaderSource, const string &rFragmentShaderSource): m_attributes(NULL), m_uniforms(NULL) {
         m_vertexShader = new GLSLShader(GLSL_SHADER_TYPE_VERTEX, rVertexShaderSource);
         m_fragmentShader = new GLSLShader(GLSL_SHADER_TYPE_FRAGMENT, rFragmentShaderSource);
         
-        CreateProgram();
+        Create();
         Link();
     }
     
-    GLSLProgram::~GLSLProgram()
-    {
-        Invalidate();
+    Program::~Program() {
+        Delete();
         
-        for (map<string, GLSLAttribute *>::iterator iterator = m_attributes->begin(); iterator != m_attributes->end(); iterator++)
-        {
+        for (map<string, Attribute *>::iterator iterator = m_attributes->begin(); iterator != m_attributes->end(); iterator++) {
             delete iterator->second;
         }
         
-        for (map<string, GLSLUniform *>::iterator iterator = m_uniforms->begin(); iterator != m_uniforms->end(); iterator++)
-        {
+        for (map<string, Uniform *>::iterator iterator = m_uniforms->begin(); iterator != m_uniforms->end(); iterator++) {
             delete iterator->second;
         }
         
@@ -48,21 +44,18 @@ namespace Renderer
     
 #pragma mark - Public Mehods
     
-    void GLSLProgram::ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const
-    {
+    void Program::ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const {
         Use();
         pDrawRequest->Draw(m_attributes, m_uniforms);
     }
     
-    GLuint GLSLProgram::GetProgramHandle() const
-    {
+    GLuint Program::GetProgramHandle() const {
         return m_programHandle;
     }
     
 #pragma mark - Private Methods
     
-    void GLSLProgram::CreateProgram()
-    {
+    void Program::Create() {
         m_programHandle = glCreateProgram();
         
         if (m_programHandle == 0)
@@ -71,8 +64,7 @@ namespace Renderer
         }
     }
     
-    void GLSLProgram::Link()
-    {
+    void Program::Link() {
         glAttachShader(m_programHandle, m_vertexShader->GetShaderHandle());
         CheckError();
         glAttachShader(m_programHandle, m_fragmentShader->GetShaderHandle());
@@ -81,13 +73,11 @@ namespace Renderer
         glLinkProgram(m_programHandle);
         CheckError();
         
-        if (!IsLinked())
-        {
+        if (!IsLinked()) {
             GLint infoLength;
             glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_INFO_LOG_LENGTH, &infoLength);
             
-            if (infoLength > 1)
-            {
+            if (infoLength > 1) {
                 char *infoLog = (char *)malloc(sizeof(char) * infoLength);
                 
                 glGetProgramInfoLog(m_programHandle, infoLength, NULL, infoLog);
@@ -103,18 +93,15 @@ namespace Renderer
         ExtractUniforms();
     }
     
-    void GLSLProgram::Use() const
-    {
-        if (!IsUsed())
-        {
+    void Program::Use() const {
+        if (!IsUsed()) {
             glUseProgram(m_programHandle);
             CheckError();
         }
     }
     
-    void GLSLProgram::Invalidate()
-    {
-        if (!IsInvalidated()) {
+    void Program::Delete() {
+        if (!IsDeleted()) {
             glDeleteProgram(m_programHandle);
             m_programHandle = 0;
             
@@ -122,8 +109,7 @@ namespace Renderer
         }
     }
     
-    void GLSLProgram::ExtractAttributes()
-    {
+    void Program::ExtractAttributes() {
         GLint attributesCount;
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_ATTRIBUTES, &attributesCount);
         CheckError();
@@ -132,10 +118,9 @@ namespace Renderer
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxAttributeNameLength);
         CheckError();
         
-        map<string, GLSLAttribute *> *pAttributes = new map<string, GLSLAttribute *>();
+        map<string, Attribute *> *pAttributes = new map<string, Attribute *>();
         
-        for (GLint attributeIndex = 0; attributeIndex < attributesCount; attributeIndex++)
-        {
+        for (GLint attributeIndex = 0; attributeIndex < attributesCount; attributeIndex++) {
             GLsizei attributeNameLength;
             GLint attributeSize;
             GLenum attributeType;
@@ -148,7 +133,7 @@ namespace Renderer
             CheckError();
             
             GLSL_DATA_TYPE type = (GLSL_DATA_TYPE)attributeType;
-            GLSLAttribute *pAttribute = new GLSLAttribute(this, attributeName, type, attributeSize, attributeLocation);
+            Attribute *pAttribute = new Attribute(this, attributeName, type, attributeSize, attributeLocation);
             pAttributes->insert(make_pair(attributeName, pAttribute));
             
             delete attributeName;
@@ -157,7 +142,7 @@ namespace Renderer
         m_attributes = pAttributes;
     }
     
-    void GLSLProgram::ExtractUniforms()
+    void Program::ExtractUniforms()
     {
         GLint uniformsCount;
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_UNIFORMS, &uniformsCount);
@@ -167,7 +152,7 @@ namespace Renderer
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_UNIFORM_MAX_LENGTH, &maxUniformNameLength);
         CheckError();
         
-        map<string, GLSLUniform *> *pUniforms = new map<string, GLSLUniform *>();
+        map<string, Uniform *> *pUniforms = new map<string, Uniform *>();
         
         for (GLint uniformIndex = 0; uniformIndex < uniformsCount; uniformIndex++)
         {
@@ -182,7 +167,7 @@ namespace Renderer
             GLint uniformLocation = glGetUniformLocation(m_programHandle, uniformName);
             CheckError();
             
-            GLSLUniform *pUniform = new GLSLUniform(this, uniformName, (GLSL_DATA_TYPE)uniformType, uniformSize, uniformLocation);
+            Uniform *pUniform = new Uniform(this, uniformName, (GLSL_DATA_TYPE)uniformType, uniformSize, uniformLocation);
             pUniforms->insert(make_pair(uniformName, pUniform));
             
             delete uniformName;
@@ -191,7 +176,7 @@ namespace Renderer
         m_uniforms = pUniforms;
     }
     
-    bool GLSLProgram::IsLinked() const
+    bool Program::IsLinked() const
     {
         GLint linkStatus;
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_LINK_STATUS, &linkStatus);
@@ -200,7 +185,7 @@ namespace Renderer
         return (linkStatus == GLSL_TRUE);
     }
     
-    bool GLSLProgram::IsUsed() const
+    bool Program::IsUsed() const
     {
         GLint currentProgramHandle;
         glGetIntegerv(GLSL_GET_CURRENT_PROGRAM, &currentProgramHandle);
@@ -210,7 +195,7 @@ namespace Renderer
         return used;
     }
     
-    bool GLSLProgram::IsInvalidated() const
+    bool Program::IsDeleted() const
     {
         GLint deleteStatus;
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_DELETE_STATUS, &deleteStatus);

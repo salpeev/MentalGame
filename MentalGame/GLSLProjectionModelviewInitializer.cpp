@@ -7,7 +7,7 @@
 //
 
 #include "GLSLProjectionModelviewInitializer.h"
-#include "GLSLUniform.h"
+#include "Uniform.h"
 
 
 
@@ -42,9 +42,9 @@ namespace Renderer
         return m_modelview;
     }
     
-    void GLSLProjectionModelviewInitializer::InitializeUniforms(map<string, GLSLUniform *> *pUniforms) const {
-        GLSLUniform *projectionUniform = pUniforms->at(ProjectionUniformName);
-        GLSLUniform *modelviewUniform = pUniforms->at(ModelviewUniformName);
+    void GLSLProjectionModelviewInitializer::InitializeUniforms(map<string, Uniform *> *pUniforms) const {
+        Uniform *projectionUniform = pUniforms->at(ProjectionUniformName);
+        Uniform *modelviewUniform = pUniforms->at(ModelviewUniformName);
         
         projectionUniform->SetMatrix4f(m_projection);
         modelviewUniform->SetMatrix4f(m_modelview);

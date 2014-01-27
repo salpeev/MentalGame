@@ -1,5 +1,5 @@
 //
-//  GLSLAttribute.h
+//  Attribute.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 21.09.13.
@@ -7,19 +7,18 @@
 //
 
 #pragma once
-#include "GLSLShaderValue.h"
+#include "ShaderValue.h"
 #include "GLConstants.h"
 
 using namespace std;
 
 
 
-namespace Renderer
-{
-    class GLSLAttribute: public GLSLShaderValue
-    {
+namespace Renderer {
+    
+    class Attribute: public ShaderValue {
     public:
-        GLSLAttribute(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
+        Attribute(Program *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
         
         // TODO: Test for GL_MAX_VERTEX_ATTRIBS
         

@@ -7,7 +7,7 @@
 //
 
 #include "GLSLPositionColorInitializer.h"
-#include "GLSLAttribute.h"
+#include "Attribute.h"
 #include "GLSLVertex.h"
 #include "GLSLVertexArray.h"
 
@@ -22,10 +22,10 @@ static const GLsizei ColorSize = 4;
 
 namespace Renderer
 {
-    void GLSLPositionColorInitializer::InitializeAttributes(map<string, GLSLAttribute *> *pAttributes) const
+    void GLSLPositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes) const
     {
-        GLSLAttribute *positionAttribute = pAttributes->at(PositionAttributeName);
-        GLSLAttribute *colorAttribute = pAttributes->at(ColorAttributeName);
+        Attribute *positionAttribute = pAttributes->at(PositionAttributeName);
+        Attribute *colorAttribute = pAttributes->at(ColorAttributeName);
         
         GLsizei colorOffset = PositionSize * sizeof(GLfloat);
         
@@ -33,10 +33,10 @@ namespace Renderer
         colorAttribute->SetBufferPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), colorOffset);
     }
     
-    void GLSLPositionColorInitializer::InitializeAttributes(map<string, GLSLAttribute *> *pAttributes, GLSLVertexArray *pVertexArray) const
+    void GLSLPositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, GLSLVertexArray *pVertexArray) const
     {
-        GLSLAttribute *positionAttribute = pAttributes->at(PositionAttributeName);
-        GLSLAttribute *colorAttribute = pAttributes->at(ColorAttributeName);
+        Attribute *positionAttribute = pAttributes->at(PositionAttributeName);
+        Attribute *colorAttribute = pAttributes->at(ColorAttributeName);
         
         GLvoid *pPosition = pVertexArray->GetData();
         GLvoid *pColor = (GLfloat *)pPosition + PositionSize;
@@ -47,10 +47,10 @@ namespace Renderer
         colorAttribute->SetDataPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, vertexSize, pColor);
     }
     
-    void GLSLPositionColorInitializer::InitializeAttributes(map<string, GLSLAttribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const
+    void GLSLPositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const
     {
-        GLSLAttribute *positionAttribute = pAttributes->at(PositionAttributeName);
-        GLSLAttribute *colorAttribute = pAttributes->at(ColorAttributeName);
+        Attribute *positionAttribute = pAttributes->at(PositionAttributeName);
+        Attribute *colorAttribute = pAttributes->at(ColorAttributeName);
         
         GLSLVertexArray *pPositionArray = pVertexArrays->at(0);
         GLSLVertexArray *pColorArray = pVertexArrays->at(1);

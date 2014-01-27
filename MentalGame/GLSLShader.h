@@ -30,12 +30,13 @@ namespace Renderer
         bool IsCompiled() const;
         
     private:
-        bool Compile() const;
-        void Invalidate();
-        bool IsInvalidated() const;
-        
         void SetType(GLSL_SHADER_TYPE type);
         void SetSource(const string &source);
+        
+        void Compile() const;
+        void Delete();
+        
+        bool IsDeleted() const;
         
         GLuint m_shaderHandle;
     };

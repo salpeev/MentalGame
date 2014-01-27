@@ -19,12 +19,12 @@ namespace Renderer
         LoadPerspectiveProgram();
     }
     
-    GLSLProgram * GLSLProgramContainer::GetPositionColorProgram() const
+    Program * GLSLProgramContainer::GetPositionColorProgram() const
     {
         return m_positionColorProgram;
     }
     
-    GLSLProgram * GLSLProgramContainer::GetPerspectiveProgram() const
+    Program * GLSLProgramContainer::GetPerspectiveProgram() const
     {
         return m_perspectiveProgram;
     }
@@ -36,7 +36,7 @@ namespace Renderer
         string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.vsh");
         string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PositionColorShader.fsh");
         
-        m_positionColorProgram = new GLSLProgram(vertexShaderSource, fragmentShaderSource);
+        m_positionColorProgram = new Program(vertexShaderSource, fragmentShaderSource);
     }
     
     void GLSLProgramContainer::LoadPerspectiveProgram()
@@ -44,6 +44,6 @@ namespace Renderer
         string vertexShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PerspectiveShader.vsh");
         string fragmentShaderSource = GLResourceManager::SharedInstance().LoadTextFileNamed("PerspectiveShader.fsh");
         
-        m_perspectiveProgram = new GLSLProgram(vertexShaderSource, fragmentShaderSource);
+        m_perspectiveProgram = new Program(vertexShaderSource, fragmentShaderSource);
     }
 }

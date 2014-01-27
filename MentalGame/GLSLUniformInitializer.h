@@ -16,7 +16,7 @@ using namespace std;
 
 namespace Renderer
 {
-    class GLSLUniform;
+    class Uniform;
     
     
     
@@ -25,7 +25,7 @@ namespace Renderer
     public:
         virtual ~GLSLUniformInitializer();
         
-        virtual void InitializeUniforms(map<string, GLSLUniform *> *pUniforms) const = 0;
+        virtual void InitializeUniforms(map<string, Uniform *> *pUniforms) const = 0;
     };
 }
 

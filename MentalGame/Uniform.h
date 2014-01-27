@@ -1,5 +1,5 @@
 //
-//  GLSLUniform.h
+//  Uniform.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 24.09.13.
@@ -7,16 +7,15 @@
 //
 
 #pragma once
-#include "GLSLShaderValue.h"
+#include "ShaderValue.h"
 
 
 
-namespace Renderer
-{
-    class GLSLUniform: public GLSLShaderValue
-    {
+namespace Renderer {
+    
+    class Uniform: public ShaderValue {
     public:
-        GLSLUniform(GLSLProgram *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
+        Uniform(Program *pProgram, GLchar *name, GLenum type, GLint size, GLint location);
         
         void Set1f(GLfloat value) const;
         void Set2f(GLfloat value0, GLfloat value1) const;

@@ -11,7 +11,7 @@
 #include <vector>
 #include "GLRenderingEngine.h"
 #include "GLLogger.h"
-#include "GLSLProgram.h"
+#include "Program.h"
 #include "GLResourceManager.h"
 #include "GLSLVertexBuffer.h"
 #include "GLSLIndexBuffer.h"
@@ -130,7 +130,7 @@ namespace Renderer
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -161,7 +161,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexBufferShortIndicesRequest(vertexBuffer, indexData);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -192,7 +192,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexBufferByteIndicesRequest(vertexBuffer, indexData);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -219,7 +219,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexBufferRequest(vertexBuffer);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -252,7 +252,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexArrayIndexBufferRequest(vertexArray, indexBuffer);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -282,7 +282,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexArrayShortIndicesRequest(vertexArray, indexData);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -312,7 +312,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexArrayByteIndicesRequest(vertexArray, indexData);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -338,7 +338,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexArrayRequest(vertexArray);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -429,7 +429,7 @@ namespace Renderer
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         drawRequest->SetUniformInitializer(uniformInitializer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -467,7 +467,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexArraysIndexBufferRequest(vertexArrays, indexBuffer);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -502,7 +502,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexArraysShortIndicesRequest(vertexArrays, indexData);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -537,7 +537,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexArraysByteIndicesRequest(vertexArrays, indexData);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     
@@ -568,7 +568,7 @@ namespace Renderer
         GLSLDrawRequest *drawRequest = new GLSLVertexArraysRequest(vertexArrays);
         drawRequest->SetAttributeInitializer(attribInitizlizer);
         
-        GLSLProgram *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
+        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPositionColorProgram();
         pProgram->ExecuteDrawRequest(drawRequest);
     }
     

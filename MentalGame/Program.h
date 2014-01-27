@@ -15,41 +15,38 @@ using namespace std;
 
 
 
-namespace Renderer
-{
-    class GLSLAttribute;
-    class GLSLUniform;
+namespace Renderer {
+    class Attribute;
+    class Uniform;
     
-    class GLSLProgram
-    {
+    class Program {
     public:
-        GLSLProgram(const string &rVertexShaderSource, const string &rFragmentShaderSource);
-        GLSLProgram(const GLSLProgram *program) = delete;
-        ~GLSLProgram();
+        Program(const string &rVertexShaderSource, const string &rFragmentShaderSource);
+        Program(const Program *program) = delete;
+        ~Program();
         
         void ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const;
         
         GLuint GetProgramHandle() const;
         
     private:
-        void CreateProgram();
+        void Create();
         void Link();
         void Use() const;
-        void Invalidate();
+        void Delete();
         void ExtractAttributes();
         void ExtractUniforms();
         
         bool IsLinked() const;
         bool IsUsed() const;
-        bool IsInvalidated() const;
+        bool IsDeleted() const;
         
         GLuint m_programHandle;
         
         GLSLShader *m_vertexShader;
         GLSLShader *m_fragmentShader;
         
-        map<string, GLSLAttribute *> *m_attributes;
-        map<string, GLSLUniform *> *m_uniforms;
+        map<string, Attribute *> *m_attributes;
+        map<string, Uniform *> *m_uniforms;
     };
-    
 }
