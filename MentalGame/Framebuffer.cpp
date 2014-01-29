@@ -14,7 +14,7 @@
 
 namespace Renderer {
     
-    Framebuffer::Framebuffer() {
+    Framebuffer::Framebuffer(): m_name(0), m_colorRenderbuffer(nullptr), m_depthRenderbuffer(nullptr), m_stencilRenderbuffer(nullptr) {
         Generate();
     }
     
@@ -29,6 +29,64 @@ namespace Renderer {
             glBindFramebuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, m_name);
             CheckError();
         }
+    }
+    
+    void Framebuffer::AttachColorRenderbuffer(Renderbuffer *pRenderbuffer) {
+        Bind();
+        pRenderbuffer->Bind();
+        
+        GLuint renderbufferName = pRenderbuffer->GetName();
+        glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, FRAMEBUFFER_OBJECT_RENDERBUFFER, renderbufferName);
+        CheckError();
+    }
+    
+    void Framebuffer::AttachDepthRenderbuffer(Renderbuffer *pRenderbuffer) {
+        Bind();
+        
+        GLuint renderbufferName = pRenderbuffer->GetName();
+        glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_DEPTH, FRAMEBUFFER_OBJECT_RENDERBUFFER, renderbufferName);
+        CheckError();
+    }
+    
+    void Framebuffer::AttachStencilRenderbuffer(Renderbuffer *pRenderbuffer) {
+        Bind();
+        
+        GLuint renderbufferName = pRenderbuffer->GetName();
+        glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_STENCIL, FRAMEBUFFER_OBJECT_RENDERBUFFER, renderbufferName);
+        CheckError();
+    }
+    
+    void Framebuffer::DetachColorRenderbuffer() {
+        Bind();
+        
+        glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);
+        CheckError();
+    }
+    
+    void Framebuffer::DetachDepthRenderbuffer() {
+        Bind();
+        
+        glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_DEPTH, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);
+        CheckError();
+    }
+    
+    void Framebuffer::DetachStencilRenderbuffer() {
+        Bind();
+        
+        glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_STENCIL, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);
+        CheckError();
+    }
+    
+    Renderbuffer * Framebuffer::GetColorRenderbuffer() const {
+        return m_colorRenderbuffer;
+    }
+    
+    Renderbuffer * Framebuffer::GetDepthRenderbuffer() const {
+        return m_depthRenderbuffer;
+    }
+    
+    Renderbuffer * Framebuffer::GetStencilRenderbuffer() const {
+        return m_stencilRenderbuffer;
     }
     
 #pragma mark - Private Methods

@@ -1,19 +1,18 @@
 //
-//  ColorRenderbuffer.h
+//  StencilRenderbufferIndex8.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 29.01.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#pragma once
 #include "Renderbuffer.h"
 
 
 
 namespace Renderer {
     
-    class ColorRenderbuffer: public Renderbuffer {
+    class StencilRenderbufferIndex8: public Renderbuffer {
     protected:
         void CreateStorage(int width, int height) const;
     };

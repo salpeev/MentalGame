@@ -10,7 +10,7 @@
 #import "GLRenderingEngine.h"
 #import "GLResourceManager.h"
 #import "Framebuffer.h"
-#import "Renderbuffer.h"
+#include "ColorRenderbufferRGBA8.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -66,13 +66,14 @@ using namespace Renderer;
         self.eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
         [EAGLContext setCurrentContext:self.eaglContext];
         
-        m_renderbuffer = new Renderbuffer();
+        m_renderbuffer = new ColorRenderbufferRGBA8();
         m_renderbuffer->Bind();
         [self.eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
         
         m_framebuffer = new Framebuffer();
         m_framebuffer->Bind();
         
+        m_framebuffer->AttachColorRenderbuffer(m_renderbuffer);
         
 //        glGenRenderbuffers(1, &m_resolveColorRenderbuffer);
 //        glBindRenderbuffer(GL_RENDERBUFFER, m_resolveColorRenderbuffer);
@@ -97,10 +98,10 @@ using namespace Renderer;
 //        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
 //        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
 //        
-//        m_renderingEngine = new GLRenderingEngine(width, height);
-//        
-//        CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
-//        [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        m_renderingEngine = new GLRenderingEngine(width, height);
+
+        CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
+        [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 
     }
     return self;
@@ -117,6 +118,9 @@ using namespace Renderer;
 
 - (void)draw:(CADisplayLink *)displayLink
 {
+    m_renderingEngine->Render();
+    [self.eaglContext presentRenderbuffer:GL_RENDERBUFFER];
+    
 //    glBindFramebuffer(GL_FRAMEBUFFER, m_sampleFramebuffer);
 //    glBindRenderbuffer(GL_RENDERBUFFER, m_sampleColorRenderbuffer);
 //    glBindRenderbuffer(GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);

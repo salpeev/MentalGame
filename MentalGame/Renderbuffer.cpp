@@ -30,6 +30,7 @@ namespace Renderer {
             return;
         }
         
+        Bind();
         CreateStorage(width, height);
         
         bool errorOccurred = CheckError();
@@ -43,6 +44,10 @@ namespace Renderer {
             glBindRenderbuffer(FRAMEBUFFER_OBJECT_RENDERBUFFER, m_name);
             CheckError();
         }
+    }
+    
+    GLuint Renderbuffer::GetName() const {
+        return m_name;
     }
     
 #pragma mark - Private Methods

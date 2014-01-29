@@ -12,9 +12,14 @@
 		B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7317F6DD2A00CC6900 /* GLSLVertexBuffer.cpp */; };
 		B408BB7817F6DD3C00CC6900 /* GLSLIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7617F6DD3C00CC6900 /* GLSLIndexBuffer.cpp */; };
 		B457A15817F6D486004EF4E0 /* GLSLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B457A15617F6D486004EF4E0 /* GLSLBuffer.cpp */; };
-		B468F6F718971ADF00AAE773 /* ColorRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F6F518971ADF00AAE773 /* ColorRenderbuffer.cpp */; };
-		B468F6FA18971AF400AAE773 /* DepthRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F6F818971AF400AAE773 /* DepthRenderbuffer.cpp */; };
-		B468F6FD18971AFF00AAE773 /* StencilRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F6FB18971AFF00AAE773 /* StencilRenderbuffer.cpp */; };
+		B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */; };
+		B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70218999CF700AAE773 /* ColorRenderbufferRGB565.cpp */; };
+		B468F70718999D1100AAE773 /* ColorRenderbufferRGB5_A1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70518999D1100AAE773 /* ColorRenderbufferRGB5_A1.cpp */; };
+		B468F70C18999EC900AAE773 /* DepthRenderbufferComponent16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70A18999EC900AAE773 /* DepthRenderbufferComponent16.cpp */; };
+		B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70D18999ED400AAE773 /* StencilRenderbufferIndex8.cpp */; };
+		B468F7131899A06700AAE773 /* ColorRenderbufferRGBA8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7111899A06700AAE773 /* ColorRenderbufferRGBA8.cpp */; };
+		B468F7161899A09000AAE773 /* Depth24Stencil8Renderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7141899A09000AAE773 /* Depth24Stencil8Renderbuffer.cpp */; };
+		B468F7191899AA0C00AAE773 /* ColorRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7171899AA0C00AAE773 /* ColorRenderbuffer.cpp */; };
 		B469605017F756C6002BCF6C /* GLVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469604E17F756C6002BCF6C /* GLVector.cpp */; };
 		B469605317F75C25002BCF6C /* GLColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605117F75C25002BCF6C /* GLColor.cpp */; };
 		B469605717F76B5E002BCF6C /* GLPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605517F76B5E002BCF6C /* GLPoint.cpp */; };
@@ -69,12 +74,22 @@
 		B408BB7717F6DD3C00CC6900 /* GLSLIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLIndexBuffer.h; sourceTree = "<group>"; };
 		B457A15617F6D486004EF4E0 /* GLSLBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLBuffer.cpp; sourceTree = "<group>"; };
 		B457A15717F6D486004EF4E0 /* GLSLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLBuffer.h; sourceTree = "<group>"; };
-		B468F6F518971ADF00AAE773 /* ColorRenderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbuffer.cpp; sourceTree = "<group>"; };
-		B468F6F618971ADF00AAE773 /* ColorRenderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbuffer.h; sourceTree = "<group>"; };
-		B468F6F818971AF400AAE773 /* DepthRenderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DepthRenderbuffer.cpp; sourceTree = "<group>"; };
-		B468F6F918971AF400AAE773 /* DepthRenderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepthRenderbuffer.h; sourceTree = "<group>"; };
-		B468F6FB18971AFF00AAE773 /* StencilRenderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StencilRenderbuffer.cpp; sourceTree = "<group>"; };
-		B468F6FC18971AFF00AAE773 /* StencilRenderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StencilRenderbuffer.h; sourceTree = "<group>"; };
+		B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbufferRGBA4.cpp; sourceTree = "<group>"; };
+		B468F70018999CE300AAE773 /* ColorRenderbufferRGBA4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbufferRGBA4.h; sourceTree = "<group>"; };
+		B468F70218999CF700AAE773 /* ColorRenderbufferRGB565.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbufferRGB565.cpp; sourceTree = "<group>"; };
+		B468F70318999CF700AAE773 /* ColorRenderbufferRGB565.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbufferRGB565.h; sourceTree = "<group>"; };
+		B468F70518999D1100AAE773 /* ColorRenderbufferRGB5_A1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbufferRGB5_A1.cpp; sourceTree = "<group>"; };
+		B468F70618999D1100AAE773 /* ColorRenderbufferRGB5_A1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbufferRGB5_A1.h; sourceTree = "<group>"; };
+		B468F70A18999EC900AAE773 /* DepthRenderbufferComponent16.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DepthRenderbufferComponent16.cpp; sourceTree = "<group>"; };
+		B468F70B18999EC900AAE773 /* DepthRenderbufferComponent16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepthRenderbufferComponent16.h; sourceTree = "<group>"; };
+		B468F70D18999ED400AAE773 /* StencilRenderbufferIndex8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StencilRenderbufferIndex8.cpp; sourceTree = "<group>"; };
+		B468F70E18999ED400AAE773 /* StencilRenderbufferIndex8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StencilRenderbufferIndex8.h; sourceTree = "<group>"; };
+		B468F7111899A06700AAE773 /* ColorRenderbufferRGBA8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbufferRGBA8.cpp; sourceTree = "<group>"; };
+		B468F7121899A06700AAE773 /* ColorRenderbufferRGBA8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbufferRGBA8.h; sourceTree = "<group>"; };
+		B468F7141899A09000AAE773 /* Depth24Stencil8Renderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Depth24Stencil8Renderbuffer.cpp; sourceTree = "<group>"; };
+		B468F7151899A09000AAE773 /* Depth24Stencil8Renderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Depth24Stencil8Renderbuffer.h; sourceTree = "<group>"; };
+		B468F7171899AA0C00AAE773 /* ColorRenderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbuffer.cpp; sourceTree = "<group>"; };
+		B468F7181899AA0C00AAE773 /* ColorRenderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbuffer.h; sourceTree = "<group>"; };
 		B469604E17F756C6002BCF6C /* GLVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLVector.cpp; sourceTree = "<group>"; };
 		B469604F17F756C6002BCF6C /* GLVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVector.h; sourceTree = "<group>"; };
 		B469605117F75C25002BCF6C /* GLColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLColor.cpp; sourceTree = "<group>"; };
@@ -173,6 +188,50 @@
 				B47177DB188BEA75006B6215 /* GLSLProgramContainer.h */,
 			);
 			name = "Program Container";
+			sourceTree = "<group>";
+		};
+		B468F6FE18999CC900AAE773 /* ColorRenderbuffer */ = {
+			isa = PBXGroup;
+			children = (
+				B468F7171899AA0C00AAE773 /* ColorRenderbuffer.cpp */,
+				B468F7181899AA0C00AAE773 /* ColorRenderbuffer.h */,
+				B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */,
+				B468F70018999CE300AAE773 /* ColorRenderbufferRGBA4.h */,
+				B468F70218999CF700AAE773 /* ColorRenderbufferRGB565.cpp */,
+				B468F70318999CF700AAE773 /* ColorRenderbufferRGB565.h */,
+				B468F70518999D1100AAE773 /* ColorRenderbufferRGB5_A1.cpp */,
+				B468F70618999D1100AAE773 /* ColorRenderbufferRGB5_A1.h */,
+			);
+			name = ColorRenderbuffer;
+			sourceTree = "<group>";
+		};
+		B468F70818999E8E00AAE773 /* DepthRenderbuffer */ = {
+			isa = PBXGroup;
+			children = (
+				B468F70A18999EC900AAE773 /* DepthRenderbufferComponent16.cpp */,
+				B468F70B18999EC900AAE773 /* DepthRenderbufferComponent16.h */,
+			);
+			name = DepthRenderbuffer;
+			sourceTree = "<group>";
+		};
+		B468F70918999E9900AAE773 /* StencilRenderbuffer */ = {
+			isa = PBXGroup;
+			children = (
+				B468F70D18999ED400AAE773 /* StencilRenderbufferIndex8.cpp */,
+				B468F70E18999ED400AAE773 /* StencilRenderbufferIndex8.h */,
+			);
+			name = StencilRenderbuffer;
+			sourceTree = "<group>";
+		};
+		B468F71018999F6900AAE773 /* Renderbuffer */ = {
+			isa = PBXGroup;
+			children = (
+				B468F7111899A06700AAE773 /* ColorRenderbufferRGBA8.cpp */,
+				B468F7121899A06700AAE773 /* ColorRenderbufferRGBA8.h */,
+				B468F7141899A09000AAE773 /* Depth24Stencil8Renderbuffer.cpp */,
+				B468F7151899A09000AAE773 /* Depth24Stencil8Renderbuffer.h */,
+			);
+			name = Renderbuffer;
 			sourceTree = "<group>";
 		};
 		B47E8D8F17DBD7EE008CE6DD /* RenderingEngine */ = {
@@ -288,14 +347,11 @@
 		B4AC5D7B1896FB7000FBE8D8 /* Renderbuffer */ = {
 			isa = PBXGroup;
 			children = (
+				B468F6FE18999CC900AAE773 /* ColorRenderbuffer */,
+				B468F70818999E8E00AAE773 /* DepthRenderbuffer */,
+				B468F70918999E9900AAE773 /* StencilRenderbuffer */,
 				B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */,
 				B4AC5D7D1896FB8B00FBE8D8 /* Renderbuffer.h */,
-				B468F6F518971ADF00AAE773 /* ColorRenderbuffer.cpp */,
-				B468F6F618971ADF00AAE773 /* ColorRenderbuffer.h */,
-				B468F6F818971AF400AAE773 /* DepthRenderbuffer.cpp */,
-				B468F6F918971AF400AAE773 /* DepthRenderbuffer.h */,
-				B468F6FB18971AFF00AAE773 /* StencilRenderbuffer.cpp */,
-				B468F6FC18971AFF00AAE773 /* StencilRenderbuffer.h */,
 			);
 			name = Renderbuffer;
 			sourceTree = "<group>";
@@ -466,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				B4E23D2018951FE6008CCFED /* Drawing */,
+				B468F71018999F6900AAE773 /* Renderbuffer */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -581,21 +638,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4E0972017DB671400F4A436 /* main.m in Sources */,
-				B468F6F718971ADF00AAE773 /* ColorRenderbuffer.cpp in Sources */,
 				B4E069DA1891E06200F2E995 /* ColorGlassDrawing.cpp in Sources */,
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
 				B4EF847A186AE06E00234C28 /* GLSLVector.cpp in Sources */,
 				B4D64F8F18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp in Sources */,
 				B403F3BD17EE0D5700A2A4E8 /* Attribute.cpp in Sources */,
+				B468F7131899A06700AAE773 /* ColorRenderbufferRGBA8.cpp in Sources */,
 				B4D64F84188179A6005E78AC /* GLSLPositionColorInitializer.cpp in Sources */,
+				B468F70718999D1100AAE773 /* ColorRenderbufferRGB5_A1.cpp in Sources */,
 				B4EF847D186AE07900234C28 /* GLSLMatrix.cpp in Sources */,
 				B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */,
 				B469605717F76B5E002BCF6C /* GLPoint.cpp in Sources */,
 				B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */,
-				B468F6FD18971AFF00AAE773 /* StencilRenderbuffer.cpp in Sources */,
 				B469605317F75C25002BCF6C /* GLColor.cpp in Sources */,
 				B4EF8480186AE08300234C28 /* GLSLQuaternion.cpp in Sources */,
 				B469605017F756C6002BCF6C /* GLVector.cpp in Sources */,
+				B468F7161899A09000AAE773 /* Depth24Stencil8Renderbuffer.cpp in Sources */,
+				B468F7191899AA0C00AAE773 /* ColorRenderbuffer.cpp in Sources */,
 				B457A15817F6D486004EF4E0 /* GLSLBuffer.cpp in Sources */,
 				B403F3C017F0FE0400A2A4E8 /* Uniform.cpp in Sources */,
 				B4E0974417DB75DD00F4A436 /* MGOpenGLView.mm in Sources */,
@@ -606,16 +665,19 @@
 				B47177DC188BEA75006B6215 /* GLSLProgramContainer.cpp in Sources */,
 				B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */,
 				B4CE1DE417DFB72C009094E8 /* Program.cpp in Sources */,
-				B468F6FA18971AF400AAE773 /* DepthRenderbuffer.cpp in Sources */,
 				B4EF8494187863D900234C28 /* GLSLVertexArray.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */,
+				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */,
 				B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */,
 				B4D64F87188179F6005E78AC /* GLSLAttributeInitializer.cpp in Sources */,
+				B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */,
+				B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */,
 				B4E069D71891C11300F2E995 /* Drawing.cpp in Sources */,
 				B4CE1DF017DFD906009094E8 /* GLResourceManager.mm in Sources */,
+				B468F70C18999EC900AAE773 /* DepthRenderbufferComponent16.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

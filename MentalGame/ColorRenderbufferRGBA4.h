@@ -1,5 +1,5 @@
 //
-//  ColorRenderbuffer.cpp
+//  ColorRenderbufferRGBA4.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 29.01.14.
@@ -7,14 +7,13 @@
 //
 
 #include "ColorRenderbuffer.h"
-#include "GLConstants.h"
-#include "GLLogger.h"
 
 
 
 namespace Renderer {
     
-    void ColorRenderbuffer::CreateStorage(int width, int height) const {
-        
-    }
+    class ColorRenderbufferRGBA4: public ColorRenderbuffer {
+    protected:
+        void CreateStorage(int width, int height) const;
+    };
 }

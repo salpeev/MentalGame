@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
 #include <OpenGLES/ES2/gl.h>
 
 
@@ -16,10 +17,12 @@ namespace Renderer {
     public:
         Renderbuffer();
         Renderbuffer(const Renderbuffer &rRenderbuffer) = delete;
-        ~Renderbuffer();
+        virtual ~Renderbuffer();
         
         void EstablishStorage(int width, int height);
         void Bind() const;
+        
+        GLuint GetName() const;
         
     protected:
         virtual void CreateStorage(int width, int height) const = 0;
