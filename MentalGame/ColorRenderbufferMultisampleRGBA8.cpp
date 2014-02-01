@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "ColorRenderbufferRGBA8.h"
+#include "ColorRenderbufferMultisampleRGBA8.h"
 #include "GLConstants.h"
 #include "GLLogger.h"
 #include <OpenGLES/ES2/glext.h>
@@ -15,8 +15,8 @@
 
 namespace Renderer {
     
-    void ColorRenderbufferRGBA8::CreateStorage(int width, int height) const {
-        glRenderbufferStorage(FRAMEBUFFER_OBJECT_RENDERBUFFER, GL_RGBA8_OES, width, height);
+    void ColorRenderbufferMultisampleRGBA8::CreateStorage(int width, int height) const {
+        glRenderbufferStorageMultisampleAPPLE(FRAMEBUFFER_OBJECT_RENDERBUFFER, 4, GL_RGBA8_OES, width, height);
         CheckError();
     }
 }

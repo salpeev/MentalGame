@@ -9,8 +9,9 @@
 #import "MGOpenGLView.h"
 #import "GLRenderingEngine.h"
 #import "GLResourceManager.h"
-#import "Framebuffer.h"
-#include "ColorRenderbufferRGBA8.h"
+#import "MultisampleFramebuffer.h"
+#include "ColorRenderbufferMultisampleRGBA8.h"
+#include "Depth24Stencil8MultisampleRenderbuffer.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -22,8 +23,11 @@ using namespace Renderer;
 {
     GLRenderingEngine *m_renderingEngine;
     
-    Framebuffer *m_framebuffer;
-    Renderbuffer *m_renderbuffer;
+    MultisampleFramebuffer *m_sampleFramebuffer;
+    MultisampleFramebuffer *m_resolveFramebuffer;
+    Renderbuffer *m_sampleColorRenderbuffer;
+    Renderbuffer *m_sampleDepthStencilRenderbuffer;
+    Renderbuffer *m_resolveColorRenderbuffer;
     
 //    GLuint m_resolveFramebuffer;
 //    GLuint m_sampleFramebuffer;
@@ -66,38 +70,24 @@ using namespace Renderer;
         self.eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
         [EAGLContext setCurrentContext:self.eaglContext];
         
-        m_renderbuffer = new ColorRenderbufferRGBA8();
-        m_renderbuffer->Bind();
+        m_resolveColorRenderbuffer = new ColorRenderbuffer();
+        m_resolveColorRenderbuffer->Bind();
         [self.eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
         
-        m_framebuffer = new Framebuffer();
-        m_framebuffer->Bind();
+        m_resolveFramebuffer = new MultisampleFramebuffer();
+        m_resolveFramebuffer->AttachColorRenderbuffer(m_resolveColorRenderbuffer);
         
-        m_framebuffer->AttachColorRenderbuffer(m_renderbuffer);
+        m_sampleColorRenderbuffer = new ColorRenderbufferMultisampleRGBA8();
+        m_sampleColorRenderbuffer->EstablishStorage(width, height);
         
-//        glGenRenderbuffers(1, &m_resolveColorRenderbuffer);
-//        glBindRenderbuffer(GL_RENDERBUFFER, m_resolveColorRenderbuffer);
-//        [self.eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
-//        
-//        glGenFramebuffers(1, &m_resolveFramebuffer);
-//        glBindFramebuffer(GL_FRAMEBUFFER, m_resolveFramebuffer);
-//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, m_resolveColorRenderbuffer);
-//        
-//        glGenRenderbuffers(1, &m_sampleColorRenderbuffer);
-//        glBindRenderbuffer(GL_RENDERBUFFER, m_sampleColorRenderbuffer);
-//        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_RGBA8_OES, width, height);
-//        
-//        glGenRenderbuffers(1, &m_sampleDepthStencilRenderbuffer);
-//        glBindRenderbuffer(GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
-//        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8_OES, width, height);
-//        
-//        glGenFramebuffers(1, &m_sampleFramebuffer);
-//        glBindFramebuffer(GL_FRAMEBUFFER, m_sampleFramebuffer);
-//        glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, m_sampleFramebuffer);
-//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, m_sampleColorRenderbuffer);
-//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
-//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
-//        
+        m_sampleDepthStencilRenderbuffer = new Depth24Stencil8MultisampleRenderbuffer();
+        m_sampleDepthStencilRenderbuffer->EstablishStorage(width, height);
+        
+        m_sampleFramebuffer = new MultisampleFramebuffer();
+        m_sampleFramebuffer->AttachColorRenderbuffer(m_sampleColorRenderbuffer);
+//        m_sampleFramebuffer->AttachDepthRenderbuffer(m_sampleDepthStencilRenderbuffer);
+//        m_sampleFramebuffer->AttachStencilRenderbuffer(m_sampleDepthStencilRenderbuffer);
+        
         m_renderingEngine = new GLRenderingEngine(width, height);
 
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
@@ -110,39 +100,31 @@ using namespace Renderer;
 - (void)dealloc
 {
     delete m_renderingEngine;
-    delete m_framebuffer;
-    delete m_renderbuffer;
+    delete m_sampleFramebuffer;
+    delete m_sampleColorRenderbuffer;
+    delete m_sampleDepthStencilRenderbuffer;
 }
 
 #pragma mark - Private Methods
 
 - (void)draw:(CADisplayLink *)displayLink
 {
-    m_renderingEngine->Render();
-    [self.eaglContext presentRenderbuffer:GL_RENDERBUFFER];
+    m_sampleFramebuffer->Bind();
+    m_sampleColorRenderbuffer->Bind();
+    m_sampleDepthStencilRenderbuffer->Bind();
     
-//    glBindFramebuffer(GL_FRAMEBUFFER, m_sampleFramebuffer);
-//    glBindRenderbuffer(GL_RENDERBUFFER, m_sampleColorRenderbuffer);
-//    glBindRenderbuffer(GL_RENDERBUFFER, m_sampleDepthStencilRenderbuffer);
-//    
-//    m_renderingEngine->Render();
-//    
-//    glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, m_resolveFramebuffer);
-////    glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, m_sampleFramebuffer); // Moved to init method for improving performance
-//    glResolveMultisampleFramebufferAPPLE();
-//    
-//    const GLenum discards[] =
-//    {
-//        GL_COLOR_ATTACHMENT0,
-//        GL_DEPTH_ATTACHMENT,
-//        GL_STENCIL_ATTACHMENT
-//    };
-//    glDiscardFramebufferEXT(GL_READ_FRAMEBUFFER_APPLE, 3, discards);
-//    
-//    glBindFramebuffer(GL_FRAMEBUFFER, m_resolveFramebuffer);
-//    glBindRenderbuffer(GL_RENDERBUFFER, m_resolveColorRenderbuffer);
-//    
-//    [self.eaglContext presentRenderbuffer:GL_RENDERBUFFER];
+    m_renderingEngine->Render();
+    
+    m_resolveFramebuffer->BindDrawApple();
+    m_sampleFramebuffer->BindReadApple();
+    MultisampleFramebuffer::ResolveMultisampleApple();
+    
+    m_sampleFramebuffer->DiscardReadApple();
+    
+    m_resolveFramebuffer->Bind();
+    m_resolveColorRenderbuffer->Bind();
+    
+    [self.eaglContext presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 @end

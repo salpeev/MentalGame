@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "Depth24Stencil8Renderbuffer.h"
+#include "Depth24Stencil8MultisampleRenderbuffer.h"
 #include "GLConstants.h"
 #include "GLLogger.h"
 #include <OpenGLES/ES2/glext.h>
@@ -15,8 +15,8 @@
 
 namespace Renderer {
     
-    void Depth24Stencil8Renderbuffer::CreateStorage(int width, int height) const {
-        glRenderbufferStorage(FRAMEBUFFER_OBJECT_RENDERBUFFER, GL_DEPTH24_STENCIL8_OES, width, height);
+    void Depth24Stencil8MultisampleRenderbuffer::CreateStorage(int width, int height) const {
+        glRenderbufferStorageMultisampleAPPLE(FRAMEBUFFER_OBJECT_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8_OES, width, height);
         CheckError();
     }
 }

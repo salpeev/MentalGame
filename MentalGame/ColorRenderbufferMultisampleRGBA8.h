@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "Renderbuffer.h"
+#include "ColorRenderbuffer.h"
 
 
 
 namespace Renderer {
     
-    class ColorRenderbufferRGBA8: public Renderbuffer {
+    class ColorRenderbufferMultisampleRGBA8: public ColorRenderbuffer {
     protected:
         void CreateStorage(int width, int height) const;
     };

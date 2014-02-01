@@ -12,7 +12,7 @@
 
 namespace Renderer {
     
-    class Depth24Stencil8Renderbuffer: public Renderbuffer {
+    class Depth24Stencil8MultisampleRenderbuffer: public Renderbuffer {
     protected:
         void CreateStorage(int width, int height) const;
     };

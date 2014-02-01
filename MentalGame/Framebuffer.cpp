@@ -38,22 +38,30 @@ namespace Renderer {
         GLuint renderbufferName = pRenderbuffer->GetName();
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, FRAMEBUFFER_OBJECT_RENDERBUFFER, renderbufferName);
         CheckError();
+        
+        m_colorRenderbuffer = pRenderbuffer;
     }
     
     void Framebuffer::AttachDepthRenderbuffer(Renderbuffer *pRenderbuffer) {
         Bind();
+        pRenderbuffer->Bind();
         
         GLuint renderbufferName = pRenderbuffer->GetName();
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_DEPTH, FRAMEBUFFER_OBJECT_RENDERBUFFER, renderbufferName);
         CheckError();
+        
+        m_depthRenderbuffer = pRenderbuffer;
     }
     
     void Framebuffer::AttachStencilRenderbuffer(Renderbuffer *pRenderbuffer) {
         Bind();
+        pRenderbuffer->Bind();
         
         GLuint renderbufferName = pRenderbuffer->GetName();
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_STENCIL, FRAMEBUFFER_OBJECT_RENDERBUFFER, renderbufferName);
         CheckError();
+        
+        m_stencilRenderbuffer = pRenderbuffer;
     }
     
     void Framebuffer::DetachColorRenderbuffer() {
@@ -61,6 +69,8 @@ namespace Renderer {
         
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);
         CheckError();
+        
+        m_colorRenderbuffer = nullptr;
     }
     
     void Framebuffer::DetachDepthRenderbuffer() {
@@ -68,6 +78,8 @@ namespace Renderer {
         
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_DEPTH, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);
         CheckError();
+        
+        m_depthRenderbuffer = nullptr;
     }
     
     void Framebuffer::DetachStencilRenderbuffer() {
@@ -75,6 +87,8 @@ namespace Renderer {
         
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_STENCIL, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);
         CheckError();
+        
+        m_stencilRenderbuffer = nullptr;
     }
     
     Renderbuffer * Framebuffer::GetColorRenderbuffer() const {
@@ -87,6 +101,12 @@ namespace Renderer {
     
     Renderbuffer * Framebuffer::GetStencilRenderbuffer() const {
         return m_stencilRenderbuffer;
+    }
+    
+#pragma mark - Protected Methods
+    
+    GLuint Framebuffer::GetName() const {
+        return m_name;
     }
     
 #pragma mark - Private Methods
