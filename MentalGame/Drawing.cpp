@@ -15,11 +15,19 @@
 
 namespace Renderer {
     
+#pragma mark - Lifecycle
+    
     Drawing::Drawing() {
         
     }
     
     Drawing::~Drawing() {
+        
+    }
+    
+#pragma mark - Public Methods
+    
+    void Drawing::Draw() const {
         
     }
 }

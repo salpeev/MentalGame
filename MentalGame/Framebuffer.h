@@ -21,6 +21,7 @@ namespace Renderer {
         Framebuffer(const Framebuffer &rFramebuffer) = delete;
         ~Framebuffer();
         
+        // TODO: Determine when Bind() and when BindAll() should be used.
         void Bind() const;
         void BindAll() const;
         void Clear() const;
@@ -49,13 +50,6 @@ namespace Renderer {
         GLColor GetClearColor() const;
         GLclampf GetClearDepth() const;
         GLint GetClearStencil() const;
-        
-        // TODO: Clear buffers here (glClear)
-        
-        // TODO: Check this:
-//        glBindFramebuffer(GL_FRAMEBUFFER, sampleFramebuffer);
-//        glViewport(0, 0, framebufferWidth, framebufferHeight);
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         // TODO: glCheckFramebufferStatus
         

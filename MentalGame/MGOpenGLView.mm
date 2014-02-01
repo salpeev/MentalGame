@@ -7,7 +7,7 @@
 //
 
 #import "MGOpenGLView.h"
-#import "GLRenderingEngine.h"
+#import "RenderingEngine.h"
 #import "GLResourceManager.h"
 #import "MultisampleFramebuffer.h"
 #include "ColorRenderbufferMultisampleRGBA8.h"
@@ -21,7 +21,7 @@ using namespace Renderer;
 
 @interface MGOpenGLView ()
 {
-    GLRenderingEngine *m_renderingEngine;
+    RenderingEngine *m_renderingEngine;
     
     MultisampleFramebuffer *m_sampleFramebuffer;
     MultisampleFramebuffer *m_resolveFramebuffer;
@@ -88,7 +88,7 @@ using namespace Renderer;
 //        m_sampleFramebuffer->AttachDepthRenderbuffer(m_sampleDepthStencilRenderbuffer);
 //        m_sampleFramebuffer->AttachStencilRenderbuffer(m_sampleDepthStencilRenderbuffer);
         
-        m_renderingEngine = new GLRenderingEngine(width, height);
+        m_renderingEngine = new RenderingEngine(m_sampleFramebuffer, width, height);
 
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];

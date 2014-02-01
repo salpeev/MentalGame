@@ -12,7 +12,7 @@
 
 namespace Renderer
 {
-    GLVector2::GLVector2(): GLVector2(0, 0)
+    GLVector2::GLVector2(): GLVector2(0.0f, 0.0f)
     {
         
     }
@@ -24,7 +24,7 @@ namespace Renderer
     
     
     
-    GLVector3::GLVector3(): GLVector3(0, 0, 0)
+    GLVector3::GLVector3(): GLVector3(0.0f, 0.0f, 0.0f)
     {
         
     }
@@ -36,7 +36,7 @@ namespace Renderer
     
     
     
-    GLVector4::GLVector4(): GLVector4(0, 0, 0, 0)
+    GLVector4::GLVector4(): GLVector4(0.0f, 0.0f, 0.0f, 0.0f)
     {
         
     }

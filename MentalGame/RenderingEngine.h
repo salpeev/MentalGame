@@ -8,6 +8,7 @@
 
 #pragma once
 #include "Framebuffer.h"
+#include "Size.h"
 
 
 
@@ -19,6 +20,10 @@ namespace Renderer {
         RenderingEngine(const RenderingEngine &rRenderingEngine) = delete;
         ~RenderingEngine();
         
+        void Render() const;
+        
     private:
+        Framebuffer *m_framebuffer;
+        Size m_windowSize;
     };
 }

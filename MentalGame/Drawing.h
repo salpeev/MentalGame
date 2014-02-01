@@ -15,9 +15,8 @@ namespace Renderer {
     class Drawing {
     public:
         Drawing();
-        Drawing(const Drawing &rDrawing) = delete;
-        virtual ~Drawing();
+        ~Drawing();
         
-        virtual void Draw() const = 0;
+        void Draw() const;
     };
 }

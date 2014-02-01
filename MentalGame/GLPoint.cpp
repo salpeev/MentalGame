@@ -12,7 +12,7 @@
 
 namespace Renderer
 {
-    GLPoint::GLPoint(): GLPoint(0, 0, 0)
+    GLPoint::GLPoint(): GLPoint(0.0f, 0.0f, 0.0f)
     {
         
     }
