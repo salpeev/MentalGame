@@ -25,7 +25,7 @@ namespace Renderer
         GLSL_DATA_TYPE GetDataType() const;
         
         GLSL_BUFFER TargetBuffer() const;
-        GLSL_GET BufferBindingParameter() const;
+        GET_PARAMETER BufferBindingParameter() const;
         
         static void UnbindCurrentBuffer();
         

@@ -28,7 +28,7 @@ namespace Renderer
         bool IsBound() const;
         
         virtual GLSL_BUFFER TargetBuffer() const = 0;
-        virtual GLSL_GET BufferBindingParameter() const = 0;
+        virtual GET_PARAMETER BufferBindingParameter() const = 0;
         
     protected:
         void LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);

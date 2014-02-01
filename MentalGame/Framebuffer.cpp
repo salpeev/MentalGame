@@ -31,6 +31,41 @@ namespace Renderer {
         }
     }
     
+    void Framebuffer::BindAll() const {
+        Bind();
+        BindColorRenderbuffer();
+        BindDepthRenderbuffer();
+        BindStencilRenderbuffer();
+    }
+    
+    void Framebuffer::Clear() const {
+        // TODO: Check is framebuffer should be bound. Is renderbuffers should be bound too?
+        Bind();
+        
+        GLbitfield mask = 0;
+        
+        if (GetColorRenderbuffer()) {
+            mask |= CLEAR_BUFFER_BIT_COLOR;
+        }
+        if (GetDepthRenderbuffer()) {
+            mask |= CLEAR_BUFFER_BIT_DEPTH;
+        }
+        if (GetDepthRenderbuffer()) {
+            mask |= CLEAR_BUFFER_BIT_STENCIL;
+        }
+        
+        glClear(mask);
+        CheckError();
+    }
+    
+    void Framebuffer::Clear(GLbitfield mask) const {
+        // TODO: Check is framebuffer should be bound. Is renderbuffers should be bound too?
+        Bind();
+        
+        glClear(mask);
+        CheckError();
+    }
+    
     void Framebuffer::AttachColorRenderbuffer(Renderbuffer *pRenderbuffer) {
         Bind();
         pRenderbuffer->Bind();
@@ -62,6 +97,24 @@ namespace Renderer {
         CheckError();
         
         m_stencilRenderbuffer = pRenderbuffer;
+    }
+    
+    void Framebuffer::BindColorRenderbuffer() const {
+        if (m_colorRenderbuffer) {
+            m_colorRenderbuffer->Bind();
+        }
+    }
+    
+    void Framebuffer::BindDepthRenderbuffer() const {
+        if (m_depthRenderbuffer) {
+            m_depthRenderbuffer->Bind();
+        }
+    }
+    
+    void Framebuffer::BindStencilRenderbuffer() const {
+        if (m_stencilRenderbuffer) {
+            m_stencilRenderbuffer->Bind();
+        }
     }
     
     void Framebuffer::DetachColorRenderbuffer() {
@@ -103,6 +156,51 @@ namespace Renderer {
         return m_stencilRenderbuffer;
     }
     
+    void Framebuffer::SetClearColor(const GLColor &rColor) const {
+        Bind();
+        
+        glClearColor(rColor.r, rColor.g, rColor.b, rColor.a);
+        CheckError();
+    }
+    
+    void Framebuffer::SetClearDepth(GLclampf depth) const {
+        Bind();
+        
+        glClearDepthf(depth);
+        CheckError();
+    }
+    
+    void Framebuffer::SetClearStencil(GLint stencil) const {
+        Bind();
+        
+        glClearStencil(stencil);
+        CheckError();
+    }
+    
+    GLColor Framebuffer::GetClearColor() const {
+        GLColor color;
+        glGetFloatv(GET_PARAMETER_COLOR_CLEAR_VALUE, (GLfloat *)(&color));
+        CheckError();
+        
+        return color;
+    }
+    
+    GLclampf Framebuffer::GetClearDepth() const {
+        GLclampf depth;
+        glGetFloatv(GET_PARAMETER_DEPTH_CLEAR_VALUE, &depth);
+        CheckError();
+        
+        return depth;
+    }
+    
+    GLint Framebuffer::GetClearStencil() const {
+        GLint stencil;
+        glGetIntegerv(GET_PARAMETER_STENCIL_CLEAR_VALUE, &stencil);
+        CheckError();
+        
+        return stencil;
+    }
+    
 #pragma mark - Protected Methods
     
     GLuint Framebuffer::GetName() const {
@@ -125,7 +223,7 @@ namespace Renderer {
     
     bool Framebuffer::IsBound() const {
         GLint currentFramebufferName;
-        glGetIntegerv(GLSL_GET_FRAMEBUFFER_BINDING, &currentFramebufferName);
+        glGetIntegerv(GET_PARAMETER_FRAMEBUFFER_BINDING, &currentFramebufferName);
         CheckError();
         
         bool bound = (currentFramebufferName == m_name);

@@ -188,7 +188,7 @@ namespace Renderer {
     bool Program::IsUsed() const
     {
         GLint currentProgramHandle;
-        glGetIntegerv(GLSL_GET_CURRENT_PROGRAM, &currentProgramHandle);
+        glGetIntegerv(GET_PARAMETER_CURRENT_PROGRAM, &currentProgramHandle);
         CheckError();
         
         bool used = (currentProgramHandle == m_programHandle);

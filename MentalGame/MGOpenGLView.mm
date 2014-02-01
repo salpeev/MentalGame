@@ -109,9 +109,7 @@ using namespace Renderer;
 
 - (void)draw:(CADisplayLink *)displayLink
 {
-    m_sampleFramebuffer->Bind();
-    m_sampleColorRenderbuffer->Bind();
-    m_sampleDepthStencilRenderbuffer->Bind();
+    m_sampleFramebuffer->BindAll();
     
     m_renderingEngine->Render();
     
@@ -122,7 +120,7 @@ using namespace Renderer;
     m_sampleFramebuffer->DiscardReadApple();
     
     m_resolveFramebuffer->Bind();
-    m_resolveColorRenderbuffer->Bind();
+    m_resolveFramebuffer->GetColorRenderbuffer()->Bind();
     
     [self.eaglContext presentRenderbuffer:GL_RENDERBUFFER];
 }

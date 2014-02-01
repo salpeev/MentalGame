@@ -29,15 +29,15 @@ namespace Renderer
         return GLSL_ARRAY_BUFFER;
     }
     
-    GLSL_GET GLSLVertexBuffer::BufferBindingParameter() const
+    GET_PARAMETER GLSLVertexBuffer::BufferBindingParameter() const
     {
-        return GLSL_GET_ARRAY_BUFFER_BINDING;
+        return GET_PARAMETER_ARRAY_BUFFER_BINDING;
     }
     
     void GLSLVertexBuffer::UnbindCurrentBuffer()
     {
         GLint boundBufferHandle;
-        glGetIntegerv(GLSL_GET_ARRAY_BUFFER_BINDING, &boundBufferHandle);
+        glGetIntegerv(GET_PARAMETER_ARRAY_BUFFER_BINDING, &boundBufferHandle);
         CheckError();
         
         if (boundBufferHandle != 0)

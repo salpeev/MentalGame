@@ -37,15 +37,15 @@ namespace Renderer
         return GLSL_ELEMENT_ARRAY_BUFFER;
     }
     
-    GLSL_GET GLSLIndexBuffer::BufferBindingParameter() const
+    GET_PARAMETER GLSLIndexBuffer::BufferBindingParameter() const
     {
-        return GLSL_GET_ELEMENT_ARRAY_BUFFER_BINDING;
+        return GET_PARAMETER_ELEMENT_ARRAY_BUFFER_BINDING;
     }
     
     void GLSLIndexBuffer::UnbindCurrentBuffer()
     {
         GLint boundBufferHandle;
-        glGetIntegerv(GLSL_GET_ELEMENT_ARRAY_BUFFER_BINDING, &boundBufferHandle);
+        glGetIntegerv(GET_PARAMETER_ELEMENT_ARRAY_BUFFER_BINDING, &boundBufferHandle);
         CheckError();
         
         if (boundBufferHandle != 0)

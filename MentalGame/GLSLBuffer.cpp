@@ -49,7 +49,7 @@ namespace Renderer
     
     bool GLSLBuffer::IsBound() const
     {
-        GLSL_GET getParameter = BufferBindingParameter();
+        GET_PARAMETER getParameter = BufferBindingParameter();
         
         GLint boundBufferHandle;
         glGetIntegerv(getParameter, &boundBufferHandle);

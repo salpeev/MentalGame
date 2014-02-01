@@ -35,7 +35,7 @@ namespace Renderer
         m_drawings = new vector<Drawing *>();
         
         glViewport(0, 0, width, height);
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+//        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
 //        Test0();
 //        Test1();

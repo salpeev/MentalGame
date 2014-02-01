@@ -23,7 +23,7 @@ namespace Renderer
         void LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
         
         GLSL_BUFFER TargetBuffer() const;
-        GLSL_GET BufferBindingParameter() const;
+        GET_PARAMETER BufferBindingParameter() const;
         
         static void UnbindCurrentBuffer();
     };
