@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
 #include "GLSLDrawRequest.h"
+#include <vector>
+
+using namespace std;
 
 
 
@@ -17,6 +21,20 @@ namespace Renderer {
         Drawing();
         ~Drawing();
         
-        void Draw() const;
+        void DrawHierarchy() const;
+        
+        void AddSubDrawing(Drawing *pDrawing);
+        void RemoveSubDrawing(Drawing *pDrawing);
+        void RemoveFromParentDrawing();
+        Drawing *GetParentDrawing() const;
+        
+        virtual void Draw() const;
+        
+    private:
+        void DrawSubDrawings() const;
+        void SetParentDrawing(Drawing *pDrawing);
+        
+        vector<Drawing *> *m_subDrawings;
+        Drawing *m_parentDrawing;
     };
 }
