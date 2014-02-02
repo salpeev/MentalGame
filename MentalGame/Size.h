@@ -13,10 +13,10 @@
 
 namespace Renderer {
     
-    class Size {
+    class CSize {
     public:
-        Size();
-        Size(GLfloat width, GLfloat height);
+        CSize();
+        CSize(GLfloat width, GLfloat height);
         
         GLfloat width;
         GLfloat height;

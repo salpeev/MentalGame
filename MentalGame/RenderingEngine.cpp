@@ -16,9 +16,7 @@ namespace Renderer {
     
 #pragma mark - Lifecycle
     
-    RenderingEngine::RenderingEngine(Framebuffer *pFramebuffer, int width, int height): m_framebuffer(pFramebuffer), m_windowSize(width, height) {
-        ResetRenderFrame();
-        
+    RenderingEngine::RenderingEngine(): m_framebuffer(nullptr), m_rootDrawing(nullptr), m_windowSize(0.0f, 0.0f) {
         m_rootDrawing = new Drawing();
         
         // TODO: Remove later
@@ -31,6 +29,23 @@ namespace Renderer {
     }
     
 #pragma mark - Public Methods
+    
+    void RenderingEngine::SetFramebuffer(Framebuffer *pFramebuffer) {
+        m_framebuffer = pFramebuffer;
+    }
+    
+    Framebuffer * RenderingEngine::GetFramebuffer() const {
+        return m_framebuffer;
+    }
+    
+    void RenderingEngine::SetWindowSize(const CSize &rSize) {
+        m_windowSize = rSize;
+        ResetRenderFrame();
+    }
+    
+    CSize RenderingEngine::GetWindowSize() const {
+        return m_windowSize;
+    }
     
     void RenderingEngine::SetRenderFrame(const Rect &rFrame) const {
         // TODO: GL_MAX_VIEWPORT_DIMS

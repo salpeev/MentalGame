@@ -12,11 +12,11 @@
 
 namespace Renderer {
     
-    Size::Size(): Size(0.0f, 0.0f) {
+    CSize::CSize(): CSize(0.0f, 0.0f) {
         
     }
     
-    Size::Size(GLfloat width, GLfloat height): width(width), height(height) {
+    CSize::CSize(GLfloat width, GLfloat height): width(width), height(height) {
         
     }
 }

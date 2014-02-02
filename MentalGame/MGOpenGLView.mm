@@ -21,8 +21,6 @@ using namespace Renderer;
 
 @interface MGOpenGLView ()
 {
-    RenderingEngine *m_renderingEngine;
-    
     MultisampleFramebuffer *m_sampleFramebuffer;
     MultisampleFramebuffer *m_resolveFramebuffer;
     Renderbuffer *m_sampleColorRenderbuffer;
@@ -88,7 +86,8 @@ using namespace Renderer;
 //        m_sampleFramebuffer->AttachDepthRenderbuffer(m_sampleDepthStencilRenderbuffer);
 //        m_sampleFramebuffer->AttachStencilRenderbuffer(m_sampleDepthStencilRenderbuffer);
         
-        m_renderingEngine = new RenderingEngine(m_sampleFramebuffer, width, height);
+        RenderingEngine::SharedInstance().SetFramebuffer(m_sampleFramebuffer);
+        RenderingEngine::SharedInstance().SetWindowSize(CSize(width, height));
 
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -99,7 +98,6 @@ using namespace Renderer;
 
 - (void)dealloc
 {
-    delete m_renderingEngine;
     delete m_sampleFramebuffer;
     delete m_sampleColorRenderbuffer;
     delete m_sampleDepthStencilRenderbuffer;
@@ -111,7 +109,7 @@ using namespace Renderer;
 {
     m_sampleFramebuffer->BindAll();
     
-    m_renderingEngine->Render();
+    RenderingEngine::SharedInstance().Render();
     
     m_resolveFramebuffer->BindDrawApple();
     m_sampleFramebuffer->BindReadApple();
