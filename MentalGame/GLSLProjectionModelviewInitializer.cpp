@@ -8,6 +8,7 @@
 
 #include "GLSLProjectionModelviewInitializer.h"
 #include "Uniform.h"
+#include "RenderingEngine.h"
 
 
 
@@ -19,7 +20,10 @@ static const char *ModelviewUniformName = "u_modelview";
 namespace Renderer
 {
     GLSLProjectionModelviewInitializer::GLSLProjectionModelviewInitializer () {
-        m_projection = GLSLMatrix4::Frustum(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f);
+        CSize windowSize = RenderingEngine::SharedInstance().GetWindowSize();
+        GLfloat screenAspectRatio = windowSize.width / windowSize.height;
+        
+        m_projection = GLSLMatrix4::Frustum(-2.0f, 2.0f, -2.0f / screenAspectRatio, 2.0f / screenAspectRatio, 4.0f, 10.0f);
     }
     
     GLSLProjectionModelviewInitializer::~GLSLProjectionModelviewInitializer() {

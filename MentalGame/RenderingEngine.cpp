@@ -18,10 +18,6 @@ namespace Renderer {
     
     RenderingEngine::RenderingEngine(): m_framebuffer(nullptr), m_rootDrawing(nullptr), m_windowSize(0.0f, 0.0f) {
         m_rootDrawing = new Drawing();
-        
-        // TODO: Remove later
-        ColorGlassDrawing *drawing = new ColorGlassDrawing();
-        m_rootDrawing->AddSubDrawing(drawing);
     }
     
     RenderingEngine::~RenderingEngine() {
@@ -41,6 +37,10 @@ namespace Renderer {
     void RenderingEngine::SetWindowSize(const CSize &rSize) {
         m_windowSize = rSize;
         ResetRenderFrame();
+        
+        // TODO: Remove later
+        ColorGlassDrawing *drawing = new ColorGlassDrawing();
+        m_rootDrawing->AddSubDrawing(drawing);
     }
     
     CSize RenderingEngine::GetWindowSize() const {
