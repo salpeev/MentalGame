@@ -1,34 +1,34 @@
 //
-//  GLSLVector.cpp
+//  Vector.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 25.12.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLVector.h"
+#include "Vector.h"
 
 
 
 namespace Renderer
 {
-#pragma mark - GLSLVector2
+#pragma mark - Vector2
     
-    const float * GLSLVector2::Pointer() const
+    const float * Vector2::Pointer() const
     {
         return &x;
     }
     
-#pragma mark - GLSLVector3
+#pragma mark - Vector3
     
-    const float * GLSLVector3::Pointer() const
+    const float * Vector3::Pointer() const
     {
         return &x;
     }
     
-#pragma mark - GLSLVector4
+#pragma mark - Vector4
     
-    const float * GLSLVector4::Pointer() const
+    const float * Vector4::Pointer() const
     {
         return &x;
     }

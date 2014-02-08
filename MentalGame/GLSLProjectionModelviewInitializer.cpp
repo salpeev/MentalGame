@@ -23,26 +23,26 @@ namespace Renderer
         CSize windowSize = RenderingEngine::SharedInstance().GetWindowSize();
         GLfloat screenAspectRatio = windowSize.width / windowSize.height;
         
-        m_projection = GLSLMatrix4::Frustum(-2.0f, 2.0f, -2.0f / screenAspectRatio, 2.0f / screenAspectRatio, 4.0f, 10.0f);
+        m_projection = Matrix4::Frustum(-2.0f, 2.0f, -2.0f / screenAspectRatio, 2.0f / screenAspectRatio, 4.0f, 10.0f);
     }
     
     GLSLProjectionModelviewInitializer::~GLSLProjectionModelviewInitializer() {
         
     }
     
-    void GLSLProjectionModelviewInitializer::SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix) {
+    void GLSLProjectionModelviewInitializer::SetProjectionMatrix(Matrix4 &rProjectionMatrix) {
         m_projection = rProjectionMatrix;
     }
     
-    void GLSLProjectionModelviewInitializer::SetModelviewMatrix(GLSLMatrix4 &rModelviewMatix) {
+    void GLSLProjectionModelviewInitializer::SetModelviewMatrix(Matrix4 &rModelviewMatix) {
         m_modelview = rModelviewMatix;
     }
     
-    GLSLMatrix4 & GLSLProjectionModelviewInitializer::GetProjectionMatrix() {
+    Matrix4 & GLSLProjectionModelviewInitializer::GetProjectionMatrix() {
         return m_projection;
     }
     
-    GLSLMatrix4 & GLSLProjectionModelviewInitializer::GetModelviewMatrix() {
+    Matrix4 & GLSLProjectionModelviewInitializer::GetModelviewMatrix() {
         return m_modelview;
     }
     

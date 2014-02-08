@@ -33,12 +33,12 @@ namespace Renderer {
         void Set2iv(const GLint *pValues) const;
         void Set3iv(const GLint *pValues) const;
         void Set4iv(const GLint *pValues) const;
-        void SetMatrix2f(const GLSLMatrix2 &rMatrix) const;
-        void SetMatrix3f(const GLSLMatrix3 &rMatrix) const;
-        void SetMatrix4f(const GLSLMatrix4 &rMatrix) const;
-        void SetMatrix2fv(const GLSLMatrix2 *pMatrix) const;
-        void SetMatrix3fv(const GLSLMatrix3 *pMatrix) const;
-        void SetMatrix4fv(const GLSLMatrix4 *pMatrix) const;
+        void SetMatrix2f(const Matrix2 &rMatrix) const;
+        void SetMatrix3f(const Matrix3 &rMatrix) const;
+        void SetMatrix4f(const Matrix4 &rMatrix) const;
+        void SetMatrix2fv(const Matrix2 *pMatrix) const;
+        void SetMatrix3fv(const Matrix3 *pMatrix) const;
+        void SetMatrix4fv(const Matrix4 *pMatrix) const;
         
         GLfloat Get1f() const;
         void Get2f(GLfloat *pValue0, GLfloat *pValue1) const;
@@ -56,12 +56,12 @@ namespace Renderer {
         void Get2iv(GLint *pValues) const;
         void Get3iv(GLint *pValues) const;
         void Get4iv(GLint *pValues) const;
-        GLSLMatrix2 GetMatrix2f() const;
-        GLSLMatrix3 GetMatrix3f() const;
-        GLSLMatrix4 GetMatrix4f() const;
-        void GetMatrix2fv(GLSLMatrix2 *pMatrix) const;
-        void GetMatrix3fv(GLSLMatrix3 *pMatrix) const;
-        void GetMatrix4fv(GLSLMatrix4 *pMatrix) const;
+        Matrix2 GetMatrix2f() const;
+        Matrix3 GetMatrix3f() const;
+        Matrix4 GetMatrix4f() const;
+        void GetMatrix2fv(Matrix2 *pMatrix) const;
+        void GetMatrix3fv(Matrix3 *pMatrix) const;
+        void GetMatrix4fv(Matrix4 *pMatrix) const;
         
     private:
         void GetValue(GLfloat *pValue) const;

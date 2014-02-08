@@ -1,12 +1,12 @@
 //
-//  GLSLMatrix.cpp
+//  Matrix.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 25.12.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLMatrix.h"
+#include "Matrix.h"
 
 using namespace std;
 
@@ -14,29 +14,29 @@ using namespace std;
 
 namespace Renderer {
     
-#pragma mark - GLSLMatrix2
+#pragma mark - Matrix2
     
-    const float * GLSLMatrix2::Pointer() const {
+    const float * Matrix2::Pointer() const {
         return &x.x;
     }
     
-#pragma mark - GLSLMatrix3
+#pragma mark - Matrix3
     
-    const float * GLSLMatrix3::Pointer() const {
+    const float * Matrix3::Pointer() const {
         return &x.x;
     }
     
-#pragma mark - GLSLMatrix4
+#pragma mark - Matrix4
     
-    GLSLMatrix4::GLSLMatrix4() {
+    Matrix4::Matrix4() {
         x.x = 1.0; x.y = 0.0; x.z = 0.0; x.w = 0.0;
         y.x = 0.0; y.y = 1.0; y.z = 0.0; y.w = 0.0;
         z.x = 0.0; z.y = 0.0; z.z = 1.0; z.w = 0.0;
         w.x = 0.0; w.y = 0.0; w.z = 0.0; w.w = 1.0;
     }
     
-    GLSLMatrix4 GLSLMatrix4::operator * (const GLSLMatrix4 &m) const {
-        GLSLMatrix4 r;
+    Matrix4 Matrix4::operator * (const Matrix4 &m) const {
+        Matrix4 r;
         
         r.x.x = x.x * m.x.x + x.y * m.y.x + x.z * m.z.x + x.w * m.w.x;
         r.x.y = x.x * m.x.y + x.y * m.y.y + x.z * m.z.y + x.w * m.w.y;
@@ -61,7 +61,7 @@ namespace Renderer {
         return r;
     }
     
-    GLSLMatrix4 & GLSLMatrix4::Translate(float tX, float tY, float tZ) {
+    Matrix4 & Matrix4::Translate(float tX, float tY, float tZ) {
         w.x += tX;
         w.y += tY;
         w.z += tZ;
@@ -69,35 +69,35 @@ namespace Renderer {
         return *this;
     }
     
-    GLSLMatrix4 & GLSLMatrix4::RotateX(float radians) {
-        GLSLMatrix4 rotationMatrix = GLSLMatrix4::RotationX(radians);
-        GLSLMatrix4 currentMatrix = *this;
+    Matrix4 & Matrix4::RotateX(float radians) {
+        Matrix4 rotationMatrix = Matrix4::RotationX(radians);
+        Matrix4 currentMatrix = *this;
         *this = rotationMatrix * currentMatrix;
         
         return *this;
     }
     
-    GLSLMatrix4 & GLSLMatrix4::RotateY(float radians) {
-        GLSLMatrix4 rotationMatrix = GLSLMatrix4::RotationY(radians);
-        GLSLMatrix4 currentMatrix = *this;
+    Matrix4 & Matrix4::RotateY(float radians) {
+        Matrix4 rotationMatrix = Matrix4::RotationY(radians);
+        Matrix4 currentMatrix = *this;
         *this = rotationMatrix * currentMatrix;
         
         return *this;
     }
     
-    GLSLMatrix4 & GLSLMatrix4::RotateZ(float radians) {
-        GLSLMatrix4 rotationMatrix = GLSLMatrix4::RotationZ(radians);
-        GLSLMatrix4 currentMatrix = *this;
+    Matrix4 & Matrix4::RotateZ(float radians) {
+        Matrix4 rotationMatrix = Matrix4::RotationZ(radians);
+        Matrix4 currentMatrix = *this;
         *this = rotationMatrix * currentMatrix;
         
         return *this;
     }
     
-    const float * GLSLMatrix4::Pointer() const {
+    const float * Matrix4::Pointer() const {
         return &x.x;
     }
     
-    GLSLMatrix4 GLSLMatrix4::Frustum(float left, float right, float bottom, float top, float near, float far) {
+    Matrix4 Matrix4::Frustum(float left, float right, float bottom, float top, float near, float far) {
         float a = 2 * near / (right - left);
         float b = 2 * near / (top - bottom);
         float c = (right + left) / (right - left);
@@ -105,7 +105,7 @@ namespace Renderer {
         float e = -(far + near) / (far - near);
         float f = - 2 * far * near / (far - near);
         
-        GLSLMatrix4 m;
+        Matrix4 m;
         m.x.x = a;   m.x.y = 0.0; m.x.z = 0.0; m.x.w = 0.0;
         m.y.x = 0.0; m.y.y = b;   m.y.z = 0.0; m.y.w = 0.0;
         m.z.x = c;   m.z.y = d;   m.z.z = e;   m.z.w = -1.0;
@@ -113,8 +113,8 @@ namespace Renderer {
         return m;
     }
     
-    GLSLMatrix4 GLSLMatrix4::Translation(float tX, float tY, float tZ) {
-        GLSLMatrix4 m;
+    Matrix4 Matrix4::Translation(float tX, float tY, float tZ) {
+        Matrix4 m;
         m.x.x = 1.0f; m.x.y = 0.0f; m.x.z = 0.0f; m.x.w = 0.0f;
         m.y.x = 0.0f; m.y.y = 1.0f; m.y.z = 0.0f; m.y.w = 0.0f;
         m.z.x = 0.0f; m.z.y = 0.0f; m.z.z = 1.0f; m.z.w = 0.0f;
@@ -122,11 +122,11 @@ namespace Renderer {
         return m;
     }
     
-    GLSLMatrix4 GLSLMatrix4::RotationX(float radians) {
+    Matrix4 Matrix4::RotationX(float radians) {
         float s = sin(radians);
         float c = cos(radians);
         
-        GLSLMatrix4 m;
+        Matrix4 m;
         m.x.x = 1.0f; m.x.y = 0.0f; m.x.z = 0.0f; m.x.w = 0.0f;
         m.y.x = 0.0f; m.y.y = c;    m.y.z = s;    m.y.w = 0.0f;
         m.z.x = 0.0f; m.z.y = -s;   m.z.z = c;    m.z.w = 0.0f;
@@ -134,11 +134,11 @@ namespace Renderer {
         return m;
     }
     
-    GLSLMatrix4 GLSLMatrix4::RotationY(float radians) {
+    Matrix4 Matrix4::RotationY(float radians) {
         float s = sin(radians);
         float c = cos(radians);
         
-        GLSLMatrix4 m;
+        Matrix4 m;
         m.x.x = c;    m.x.y = 0.0f; m.x.z = -s;   m.x.w = 0.0f;
         m.y.x = 0.0f; m.y.y = 1.0f; m.y.z = 0.0f; m.y.w = 0.0f;
         m.z.x = s;    m.z.y = 0.0f; m.z.z = c;    m.z.w = 0.0f;
@@ -146,11 +146,11 @@ namespace Renderer {
         return m;
     }
     
-    GLSLMatrix4 GLSLMatrix4::RotationZ(float radians) {
+    Matrix4 Matrix4::RotationZ(float radians) {
         float s = sin(radians);
         float c = cos(radians);
         
-        GLSLMatrix4 m;
+        Matrix4 m;
         m.x.x = c;    m.x.y = s;    m.x.z = 0.0f; m.x.w = 0.0f;
         m.y.x = -s;   m.y.y = c;    m.y.z = 0.0f; m.y.w = 0.0f;
         m.z.x = 0.0f; m.z.y = 0.0f; m.z.z = 1.0f; m.z.w = 0.0f;

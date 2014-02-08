@@ -9,7 +9,7 @@
 #pragma once
 #include <string>
 #include <OpenGLES/ES2/gl.h>
-#include "GLSLQuaternion.h"
+#include "Quaternion.h"
 
 using namespace std;
 

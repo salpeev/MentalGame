@@ -8,7 +8,7 @@
 
 #pragma once
 #include "GLSLUniformInitializer.h"
-#include "GLSLMatrix.h"
+#include "Matrix.h"
 
 
 
@@ -20,16 +20,16 @@ namespace Renderer
         GLSLProjectionModelviewInitializer();
         ~GLSLProjectionModelviewInitializer();
         
-        void SetProjectionMatrix(GLSLMatrix4 &rProjectionMatrix);
-        void SetModelviewMatrix(GLSLMatrix4 &rModelviewMatix);
+        void SetProjectionMatrix(Matrix4 &rProjectionMatrix);
+        void SetModelviewMatrix(Matrix4 &rModelviewMatix);
         
-        GLSLMatrix4 & GetProjectionMatrix();
-        GLSLMatrix4 & GetModelviewMatrix();
+        Matrix4 & GetProjectionMatrix();
+        Matrix4 & GetModelviewMatrix();
         
         void InitializeUniforms(map<string, Uniform *> *pUniforms) const;
         
     private:
-        GLSLMatrix4 m_projection;
-        GLSLMatrix4 m_modelview;
+        Matrix4 m_projection;
+        Matrix4 m_modelview;
     };
 }

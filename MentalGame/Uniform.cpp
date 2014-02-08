@@ -116,37 +116,37 @@ namespace Renderer {
         CheckError();
     }
     
-    void Uniform::SetMatrix2f(const GLSLMatrix2 &rMatrix) const {
+    void Uniform::SetMatrix2f(const Matrix2 &rMatrix) const {
         // TODO: Should be tested
         glUniformMatrix2fv(GetLocation(), GetSize(), GLSL_FALSE, rMatrix.Pointer());
         CheckError();
     }
     
-    void Uniform::SetMatrix3f(const GLSLMatrix3 &rMatrix) const {
+    void Uniform::SetMatrix3f(const Matrix3 &rMatrix) const {
         // TODO: Should be tested
         glUniformMatrix3fv(GetLocation(), GetSize(), GLSL_FALSE, rMatrix.Pointer());
         CheckError();
     }
     
-    void Uniform::SetMatrix4f(const GLSLMatrix4 &rMatrix) const {
+    void Uniform::SetMatrix4f(const Matrix4 &rMatrix) const {
         // TODO: Should be tested
         glUniformMatrix4fv(GetLocation(), GetSize(), GLSL_FALSE, rMatrix.Pointer());
         CheckError();
     }
     
-    void Uniform::SetMatrix2fv(const GLSLMatrix2 *pMatrix) const {
+    void Uniform::SetMatrix2fv(const Matrix2 *pMatrix) const {
         // TODO: Should be tested
         glUniformMatrix2fv(GetLocation(), GetSize(), GLSL_FALSE, (GLfloat *)pMatrix);
         CheckError();
     }
     
-    void Uniform::SetMatrix3fv(const GLSLMatrix3 *pMatrix) const {
+    void Uniform::SetMatrix3fv(const Matrix3 *pMatrix) const {
         // TODO: Should be tested
         glUniformMatrix3fv(GetLocation(), GetSize(), GLSL_FALSE, (GLfloat *)pMatrix);
         CheckError();
     }
     
-    void Uniform::SetMatrix4fv(const GLSLMatrix4 *pMatrix) const {
+    void Uniform::SetMatrix4fv(const Matrix4 *pMatrix) const {
         // TODO: Should be tested
         glUniformMatrix4fv(GetLocation(), GetSize(), GLSL_FALSE, (GLfloat *)pMatrix);
         CheckError();
@@ -270,38 +270,38 @@ namespace Renderer {
         GetValue(pValues);
     }
     
-    GLSLMatrix2 Uniform::GetMatrix2f() const {
+    Matrix2 Uniform::GetMatrix2f() const {
         // TODO: Should be tested
-        GLSLMatrix2 matrix;
+        Matrix2 matrix;
         GetValue((GLfloat *)matrix.Pointer());
         return matrix;
     }
     
-    GLSLMatrix3 Uniform::GetMatrix3f() const {
+    Matrix3 Uniform::GetMatrix3f() const {
         // TODO: Should be tested
-        GLSLMatrix3 matrix;
+        Matrix3 matrix;
         GetValue((GLfloat *)matrix.Pointer());
         return matrix;
     }
     
-    GLSLMatrix4 Uniform::GetMatrix4f() const {
+    Matrix4 Uniform::GetMatrix4f() const {
         // TODO: Should be tested
-        GLSLMatrix4 matrix;
+        Matrix4 matrix;
         GetValue((GLfloat *)matrix.Pointer());
         return matrix;
     }
     
-    void Uniform::GetMatrix2fv(GLSLMatrix2 *pMatrix) const {
+    void Uniform::GetMatrix2fv(Matrix2 *pMatrix) const {
         // TODO: Should be tested
         GetValue((GLfloat *)pMatrix);
     }
     
-    void Uniform::GetMatrix3fv(GLSLMatrix3 *pMatrix) const {
+    void Uniform::GetMatrix3fv(Matrix3 *pMatrix) const {
         // TODO: Should be tested
         GetValue((GLfloat *)pMatrix);
     }
     
-    void Uniform::GetMatrix4fv(GLSLMatrix4 *pMatrix) const {
+    void Uniform::GetMatrix4fv(Matrix4 *pMatrix) const {
         // TODO: Should be tested
         GetValue((GLfloat *)pMatrix);
     }
