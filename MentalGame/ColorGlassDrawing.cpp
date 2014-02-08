@@ -7,6 +7,7 @@
 //
 
 #include "ColorGlassDrawing.h"
+#include "GLLogger.h"
 #include "GLSLVertex.h"
 #include "GLSLVertexBuffer.h"
 #include "GLSLIndexBuffer.h"
@@ -23,14 +24,14 @@ namespace Renderer {
         glEnable(GL_CULL_FACE);
         
         vector<GLSLVertex1P1C> vertices;
-        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, -0.5, 0.25), GLColor(1.0, 0.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, -0.5, 0.25), GLColor(0.0, 1.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, 0.5, 0.25), GLColor(0.0, 0.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, 0.5, 0.25), GLColor(1.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, -0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, -0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(0.5, 0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(GLPoint(-0.5, 0.5, -0.25), GLColor(1.0, 1.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(-1.0, -1.0, 0.25), GLColor(1.0, 0.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(1.0, -1.0, 0.25), GLColor(0.0, 1.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(1.0, 1.0, 0.25), GLColor(0.0, 0.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(-1.0, 1.0, 0.25), GLColor(1.0, 1.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(-1.0, -1.0, -0.25), GLColor(0.0, 1.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(1.0, -1.0, -0.25), GLColor(1.0, 0.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(1.0, 1.0, -0.25), GLColor(0.4, 0.2, 0.9)));
+        vertices.push_back(GLSLVertex1P1C(GLPoint(-1.0, 1.0, -0.25), GLColor(0.7, 0.2, 0.0)));
         
         vector<GLushort> indices;
         indices.push_back(0);
@@ -78,7 +79,7 @@ namespace Renderer {
         
         m_attributeInitializer = new GLSLPositionColorInitializer();
         m_uniformInitializer = new GLSLProjectionModelviewInitializer();
-        m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -5.0).RotateY(M_PI_4);
+        m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -5.5).RotateY(M_PI_4);
         
         m_drawRequest = new GLSLVertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
@@ -91,6 +92,10 @@ namespace Renderer {
         delete m_indexBuffer;
         delete m_attributeInitializer;
         delete m_uniformInitializer;
+    }
+    
+    void ColorGlassDrawing::Update(float interval) {
+        m_uniformInitializer->GetModelviewMatrix().RotateX(interval).RotateY(interval).RotateZ(interval);
     }
     
     void ColorGlassDrawing::Draw() const {

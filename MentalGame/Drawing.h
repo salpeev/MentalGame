@@ -21,6 +21,7 @@ namespace Renderer {
         Drawing();
         ~Drawing();
         
+        void UpdateHierarchy(float interval);
         void DrawHierarchy() const;
         
         void AddSubDrawing(Drawing *pDrawing);
@@ -28,9 +29,12 @@ namespace Renderer {
         void RemoveFromParentDrawing();
         Drawing *GetParentDrawing() const;
         
+    protected:
+        virtual void Update(float interval);
         virtual void Draw() const;
         
     private:
+        void UpdateSubDrawings(float interval);
         void DrawSubDrawings() const;
         void SetParentDrawing(Drawing *pDrawing);
         

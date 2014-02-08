@@ -66,9 +66,10 @@ namespace Renderer {
         return renderFrame;
     }
     
-    void RenderingEngine::Render() const {
+    void RenderingEngine::Render(float interval) const {
         m_framebuffer->Clear();
         
+        m_rootDrawing->UpdateHierarchy(interval);
         m_rootDrawing->DrawHierarchy();
     }
 }

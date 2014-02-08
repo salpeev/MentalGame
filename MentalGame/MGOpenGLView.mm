@@ -109,7 +109,7 @@ using namespace Renderer;
 {
     m_sampleFramebuffer->BindAll();
     
-    RenderingEngine::SharedInstance().Render();
+    RenderingEngine::SharedInstance().Render(displayLink.duration);
     
     m_resolveFramebuffer->BindDrawApple();
     m_sampleFramebuffer->BindReadApple();

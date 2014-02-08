@@ -27,6 +27,11 @@ namespace Renderer {
     
 #pragma mark - Public Methods
     
+    void Drawing::UpdateHierarchy(float interval) {
+        Update(interval);
+        UpdateSubDrawings(interval);
+    }
+    
     void Drawing::DrawHierarchy() const {
         Draw();
         DrawSubDrawings();
@@ -51,13 +56,24 @@ namespace Renderer {
         return m_parentDrawing;
     }
     
-#pragma mark - Public Virtual Methods
+#pragma mark - Protected Methods
+    
+    void Drawing::Update(float interval) {
+        
+    }
     
     void Drawing::Draw() const {
         
     }
     
 #pragma mark - Private Methods
+    
+    void Drawing::UpdateSubDrawings(float interval) {
+        for (int subdrawingIndex = 0; subdrawingIndex < m_subDrawings->size(); subdrawingIndex++) {
+            Drawing *subdrawing = m_subDrawings->at(subdrawingIndex);
+            subdrawing->UpdateHierarchy(interval);
+        }
+    }
     
     void Drawing::DrawSubDrawings() const {
         for (int subdrawingIndex = 0; subdrawingIndex < m_subDrawings->size(); subdrawingIndex++) {

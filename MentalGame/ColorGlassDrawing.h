@@ -22,6 +22,8 @@ namespace Renderer {
         ColorGlassDrawing();
         ~ColorGlassDrawing();
         
+    protected:
+        void Update(float interval);
         void Draw() const;
         
     private:

@@ -33,7 +33,7 @@ namespace Renderer {
         void ResetRenderFrame() const;
         Rect GetRenderFrame() const;
         
-        void Render() const;
+        void Render(float interval) const;
         
     private:
         RenderingEngine();

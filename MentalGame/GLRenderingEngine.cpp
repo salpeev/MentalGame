@@ -65,7 +65,7 @@ namespace Renderer
         for (vector<Drawing *>::iterator iterator = m_drawings->begin(); iterator != m_drawings->end(); iterator++)
         {
             Drawing *drawing = *iterator;
-            drawing->Draw();
+            drawing->DrawHierarchy();
         }
     }
     
