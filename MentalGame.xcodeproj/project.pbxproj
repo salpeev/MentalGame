@@ -12,6 +12,7 @@
 		B408BB7517F6DD2A00CC6900 /* GLSLVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7317F6DD2A00CC6900 /* GLSLVertexBuffer.cpp */; };
 		B408BB7817F6DD3C00CC6900 /* GLSLIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7617F6DD3C00CC6900 /* GLSLIndexBuffer.cpp */; };
 		B41CAA2518AC0C76001E1B1A /* DrawingLeaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2318AC0C76001E1B1A /* DrawingLeaf.cpp */; };
+		B41CAA2C18AC1ABA001E1B1A /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */; };
 		B457A15817F6D486004EF4E0 /* GLSLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B457A15617F6D486004EF4E0 /* GLSLBuffer.cpp */; };
 		B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */; };
 		B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70218999CF700AAE773 /* ColorRenderbufferRGB565.cpp */; };
@@ -79,6 +80,8 @@
 		B408BB7717F6DD3C00CC6900 /* GLSLIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLIndexBuffer.h; sourceTree = "<group>"; };
 		B41CAA2318AC0C76001E1B1A /* DrawingLeaf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingLeaf.cpp; sourceTree = "<group>"; };
 		B41CAA2418AC0C76001E1B1A /* DrawingLeaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLeaf.h; sourceTree = "<group>"; };
+		B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
+		B41CAA2B18AC1ABA001E1B1A /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
 		B457A15617F6D486004EF4E0 /* GLSLBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLBuffer.cpp; sourceTree = "<group>"; };
 		B457A15717F6D486004EF4E0 /* GLSLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLBuffer.h; sourceTree = "<group>"; };
 		B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbufferRGBA4.cpp; sourceTree = "<group>"; };
@@ -578,6 +581,8 @@
 				B4ECF82D189E7132007E2669 /* Rect.h */,
 				B469605517F76B5E002BCF6C /* Point.cpp */,
 				B469605617F76B5E002BCF6C /* Point.h */,
+				B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */,
+				B41CAA2B18AC1ABA001E1B1A /* Plane.h */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -710,6 +715,7 @@
 				B4ECF825189D2282007E2669 /* RenderingEngine.cpp in Sources */,
 				B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */,
 				B4D64F87188179F6005E78AC /* GLSLAttributeInitializer.cpp in Sources */,
+				B41CAA2C18AC1ABA001E1B1A /* Plane.cpp in Sources */,
 				B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */,
 				B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */,
