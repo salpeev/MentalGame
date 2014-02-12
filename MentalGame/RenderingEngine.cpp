@@ -8,6 +8,7 @@
 
 #include "RenderingEngine.h"
 #include "GLLogger.h"
+#include "GLConstants.h"
 #include "ColorGlassDrawing.h"  // TODO: Remove later
 
 
@@ -17,7 +18,7 @@ namespace Renderer {
 #pragma mark - Lifecycle
     
     RenderingEngine::RenderingEngine(): m_framebuffer(nullptr), m_rootDrawing(nullptr), m_windowSize(0.0f, 0.0f) {
-        m_rootDrawing = new Drawing();
+        m_rootDrawing = new CompositeDrawing();
     }
     
     RenderingEngine::~RenderingEngine() {

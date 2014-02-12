@@ -1,12 +1,12 @@
 //
-//  Drawing.cpp
+//  CompositeDrawing.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 23.01.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "Drawing.h"
+#include "CompositeDrawing.h"
 #include "GLSLAttributeInitializer.h"
 #include "GLSLUniformInitializer.h"
 #include "GLSLDrawRequest.h"
@@ -17,72 +17,60 @@ namespace Renderer {
     
 #pragma mark - Lifecycle
     
-    Drawing::Drawing() {
-        m_subDrawings = new vector<Drawing *>();
+    CompositeDrawing::CompositeDrawing() {
+        m_subDrawings = new vector<DrawingComponent *>();
     }
     
-    Drawing::~Drawing() {
+    CompositeDrawing::~CompositeDrawing() {
         delete m_subDrawings;
     }
     
 #pragma mark - Public Methods
     
-    void Drawing::UpdateHierarchy(float interval) {
+    void CompositeDrawing::UpdateHierarchy(float interval) {
         Update(interval);
         UpdateSubDrawings(interval);
     }
     
-    void Drawing::DrawHierarchy() const {
+    void CompositeDrawing::DrawHierarchy() const {
         Draw();
         DrawSubDrawings();
     }
     
-    void Drawing::AddSubDrawing(Drawing *pDrawing) {
+    void CompositeDrawing::AddSubDrawing(DrawingComponent *pDrawing) {
         m_subDrawings->push_back(pDrawing);
         pDrawing->SetParentDrawing(this);
     }
     
-    void Drawing::RemoveSubDrawing(Drawing *pDrawing) {
+    void CompositeDrawing::RemoveSubDrawing(DrawingComponent *pDrawing) {
         // TODO: Should be tested. What if element doesn't exists? Is removed properly?
         m_subDrawings->erase(find(m_subDrawings->begin(), m_subDrawings->end(), pDrawing));
         pDrawing->SetParentDrawing(nullptr);
     }
     
-    void Drawing::RemoveFromParentDrawing() {
-        m_parentDrawing->RemoveSubDrawing(this);
-    }
-    
-    Drawing * Drawing::GetParentDrawing() const {
-        return m_parentDrawing;
-    }
-    
 #pragma mark - Protected Methods
     
-    void Drawing::Update(float interval) {
+    void CompositeDrawing::Update(float interval) {
         
     }
     
-    void Drawing::Draw() const {
+    void CompositeDrawing::Draw() const {
         
     }
     
 #pragma mark - Private Methods
     
-    void Drawing::UpdateSubDrawings(float interval) {
+    void CompositeDrawing::UpdateSubDrawings(float interval) {
         for (int subdrawingIndex = 0; subdrawingIndex < m_subDrawings->size(); subdrawingIndex++) {
-            Drawing *subdrawing = m_subDrawings->at(subdrawingIndex);
+            DrawingComponent *subdrawing = m_subDrawings->at(subdrawingIndex);
             subdrawing->UpdateHierarchy(interval);
         }
     }
     
-    void Drawing::DrawSubDrawings() const {
+    void CompositeDrawing::DrawSubDrawings() const {
         for (int subdrawingIndex = 0; subdrawingIndex < m_subDrawings->size(); subdrawingIndex++) {
-            Drawing *subdrawing = m_subDrawings->at(subdrawingIndex);
+            DrawingComponent *subdrawing = m_subDrawings->at(subdrawingIndex);
             subdrawing->DrawHierarchy();
         }
-    }
-    
-    void Drawing::SetParentDrawing(Drawing *pDrawing) {
-        m_parentDrawing = pDrawing;
     }
 }

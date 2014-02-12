@@ -6,18 +6,21 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "Drawing.h"
+#include "CompositeDrawing.h"
 
 
 
 namespace Renderer {
     
+    class GLSLVertexBuffer;
+    class GLSLIndexBuffer;
     class GLSLPositionColorInitializer;
     class GLSLProjectionModelviewInitializer;
+    class GLSLDrawRequest;
     
     
     
-    class ColorGlassDrawing: public Drawing {
+    class ColorGlassDrawing: public CompositeDrawing {
     public:
         ColorGlassDrawing();
         ~ColorGlassDrawing();

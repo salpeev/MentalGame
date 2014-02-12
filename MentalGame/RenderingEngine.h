@@ -9,7 +9,7 @@
 #pragma once
 #include "Framebuffer.h"
 #include "Size.h"
-#include "Drawing.h"
+#include "CompositeDrawing.h"
 #include "Rect.h"
 
 
@@ -42,7 +42,7 @@ namespace Renderer {
         RenderingEngine & operator= (const RenderingEngine &rRenderingEngine) = delete;
         
         Framebuffer *m_framebuffer;
-        Drawing *m_rootDrawing;
+        CompositeDrawing *m_rootDrawing;
         CSize m_windowSize;
     };
 }

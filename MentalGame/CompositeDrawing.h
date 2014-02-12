@@ -7,7 +7,7 @@
 //
 
 #pragma once
-#include "GLSLDrawRequest.h"
+#include "DrawingComponent.h"
 #include <vector>
 
 using namespace std;
@@ -16,29 +16,25 @@ using namespace std;
 
 namespace Renderer {
     
-    class Drawing {
+    class CompositeDrawing: public DrawingComponent {
     public:
-        Drawing();
-        ~Drawing();
+        CompositeDrawing();
+        ~CompositeDrawing();
         
         void UpdateHierarchy(float interval);
         void DrawHierarchy() const;
         
-        void AddSubDrawing(Drawing *pDrawing);
-        void RemoveSubDrawing(Drawing *pDrawing);
-        void RemoveFromParentDrawing();
-        Drawing *GetParentDrawing() const;
+        void AddSubDrawing(DrawingComponent *pDrawing);
+        void RemoveSubDrawing(DrawingComponent *pDrawing);
         
     protected:
-        virtual void Update(float interval);
-        virtual void Draw() const;
+        void Update(float interval);
+        void Draw() const;
         
     private:
         void UpdateSubDrawings(float interval);
         void DrawSubDrawings() const;
-        void SetParentDrawing(Drawing *pDrawing);
         
-        vector<Drawing *> *m_subDrawings;
-        Drawing *m_parentDrawing;
+        vector<DrawingComponent *> *m_subDrawings;
     };
 }
