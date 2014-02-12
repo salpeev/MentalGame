@@ -22,9 +22,8 @@
 		B468F7161899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7141899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp */; };
 		B468F7191899AA0C00AAE773 /* ColorRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7171899AA0C00AAE773 /* ColorRenderbuffer.cpp */; };
 		B468F71D1899B4E600AAE773 /* MultisampleFramebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F71B1899B4E600AAE773 /* MultisampleFramebuffer.cpp */; };
-		B469605017F756C6002BCF6C /* GLVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469604E17F756C6002BCF6C /* GLVector.cpp */; };
 		B469605317F75C25002BCF6C /* GLColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605117F75C25002BCF6C /* GLColor.cpp */; };
-		B469605717F76B5E002BCF6C /* GLPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605517F76B5E002BCF6C /* GLPoint.cpp */; };
+		B469605717F76B5E002BCF6C /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605517F76B5E002BCF6C /* Point.cpp */; };
 		B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605817F8526F002BCF6C /* ShaderValue.cpp */; };
 		B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605B17F858BF002BCF6C /* GLSLVertex.cpp */; };
 		B47177DC188BEA75006B6215 /* GLSLProgramContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47177DA188BEA75006B6215 /* GLSLProgramContainer.cpp */; };
@@ -100,12 +99,10 @@
 		B468F7181899AA0C00AAE773 /* ColorRenderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbuffer.h; sourceTree = "<group>"; };
 		B468F71B1899B4E600AAE773 /* MultisampleFramebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MultisampleFramebuffer.cpp; sourceTree = "<group>"; };
 		B468F71C1899B4E600AAE773 /* MultisampleFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultisampleFramebuffer.h; sourceTree = "<group>"; };
-		B469604E17F756C6002BCF6C /* GLVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLVector.cpp; sourceTree = "<group>"; };
-		B469604F17F756C6002BCF6C /* GLVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVector.h; sourceTree = "<group>"; };
 		B469605117F75C25002BCF6C /* GLColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLColor.cpp; sourceTree = "<group>"; };
 		B469605217F75C25002BCF6C /* GLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLColor.h; sourceTree = "<group>"; };
-		B469605517F76B5E002BCF6C /* GLPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLPoint.cpp; sourceTree = "<group>"; };
-		B469605617F76B5E002BCF6C /* GLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLPoint.h; sourceTree = "<group>"; };
+		B469605517F76B5E002BCF6C /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		B469605617F76B5E002BCF6C /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		B469605817F8526F002BCF6C /* ShaderValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderValue.cpp; sourceTree = "<group>"; };
 		B469605917F8526F002BCF6C /* ShaderValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderValue.h; sourceTree = "<group>"; };
 		B469605B17F858BF002BCF6C /* GLSLVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLVertex.cpp; sourceTree = "<group>"; };
@@ -321,16 +318,8 @@
 		B4963F911800228F0037FC39 /* Primitive types */ = {
 			isa = PBXGroup;
 			children = (
-				B469605517F76B5E002BCF6C /* GLPoint.cpp */,
-				B469605617F76B5E002BCF6C /* GLPoint.h */,
 				B469605117F75C25002BCF6C /* GLColor.cpp */,
 				B469605217F75C25002BCF6C /* GLColor.h */,
-				B469604E17F756C6002BCF6C /* GLVector.cpp */,
-				B469604F17F756C6002BCF6C /* GLVector.h */,
-				B4ECF826189D2ACC007E2669 /* Size.cpp */,
-				B4ECF827189D2ACC007E2669 /* Size.h */,
-				B4ECF82C189E7132007E2669 /* Rect.cpp */,
-				B4ECF82D189E7132007E2669 /* Rect.h */,
 			);
 			name = "Primitive types";
 			sourceTree = "<group>";
@@ -583,6 +572,12 @@
 				B4EF847F186AE08300234C28 /* Quaternion.h */,
 				B4ECF82F18A4CE9B007E2669 /* Interpolator.cpp */,
 				B4ECF83018A4CE9B007E2669 /* Interpolator.h */,
+				B4ECF826189D2ACC007E2669 /* Size.cpp */,
+				B4ECF827189D2ACC007E2669 /* Size.h */,
+				B4ECF82C189E7132007E2669 /* Rect.cpp */,
+				B4ECF82D189E7132007E2669 /* Rect.h */,
+				B469605517F76B5E002BCF6C /* Point.cpp */,
+				B469605617F76B5E002BCF6C /* Point.h */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -689,11 +684,10 @@
 				B4ECF82E189E7132007E2669 /* Rect.cpp in Sources */,
 				B4EF847D186AE07900234C28 /* Matrix.cpp in Sources */,
 				B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */,
-				B469605717F76B5E002BCF6C /* GLPoint.cpp in Sources */,
+				B469605717F76B5E002BCF6C /* Point.cpp in Sources */,
 				B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */,
 				B469605317F75C25002BCF6C /* GLColor.cpp in Sources */,
 				B4EF8480186AE08300234C28 /* Quaternion.cpp in Sources */,
-				B469605017F756C6002BCF6C /* GLVector.cpp in Sources */,
 				B468F7161899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp in Sources */,
 				B468F7191899AA0C00AAE773 /* ColorRenderbuffer.cpp in Sources */,
 				B457A15817F6D486004EF4E0 /* GLSLBuffer.cpp in Sources */,

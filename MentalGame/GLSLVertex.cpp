@@ -13,12 +13,12 @@
 
 namespace Renderer
 {
-    GLSLVertex1P::GLSLVertex1P(): GLSLVertex1P(GLPoint())
+    GLSLVertex1P::GLSLVertex1P(): GLSLVertex1P(Point())
     {
         
     }
     
-    GLSLVertex1P::GLSLVertex1P(GLPoint position): m_position(position)
+    GLSLVertex1P::GLSLVertex1P(Point position): m_position(position)
     {
         
     }
@@ -37,12 +37,12 @@ namespace Renderer
     
     
     
-    GLSLVertex1P1C::GLSLVertex1P1C(): GLSLVertex1P1C(GLPoint(), GLColor())
+    GLSLVertex1P1C::GLSLVertex1P1C(): GLSLVertex1P1C(Point(), GLColor())
     {
         
     }
     
-    GLSLVertex1P1C::GLSLVertex1P1C(GLPoint position, GLColor color): m_position(position), m_color(color)
+    GLSLVertex1P1C::GLSLVertex1P1C(Point position, GLColor color): m_position(position), m_color(color)
     {
         
     }

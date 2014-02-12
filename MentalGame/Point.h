@@ -1,5 +1,5 @@
 //
-//  GLPoint.h
+//  Point.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 28.09.13.
@@ -13,11 +13,11 @@
 
 namespace Renderer
 {
-    class GLPoint
+    class Point
     {
     public:
-        GLPoint();
-        GLPoint(GLfloat x, GLfloat y, GLfloat z);
+        Point();
+        Point(GLfloat x, GLfloat y, GLfloat z);
         
         GLfloat x;
         GLfloat y;
