@@ -34,6 +34,8 @@
 		B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE517DFBBD9009094E8 /* GLSLShader.cpp */; };
 		B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */; };
 		B4CE1DF017DFD906009094E8 /* GLResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */; };
+		B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */; };
+		B4D1B85218AEC120004FD4B2 /* Polyhedron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */; };
 		B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F76187F3867005E78AC /* PositionColorShader.vsh */; };
 		B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F78187F3877005E78AC /* PositionColorShader.fsh */; };
 		B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */; };
@@ -125,6 +127,10 @@
 		B4CE1DE917DFCCE9009094E8 /* GLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLLogger.h; sourceTree = "<group>"; };
 		B4CE1DEE17DFD906009094E8 /* GLResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLResourceManager.h; path = MentalGame/GLResourceManager.h; sourceTree = "<group>"; };
 		B4CE1DEF17DFD906009094E8 /* GLResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GLResourceManager.mm; path = MentalGame/GLResourceManager.mm; sourceTree = "<group>"; };
+		B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionDetector.cpp; sourceTree = "<group>"; };
+		B4D1B84E18AEBBA9004FD4B2 /* CollisionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetector.h; sourceTree = "<group>"; };
+		B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polyhedron.cpp; sourceTree = "<group>"; };
+		B4D1B85118AEC120004FD4B2 /* Polyhedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyhedron.h; sourceTree = "<group>"; };
 		B4D64F76187F3867005E78AC /* PositionColorShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.vsh; sourceTree = "<group>"; };
 		B4D64F78187F3877005E78AC /* PositionColorShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.fsh; sourceTree = "<group>"; };
 		B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PerspectiveShader.vsh; sourceTree = "<group>"; };
@@ -265,7 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				B4EF8485186B3CA900234C28 /* GLLogger */,
-				B4EF84771869EA1F00234C28 /* Math */,
+				B4EF84771869EA1F00234C28 /* Geometry Primitives */,
+				B4D1B84C18AEBB84004FD4B2 /* Math */,
 				B4D70D5E182C2EBE00771FA8 /* Program */,
 				B4963F9418003B490037FC39 /* Constants */,
 				B4963F911800228F0037FC39 /* Primitive types */,
@@ -386,6 +393,17 @@
 				B469605C17F858BF002BCF6C /* GLSLVertex.h */,
 			);
 			name = Vertex;
+			sourceTree = "<group>";
+		};
+		B4D1B84C18AEBB84004FD4B2 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				B4ECF82F18A4CE9B007E2669 /* Interpolator.cpp */,
+				B4ECF83018A4CE9B007E2669 /* Interpolator.h */,
+				B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */,
+				B4D1B84E18AEBBA9004FD4B2 /* CollisionDetector.h */,
+			);
+			name = Math;
 			sourceTree = "<group>";
 		};
 		B4D64F8B18817A68005E78AC /* Attribute Initializer */ = {
@@ -564,7 +582,7 @@
 			name = Drawing;
 			sourceTree = "<group>";
 		};
-		B4EF84771869EA1F00234C28 /* Math */ = {
+		B4EF84771869EA1F00234C28 /* Geometry Primitives */ = {
 			isa = PBXGroup;
 			children = (
 				B4EF8478186AE06E00234C28 /* Vector.cpp */,
@@ -573,8 +591,6 @@
 				B4EF847C186AE07900234C28 /* Matrix.h */,
 				B4EF847E186AE08300234C28 /* Quaternion.cpp */,
 				B4EF847F186AE08300234C28 /* Quaternion.h */,
-				B4ECF82F18A4CE9B007E2669 /* Interpolator.cpp */,
-				B4ECF83018A4CE9B007E2669 /* Interpolator.h */,
 				B4ECF826189D2ACC007E2669 /* Size.cpp */,
 				B4ECF827189D2ACC007E2669 /* Size.h */,
 				B4ECF82C189E7132007E2669 /* Rect.cpp */,
@@ -583,8 +599,10 @@
 				B469605617F76B5E002BCF6C /* Point.h */,
 				B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */,
 				B41CAA2B18AC1ABA001E1B1A /* Plane.h */,
+				B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */,
+				B4D1B85118AEC120004FD4B2 /* Polyhedron.h */,
 			);
-			name = Math;
+			name = "Geometry Primitives";
 			sourceTree = "<group>";
 		};
 		B4EF8485186B3CA900234C28 /* GLLogger */ = {
@@ -684,6 +702,7 @@
 				B4D64F8F18817BCC005E78AC /* GLSLProjectionModelviewInitializer.cpp in Sources */,
 				B403F3BD17EE0D5700A2A4E8 /* Attribute.cpp in Sources */,
 				B468F7131899A06700AAE773 /* ColorRenderbufferMultisampleRGBA8.cpp in Sources */,
+				B4D1B85218AEC120004FD4B2 /* Polyhedron.cpp in Sources */,
 				B4D64F84188179A6005E78AC /* GLSLPositionColorInitializer.cpp in Sources */,
 				B468F70718999D1100AAE773 /* ColorRenderbufferRGB5_A1.cpp in Sources */,
 				B4ECF82E189E7132007E2669 /* Rect.cpp in Sources */,
@@ -719,6 +738,7 @@
 				B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */,
 				B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */,
+				B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */,
 				B4E069D71891C11300F2E995 /* CompositeDrawing.cpp in Sources */,
 				B4CE1DF017DFD906009094E8 /* GLResourceManager.mm in Sources */,
 				B468F70C18999EC900AAE773 /* DepthRenderbufferComponent16.cpp in Sources */,

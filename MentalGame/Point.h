@@ -8,6 +8,7 @@
 
 #pragma once
 #include <OpenGLES/ES2/gl.h>
+#include "Vector.h"
 
 
 
@@ -18,6 +19,9 @@ namespace Renderer
     public:
         Point();
         Point(GLfloat x, GLfloat y, GLfloat z);
+        
+        Vector3 operator-(const Point &rPoint) const;
+        operator Vector3() const;
         
         GLfloat x;
         GLfloat y;

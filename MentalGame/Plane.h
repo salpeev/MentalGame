@@ -7,7 +7,7 @@
 //
 
 #pragma once
-#include "Vector.h"
+#include "Point.h"
 
 
 
@@ -15,10 +15,13 @@ namespace Renderer {
     
     class Plane {
     public:
-        Plane(const Vector3 &a, const Vector3 &b, const Vector3 &c);
+        Plane(const Point &a, const Point &b, const Point &c);
+        
+        const Vector3 & GetNormal() const;
+        float GetDistance() const;
         
     private:
         Vector3 m_normal;
-        float m_d;
+        float m_distance;
     };
 }
