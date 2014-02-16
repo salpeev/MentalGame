@@ -107,6 +107,29 @@ namespace Renderer {
         planes.push_back(Plane(point3, point2, point6));
         
         m_shape = new Polyhedron(planes);
+        
+        
+        
+        
+        
+        
+        Matrix4 m;
+//        m.x.x = 1; m.x.y = 2; m.x.z = 3; m.x.w = 4;
+//        m.y.x = 5; m.y.y = 6; m.y.z = 7; m.y.w = 8;
+//        m.z.x = 9; m.z.y = 10; m.z.z = 11; m.z.w = 12;
+//        m.w.x = 13; m.w.y = 14; m.w.z = 15; m.w.w = 16;
+        
+//        m.x.x = 2; m.x.y = 2; m.x.z = 3; m.x.w = 4;
+//        m.y.x = 5; m.y.y = 6; m.y.z = 7; m.y.w = 8;
+//        m.z.x = 9; m.z.y = 7; m.z.z = 11; m.z.w = 12;
+//        m.w.x = 13; m.w.y = 14; m.w.z = 15; m.w.w = 16;
+        
+        m.x.x = 1; m.x.y = 1; m.x.z = 1; m.x.w = 1;
+        m.y.x = 1; m.y.y = -1; m.y.z = 1; m.y.w = 1;
+        m.z.x = 1; m.z.y = 1; m.z.z = -1; m.z.w = 1;
+        m.w.x = 1; m.w.y = 1; m.w.z = 1; m.w.w = -1;
+        
+        Log("%f", m.Determinant());
     }
     
     ColorGlassDrawing::~ColorGlassDrawing() {

@@ -16,11 +16,111 @@ namespace Renderer {
     
 #pragma mark - Matrix2
     
+    Matrix2::Matrix2() {
+        x.x = 1.0f; x.y = 0.0f;
+        y.x = 0.0f; y.y = 1.0f;
+    }
+    
+    Matrix2 Matrix2::operator*(const Matrix2 &m) const {
+        Matrix2 r;
+        
+        r.x.x = x.x * m.x.x + x.y * m.y.x;
+        r.x.y = x.x * m.x.y + x.y * m.y.y;
+        
+        r.y.x = y.x * m.x.x + y.y * m.y.x;
+        r.y.y = y.x * m.x.y + y.y * m.y.y;
+        
+        return r;
+    }
+    
+    float Matrix2::Determinant() const {
+        float determinant = x.x * y.y - x.y * y.x;
+        return determinant;
+    }
+    
+    bool Matrix2::Inverted(Matrix2 *pResultMatrix) const {
+        float determinant = Determinant();
+        if (determinant == 0.0f) {
+            return false;
+        }
+        
+        if (pResultMatrix) {
+            float multiplier = 1.0f / determinant;
+            pResultMatrix->x.x = multiplier * y.y;
+            pResultMatrix->x.y = multiplier * -x.y;
+            pResultMatrix->y.x = multiplier * -y.x;
+            pResultMatrix->y.y = multiplier * x.x;
+        }
+        
+        return true;
+    }
+    
     const float * Matrix2::Pointer() const {
         return &x.x;
     }
     
 #pragma mark - Matrix3
+    
+    Matrix3::Matrix3() {
+        x.x = 1.0f; x.y = 0.0f; x.z = 0.0f;
+        y.x = 0.0f; y.y = 1.0f; y.z = 0.0f;
+        z.x = 0.0f; z.y = 0.0f; z.z = 1.0f;
+    }
+    
+    Matrix3 Matrix3::operator*(const Matrix3 &m) const {
+        Matrix3 r;
+        
+        r.x.x = x.x * m.x.x + x.y * m.y.x + x.z * m.z.x;
+        r.x.y = x.x * m.x.y + x.y * m.y.y + x.z * m.z.y;
+        r.x.z = x.x * m.x.z + x.y * m.y.z + x.z * m.z.z;
+        
+        r.y.x = y.x * m.x.x + y.y * m.y.x + y.z * m.z.x;
+        r.y.y = y.x * m.x.y + y.y * m.y.y + y.z * m.z.y;
+        r.y.z = y.x * m.x.z + y.y * m.y.z + y.z * m.z.z;
+        
+        r.z.x = z.x * m.x.x + z.y * m.y.x + z.z * m.z.x;
+        r.z.y = z.x * m.x.y + z.y * m.y.y + z.z * m.z.y;
+        r.z.z = z.x * m.x.z + z.y * m.y.z + z.z * m.z.z;
+        
+        return r;
+    }
+    
+    float Matrix3::Determinant() const {
+        float determinant = x.x * (y.y * z.z - y.z * z.y) - x.y * (y.x * z.z - y.z * z.x) + x.z * (y.x * z.y - y.y * z.x);
+        return determinant;
+    }
+    
+    bool Matrix3::Inverted(Matrix3 *pResultMatrix) const {
+        float determinant = Determinant();
+        if (determinant == 0.0f) {
+            return false;
+        }
+        
+        if (pResultMatrix) {
+            float multiplier = 1.0f / determinant;
+            pResultMatrix->x.x = multiplier * (y.y * z.z - y.z * z.y);
+            pResultMatrix->x.y = multiplier * (x.z * z.y - x.y * z.z);
+            pResultMatrix->x.z = multiplier * (x.y * y.z - x.z * y.y);
+            pResultMatrix->y.x = multiplier * (y.z * z.x - y.x * z.z);
+            pResultMatrix->y.y = multiplier * (x.x * z.z - x.z * z.x);
+            pResultMatrix->y.z = multiplier * (x.z * y.x - x.x * y.z);
+            pResultMatrix->z.x = multiplier * (y.x * z.y - y.y * z.x);
+            pResultMatrix->z.y = multiplier * (x.y * z.x - x.x * z.y);
+            pResultMatrix->z.z = multiplier * (x.x * y.y - x.y * y.x);
+        }
+        
+        return true;
+    }
+    
+    Matrix3 Matrix3::Transposed() const {
+        Matrix3 r;
+        
+        r.x.x = x.x; r.x.y = y.x; r.x.z = z.x;
+        r.y.x = x.y; r.y.y = y.y; r.y.z = z.y;
+        r.z.x = x.z; r.z.y = y.z; r.z.z = z.z;
+        
+        return r;
+    }
     
     const float * Matrix3::Pointer() const {
         return &x.x;
@@ -29,13 +129,13 @@ namespace Renderer {
 #pragma mark - Matrix4
     
     Matrix4::Matrix4() {
-        x.x = 1.0; x.y = 0.0; x.z = 0.0; x.w = 0.0;
-        y.x = 0.0; y.y = 1.0; y.z = 0.0; y.w = 0.0;
-        z.x = 0.0; z.y = 0.0; z.z = 1.0; z.w = 0.0;
-        w.x = 0.0; w.y = 0.0; w.z = 0.0; w.w = 1.0;
+        x.x = 1.0f; x.y = 0.0f; x.z = 0.0f; x.w = 0.0f;
+        y.x = 0.0f; y.y = 1.0f; y.z = 0.0f; y.w = 0.0f;
+        z.x = 0.0f; z.y = 0.0f; z.z = 1.0f; z.w = 0.0f;
+        w.x = 0.0f; w.y = 0.0f; w.z = 0.0f; w.w = 1.0f;
     }
     
-    Matrix4 Matrix4::operator * (const Matrix4 &m) const {
+    Matrix4 Matrix4::operator*(const Matrix4 &m) const {
         Matrix4 r;
         
         r.x.x = x.x * m.x.x + x.y * m.y.x + x.z * m.z.x + x.w * m.w.x;
@@ -91,6 +191,45 @@ namespace Renderer {
         *this = rotationMatrix * currentMatrix;
         
         return *this;
+    }
+    
+    float Matrix4::Determinant() const {
+        float a = x.x * (y.y * (z.z * w.w - z.w * w.z) - y.z * (z.y * w.w - z.w * w.y) + y.w * (z.y * w.z - z.z * w.y));
+        float b = x.y * (y.x * (z.z * w.w - z.w * w.z) - y.z * (z.x * w.w - z.w * w.x) + y.w * (z.x * w.z - z.z * w.x));
+        float c = x.z * (y.x * (z.y * w.w - z.w * w.y) - y.y * (z.x * w.w - z.w * w.x) + y.w * (z.x * w.y - z.y * w.x));
+        float d = x.w * (y.x * (z.y * w.z - z.z * w.y) - y.y * (z.x * w.z - z.z * w.x) + y.z * (z.x * w.y - z.y * w.x));
+        float determinant = a - b + c - d;
+        
+        return determinant;
+    }
+    
+    bool Matrix4::Inverted(Matrix4 *pResultMatrix) const {
+        float determinant = Determinant();
+        if (determinant == 0.0f) {
+            return false;
+        }
+        
+        if (pResultMatrix) {
+            float multiplier = 1.0f / determinant;
+//            pResultMatrix->x.x = multiplier * (<##>);
+//            pResultMatrix->x.y = multiplier * (<##>);
+//            pResultMatrix->x.z = multiplier * (<##>);
+//            pResultMatrix->x.w = multiplier * (<##>);
+//            pResultMatrix->y.x = multiplier * (<##>);
+//            pResultMatrix->y.y = multiplier * (<##>);
+//            pResultMatrix->y.z = multiplier * (<##>);
+//            pResultMatrix->y.w = multiplier * (<##>);
+//            pResultMatrix->z.x = multiplier * (<##>);
+//            pResultMatrix->z.y = multiplier * (<##>);
+//            pResultMatrix->z.z = multiplier * (<##>);
+//            pResultMatrix->z.w = multiplier * (<##>);
+//            pResultMatrix->w.x = multiplier * (<##>);
+//            pResultMatrix->w.y = multiplier * (<##>);
+//            pResultMatrix->w.z = multiplier * (<##>);
+//            pResultMatrix->w.w = multiplier * (<##>);
+        }
+        
+        return true;
     }
     
     const float * Matrix4::Pointer() const {

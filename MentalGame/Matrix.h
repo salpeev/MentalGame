@@ -15,6 +15,12 @@ namespace Renderer {
     
     class Matrix2 {
     public:
+        Matrix2();
+        
+        Matrix2 operator*(const Matrix2 &rMatrix) const;
+        
+        float Determinant() const;
+        bool Inverted(Matrix2 *pResultMatrix) const;
         
         const float * Pointer() const;
         
@@ -26,6 +32,14 @@ namespace Renderer {
     
     class Matrix3 {
     public:
+        Matrix3();
+        
+        Matrix3 operator*(const Matrix3 &rMatrix) const;
+        
+        float Determinant() const;
+        bool Inverted(Matrix3 *pResultMatrix) const;
+        Matrix3 Transposed() const;
+        
         const float * Pointer() const;
         
         Vector3 x;
@@ -39,12 +53,15 @@ namespace Renderer {
     public:
         Matrix4();
         
-        Matrix4 operator * (const Matrix4 &rMatrix) const;
+        Matrix4 operator*(const Matrix4 &rMatrix) const;
         
         Matrix4 & Translate(float xTranslation, float yTranslation, float zTranslation);
         Matrix4 & RotateX(float radians);
         Matrix4 & RotateY(float radians);
         Matrix4 & RotateZ(float radians);
+        
+        float Determinant() const;
+        bool Inverted(Matrix4 *pResultMatrix) const;
         
         const float * Pointer() const;
         
