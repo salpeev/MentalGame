@@ -14,6 +14,7 @@
 #include "GLSLPositionColorInitializer.h"
 #include "GLSLProjectionModelviewInitializer.h"
 #include "GLSLProgramContainer.h"
+#include "Polyhedron.h"
 
 
 
@@ -32,7 +33,7 @@ namespace Renderer {
         Point point6(1.0, 1.0, -0.25);
         Point point7(-1.0, 1.0, -0.25);
         
-        
+        // Rendering
         vector<GLSLVertex1P1C> vertices;
         vertices.push_back(GLSLVertex1P1C(point0, GLColor(1.0, 0.0, 0.0)));
         vertices.push_back(GLSLVertex1P1C(point1, GLColor(0.0, 1.0, 0.0)));
@@ -95,6 +96,17 @@ namespace Renderer {
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
         m_drawRequest->SetUniformInitializer(m_uniformInitializer);
         m_drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
+        
+        // Collision
+        vector<Plane> planes;
+        planes.push_back(Plane(point0, point1, point2));
+        planes.push_back(Plane(point1, point5, point6));
+        planes.push_back(Plane(point5, point4, point7));
+        planes.push_back(Plane(point4, point0, point3));
+        planes.push_back(Plane(point1, point0, point4));
+        planes.push_back(Plane(point3, point2, point6));
+        
+        m_shape = new Polyhedron(planes);
     }
     
     ColorGlassDrawing::~ColorGlassDrawing() {
@@ -102,6 +114,7 @@ namespace Renderer {
         delete m_indexBuffer;
         delete m_attributeInitializer;
         delete m_uniformInitializer;
+        delete m_shape;
     }
     
     void ColorGlassDrawing::Update(float interval) {

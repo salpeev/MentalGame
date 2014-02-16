@@ -12,7 +12,7 @@
 
 namespace Renderer {
     
-    Polyhedron::Polyhedron(vector<Plane> &rPlanes): m_planes(rPlanes) {
+    Polyhedron::Polyhedron(const vector<Plane> &rPlanes): m_planes(rPlanes) {
         
     }
     

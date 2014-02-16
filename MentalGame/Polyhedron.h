@@ -18,7 +18,7 @@ namespace Renderer {
     
     class Polyhedron {
     public:
-        Polyhedron(vector<Plane> &rPlanes);
+        Polyhedron(const vector<Plane> &rPlanes);
         ~Polyhedron();
         
         const vector<Plane> & GetPlanes() const;
