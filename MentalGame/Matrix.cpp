@@ -114,11 +114,9 @@ namespace Renderer {
     
     Matrix3 Matrix3::Transposed() const {
         Matrix3 r;
-        
         r.x.x = x.x; r.x.y = y.x; r.x.z = z.x;
         r.y.x = x.y; r.y.y = y.y; r.y.z = z.y;
         r.z.x = x.z; r.z.y = y.z; r.z.z = z.z;
-        
         return r;
     }
     
@@ -211,25 +209,38 @@ namespace Renderer {
         
         if (pResultMatrix) {
             float multiplier = 1.0f / determinant;
-//            pResultMatrix->x.x = multiplier * (<##>);
-//            pResultMatrix->x.y = multiplier * (<##>);
-//            pResultMatrix->x.z = multiplier * (<##>);
-//            pResultMatrix->x.w = multiplier * (<##>);
-//            pResultMatrix->y.x = multiplier * (<##>);
-//            pResultMatrix->y.y = multiplier * (<##>);
-//            pResultMatrix->y.z = multiplier * (<##>);
-//            pResultMatrix->y.w = multiplier * (<##>);
-//            pResultMatrix->z.x = multiplier * (<##>);
-//            pResultMatrix->z.y = multiplier * (<##>);
-//            pResultMatrix->z.z = multiplier * (<##>);
-//            pResultMatrix->z.w = multiplier * (<##>);
-//            pResultMatrix->w.x = multiplier * (<##>);
-//            pResultMatrix->w.y = multiplier * (<##>);
-//            pResultMatrix->w.z = multiplier * (<##>);
-//            pResultMatrix->w.w = multiplier * (<##>);
+            
+            pResultMatrix->x.x = multiplier * (y.y * z.z * w.w + y.z * z.w * w.y + y.w * z.y * w.z - y.y * z.w * w.z - y.z * z.y * w.w - y.w * z.z * w.y);
+            pResultMatrix->x.y = multiplier * (x.y * z.w * w.z + x.z * z.y * w.w + x.w * z.z * w.y - x.y * z.z * w.w - x.z * z.w * w.y - x.w * z.y * w.z);
+            pResultMatrix->x.z = multiplier * (x.y * y.z * w.w + x.z * y.w * w.y + x.w * y.y * w.z - x.y * y.w * w.z - x.z * y.y * w.w - x.w * y.z * w.y);
+            pResultMatrix->x.w = multiplier * (x.y * y.w * z.z + x.z * y.y * z.w + x.w * y.z * z.y - x.y * y.z * z.w - x.z * y.w * z.y - x.w * y.y * z.z);
+            
+            pResultMatrix->y.x = multiplier * (y.x * z.w * w.z + y.z * z.x * w.w + y.w * z.z * w.x - y.x * z.z * w.w - y.z * z.w * w.x - y.w * z.x * w.z);
+            pResultMatrix->y.y = multiplier * (x.x * z.z * w.w + x.z * z.w * w.x + x.w * z.x * w.z - x.x * z.w * w.z - x.z * z.x * w.w - x.w * z.z * w.x);
+            pResultMatrix->y.z = multiplier * (x.x * y.w * w.z + x.z * y.x * w.w + x.w * y.z * w.x - x.x * y.z * w.w - x.z * y.w * w.x - x.w * y.x * w.z);
+            pResultMatrix->y.w = multiplier * (x.x * y.z * z.w + x.z * y.w * z.x + x.w * y.x * z.z - x.x * y.w * z.z - x.z * y.x * z.w - x.w * y.z * z.x);
+            
+            pResultMatrix->z.x = multiplier * (y.x * z.y * w.w + y.y * z.w * w.x + y.w * z.x * w.y - y.x * z.w * w.y - y.y * z.x * w.w - y.w * z.y * w.x);
+            pResultMatrix->z.y = multiplier * (x.x * z.w * w.y + x.y * z.x * w.w + x.w * z.y * w.x - x.x * z.y * w.w - x.y * z.w * w.x - x.w * z.x * w.y);
+            pResultMatrix->z.z = multiplier * (x.x * y.y * w.w + x.y * y.w * w.x + x.w * y.x * w.y - x.x * y.w * w.y - x.y * y.x * w.w - x.w * y.y * w.x);
+            pResultMatrix->z.w = multiplier * (x.x * y.w * z.y + x.y * y.x * z.w + x.w * y.y * z.x - x.x * y.y * z.w - x.y * y.w * z.x - x.w * y.x * z.y);
+            
+            pResultMatrix->w.x = multiplier * (y.x * z.z * w.y + y.y * z.x * w.z + y.z * z.y * w.x - y.x * z.y * w.z - y.y * z.z * w.x - y.z * z.x * w.y);
+            pResultMatrix->w.y = multiplier * (x.x * z.y * w.z + x.y * z.z * w.x + x.z * z.x * w.y - x.x * z.z * w.y - x.y * z.x * w.z - x.z * z.y * w.x);
+            pResultMatrix->w.z = multiplier * (x.x * y.z * w.y + x.y * y.x * w.z + x.z * y.y * w.x - x.x * y.y * w.z - x.y * y.z * w.x - x.z * y.x * w.y);
+            pResultMatrix->w.w = multiplier * (x.x * y.y * z.z + x.y * y.z * z.x + x.z * y.x * z.y - x.x * y.z * z.y - x.y * y.x * z.z - x.z * y.y * z.x);
         }
         
         return true;
+    }
+    
+    Matrix4 Matrix4::Transposed() const {
+        Matrix4 r;
+        r.x.x = x.x; r.x.y = y.x; r.x.z = z.x; r.x.w = w.x;
+        r.y.x = x.y; r.y.y = y.y; r.y.z = z.y; r.y.w = w.y;
+        r.z.x = x.z; r.z.y = y.z; r.z.z = z.z; r.z.w = w.z;
+        r.w.x = x.w; r.w.y = y.w; r.w.z = z.w; r.w.w = w.w;
+        return r;
     }
     
     const float * Matrix4::Pointer() const {

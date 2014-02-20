@@ -62,6 +62,7 @@ namespace Renderer {
         
         float Determinant() const;
         bool Inverted(Matrix4 *pResultMatrix) const;
+        Matrix4 Transposed() const;
         
         const float * Pointer() const;
         
