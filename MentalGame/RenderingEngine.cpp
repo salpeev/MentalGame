@@ -10,6 +10,7 @@
 #include "GLLogger.h"
 #include "GLConstants.h"
 #include "ColorGlassDrawing.h"  // TODO: Remove later
+#include "TestDrawing.h"        // TODO: Remove later
 
 
 
@@ -42,6 +43,9 @@ namespace Renderer {
         // TODO: Remove later
         ColorGlassDrawing *drawing = new ColorGlassDrawing();
         m_rootDrawing->AddSubDrawing(drawing);
+        
+        TestDrawing *testDrawing = new TestDrawing();
+        m_rootDrawing->AddSubDrawing(testDrawing);
     }
     
     CSize RenderingEngine::GetWindowSize() const {

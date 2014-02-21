@@ -8,12 +8,15 @@
 
 #pragma once
 #include <OpenGLES/ES2/gl.h>
-#include "Vector.h"
 
 
 
 namespace Renderer
 {
+    class Vector3;
+    
+    
+    
     class Point
     {
     public:

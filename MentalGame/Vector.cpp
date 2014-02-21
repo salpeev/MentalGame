@@ -72,6 +72,21 @@ namespace Renderer
         return vector;
     }
     
+    Vector3 Vector3::operator*(float scale) const {
+        Vector3 vector(x * scale, y * scale, z * scale);
+        return vector;
+    }
+    
+    Vector3::operator Point() const {
+        Point point(x, y, z);
+        return point;
+    }
+    
+    float Vector3::Length() const {
+        float length = sqrtf(x * x + y * y + z * z);
+        return length;
+    }
+    
     const float * Vector3::Pointer() const {
         return &x;
     }
@@ -83,6 +98,11 @@ namespace Renderer
     }
     
     Vector4::Vector4(float x, float y, float z, float w): x(x), y(y), z(z), w(w) {
+        
+    }
+    
+    // TODO: Check w
+    Vector4::Vector4(Vector3 &rVector): Vector4(rVector.x, rVector.y, rVector.z, 1.0f) {
         
     }
     

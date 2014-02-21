@@ -83,7 +83,7 @@ using namespace Renderer;
         
         m_sampleFramebuffer = new MultisampleFramebuffer();
         m_sampleFramebuffer->AttachColorRenderbuffer(m_sampleColorRenderbuffer);
-//        m_sampleFramebuffer->AttachDepthRenderbuffer(m_sampleDepthStencilRenderbuffer);
+        m_sampleFramebuffer->AttachDepthRenderbuffer(m_sampleDepthStencilRenderbuffer);
 //        m_sampleFramebuffer->AttachStencilRenderbuffer(m_sampleDepthStencilRenderbuffer);
         
         RenderingEngine::SharedInstance().SetFramebuffer(m_sampleFramebuffer);

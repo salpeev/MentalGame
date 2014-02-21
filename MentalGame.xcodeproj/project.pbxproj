@@ -27,6 +27,7 @@
 		B469605717F76B5E002BCF6C /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605517F76B5E002BCF6C /* Point.cpp */; };
 		B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605817F8526F002BCF6C /* ShaderValue.cpp */; };
 		B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605B17F858BF002BCF6C /* GLSLVertex.cpp */; };
+		B46FCD0118B6D902004E6221 /* TestDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46FCCFF18B6D902004E6221 /* TestDrawing.cpp */; };
 		B47177DC188BEA75006B6215 /* GLSLProgramContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47177DA188BEA75006B6215 /* GLSLProgramContainer.cpp */; };
 		B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */; };
 		B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */; };
@@ -112,6 +113,8 @@
 		B469605917F8526F002BCF6C /* ShaderValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderValue.h; sourceTree = "<group>"; };
 		B469605B17F858BF002BCF6C /* GLSLVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLVertex.cpp; sourceTree = "<group>"; };
 		B469605C17F858BF002BCF6C /* GLSLVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLVertex.h; sourceTree = "<group>"; };
+		B46FCCFF18B6D902004E6221 /* TestDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestDrawing.cpp; sourceTree = "<group>"; };
+		B46FCD0018B6D902004E6221 /* TestDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDrawing.h; sourceTree = "<group>"; };
 		B47177DA188BEA75006B6215 /* GLSLProgramContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLProgramContainer.cpp; sourceTree = "<group>"; };
 		B47177DB188BEA75006B6215 /* GLSLProgramContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLProgramContainer.h; sourceTree = "<group>"; };
 		B4963F9518003B650037FC39 /* GLConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLConstants.h; sourceTree = "<group>"; };
@@ -578,6 +581,8 @@
 			children = (
 				B4E069D81891E06200F2E995 /* ColorGlassDrawing.cpp */,
 				B4E069D91891E06200F2E995 /* ColorGlassDrawing.h */,
+				B46FCCFF18B6D902004E6221 /* TestDrawing.cpp */,
+				B46FCD0018B6D902004E6221 /* TestDrawing.h */,
 			);
 			name = Drawing;
 			sourceTree = "<group>";
@@ -739,6 +744,7 @@
 				B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */,
 				B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */,
 				B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */,
+				B46FCD0118B6D902004E6221 /* TestDrawing.cpp in Sources */,
 				B4E069D71891C11300F2E995 /* CompositeDrawing.cpp in Sources */,
 				B4CE1DF017DFD906009094E8 /* GLResourceManager.mm in Sources */,
 				B468F70C18999EC900AAE773 /* DepthRenderbufferComponent16.cpp in Sources */,

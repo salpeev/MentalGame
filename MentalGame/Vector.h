@@ -8,6 +8,7 @@
 
 #pragma once
 #include <cmath>
+#include "Point.h"
 
 
 namespace Renderer
@@ -40,7 +41,10 @@ namespace Renderer
         float Dot(const Vector3 &rVector) const;
         
         Vector3 operator-(const Vector3 &rVector) const;
+        Vector3 operator*(float scale) const;
+        operator Point() const;
         
+        float Length() const;
         const float * Pointer() const;
         
         float x;
@@ -55,6 +59,7 @@ namespace Renderer
     public:
         Vector4();
         Vector4(float x, float y, float z, float w);
+        Vector4(Vector3 &rVector);
         
         Vector4 operator-(const Vector4 &rVector) const;
         

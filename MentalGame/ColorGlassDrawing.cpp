@@ -15,6 +15,7 @@
 #include "GLSLProjectionModelviewInitializer.h"
 #include "GLSLProgramContainer.h"
 #include "Polyhedron.h"
+#include "CollisionDetector.h"
 
 
 
@@ -23,6 +24,7 @@ namespace Renderer {
     ColorGlassDrawing::ColorGlassDrawing() {
         
         glEnable(GL_CULL_FACE);
+        glEnable(GL_DEPTH_TEST);
         
         Point point0(-1.0, -1.0, 0.25);
         Point point1(1.0, -1.0, 0.25);
@@ -98,15 +100,13 @@ namespace Renderer {
         m_drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
         
         // Collision
-        vector<Plane> planes;
-        planes.push_back(Plane(point0, point1, point2));
-        planes.push_back(Plane(point1, point5, point6));
-        planes.push_back(Plane(point5, point4, point7));
-        planes.push_back(Plane(point4, point0, point3));
-        planes.push_back(Plane(point1, point0, point4));
-        planes.push_back(Plane(point3, point2, point6));
-        
-        m_shape = new Polyhedron(planes);
+        m_planes = new vector<Plane>();
+        m_planes->push_back(Plane(point0, point1, point2));
+        m_planes->push_back(Plane(point1, point5, point6));
+        m_planes->push_back(Plane(point5, point4, point7));
+        m_planes->push_back(Plane(point4, point0, point3));
+        m_planes->push_back(Plane(point1, point0, point4));
+        m_planes->push_back(Plane(point3, point2, point6));
     }
     
     ColorGlassDrawing::~ColorGlassDrawing() {
@@ -114,11 +114,26 @@ namespace Renderer {
         delete m_indexBuffer;
         delete m_attributeInitializer;
         delete m_uniformInitializer;
-        delete m_shape;
+        delete m_planes;
     }
     
     void ColorGlassDrawing::Update(float interval) {
         m_uniformInitializer->GetModelviewMatrix().RotateX(interval).RotateY(interval).RotateZ(interval);
+        
+        Matrix4 result = m_uniformInitializer->GetModelviewMatrix()/* * m_uniformInitializer->GetProjectionMatrix()*/;
+        Polyhedron polyhedron(*m_planes);
+        polyhedron.Transform(result);
+//        Plane plane = polyhedron.GetPlanes()[0];
+        
+        Point vA(0.2, 0.2, -0.0);
+        Point vB(2.0, 2.0, -12.0);
+//        Vector4 vTA = m_uniformInitializer->GetModelviewMatrix() * vA;
+//        Vector4 vTB = m_uniformInitializer->GetModelviewMatrix() * vB;
+        
+        float start;
+        float end;
+        bool intersects = CollisionDetector::IntersectSegmentPolyhedron(vA, vB, polyhedron, start, end);
+        Log("AAA: %d     %f   %f", intersects, start, end);
     }
     
     void ColorGlassDrawing::Draw() const {

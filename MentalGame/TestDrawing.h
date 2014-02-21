@@ -1,41 +1,38 @@
 //
-//  PlainDrawing.h
+//  LineDrawing.h
 //  MentalGame
 //
-//  Created by Sergey Alpeev on 24.01.14.
+//  Created by Sergey Alpeev on 21.02.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "CompositeDrawing.h"
+#pragma once
+#include "DrawingLeaf.h"
 
 
 
 namespace Renderer {
     
-    class GLSLVertexBuffer;
-    class GLSLIndexBuffer;
     class GLSLPositionColorInitializer;
     class GLSLProjectionModelviewInitializer;
+    class GLSLVertexBuffer;
     class GLSLDrawRequest;
-    class Plane;
     
     
     
-    class ColorGlassDrawing: public CompositeDrawing {
+    class TestDrawing: public DrawingLeaf {
     public:
-        ColorGlassDrawing();
-        ~ColorGlassDrawing();
+        TestDrawing();
+        ~TestDrawing();
         
     protected:
         void Update(float interval);
         void Draw() const;
         
     private:
-        GLSLVertexBuffer *m_vertexBuffer;
-        GLSLIndexBuffer *m_indexBuffer;
         GLSLPositionColorInitializer *m_attributeInitializer;
         GLSLProjectionModelviewInitializer *m_uniformInitializer;
+        GLSLVertexBuffer *m_vertexBuffer;
         GLSLDrawRequest *m_drawRequest;
-        vector<Plane> *m_planes;
     };
 }

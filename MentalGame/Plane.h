@@ -7,7 +7,7 @@
 //
 
 #pragma once
-#include "Point.h"
+#include "Matrix.h"
 
 
 
@@ -17,8 +17,11 @@ namespace Renderer {
     public:
         Plane(const Point &a, const Point &b, const Point &c);
         
+        void Transform(Matrix4 &rMatrix);
+        
         const Vector3 & GetNormal() const;
         float GetDistance() const;
+        Point GetPosition() const;
         
     private:
         Vector3 m_normal;
