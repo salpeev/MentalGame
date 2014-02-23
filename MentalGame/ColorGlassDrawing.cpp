@@ -9,8 +9,8 @@
 #include "ColorGlassDrawing.h"
 #include "GLLogger.h"
 #include "GLSLVertex.h"
-#include "GLSLVertexBuffer.h"
-#include "GLSLIndexBuffer.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include "GLSLPositionColorInitializer.h"
 #include "GLSLProjectionModelviewInitializer.h"
 #include "GLSLProgramContainer.h"
@@ -84,17 +84,17 @@ namespace Renderer {
         indices.push_back(4);
         indices.push_back(5);
         
-        m_vertexBuffer = new GLSLVertexBuffer();
+        m_vertexBuffer = new VertexBuffer();
         m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(GLSLVertex1P1C), vertices.size());
         
-        m_indexBuffer = new GLSLIndexBuffer();
+        m_indexBuffer = new IndexBuffer();
         m_indexBuffer->LoadBufferData(indices);
         
         m_attributeInitializer = new GLSLPositionColorInitializer();
         m_uniformInitializer = new GLSLProjectionModelviewInitializer();
         m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -5.5);
         
-        m_drawRequest = new GLSLVertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
+        m_drawRequest = new VertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
         m_drawRequest->SetUniformInitializer(m_uniformInitializer);
         m_drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);

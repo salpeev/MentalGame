@@ -1,54 +1,47 @@
 //
-//  GLSLVertexBuffer.cpp
+//  Buffer.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 28.09.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLBuffer.h"
+#include "Buffer.h"
 #include "GLLogger.h"
 
 
 
-namespace Renderer
-{
-    GLSLBuffer::GLSLBuffer(): m_elementsCount(0), m_elementSize(0)
-    {
+namespace Renderer {
+    
+    Buffer::Buffer(): m_elementsCount(0), m_elementSize(0) {
         glGenBuffers(1, &m_bufferHandle);
         CheckError();
     }
     
-    GLSLBuffer::~GLSLBuffer()
-    {
+    Buffer::~Buffer() {
         glDeleteBuffers(1, &m_bufferHandle);
         CheckError();
     }
     
 #pragma mark - Public Methods
     
-    GLuint GLSLBuffer::GetElementsCount() const
-    {
+    GLuint Buffer::GetElementsCount() const {
         return m_elementsCount;
     }
     
-    GLsizei GLSLBuffer::GetElementSize() const
-    {
+    GLsizei Buffer::GetElementSize() const {
         return m_elementSize;
     }
     
-    void GLSLBuffer::Bind() const
-    {
-        if (!IsBound())
-        {
+    void Buffer::Bind() const {
+        if (!IsBound()) {
             GLSL_BUFFER targetBuffer = TargetBuffer();
             glBindBuffer(targetBuffer, m_bufferHandle);
             CheckError();
         }
     }
     
-    bool GLSLBuffer::IsBound() const
-    {
+    bool Buffer::IsBound() const {
         GET_PARAMETER getParameter = BufferBindingParameter();
         
         GLint boundBufferHandle;
@@ -61,8 +54,7 @@ namespace Renderer
     
 #pragma mark - Protected methods
     
-    void GLSLBuffer::LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage)
-    {
+    void Buffer::LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage) {
         SetElementsCount(elementsCount);
         SetElementSize(elementSize);
         
@@ -77,13 +69,11 @@ namespace Renderer
     
 #pragma mark - Private Methods
     
-    void GLSLBuffer::SetElementsCount(GLuint elementsCount)
-    {
+    void Buffer::SetElementsCount(GLuint elementsCount) {
         m_elementsCount = elementsCount;
     }
     
-    void GLSLBuffer::SetElementSize(GLsizei elementSize)
-    {
+    void Buffer::SetElementSize(GLsizei elementSize) {
         m_elementSize = elementSize;
     }
 }

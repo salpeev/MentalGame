@@ -12,8 +12,8 @@
 
 namespace Renderer {
     
-    class GLSLVertexBuffer;
-    class GLSLIndexBuffer;
+    class VertexBuffer;
+    class IndexBuffer;
     class GLSLPositionColorInitializer;
     class GLSLProjectionModelviewInitializer;
     class GLSLDrawRequest;
@@ -31,8 +31,8 @@ namespace Renderer {
         void Draw() const;
         
     private:
-        GLSLVertexBuffer *m_vertexBuffer;
-        GLSLIndexBuffer *m_indexBuffer;
+        VertexBuffer *m_vertexBuffer;
+        IndexBuffer *m_indexBuffer;
         GLSLPositionColorInitializer *m_attributeInitializer;
         GLSLProjectionModelviewInitializer *m_uniformInitializer;
         GLSLDrawRequest *m_drawRequest;

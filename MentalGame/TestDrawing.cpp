@@ -11,7 +11,7 @@
 #include "GLSLPositionColorInitializer.h"
 #include "GLSLProjectionModelviewInitializer.h"
 #include "GLSLVertex.h"
-#include "GLSLVertexBuffer.h"
+#include "VertexBuffer.h"
 
 
 
@@ -25,14 +25,14 @@ namespace Renderer {
         vertices.push_back(GLSLVertex1P1C(point0, GLColor(0.0, 0.0, 1.0)));
         vertices.push_back(GLSLVertex1P1C(point1, GLColor(1.0, 0.0, 0.0)));
         
-        m_vertexBuffer = new GLSLVertexBuffer();
+        m_vertexBuffer = new VertexBuffer();
         m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(GLSLVertex1P1C), vertices.size());
         
         m_attributeInitializer = new GLSLPositionColorInitializer();
         m_uniformInitializer = new GLSLProjectionModelviewInitializer();
         m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -4.5).RotateZ(0.1).RotateY(0.2);
         
-        m_drawRequest = new GLSLVertexBufferRequest(m_vertexBuffer);
+        m_drawRequest = new VertexBufferRequest(m_vertexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
         m_drawRequest->SetUniformInitializer(m_uniformInitializer);
         m_drawRequest->SetRenderMode(GLSL_RENDER_MODE_LINES);

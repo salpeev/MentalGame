@@ -1,5 +1,5 @@
 //
-//  GLSLVertexBuffer.h
+//  VertexBuffer.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 28.09.13.
@@ -7,17 +7,16 @@
 //
 
 #pragma once
-#include "GLSLBuffer.h"
+#include "Buffer.h"
 #include <vector>
 
 using namespace std;
 
 
 
-namespace Renderer
-{
-    class GLSLVertexBuffer : public GLSLBuffer
-    {
+namespace Renderer {
+    
+    class VertexBuffer : public Buffer {
     public:
         void LoadBufferData(vector<float> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
         void LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);

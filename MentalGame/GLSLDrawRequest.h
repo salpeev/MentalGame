@@ -18,8 +18,8 @@ using namespace std;
 
 namespace Renderer
 {
-    class GLSLVertexBuffer;
-    class GLSLIndexBuffer;
+    class VertexBuffer;
+    class IndexBuffer;
     class GLSLVertexArray;
     class GLSLAttributeInitializer;
     class GLSLUniformInitializer;
@@ -72,12 +72,12 @@ namespace Renderer
     
     
     
-#pragma mark - GLSLVertexBufferIndexBufferRequest
+#pragma mark - VertexBufferIndexBufferRequest
     
-    class GLSLVertexBufferIndexBufferRequest: public GLSLDrawRequest
+    class VertexBufferIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferIndexBufferRequest(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer);
+        VertexBufferIndexBufferRequest(VertexBuffer *pVertexBuffer, IndexBuffer *pIndexBuffer);
         
         GLsizei GetVerticesCount() const;
         
@@ -87,19 +87,19 @@ namespace Renderer
         void Draw() const;
         
     private:
-        GLSLVertexBuffer *m_vertexBuffer;
-        GLSLIndexBuffer *m_indexBuffer;
+        VertexBuffer *m_vertexBuffer;
+        IndexBuffer *m_indexBuffer;
     };
     
     
     
-#pragma mark - GLSLVertexBufferShortIndicesRequest
+#pragma mark - VertexBufferShortIndicesRequest
     
-    class GLSLVertexBufferShortIndicesRequest: public GLSLDrawRequest
+    class VertexBufferShortIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferShortIndicesRequest(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
-        ~GLSLVertexBufferShortIndicesRequest();
+        VertexBufferShortIndicesRequest(VertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
+        ~VertexBufferShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -109,19 +109,19 @@ namespace Renderer
         void Draw() const;
         
     private:
-        GLSLVertexBuffer *m_vertexBuffer;
+        VertexBuffer *m_vertexBuffer;
         vector<GLushort> *m_indices;
     };
     
     
     
-#pragma mark - GLSLVertexBufferByteIndicesRequest
+#pragma mark - VertexBufferByteIndicesRequest
     
-    class GLSLVertexBufferByteIndicesRequest: public GLSLDrawRequest
+    class VertexBufferByteIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferByteIndicesRequest(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
-        ~GLSLVertexBufferByteIndicesRequest();
+        VertexBufferByteIndicesRequest(VertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
+        ~VertexBufferByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -131,18 +131,18 @@ namespace Renderer
         void Draw() const;
         
     private:
-        GLSLVertexBuffer *m_vertexBuffer;
+        VertexBuffer *m_vertexBuffer;
         vector<GLubyte> *m_indices;
     };
     
     
     
-#pragma mark - GLSLVertexBufferRequest
+#pragma mark - VertexBufferRequest
     
-    class GLSLVertexBufferRequest: public GLSLDrawRequest
+    class VertexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexBufferRequest(GLSLVertexBuffer *pVertexBuffer);
+        VertexBufferRequest(VertexBuffer *pVertexBuffer);
         
         GLsizei GetVerticesCount() const;
         
@@ -152,7 +152,7 @@ namespace Renderer
         void Draw() const;
         
     private:
-        GLSLVertexBuffer *m_vertexBuffer;
+        VertexBuffer *m_vertexBuffer;
     };
     
     
@@ -162,7 +162,7 @@ namespace Renderer
     class GLSLVertexArrayIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayIndexBufferRequest(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer);
+        GLSLVertexArrayIndexBufferRequest(GLSLVertexArray &rVertexArray, IndexBuffer *pIndexBuffer);
         ~GLSLVertexArrayIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
@@ -174,7 +174,7 @@ namespace Renderer
         
     private:
         GLSLVertexArray *m_vertexArray;
-        GLSLIndexBuffer *m_indexBuffer;
+        IndexBuffer *m_indexBuffer;
     };
     
     
@@ -250,7 +250,7 @@ namespace Renderer
     {
     public:
         // TODO: Replace pointer with value?
-        GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer);
+        GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray> &rVertexArrays, IndexBuffer *pIndexBuffer);
         ~GLSLVertexArraysIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
@@ -262,7 +262,7 @@ namespace Renderer
         
     private:
         vector<GLSLVertexArray *> *m_vertexArrays;
-        GLSLIndexBuffer *m_indexBuffer;
+        IndexBuffer *m_indexBuffer;
     };
     
     

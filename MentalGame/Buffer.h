@@ -1,5 +1,5 @@
 //
-//  GLSLVertexBuffer.h
+//  Buffer.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 28.09.13.
@@ -12,14 +12,13 @@
 
 
 
-namespace Renderer
-{
-    class GLSLBuffer
-    {
+namespace Renderer {
+    
+    class Buffer {
     public:
-        GLSLBuffer();
-        GLSLBuffer(const GLSLBuffer &rBuffer) = delete;
-        virtual ~GLSLBuffer();
+        Buffer();
+        Buffer(const Buffer &rBuffer) = delete;
+        virtual ~Buffer();
         
         GLuint GetElementsCount() const;
         GLsizei GetElementSize() const;

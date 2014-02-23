@@ -16,6 +16,7 @@ namespace Renderer
     class GLSLVertexArray
     {
     public:
+        // TODO: Probably this class can have the same interface as GLSLBuffer
         GLSLVertexArray(GLvoid *pData, GLsizei vertexSize, GLuint verticesCount);
         GLSLVertexArray(const GLSLVertexArray &rVertexArray);
         ~GLSLVertexArray();

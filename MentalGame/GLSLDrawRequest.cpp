@@ -8,8 +8,8 @@
 
 #include "GLSLDrawRequest.h"
 #include "GLLogger.h"
-#include "GLSLVertexBuffer.h"
-#include "GLSLIndexBuffer.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include "GLSLVertexArray.h"
 #include "GLSLAttributeInitializer.h"
 #include "GLSLUniformInitializer.h"
@@ -138,23 +138,23 @@ namespace Renderer
     
 #pragma mark - GLSLDrawingVertexBufferIndexBufferRequest
     
-    GLSLVertexBufferIndexBufferRequest::GLSLVertexBufferIndexBufferRequest(GLSLVertexBuffer *pVertexBuffer, GLSLIndexBuffer *pIndexBuffer): m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
+    VertexBufferIndexBufferRequest::VertexBufferIndexBufferRequest(VertexBuffer *pVertexBuffer, IndexBuffer *pIndexBuffer): m_vertexBuffer(pVertexBuffer), m_indexBuffer(pIndexBuffer)
     {
         ResetDrawCount();
     }
     
-    GLsizei GLSLVertexBufferIndexBufferRequest::GetVerticesCount() const
+    GLsizei VertexBufferIndexBufferRequest::GetVerticesCount() const
     {
         return m_indexBuffer->GetElementsCount();
     }
     
-    void GLSLVertexBufferIndexBufferRequest::Activate() const
+    void VertexBufferIndexBufferRequest::Activate() const
     {
         m_vertexBuffer->Bind();
         m_indexBuffer->Bind();
     }
     
-    void GLSLVertexBufferIndexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
+    void VertexBufferIndexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -170,7 +170,7 @@ namespace Renderer
         }
     }
     
-    void GLSLVertexBufferIndexBufferRequest::Draw() const
+    void VertexBufferIndexBufferRequest::Draw() const
     {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -183,32 +183,32 @@ namespace Renderer
     
     
     
-#pragma mark - GLSLVertexBufferShortIndicesRequest
+#pragma mark - VertexBufferShortIndicesRequest
     
-    GLSLVertexBufferShortIndicesRequest::GLSLVertexBufferShortIndicesRequest(GLSLVertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): m_vertexBuffer(pVertexBuffer)
+    VertexBufferShortIndicesRequest::VertexBufferShortIndicesRequest(VertexBuffer *pVertexBuffer, vector<GLushort> &rIndices): m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLushort>(rIndices);
         
         ResetDrawCount();
     }
     
-    GLSLVertexBufferShortIndicesRequest::~GLSLVertexBufferShortIndicesRequest()
+    VertexBufferShortIndicesRequest::~VertexBufferShortIndicesRequest()
     {
         delete m_indices;
     }
     
-    GLsizei GLSLVertexBufferShortIndicesRequest::GetVerticesCount() const
+    GLsizei VertexBufferShortIndicesRequest::GetVerticesCount() const
     {
         return m_indices->size();
     }
     
-    void GLSLVertexBufferShortIndicesRequest::Activate() const
+    void VertexBufferShortIndicesRequest::Activate() const
     {
         m_vertexBuffer->Bind();
-        GLSLIndexBuffer::UnbindCurrentBuffer();
+        IndexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexBufferShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
+    void VertexBufferShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -224,7 +224,7 @@ namespace Renderer
         }
     }
     
-    void GLSLVertexBufferShortIndicesRequest::Draw() const
+    void VertexBufferShortIndicesRequest::Draw() const
     {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -237,32 +237,32 @@ namespace Renderer
     
     
     
-#pragma mark - GLSLVertexBufferByteIndicesRequest
+#pragma mark - VertexBufferByteIndicesRequest
     
-    GLSLVertexBufferByteIndicesRequest::GLSLVertexBufferByteIndicesRequest(GLSLVertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): m_vertexBuffer(pVertexBuffer)
+    VertexBufferByteIndicesRequest::VertexBufferByteIndicesRequest(VertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices): m_vertexBuffer(pVertexBuffer)
     {
         m_indices = new vector<GLubyte>(rIndices);
         
         ResetDrawCount();
     }
     
-    GLSLVertexBufferByteIndicesRequest::~GLSLVertexBufferByteIndicesRequest()
+    VertexBufferByteIndicesRequest::~VertexBufferByteIndicesRequest()
     {
         delete m_indices;
     }
     
-    GLsizei GLSLVertexBufferByteIndicesRequest::GetVerticesCount() const
+    GLsizei VertexBufferByteIndicesRequest::GetVerticesCount() const
     {
         return m_indices->size();
     }
     
-    void GLSLVertexBufferByteIndicesRequest::Activate() const
+    void VertexBufferByteIndicesRequest::Activate() const
     {
         m_vertexBuffer->Bind();
-        GLSLIndexBuffer::UnbindCurrentBuffer();
+        IndexBuffer::UnbindCurrentBuffer();
     }
     
-    void GLSLVertexBufferByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
+    void VertexBufferByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -278,7 +278,7 @@ namespace Renderer
         }
     }
     
-    void GLSLVertexBufferByteIndicesRequest::Draw() const
+    void VertexBufferByteIndicesRequest::Draw() const
     {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
@@ -291,24 +291,24 @@ namespace Renderer
     
     
     
-#pragma mark - GLSLVertexBufferRequest
+#pragma mark - VertexBufferRequest
     
-    GLSLVertexBufferRequest::GLSLVertexBufferRequest(GLSLVertexBuffer *pVertexBuffer): m_vertexBuffer(pVertexBuffer)
+    VertexBufferRequest::VertexBufferRequest(VertexBuffer *pVertexBuffer): m_vertexBuffer(pVertexBuffer)
     {
         ResetDrawCount();
     }
     
-    GLsizei GLSLVertexBufferRequest::GetVerticesCount() const
+    GLsizei VertexBufferRequest::GetVerticesCount() const
     {
         return m_vertexBuffer->GetElementsCount();
     }
     
-    void GLSLVertexBufferRequest::Activate() const
+    void VertexBufferRequest::Activate() const
     {
         m_vertexBuffer->Bind();
     }
     
-    void GLSLVertexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
+    void VertexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
         GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
@@ -324,7 +324,7 @@ namespace Renderer
         }
     }
     
-    void GLSLVertexBufferRequest::Draw() const
+    void VertexBufferRequest::Draw() const
     {
         GLSL_RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
@@ -338,7 +338,7 @@ namespace Renderer
     
 #pragma mark - GLSLVertexArrayIndexBufferRequest
     
-    GLSLVertexArrayIndexBufferRequest::GLSLVertexArrayIndexBufferRequest(GLSLVertexArray &rVertexArray, GLSLIndexBuffer *pIndexBuffer): m_indexBuffer(pIndexBuffer)
+    GLSLVertexArrayIndexBufferRequest::GLSLVertexArrayIndexBufferRequest(GLSLVertexArray &rVertexArray, IndexBuffer *pIndexBuffer): m_indexBuffer(pIndexBuffer)
     {
         m_vertexArray = new GLSLVertexArray(rVertexArray);
         
@@ -357,7 +357,7 @@ namespace Renderer
     
     void GLSLVertexArrayIndexBufferRequest::Activate() const
     {
-        GLSLVertexBuffer::UnbindCurrentBuffer();
+        VertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
     }
     
@@ -413,8 +413,8 @@ namespace Renderer
     
     void GLSLVertexArrayShortIndicesRequest::Activate() const
     {
-        GLSLVertexBuffer::UnbindCurrentBuffer();
-        GLSLIndexBuffer::UnbindCurrentBuffer();
+        VertexBuffer::UnbindCurrentBuffer();
+        IndexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArrayShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
@@ -469,8 +469,8 @@ namespace Renderer
     
     void GLSLVertexArrayByteIndicesRequest::Activate() const
     {
-        GLSLVertexBuffer::UnbindCurrentBuffer();
-        GLSLIndexBuffer::UnbindCurrentBuffer();
+        VertexBuffer::UnbindCurrentBuffer();
+        IndexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArrayByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
@@ -522,7 +522,7 @@ namespace Renderer
     
     void GLSLVertexArrayRequest::Activate() const
     {
-        GLSLVertexBuffer::UnbindCurrentBuffer();
+        VertexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArrayRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
@@ -553,7 +553,7 @@ namespace Renderer
     
 #pragma mark - GLSLVertexArraysIndexBufferRequest
     
-    GLSLVertexArraysIndexBufferRequest::GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray> &rVertexArrays, GLSLIndexBuffer *pIndexBuffer): m_indexBuffer(pIndexBuffer) {
+    GLSLVertexArraysIndexBufferRequest::GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray> &rVertexArrays, IndexBuffer *pIndexBuffer): m_indexBuffer(pIndexBuffer) {
         m_vertexArrays = new vector<GLSLVertexArray *>;
         for (int vertexArrayIndex = 0; vertexArrayIndex < rVertexArrays.size(); vertexArrayIndex++) {
             GLSLVertexArray vertexArray = rVertexArrays.at(vertexArrayIndex);
@@ -579,7 +579,7 @@ namespace Renderer
     }
     
     void GLSLVertexArraysIndexBufferRequest::Activate() const {
-        GLSLVertexBuffer::UnbindCurrentBuffer();
+        VertexBuffer::UnbindCurrentBuffer();
         m_indexBuffer->Bind();
     }
     
@@ -636,8 +636,8 @@ namespace Renderer
     }
     
     void GLSLVertexArraysShortIndicesRequest::Activate() const {
-        GLSLVertexBuffer::UnbindCurrentBuffer();
-        GLSLIndexBuffer::UnbindCurrentBuffer();
+        VertexBuffer::UnbindCurrentBuffer();
+        IndexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArraysShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
@@ -693,8 +693,8 @@ namespace Renderer
     }
     
     void GLSLVertexArraysByteIndicesRequest::Activate() const {
-        GLSLVertexBuffer::UnbindCurrentBuffer();
-        GLSLIndexBuffer::UnbindCurrentBuffer();
+        VertexBuffer::UnbindCurrentBuffer();
+        IndexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArraysByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
@@ -748,7 +748,7 @@ namespace Renderer
     }
     
     void GLSLVertexArraysRequest::Activate() const {
-        GLSLVertexBuffer::UnbindCurrentBuffer();
+        VertexBuffer::UnbindCurrentBuffer();
     }
     
     void GLSLVertexArraysRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
