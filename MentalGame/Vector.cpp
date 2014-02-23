@@ -110,8 +110,11 @@ namespace Renderer
         
     }
     
-    // TODO: Check w
-    Vector4::Vector4(Vector3 &rVector): Vector4(rVector.x, rVector.y, rVector.z, 1.0f) {
+    Vector4::Vector4(Vector3 &rVector): Vector4(rVector, 1.0f) {
+        
+    }
+    
+    Vector4::Vector4(Vector3 &rVector, float w): Vector4(rVector.x, rVector.y, rVector.z, w) {
         
     }
     

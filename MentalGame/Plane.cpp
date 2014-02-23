@@ -23,30 +23,31 @@ namespace Renderer {
         m_distance = m_normal.Dot(a);
     }
     
-    Plane Plane::Transformed(Matrix4 &rMatrix) const {
+    Plane Plane::Transformed(Matrix4 &rMatrix, bool translatedRotatedOnly) const {
         Plane transformedPlane(*this);
-        transformedPlane.Transform(rMatrix);
+        transformedPlane.Transform(rMatrix, translatedRotatedOnly);
         return transformedPlane;
     }
     
-    void Plane::Transform(Matrix4 &rMatrix) {
-        // TODO: Cleanup this code
-        // TODO: This step can be optimized if matrix contains only rotation and translation. Inverse-transpose can be omitted
-//        Matrix4 invertedMatrix;
-//        rMatrix.Inverted(&invertedMatrix);
-//        Matrix4 resultMatrix = invertedMatrix.Transposed();
+    void Plane::Transform(Matrix4 &rMatrix, bool translatedRotatedOnly) {
+        Matrix4 transformMatrix(rMatrix);
+        
+        if (!translatedRotatedOnly) {
+            Matrix4 invertedMatrix;
+            if (rMatrix.Inverted(&invertedMatrix)) {
+                transformMatrix = invertedMatrix.Transposed();
+            }
+        }
         
         Point position = GetPosition();
         
-        Vector4 normal4(m_normal);
-        normal4.w = 0.0f;
-        normal4 = normal4 * rMatrix;
+        Vector4 normal4(m_normal, 0.0f);
+        normal4 = normal4 * transformMatrix;
         m_normal = Vector3(normal4.x, normal4.y, normal4.z);
         m_normal.Normalize();
         
-        
         Vector4 vector4(position.x, position.y, position.z, 1.0f);
-        Vector4 transformedVector4 = vector4 * rMatrix;
+        Vector4 transformedVector4 = vector4 * transformMatrix;
         Vector3 transformedVector3(transformedVector4.x, transformedVector4.y, transformedVector4.z);
         
         m_distance = transformedVector3.Dot(m_normal);
@@ -65,3 +66,25 @@ namespace Renderer {
         return position;
     }
 }
+
+
+
+
+
+
+
+
+
+
+/*
+ http://stackoverflow.com/questions/7685495/transforming-a-3d-plane-by-4x4-matrix
+ 
+ You need to convert your plane to a different representation. One where N is the normal, and O is any point on the plane. The normal you already know, it's your (xyz). A point on the plane is also easy, it's your normal N times your distance d.
+ 
+ Transform O by the 4x4 matrix in the normal way, this becomes your new O. You will need a Vector4 to multiply with a 4x4 matrix, set the W component to 1 (x, y, z, 1).
+ 
+ Also transform N by the 4x4 matrix, but set the W component to 0 (x, y, z, 0). Setting the W component to 0 means that your normals won't get translated. If your matrix is composed of more that just translating and rotating, then this step isn't so simple. Instead of multiplying by your transformation matrix, you have to multiply by the transpose of the inverse of the matrix i.e. Matrix4.Transpose(Matrix4.Invert(Transform)), there's a good explanation on why here.
+ 
+ You now have a new normal vector N and a new position vector O. However I suppose you want it in xyzd form again? No problem. As before, xyz is your normal N all that's left is to calculate d. d is the distance of the plane from the origin, along the normal vector. Hence, it is simply the dot product of O and N.
+ 
+ */

@@ -123,8 +123,7 @@ namespace Renderer {
 //        m_uniformInitializer->GetModelviewMatrix().RotateX(interval * 0.1).RotateY(interval * 0.1).RotateZ(interval * 0.1);
         
         Matrix4 result = m_uniformInitializer->GetModelviewMatrix()/* * m_uniformInitializer->GetProjectionMatrix()*/;
-        Polyhedron polyhedron = m_shape->Transformed(result);
-//        Plane plane = polyhedron.GetPlanes()[0];
+        Polyhedron polyhedron = m_shape->Transformed(result, false);
         
         Vector4 vA(-2.0, 0.0, 0.0, 1.0);
         Vector4 vB(2.0, 0.0, 0.0, 1.0);

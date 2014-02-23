@@ -17,8 +17,8 @@ namespace Renderer {
     public:
         Plane(const Point &a, const Point &b, const Point &c);
         
-        Plane Transformed(Matrix4 &rMatrix) const;
-        void Transform(Matrix4 &rMatrix);
+        Plane Transformed(Matrix4 &rMatrix, bool translatedRotatedOnly) const;
+        void Transform(Matrix4 &rMatrix, bool translatedRotatedOnly);
         
         const Vector3 & GetNormal() const;
         float GetDistance() const;
