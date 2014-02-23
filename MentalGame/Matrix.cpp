@@ -159,15 +159,15 @@ namespace Renderer {
         return r;
     }
     
-    Vector4 Matrix4::operator*(const Vector4 &v) const {
-        // TODO: Check is this correct
-        Vector4 r;
-        r.x = x.x * v.x + x.y * v.y + x.z * v.z + x.w * v.w;
-        r.y = y.x * v.x + y.y * v.y + y.z * v.z + y.w * v.w;
-        r.z = z.x * v.x + z.y * v.y + z.z * v.z + z.w * v.w;
-        r.w = w.x * v.x + w.y * v.y + w.z * v.z + w.w * v.w;
-        return r;
-    }
+//    Vector4 Matrix4::operator*(const Vector4 &v) const {
+//        // TODO: Check is this correct
+//        Vector4 r;
+//        r.x = x.x * v.x + x.y * v.y + x.z * v.z + x.w * v.w;
+//        r.y = y.x * v.x + y.y * v.y + y.z * v.z + y.w * v.w;
+//        r.z = z.x * v.x + z.y * v.y + z.z * v.z + z.w * v.w;
+//        r.w = w.x * v.x + w.y * v.y + w.z * v.z + w.w * v.w;
+//        return r;
+//    }
     
     Matrix4 & Matrix4::Translate(float tX, float tY, float tZ) {
         w.x += tX;

@@ -7,6 +7,7 @@
 //
 
 #include "Vector.h"
+#include "Matrix.h"
 
 
 
@@ -77,6 +78,14 @@ namespace Renderer
         return vector;
     }
     
+    Vector3 Vector3::operator*(const Matrix3 &rMatrix) const {
+        float newX = x * rMatrix.x.x + y * rMatrix.y.x + z * rMatrix.z.x;
+        float newY = x * rMatrix.x.y + y * rMatrix.y.y + z * rMatrix.z.y;
+        float newZ = x * rMatrix.x.z + y * rMatrix.y.z + z * rMatrix.z.z;
+        Vector3 vector(newX, newY, newZ);
+        return vector;
+    }
+    
     Vector3::operator Point() const {
         Point point(x, y, z);
         return point;
@@ -108,6 +117,15 @@ namespace Renderer
     
     Vector4 Vector4::operator-(const Vector4 &rVector) const {
         Vector4 vector(x - rVector.x, y - rVector.y, z - rVector.z, w - rVector.w);
+        return vector;
+    }
+    
+    Vector4 Vector4::operator*(const Matrix4 &rMatrix) const {
+        float newX = x * rMatrix.x.x + y * rMatrix.y.x + z * rMatrix.z.x + w * rMatrix.w.x;
+        float newY = x * rMatrix.x.y + y * rMatrix.y.y + z * rMatrix.z.y + w * rMatrix.w.y;
+        float newZ = x * rMatrix.x.z + y * rMatrix.y.z + z * rMatrix.z.z + w * rMatrix.w.z;
+        float newW = x * rMatrix.x.w + y * rMatrix.y.w + z * rMatrix.z.w + w * rMatrix.w.w;
+        Vector4 vector(newX, newY, newZ, newW);
         return vector;
     }
     

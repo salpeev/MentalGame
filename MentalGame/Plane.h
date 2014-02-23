@@ -17,6 +17,7 @@ namespace Renderer {
     public:
         Plane(const Point &a, const Point &b, const Point &c);
         
+        Plane Transformed(Matrix4 &rMatrix) const;
         void Transform(Matrix4 &rMatrix);
         
         const Vector3 & GetNormal() const;

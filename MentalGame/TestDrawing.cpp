@@ -18,18 +18,26 @@
 namespace Renderer {
     
     TestDrawing::TestDrawing () {
-        Point point0(0.2, 0.2, -4.0);
-        Point point1(1.0, 1.0, -9.0);
+//        Point point0(0.2, 0.2, -4.0);
+//        Point point1(1.0, 1.0, -9.0);
+        
+//        Point point0(-2.0, 0.0, -5.3);
+//        Point point1(2.0, 0.0, -5.3);
+        
+        Point point0(-2.0, 0.0, 0.0);
+        Point point1(2.0, 0.0, 0.0);
         
         vector<GLSLVertex1P1C> vertices;
-        vertices.push_back(GLSLVertex1P1C(point0, GLColor(1.0, 0.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(point1, GLColor(0.0, 0.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(point0, GLColor(0.0, 0.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(point1, GLColor(1.0, 0.0, 0.0)));
         
         m_vertexBuffer = new GLSLVertexBuffer();
         m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(GLSLVertex1P1C), vertices.size());
         
         m_attributeInitializer = new GLSLPositionColorInitializer();
         m_uniformInitializer = new GLSLProjectionModelviewInitializer();
+        m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -5.5);
+//        m_uniformInitializer->GetModelviewMatrix().RotateY(M_PI_4);
         
         m_drawRequest = new GLSLVertexBufferRequest(m_vertexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);

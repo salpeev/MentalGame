@@ -54,7 +54,7 @@ namespace Renderer {
         Matrix4();
         
         Matrix4 operator*(const Matrix4 &rMatrix) const;
-        Vector4 operator*(const Vector4 &rVector) const;        // TODO: Check is this correct. Probably we should multiple vector by matrix for correct results, not matrix by vector
+//        Vector4 operator*(const Vector4 &rVector) const;        // TODO: Check is this correct. Probably we should multiple vector by matrix for correct results, not matrix by vector
         
         Matrix4 & Translate(float xTranslation, float yTranslation, float zTranslation);
         Matrix4 & RotateX(float radians);

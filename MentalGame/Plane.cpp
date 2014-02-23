@@ -23,24 +23,30 @@ namespace Renderer {
         m_distance = m_normal.Dot(a);
     }
     
+    Plane Plane::Transformed(Matrix4 &rMatrix) const {
+        Plane transformedPlane(*this);
+        transformedPlane.Transform(rMatrix);
+        return transformedPlane;
+    }
+    
     void Plane::Transform(Matrix4 &rMatrix) {
         // TODO: Cleanup this code
         // TODO: This step can be optimized if matrix contains only rotation and translation. Inverse-transpose can be omitted
-        Matrix4 invertedMatrix;
-        rMatrix.Inverted(&invertedMatrix);
-        Matrix4 resultMatrix = invertedMatrix.Transposed();
+//        Matrix4 invertedMatrix;
+//        rMatrix.Inverted(&invertedMatrix);
+//        Matrix4 resultMatrix = invertedMatrix.Transposed();
         
         Point position = GetPosition();
         
         Vector4 normal4(m_normal);
         normal4.w = 0.0f;
-        normal4 = resultMatrix * normal4;
+        normal4 = normal4 * rMatrix;
         m_normal = Vector3(normal4.x, normal4.y, normal4.z);
         m_normal.Normalize();
         
         
         Vector4 vector4(position.x, position.y, position.z, 1.0f);
-        Vector4 transformedVector4 = rMatrix * vector4;
+        Vector4 transformedVector4 = vector4 * rMatrix;
         Vector3 transformedVector3(transformedVector4.x, transformedVector4.y, transformedVector4.z);
         
         m_distance = transformedVector3.Dot(m_normal);

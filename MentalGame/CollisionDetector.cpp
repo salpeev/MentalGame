@@ -27,13 +27,8 @@ namespace Renderer {
             float denominator = plane.GetNormal().Dot(directionVector);
             float distance = plane.GetDistance() - plane.GetNormal().Dot(rA);
             
-            // Test if segment runs parallel to the plane
-            if (denominator == 0.0f) {
-                // If so, return "no intersection" if segment lies outside plane
-                if (distance > 0.0f) {
-                    return false;
-                }
-            } else {
+            // Test if segment runs not parallel to the plane
+            if (denominator != 0.0f) {
                 // Compute parametrized t value for intersection with current plane
                 float t = distance / denominator;
                 if (denominator < 0.0f) {

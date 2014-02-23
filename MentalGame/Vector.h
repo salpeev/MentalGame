@@ -13,6 +13,11 @@
 
 namespace Renderer
 {
+    class Matrix3;
+    class Matrix4;
+    
+    
+    
     class Vector2
     {
     public:
@@ -42,6 +47,7 @@ namespace Renderer
         
         Vector3 operator-(const Vector3 &rVector) const;
         Vector3 operator*(float scale) const;
+        Vector3 operator*(const Matrix3 &rMatrix) const;
         operator Point() const;
         
         float Length() const;
@@ -62,6 +68,7 @@ namespace Renderer
         Vector4(Vector3 &rVector);
         
         Vector4 operator-(const Vector4 &rVector) const;
+        Vector4 operator*(const Matrix4 &rMatrix) const;
         
         const float * Pointer() const;
         

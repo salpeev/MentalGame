@@ -17,7 +17,7 @@ namespace Renderer {
     class GLSLPositionColorInitializer;
     class GLSLProjectionModelviewInitializer;
     class GLSLDrawRequest;
-    class Plane;
+    class Polyhedron;
     
     
     
@@ -36,6 +36,6 @@ namespace Renderer {
         GLSLPositionColorInitializer *m_attributeInitializer;
         GLSLProjectionModelviewInitializer *m_uniformInitializer;
         GLSLDrawRequest *m_drawRequest;
-        vector<Plane> *m_planes;
+        Polyhedron *m_shape;
     };
 }

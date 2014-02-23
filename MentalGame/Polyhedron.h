@@ -21,6 +21,7 @@ namespace Renderer {
         Polyhedron(const vector<Plane> &rPlanes);
         ~Polyhedron();
         
+        Polyhedron Transformed(Matrix4 &rMatrix) const;
         void Transform(Matrix4 &rMatrix);
         
         const vector<Plane> & GetPlanes() const;

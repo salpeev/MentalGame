@@ -20,6 +20,12 @@ namespace Renderer {
         
     }
     
+    Polyhedron Polyhedron::Transformed(Matrix4 &rMatrix) const {
+        Polyhedron transformedPolyhedron(*this);
+        transformedPolyhedron.Transform(rMatrix);
+        return transformedPolyhedron;
+    }
+    
     void Polyhedron::Transform(Matrix4 &rMatrix) {
         for (int planeIndex = 0; planeIndex < m_planes.size(); planeIndex++) {
             Plane plane = m_planes[planeIndex];
