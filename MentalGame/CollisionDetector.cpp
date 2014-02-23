@@ -7,6 +7,7 @@
 //
 
 #include "CollisionDetector.h"
+#include "GLLogger.h"
 
 
 
@@ -45,6 +46,8 @@ namespace Renderer {
                 
                 // Exit with "no intersection" if intersection becomes empty
                 if (tStart > tEnd) {
+                    tStart = 0.0f;
+                    tEnd = 0.0f;
                     return false;
                 }
             }

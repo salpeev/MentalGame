@@ -18,12 +18,6 @@
 namespace Renderer {
     
     TestDrawing::TestDrawing () {
-//        Point point0(0.2, 0.2, -4.0);
-//        Point point1(1.0, 1.0, -9.0);
-        
-//        Point point0(-2.0, 0.0, -5.3);
-//        Point point1(2.0, 0.0, -5.3);
-        
         Point point0(-2.0, 0.0, 0.0);
         Point point1(2.0, 0.0, 0.0);
         
@@ -36,8 +30,7 @@ namespace Renderer {
         
         m_attributeInitializer = new GLSLPositionColorInitializer();
         m_uniformInitializer = new GLSLProjectionModelviewInitializer();
-        m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -5.5);
-//        m_uniformInitializer->GetModelviewMatrix().RotateY(M_PI_4);
+        m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -4.5).RotateZ(0.1).RotateY(0.2);
         
         m_drawRequest = new GLSLVertexBufferRequest(m_vertexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);

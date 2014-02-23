@@ -30,26 +30,26 @@ namespace Renderer {
     }
     
     void Plane::Transform(Matrix4 &rMatrix, bool translatedRotatedOnly) {
-        Matrix4 transformMatrix(rMatrix);
+        Point position = GetPosition();
         
+        // Transform normal
+        Matrix4 normalMatrix(rMatrix);
         if (!translatedRotatedOnly) {
             Matrix4 invertedMatrix;
             if (rMatrix.Inverted(&invertedMatrix)) {
-                transformMatrix = invertedMatrix.Transposed();
+                normalMatrix = invertedMatrix.Transposed();
             }
         }
         
-        Point position = GetPosition();
-        
         Vector4 normal4(m_normal, 0.0f);
-        normal4 = normal4 * transformMatrix;
+        normal4 = normal4 * normalMatrix;
         m_normal = Vector3(normal4.x, normal4.y, normal4.z);
         m_normal.Normalize();
         
+        // Transform distance
         Vector4 vector4(position.x, position.y, position.z, 1.0f);
-        Vector4 transformedVector4 = vector4 * transformMatrix;
+        Vector4 transformedVector4 = vector4 * rMatrix;
         Vector3 transformedVector3(transformedVector4.x, transformedVector4.y, transformedVector4.z);
-        
         m_distance = transformedVector3.Dot(m_normal);
     }
     
