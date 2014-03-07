@@ -30,19 +30,19 @@ namespace Renderer
         
     }
     
-    void GLSLProjectionModelviewInitializer::SetProjectionMatrix(Matrix4 &rProjectionMatrix) {
+    void GLSLProjectionModelviewInitializer::SetProjectionMatrix(const Matrix4 &rProjectionMatrix) {
         m_projection = rProjectionMatrix;
     }
     
-    void GLSLProjectionModelviewInitializer::SetModelviewMatrix(Matrix4 &rModelviewMatix) {
+    void GLSLProjectionModelviewInitializer::SetModelviewMatrix(const Matrix4 &rModelviewMatix) {
         m_modelview = rModelviewMatix;
     }
     
-    Matrix4 & GLSLProjectionModelviewInitializer::GetProjectionMatrix() {
+    const Matrix4 & GLSLProjectionModelviewInitializer::GetProjectionMatrix() const {
         return m_projection;
     }
     
-    Matrix4 & GLSLProjectionModelviewInitializer::GetModelviewMatrix() {
+    const Matrix4 & GLSLProjectionModelviewInitializer::GetModelviewMatrix() const {
         return m_modelview;
     }
     

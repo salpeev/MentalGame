@@ -20,11 +20,11 @@ namespace Renderer
         GLSLProjectionModelviewInitializer();
         ~GLSLProjectionModelviewInitializer();
         
-        void SetProjectionMatrix(Matrix4 &rProjectionMatrix);
-        void SetModelviewMatrix(Matrix4 &rModelviewMatix);
+        void SetProjectionMatrix(const Matrix4 &rProjectionMatrix);
+        void SetModelviewMatrix(const Matrix4 &rModelviewMatix);
         
-        Matrix4 & GetProjectionMatrix();
-        Matrix4 & GetModelviewMatrix();
+        const Matrix4 & GetProjectionMatrix() const;
+        const Matrix4 & GetModelviewMatrix() const;
         
         void InitializeUniforms(map<string, Uniform *> *pUniforms) const;
         

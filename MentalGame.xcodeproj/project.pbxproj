@@ -31,6 +31,8 @@
 		B47177DC188BEA75006B6215 /* GLSLProgramContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47177DA188BEA75006B6215 /* GLSLProgramContainer.cpp */; };
 		B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229818BA424F006A0386 /* TextureDrawing.cpp */; };
 		B47D229E18BA43DF006A0386 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229C18BA43DF006A0386 /* Texture.cpp */; };
+		B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1690918C1FCEA0097F2D1 /* Animation.cpp */; };
+		B4A1690E18C218D10097F2D1 /* Matrix4Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1690C18C218D10097F2D1 /* Matrix4Animation.cpp */; };
 		B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */; };
 		B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */; };
 		B4CE1DE417DFB72C009094E8 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE217DFB72C009094E8 /* Program.cpp */; };
@@ -124,6 +126,10 @@
 		B47D229C18BA43DF006A0386 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		B47D229D18BA43DF006A0386 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		B4963F9518003B650037FC39 /* GLConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLConstants.h; sourceTree = "<group>"; };
+		B4A1690918C1FCEA0097F2D1 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
+		B4A1690A18C1FCEA0097F2D1 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
+		B4A1690C18C218D10097F2D1 /* Matrix4Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4Animation.cpp; sourceTree = "<group>"; };
+		B4A1690D18C218D10097F2D1 /* Matrix4Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4Animation.h; sourceTree = "<group>"; };
 		B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderbuffer.cpp; sourceTree = "<group>"; };
 		B4AC5D7D1896FB8B00FBE8D8 /* Renderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderbuffer.h; sourceTree = "<group>"; };
 		B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Framebuffer.cpp; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 				B4D1B84C18AEBB84004FD4B2 /* Math */,
 				B4D70D5E182C2EBE00771FA8 /* Program */,
 				B47D229B18BA439B006A0386 /* Texture */,
+				B4A1690818C1FCAA0097F2D1 /* Animation */,
 				B4963F9418003B490037FC39 /* Constants */,
 				B4963F911800228F0037FC39 /* Primitive types */,
 				B4963F90180022770037FC39 /* Buffers */,
@@ -373,6 +380,30 @@
 				B4EF8488186C2FD000234C28 /* GLDefaultConstants.h */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		B4A1690818C1FCAA0097F2D1 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				B4A1690918C1FCEA0097F2D1 /* Animation.cpp */,
+				B4A1690A18C1FCEA0097F2D1 /* Animation.h */,
+				B4A1690C18C218D10097F2D1 /* Matrix4Animation.cpp */,
+				B4A1690D18C218D10097F2D1 /* Matrix4Animation.h */,
+			);
+			name = Animation;
+			sourceTree = "<group>";
+		};
+		B4A1690F18C2308C0097F2D1 /* Drawing Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				B4ECF83618AC04A8007E2669 /* DrawingComponent.cpp */,
+				B4ECF83518A975B1007E2669 /* DrawingComponent.h */,
+				B4E069D51891C11300F2E995 /* CompositeDrawing.cpp */,
+				B4E069D61891C11300F2E995 /* CompositeDrawing.h */,
+				B41CAA2318AC0C76001E1B1A /* DrawingLeaf.cpp */,
+				B41CAA2418AC0C76001E1B1A /* DrawingLeaf.h */,
+			);
+			name = "Drawing Hierarchy";
 			sourceTree = "<group>";
 		};
 		B4A98DA3187C288300D05BBB /* Program Initializer */ = {
@@ -472,12 +503,7 @@
 		B4E069D41891C08600F2E995 /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
-				B4ECF83618AC04A8007E2669 /* DrawingComponent.cpp */,
-				B4ECF83518A975B1007E2669 /* DrawingComponent.h */,
-				B4E069D51891C11300F2E995 /* CompositeDrawing.cpp */,
-				B4E069D61891C11300F2E995 /* CompositeDrawing.h */,
-				B41CAA2318AC0C76001E1B1A /* DrawingLeaf.cpp */,
-				B41CAA2418AC0C76001E1B1A /* DrawingLeaf.h */,
+				B4A1690F18C2308C0097F2D1 /* Drawing Hierarchy */,
 			);
 			name = Drawing;
 			sourceTree = "<group>";
@@ -735,6 +761,7 @@
 				B469605717F76B5E002BCF6C /* Point.cpp in Sources */,
 				B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */,
 				B469605317F75C25002BCF6C /* GLColor.cpp in Sources */,
+				B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */,
 				B4EF8480186AE08300234C28 /* Quaternion.cpp in Sources */,
 				B468F7161899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp in Sources */,
 				B468F7191899AA0C00AAE773 /* ColorRenderbuffer.cpp in Sources */,
@@ -749,6 +776,7 @@
 				B47177DC188BEA75006B6215 /* GLSLProgramContainer.cpp in Sources */,
 				B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */,
 				B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */,
+				B4A1690E18C218D10097F2D1 /* Matrix4Animation.cpp in Sources */,
 				B4CE1DE417DFB72C009094E8 /* Program.cpp in Sources */,
 				B4EF8494187863D900234C28 /* GLSLVertexArray.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* VertexBuffer.cpp in Sources */,

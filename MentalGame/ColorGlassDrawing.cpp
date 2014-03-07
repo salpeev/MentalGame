@@ -92,7 +92,9 @@ namespace Renderer {
         
         m_attributeInitializer = new GLSLPositionColorInitializer();
         m_uniformInitializer = new GLSLProjectionModelviewInitializer();
-        m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -5.5);
+        Matrix4 modelview;
+        modelview.Translate(0.0, 0.0, -5.5);
+        m_uniformInitializer->SetModelviewMatrix(modelview);
         
         m_drawRequest = new VertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
@@ -119,7 +121,9 @@ namespace Renderer {
     }
     
     void ColorGlassDrawing::Update(float interval) {
-        m_uniformInitializer->GetModelviewMatrix().RotateX(interval * 0.1).RotateY(interval * 0.1).RotateZ(interval * 0.1);
+        Matrix4 modelview = m_uniformInitializer->GetModelviewMatrix();
+        modelview.RotateX(interval * 0.1).RotateY(interval * 0.1).RotateZ(interval * 0.1);
+        m_uniformInitializer->SetModelviewMatrix(modelview);
         
         Matrix4 result = m_uniformInitializer->GetModelviewMatrix();
         Polyhedron polyhedron = m_shape->Transformed(result, true);

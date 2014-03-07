@@ -30,7 +30,10 @@ namespace Renderer {
         
         m_attributeInitializer = new GLSLPositionColorInitializer();
         m_uniformInitializer = new GLSLProjectionModelviewInitializer();
-        m_uniformInitializer->GetModelviewMatrix().Translate(0.0, 0.0, -4.5).RotateZ(0.1).RotateY(0.2);
+        
+        Matrix4 modelview;
+        modelview.Translate(0.0, 0.0, -4.5).RotateZ(0.1).RotateY(0.2);
+        m_uniformInitializer->SetModelviewMatrix(modelview);
         
         m_drawRequest = new VertexBufferRequest(m_vertexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
