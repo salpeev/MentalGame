@@ -1,5 +1,5 @@
 //
-//  GLSLUniformInitializer.h
+//  UniformInitializer.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 11.01.14.
@@ -14,16 +14,14 @@ using namespace std;
 
 
 
-namespace Renderer
-{
+namespace Renderer {
     class Uniform;
     
     
     
-    class GLSLUniformInitializer
-    {
+    class UniformInitializer {
     public:
-        virtual ~GLSLUniformInitializer();
+        virtual ~UniformInitializer();
         
         virtual void InitializeUniforms(map<string, Uniform *> *pUniforms) const = 0;
     };

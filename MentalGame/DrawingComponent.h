@@ -7,6 +7,7 @@
 //
 
 #pragma once
+#include "AnimationDelegate.h"
 
 
 
@@ -16,7 +17,7 @@ namespace Renderer {
     
     
     
-    class DrawingComponent {
+    class DrawingComponent: public AnimationDelegate {
     public:
         virtual void UpdateHierarchy(float interval) = 0;
         virtual void DrawHierarchy() const = 0;

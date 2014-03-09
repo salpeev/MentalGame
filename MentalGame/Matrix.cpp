@@ -159,15 +159,13 @@ namespace Renderer {
         return r;
     }
     
-//    Vector4 Matrix4::operator*(const Vector4 &v) const {
-//        // TODO: Check is this correct
-//        Vector4 r;
-//        r.x = x.x * v.x + x.y * v.y + x.z * v.z + x.w * v.w;
-//        r.y = y.x * v.x + y.y * v.y + y.z * v.z + y.w * v.w;
-//        r.z = z.x * v.x + z.y * v.y + z.z * v.z + z.w * v.w;
-//        r.w = w.x * v.x + w.y * v.y + w.z * v.z + w.w * v.w;
-//        return r;
-//    }
+    Matrix4 & Matrix4::MakeTranslation(float tX, float tY, float tZ) {
+        w.x = tX;
+        w.y = tY;
+        w.z = tZ;
+        
+        return *this;
+    }
     
     Matrix4 & Matrix4::Translate(float tX, float tY, float tZ) {
         w.x += tX;
@@ -204,6 +202,15 @@ namespace Renderer {
     Matrix4 & Matrix4::Transpose() {
         *this = this->Transposed();
         return *this;
+    }
+    
+    Matrix4 Matrix4::Transposed() const {
+        Matrix4 r;
+        r.x.x = x.x; r.x.y = y.x; r.x.z = z.x; r.x.w = w.x;
+        r.y.x = x.y; r.y.y = y.y; r.y.z = z.y; r.y.w = w.y;
+        r.z.x = x.z; r.z.y = y.z; r.z.z = z.z; r.z.w = w.z;
+        r.w.x = x.w; r.w.y = y.w; r.w.z = z.w; r.w.w = w.w;
+        return r;
     }
     
     float Matrix4::Determinant() const {
@@ -247,15 +254,6 @@ namespace Renderer {
         }
         
         return true;
-    }
-    
-    Matrix4 Matrix4::Transposed() const {
-        Matrix4 r;
-        r.x.x = x.x; r.x.y = y.x; r.x.z = z.x; r.x.w = w.x;
-        r.y.x = x.y; r.y.y = y.y; r.y.z = z.y; r.y.w = w.y;
-        r.z.x = x.z; r.z.y = y.z; r.z.z = z.z; r.z.w = w.z;
-        r.w.x = x.w; r.w.y = y.w; r.w.z = z.w; r.w.w = w.w;
-        return r;
     }
     
     const float * Matrix4::Pointer() const {

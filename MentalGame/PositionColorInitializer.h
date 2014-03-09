@@ -1,5 +1,5 @@
 //
-//  GLSLPositionColorInitializer.h
+//  PositionColorInitializer.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 11.01.14.
@@ -7,14 +7,12 @@
 //
 
 #pragma once
-#include "GLSLAttributeInitializer.h"
+#include "AttributeInitializer.h"
 
 
 
-namespace Renderer
-{
-    class GLSLPositionColorInitializer: public GLSLAttributeInitializer
-    {
+namespace Renderer {
+    class PositionColorInitializer: public GLSLAttributeInitializer {
     public:
         void InitializeAttributes(map<string, Attribute *> *pAttributes) const;
         void InitializeAttributes(map<string, Attribute *> *pAttributes, GLSLVertexArray *pVertexArray) const;

@@ -22,7 +22,7 @@ namespace Renderer
     class IndexBuffer;
     class GLSLVertexArray;
     class GLSLAttributeInitializer;
-    class GLSLUniformInitializer;
+    class UniformInitializer;
     class Attribute;
     class Uniform;
     
@@ -38,13 +38,13 @@ namespace Renderer
         virtual ~GLSLDrawRequest();
         
         void SetAttributeInitializer(GLSLAttributeInitializer *pAttributeInitializer);
-        void SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer);
+        void SetUniformInitializer(UniformInitializer *pUniformInitializer);
         void SetRenderMode(GLSL_RENDER_MODE renderMode);
         void SetStartDrawIndex(GLint startDrawIndex);
         void SetDrawElementsCount(GLsizei drawElementsCount);
         
         GLSLAttributeInitializer * GetAttributeInitializer() const;
-        GLSLUniformInitializer * GetUniformInitializer() const;
+        UniformInitializer * GetUniformInitializer() const;
         GLSL_RENDER_MODE GetRenderMode() const;
         GLint GetStartDrawIndex() const;
         GLsizei GetDrawElementsCount() const;
@@ -64,7 +64,7 @@ namespace Renderer
         
     private:
         GLSLAttributeInitializer *m_attributeInitializer;
-        GLSLUniformInitializer *m_uniformInitalizer;
+        UniformInitializer *m_uniformInitalizer;
         GLSL_RENDER_MODE m_renderMode;
         GLint m_startDrawIndex;
         GLsizei m_drawElementsCount;

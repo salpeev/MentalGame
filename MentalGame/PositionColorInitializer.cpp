@@ -1,12 +1,12 @@
 //
-//  GLSLPositionColorInitializer.cpp
+//  PositionColorInitializer.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 11.01.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLPositionColorInitializer.h"
+#include "PositionColorInitializer.h"
 #include "Attribute.h"
 #include "GLSLVertex.h"
 #include "GLSLVertexArray.h"
@@ -20,10 +20,8 @@ static const GLsizei ColorSize = 4;
 
 
 
-namespace Renderer
-{
-    void GLSLPositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes) const
-    {
+namespace Renderer {
+    void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes) const {
         Attribute *positionAttribute = pAttributes->at(PositionAttributeName);
         Attribute *colorAttribute = pAttributes->at(ColorAttributeName);
         
@@ -33,8 +31,7 @@ namespace Renderer
         colorAttribute->SetBufferPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), colorOffset);
     }
     
-    void GLSLPositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, GLSLVertexArray *pVertexArray) const
-    {
+    void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, GLSLVertexArray *pVertexArray) const {
         Attribute *positionAttribute = pAttributes->at(PositionAttributeName);
         Attribute *colorAttribute = pAttributes->at(ColorAttributeName);
         
@@ -47,8 +44,7 @@ namespace Renderer
         colorAttribute->SetDataPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, vertexSize, pColor);
     }
     
-    void GLSLPositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const
-    {
+    void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const {
         Attribute *positionAttribute = pAttributes->at(PositionAttributeName);
         Attribute *colorAttribute = pAttributes->at(ColorAttributeName);
         

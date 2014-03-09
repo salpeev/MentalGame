@@ -6,14 +6,12 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLAttributeInitializer.h"
+#include "AttributeInitializer.h"
 
 
 
-namespace Renderer
-{
-    GLSLAttributeInitializer::~GLSLAttributeInitializer()
-    {
+namespace Renderer {
+    GLSLAttributeInitializer::~GLSLAttributeInitializer() {
         
     }
 }

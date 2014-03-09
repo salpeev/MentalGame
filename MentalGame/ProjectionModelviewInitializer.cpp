@@ -1,12 +1,12 @@
 //
-//  GLSLProjectionModelviewInitializer.cpp
+//  ProjectionModelviewInitializer.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 11.01.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLProjectionModelviewInitializer.h"
+#include "ProjectionModelviewInitializer.h"
 #include "Uniform.h"
 #include "RenderingEngine.h"
 
@@ -17,36 +17,35 @@ static const char *ModelviewUniformName = "u_modelview";
 
 
 
-namespace Renderer
-{
-    GLSLProjectionModelviewInitializer::GLSLProjectionModelviewInitializer () {
+namespace Renderer {
+    ProjectionModelviewInitializer::ProjectionModelviewInitializer () {
         CSize windowSize = RenderingEngine::SharedInstance().GetWindowSize();
         GLfloat screenAspectRatio = windowSize.width / windowSize.height;
         
         m_projection = Matrix4::Frustum(-2.0f, 2.0f, -2.0f / screenAspectRatio, 2.0f / screenAspectRatio, 4.0f, 10.0f);
     }
     
-    GLSLProjectionModelviewInitializer::~GLSLProjectionModelviewInitializer() {
+    ProjectionModelviewInitializer::~ProjectionModelviewInitializer() {
         
     }
     
-    void GLSLProjectionModelviewInitializer::SetProjectionMatrix(const Matrix4 &rProjectionMatrix) {
+    void ProjectionModelviewInitializer::SetProjectionMatrix(const Matrix4 &rProjectionMatrix) {
         m_projection = rProjectionMatrix;
     }
     
-    void GLSLProjectionModelviewInitializer::SetModelviewMatrix(const Matrix4 &rModelviewMatix) {
+    void ProjectionModelviewInitializer::SetModelviewMatrix(const Matrix4 &rModelviewMatix) {
         m_modelview = rModelviewMatix;
     }
     
-    const Matrix4 & GLSLProjectionModelviewInitializer::GetProjectionMatrix() const {
+    const Matrix4 & ProjectionModelviewInitializer::GetProjectionMatrix() const {
         return m_projection;
     }
     
-    const Matrix4 & GLSLProjectionModelviewInitializer::GetModelviewMatrix() const {
+    const Matrix4 & ProjectionModelviewInitializer::GetModelviewMatrix() const {
         return m_modelview;
     }
     
-    void GLSLProjectionModelviewInitializer::InitializeUniforms(map<string, Uniform *> *pUniforms) const {
+    void ProjectionModelviewInitializer::InitializeUniforms(map<string, Uniform *> *pUniforms) const {
         Uniform *projectionUniform = pUniforms->at(ProjectionUniformName);
         Uniform *modelviewUniform = pUniforms->at(ModelviewUniformName);
         

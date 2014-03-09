@@ -11,8 +11,8 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "GLSLVertexArray.h"
-#include "GLSLAttributeInitializer.h"
-#include "GLSLUniformInitializer.h"
+#include "AttributeInitializer.h"
+#include "UniformInitializer.h"
 #include <stdlib.h>
 
 
@@ -39,7 +39,7 @@ namespace Renderer
         m_attributeInitializer = pAttributeInitializer;
     }
     
-    void GLSLDrawRequest::SetUniformInitializer(GLSLUniformInitializer *pUniformInitializer)
+    void GLSLDrawRequest::SetUniformInitializer(UniformInitializer *pUniformInitializer)
     {
         m_uniformInitalizer = pUniformInitializer;
     }
@@ -90,7 +90,7 @@ namespace Renderer
         return m_attributeInitializer;
     }
     
-    GLSLUniformInitializer * GLSLDrawRequest::GetUniformInitializer() const
+    UniformInitializer * GLSLDrawRequest::GetUniformInitializer() const
     {
         return m_uniformInitalizer;
     }
@@ -157,7 +157,7 @@ namespace Renderer
     void VertexBufferIndexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer)
         {
@@ -211,7 +211,7 @@ namespace Renderer
     void VertexBufferShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer)
         {
@@ -265,7 +265,7 @@ namespace Renderer
     void VertexBufferByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer)
         {
@@ -311,7 +311,7 @@ namespace Renderer
     void VertexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer)
         {
@@ -364,7 +364,7 @@ namespace Renderer
     void GLSLVertexArrayIndexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer)
         {
@@ -420,7 +420,7 @@ namespace Renderer
     void GLSLVertexArrayShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer)
         {
@@ -476,7 +476,7 @@ namespace Renderer
     void GLSLVertexArrayByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer)
         {
@@ -528,7 +528,7 @@ namespace Renderer
     void GLSLVertexArrayRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer)
         {
@@ -585,7 +585,7 @@ namespace Renderer
     
     void GLSLVertexArraysIndexBufferRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer) {
             pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArrays);
@@ -642,7 +642,7 @@ namespace Renderer
     
     void GLSLVertexArraysShortIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer) {
             pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArrays);
@@ -699,7 +699,7 @@ namespace Renderer
     
     void GLSLVertexArraysByteIndicesRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer) {
             pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArrays);
@@ -753,7 +753,7 @@ namespace Renderer
     
     void GLSLVertexArraysRequest::Initialize(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const {
         GLSLAttributeInitializer *pAttributeInitializer = GetAttributeInitializer();
-        GLSLUniformInitializer *pUniformInitializer = GetUniformInitializer();
+        UniformInitializer *pUniformInitializer = GetUniformInitializer();
         
         if (pAttributeInitializer) {
             pAttributeInitializer->InitializeAttributes(pAttributes, m_vertexArrays);

@@ -7,8 +7,8 @@
 //
 
 #include "CompositeDrawing.h"
-#include "GLSLAttributeInitializer.h"
-#include "GLSLUniformInitializer.h"
+#include "AttributeInitializer.h"
+#include "UniformInitializer.h"
 #include "GLSLDrawRequest.h"
 
 

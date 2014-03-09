@@ -11,8 +11,8 @@
 #include "GLSLVertex.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-#include "GLSLPositionColorInitializer.h"
-#include "GLSLProjectionModelviewInitializer.h"
+#include "PositionColorInitializer.h"
+#include "ProjectionModelviewInitializer.h"
 #include "GLSLProgramContainer.h"
 #include "Polyhedron.h"
 #include "CollisionDetector.h"
@@ -90,11 +90,8 @@ namespace Renderer {
         m_indexBuffer = new IndexBuffer();
         m_indexBuffer->LoadBufferData(indices);
         
-        m_attributeInitializer = new GLSLPositionColorInitializer();
-        m_uniformInitializer = new GLSLProjectionModelviewInitializer();
-        Matrix4 modelview;
-        modelview.Translate(0.0, 0.0, -5.5);
-        m_uniformInitializer->SetModelviewMatrix(modelview);
+        m_attributeInitializer = new PositionColorInitializer();
+        m_uniformInitializer = new ProjectionModelviewInitializer();
         
         m_drawRequest = new VertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
@@ -122,7 +119,7 @@ namespace Renderer {
     
     void ColorGlassDrawing::Update(float interval) {
         Matrix4 modelview = m_uniformInitializer->GetModelviewMatrix();
-        modelview.RotateX(interval * 0.1).RotateY(interval * 0.1).RotateZ(interval * 0.1);
+        modelview.MakeTranslation(m_position.x, m_position.y, m_position.z).RotateX(interval * 0.1f).RotateY(interval * 0.1f).RotateZ(interval * 0.1f);
         m_uniformInitializer->SetModelviewMatrix(modelview);
         
         Matrix4 result = m_uniformInitializer->GetModelviewMatrix();
@@ -141,12 +138,55 @@ namespace Renderer {
         float start;
         float end;
         bool intersects = CollisionDetector::IntersectSegmentPolyhedron(pA, pB, polyhedron, start, end);
-        
-        Log("AAA: %d     %f   %f", intersects, start, end);
+        Log("INTERSECTION: %d     %f   %f", intersects, start, end);
     }
     
     void ColorGlassDrawing::Draw() const {
         Program *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }
+    
+#pragma mark - AnimationDelegate
+    
+    Point ColorGlassDrawing::GetPosition() const {
+        return m_position;
+    }
+    
+    float ColorGlassDrawing::GetXRotation() const {
+        return 0.0f;
+    }
+    
+    float ColorGlassDrawing::GetYRotation() const {
+        return 0.0f;
+    }
+    
+    float ColorGlassDrawing::GetZRotation() const {
+        return 0.0f;
+    }
+    
+    Quaternion ColorGlassDrawing::GetQuaternion() const {
+        return Quaternion();
+    }
+    
+    
+    void ColorGlassDrawing::SetPosition(const Point &rPosition) {
+        m_position = rPosition;
+    }
+    
+    void ColorGlassDrawing::SetXRotation(float angle) {
+        
+    }
+    
+    void ColorGlassDrawing::SetYRotation(float angle) {
+        
+    }
+    
+    void ColorGlassDrawing::SetZRotation(float angle) {
+        
+    }
+    
+    void ColorGlassDrawing::SetQuaternion(const Quaternion &rQuaternion) {
+        
+    }
+    
 }

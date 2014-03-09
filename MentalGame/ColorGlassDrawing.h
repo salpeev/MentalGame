@@ -14,8 +14,8 @@ namespace Renderer {
     
     class VertexBuffer;
     class IndexBuffer;
-    class GLSLPositionColorInitializer;
-    class GLSLProjectionModelviewInitializer;
+    class PositionColorInitializer;
+    class ProjectionModelviewInitializer;
     class GLSLDrawRequest;
     class Polyhedron;
     
@@ -26,6 +26,19 @@ namespace Renderer {
         ColorGlassDrawing();
         ~ColorGlassDrawing();
         
+        // Animation delegate
+        Point GetPosition() const;
+        float GetXRotation() const;
+        float GetYRotation() const;
+        float GetZRotation() const;
+        Quaternion GetQuaternion() const;
+        
+        void SetPosition(const Point &rPosition);
+        void SetXRotation(float angle);
+        void SetYRotation(float angle);
+        void SetZRotation(float angle);
+        void SetQuaternion(const Quaternion &rQuaternion);
+        
     protected:
         void Update(float interval);
         void Draw() const;
@@ -33,9 +46,11 @@ namespace Renderer {
     private:
         VertexBuffer *m_vertexBuffer;
         IndexBuffer *m_indexBuffer;
-        GLSLPositionColorInitializer *m_attributeInitializer;
-        GLSLProjectionModelviewInitializer *m_uniformInitializer;
+        PositionColorInitializer*m_attributeInitializer;
+        ProjectionModelviewInitializer *m_uniformInitializer;
         GLSLDrawRequest *m_drawRequest;
         Polyhedron *m_shape;
+        
+        Point m_position;
     };
 }

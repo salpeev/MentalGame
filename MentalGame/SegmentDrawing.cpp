@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "TestDrawing.h"
+#include "SegmentDrawing.h"
 #include "GLSLProgramContainer.h"
-#include "GLSLPositionColorInitializer.h"
-#include "GLSLProjectionModelviewInitializer.h"
+#include "PositionColorInitializer.h"
+#include "ProjectionModelviewInitializer.h"
 #include "GLSLVertex.h"
 #include "VertexBuffer.h"
 
@@ -17,7 +17,7 @@
 
 namespace Renderer {
     
-    TestDrawing::TestDrawing () {
+    SegmentDrawing::SegmentDrawing (): m_start(Point()), m_end(Point()) {
         Point point0(-2.0, 0.0, 0.0);
         Point point1(2.0, 0.0, 0.0);
         
@@ -28,8 +28,8 @@ namespace Renderer {
         m_vertexBuffer = new VertexBuffer();
         m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(GLSLVertex1P1C), vertices.size());
         
-        m_attributeInitializer = new GLSLPositionColorInitializer();
-        m_uniformInitializer = new GLSLProjectionModelviewInitializer();
+        m_attributeInitializer = new PositionColorInitializer();
+        m_uniformInitializer = new ProjectionModelviewInitializer();
         
         Matrix4 modelview;
         modelview.Translate(0.0, 0.0, -4.5).RotateZ(0.1).RotateY(0.2);
@@ -41,18 +41,38 @@ namespace Renderer {
         m_drawRequest->SetRenderMode(GLSL_RENDER_MODE_LINES);
     }
     
-    TestDrawing::~TestDrawing() {
+    SegmentDrawing::~SegmentDrawing() {
         delete m_attributeInitializer;
         delete m_uniformInitializer;
         delete m_vertexBuffer;
         delete m_drawRequest;
     }
     
-    void TestDrawing::Update(float interval) {
+#pragma mark - Public Methods
+    
+    void SegmentDrawing::SetStartPoint(const Point &rStart) {
+        m_start = rStart;
+    }
+    
+    void SegmentDrawing::SetEndPoint(const Point &rEnd) {
+        m_end = rEnd;
+    }
+    
+    Point SegmentDrawing::GetStartPoint() const {
+        return m_start;
+    }
+    
+    Point SegmentDrawing::GetEndPoint() const {
+        return m_end;
+    }
+    
+#pragma mark - Private Methods
+    
+    void SegmentDrawing::Update(float interval) {
         
     }
     
-    void TestDrawing::Draw() const {
+    void SegmentDrawing::Draw() const {
         Program *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }

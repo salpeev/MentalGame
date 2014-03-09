@@ -1,5 +1,5 @@
 //
-//  GLSLProjectionModelviewInitializer.h
+//  ProjectionModelviewInitializer.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 11.01.14.
@@ -7,18 +7,16 @@
 //
 
 #pragma once
-#include "GLSLUniformInitializer.h"
+#include "UniformInitializer.h"
 #include "Matrix.h"
 
 
 
-namespace Renderer
-{
-    class GLSLProjectionModelviewInitializer: public GLSLUniformInitializer
-    {
+namespace Renderer {
+    class ProjectionModelviewInitializer: public UniformInitializer {
     public:
-        GLSLProjectionModelviewInitializer();
-        ~GLSLProjectionModelviewInitializer();
+        ProjectionModelviewInitializer();
+        ~ProjectionModelviewInitializer();
         
         void SetProjectionMatrix(const Matrix4 &rProjectionMatrix);
         void SetModelviewMatrix(const Matrix4 &rModelviewMatix);

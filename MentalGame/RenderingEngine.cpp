@@ -10,7 +10,7 @@
 #include "GLLogger.h"
 #include "GLConstants.h"
 #include "ColorGlassDrawing.h"  // TODO: Remove later
-#include "TestDrawing.h"        // TODO: Remove later
+#include "SegmentDrawing.h"        // TODO: Remove later
 
 
 
@@ -42,10 +42,11 @@ namespace Renderer {
         
         // TODO: Remove later
         ColorGlassDrawing *drawing = new ColorGlassDrawing();
+        drawing->SetPosition(Point(0.0f, 0.0f, -5.5f));
         m_rootDrawing->AddSubDrawing(drawing);
         
-        TestDrawing *testDrawing = new TestDrawing();
-        m_rootDrawing->AddSubDrawing(testDrawing);
+        SegmentDrawing *segmentDrawing = new SegmentDrawing();
+        m_rootDrawing->AddSubDrawing(segmentDrawing);
     }
     
     CSize RenderingEngine::GetWindowSize() const {

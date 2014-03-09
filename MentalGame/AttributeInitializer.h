@@ -15,15 +15,13 @@ using namespace std;
 
 
 
-namespace Renderer
-{
+namespace Renderer {
     class Attribute;
     class GLSLVertexArray;
     
     
     
-    class GLSLAttributeInitializer
-    {
+    class GLSLAttributeInitializer {
     public:
         virtual ~GLSLAttributeInitializer();
         
