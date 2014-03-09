@@ -42,6 +42,7 @@ namespace Renderer {
     }
     
     void DrawingComponent::AddAnimation(Animation *pAnimation) {
+        pAnimation->SetAnimationDelegate(this);
         m_animations->push_back(pAnimation);
     }
     

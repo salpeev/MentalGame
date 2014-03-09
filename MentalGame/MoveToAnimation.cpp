@@ -27,7 +27,14 @@ namespace Renderer {
         Animation::Update(interval);
         
         Vector3 vector = m_endPosition - m_startPosition;
-        Phase();
+        float phase = Phase();
+        
+        Point intermediatePosition;
+        intermediatePosition.x = m_startPosition.x + phase * vector.x;
+        intermediatePosition.y = m_startPosition.y + phase * vector.y;
+        intermediatePosition.z = m_startPosition.z + phase * vector.z;
+        
+        GetAnimationDelegate()->SetPosition(intermediatePosition);
     }
     
 #pragma mark - Protected Methods

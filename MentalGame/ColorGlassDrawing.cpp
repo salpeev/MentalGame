@@ -132,7 +132,7 @@ namespace Renderer {
         float start;
         float end;
         bool intersects = CollisionDetector::IntersectSegmentPolyhedron(pA, pB, polyhedron, start, end);
-//        Log("INTERSECTION: %d     %f   %f", intersects, start, end);
+        Log("INTERSECTION: %d     %f   %f", intersects, start, end);
         
         
         
@@ -142,7 +142,7 @@ namespace Renderer {
         if (duration > 3.0f && !added) {
             added = true;
             
-            MoveToAnimation *moveTo = new MoveToAnimation(Point(1, 1, 1), 2, ANIMATION_CURVE_EASE_OUT);
+            MoveToAnimation *moveTo = new MoveToAnimation(Point(-2, -2, -9), 0.25, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
         }
     }

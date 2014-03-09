@@ -31,37 +31,37 @@ namespace Renderer {
         return result;
     }
     
-    float Interpolator::QuadraticEaseOut(float start, float end, float k) {
-#warning Works incorrectly
-        float quadraticK = k * k;
-        float result = LERP(end, start, quadraticK);
-        return result;
-    }
-    
-    float Interpolator::QuadraticEaseInOut(float start, float end, float k) {
-#warning Works incorrectly
-        if (k < 0.0f) {
-            return start;
-        }
-        
-        if (k > 1.0f) {
-            return end;
-        }
-        
-        float middle = (start + end) / 2.0f;
-        float doubleK = 2.0f * k;
-        
-        if (doubleK <= 1.0f) {
-            float quadraticDoubleK = doubleK * doubleK;
-            float result = LERP(start, middle, quadraticDoubleK);
-            return result;
-        }
-        
-        doubleK -= 1.0f;
-        float quadraticDoubleK = doubleK * doubleK;
-        float result = LERP(middle, end, quadraticDoubleK);
-        return result;
-    }
+//    float Interpolator::QuadraticEaseOut(float start, float end, float k) {
+//#warning Works incorrectly
+//        float quadraticK = k * k;
+//        float result = LERP(end, start, quadraticK);
+//        return result;
+//    }
+//    
+//    float Interpolator::QuadraticEaseInOut(float start, float end, float k) {
+//#warning Works incorrectly
+//        if (k < 0.0f) {
+//            return start;
+//        }
+//        
+//        if (k > 1.0f) {
+//            return end;
+//        }
+//        
+//        float middle = (start + end) / 2.0f;
+//        float doubleK = 2.0f * k;
+//        
+//        if (doubleK <= 1.0f) {
+//            float quadraticDoubleK = doubleK * doubleK;
+//            float result = LERP(start, middle, quadraticDoubleK);
+//            return result;
+//        }
+//        
+//        doubleK -= 1.0f;
+//        float quadraticDoubleK = doubleK * doubleK;
+//        float result = LERP(middle, end, quadraticDoubleK);
+//        return result;
+//    }
     
     Quaternion Interpolator::LERP(Quaternion &rStart, Quaternion &rEnd, float k) {
         Quaternion result;

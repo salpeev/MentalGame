@@ -14,8 +14,8 @@
 enum ANIMATION_CURVE {
     ANIMATION_CURVE_LINEAR,
     ANIMATION_CURVE_EASE_IN,
-    ANIMATION_CURVE_EASE_OUT,
-    ANIMATION_CURVE_EASE_IN_OUT
+//    ANIMATION_CURVE_EASE_OUT,
+//    ANIMATION_CURVE_EASE_IN_OUT
 };
 
 
@@ -36,8 +36,9 @@ namespace Renderer {
         virtual void Update(float interval);
         
     protected:
-        friend class AnimationDelegate;
+        friend class DrawingComponent;
         virtual void SetAnimationDelegate(AnimationDelegate *pAnimationDelegate);
+        AnimationDelegate * GetAnimationDelegate() const;
         
     private:
         float m_duration;

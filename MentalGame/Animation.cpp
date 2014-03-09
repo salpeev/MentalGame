@@ -36,14 +36,14 @@ namespace Renderer {
                 phase = Interpolator::QuadraticEaseIn(0.0f, 1.0f, completion);
                 break;
             }
-            case ANIMATION_CURVE_EASE_OUT: {
-                phase = Interpolator::QuadraticEaseOut(0.0f, 1.0f, completion);
-                break;
-            }
-            case ANIMATION_CURVE_EASE_IN_OUT: {
-                phase = Interpolator::QuadraticEaseInOut(0.0f, 1.0f, completion);
-                break;
-            }
+//            case ANIMATION_CURVE_EASE_OUT: {
+//                phase = Interpolator::QuadraticEaseOut(0.0f, 1.0f, completion);
+//                break;
+//            }
+//            case ANIMATION_CURVE_EASE_IN_OUT: {
+//                phase = Interpolator::QuadraticEaseInOut(0.0f, 1.0f, completion);
+//                break;
+//            }
         }
         
         Log("COMPLETION: %f     PHASE: %f", completion, phase);
@@ -63,5 +63,9 @@ namespace Renderer {
     
     void Animation::SetAnimationDelegate(AnimationDelegate *pAnimationDelegate) {
         m_animationDelegate = pAnimationDelegate;
+    }
+    
+    AnimationDelegate * Animation::GetAnimationDelegate() const {
+        return m_animationDelegate;
     }
 }
