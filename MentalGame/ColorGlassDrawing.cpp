@@ -139,10 +139,10 @@ namespace Renderer {
         static bool added = false;
         static float duration = 0.0f;
         duration += interval;
-        if (duration > 3.0f && !added) {
+        if (duration > 15.0f && !added) {
             added = true;
             
-            MoveToAnimation *moveTo = new MoveToAnimation(Point(-2, -2, -9), 0.25, ANIMATION_CURVE_EASE_IN);
+            MoveToAnimation *moveTo = new MoveToAnimation(Point(-2, -2, -9), 2, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
         }
     }

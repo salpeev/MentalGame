@@ -36,7 +36,7 @@ namespace Renderer {
         virtual void Update(float interval);
         
     protected:
-        friend class DrawingComponent;
+        friend class AnimationDelegate;
         virtual void SetAnimationDelegate(AnimationDelegate *pAnimationDelegate);
         AnimationDelegate * GetAnimationDelegate() const;
         

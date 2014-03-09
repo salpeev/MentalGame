@@ -8,7 +8,6 @@
 
 #include "Animation.h"
 #include "Interpolator.h"
-#include "GLLogger.h"
 
 
 
@@ -45,8 +44,6 @@ namespace Renderer {
 //                break;
 //            }
         }
-        
-        Log("COMPLETION: %f     PHASE: %f", completion, phase);
         
         return phase;
     }

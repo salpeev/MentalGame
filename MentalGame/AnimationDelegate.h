@@ -9,14 +9,25 @@
 #pragma once
 #include "Point.h"
 #include "Quaternion.h"
+#include <vector>
+
+using namespace std;
 
 
 
 namespace Renderer {
     
+    class Animation;
+    
+    
+    
     class AnimationDelegate {
     public:
+        AnimationDelegate();
         virtual ~AnimationDelegate();
+        
+        void AddAnimation(Animation *pAnimation);
+        void UpdateAnimations(float interval);
         
         virtual Point GetPosition() const;
         virtual float GetXRotation() const;
@@ -29,5 +40,8 @@ namespace Renderer {
         virtual void SetYRotation(float angle);
         virtual void SetZRotation(float angle);
         virtual void SetQuaternion(const Quaternion &rQuaternion);
+        
+    private:
+        vector<Animation *> *m_animations;
     };
 }
