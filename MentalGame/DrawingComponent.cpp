@@ -17,11 +17,11 @@ namespace Renderer {
         m_parentDrawing->RemoveSubDrawing(this);
     }
     
-    void DrawingComponent::SetParentDrawing(CompositeDrawing *pDrawing) {
-        m_parentDrawing = pDrawing;
-    }
-    
     CompositeDrawing * DrawingComponent::GetParentDrawing() const {
         return m_parentDrawing;
+    }
+    
+    void DrawingComponent::SetParentDrawing(CompositeDrawing *pDrawing) {
+        m_parentDrawing = pDrawing;
     }
 }

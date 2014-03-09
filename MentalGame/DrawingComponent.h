@@ -23,12 +23,14 @@ namespace Renderer {
         
         void RemoveFromParentDrawing();
         
-        void SetParentDrawing(CompositeDrawing *pDrawing);  // TODO: How this can be moved from public to protected?
         CompositeDrawing * GetParentDrawing() const;
         
     protected:
         virtual void Update(float interval) = 0;
         virtual void Draw() const = 0;
+        
+        friend class CompositeDrawing;
+        void SetParentDrawing(CompositeDrawing *pDrawing);
         
     private:
         CompositeDrawing *m_parentDrawing;
