@@ -16,6 +16,7 @@
 #include "GLSLProgramContainer.h"
 #include "Polyhedron.h"
 #include "CollisionDetector.h"
+#include "MoveToAnimation.h"
 
 
 
@@ -131,7 +132,19 @@ namespace Renderer {
         float start;
         float end;
         bool intersects = CollisionDetector::IntersectSegmentPolyhedron(pA, pB, polyhedron, start, end);
-        Log("INTERSECTION: %d     %f   %f", intersects, start, end);
+//        Log("INTERSECTION: %d     %f   %f", intersects, start, end);
+        
+        
+        
+        static bool added = false;
+        static float duration = 0.0f;
+        duration += interval;
+        if (duration > 3.0f && !added) {
+            added = true;
+            
+            MoveToAnimation *moveTo = new MoveToAnimation(Point(1, 1, 1), 2, ANIMATION_CURVE_EASE_OUT);
+            AddAnimation(moveTo);
+        }
     }
     
     void ColorGlassDrawing::Draw() const {

@@ -28,6 +28,7 @@ namespace Renderer {
 #pragma mark - Public Methods
     
     void CompositeDrawing::UpdateHierarchy(float interval) {
+        DrawingComponent::UpdateHierarchy(interval);
         Update(interval);
         UpdateSubDrawings(interval);
     }

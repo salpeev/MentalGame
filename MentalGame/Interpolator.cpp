@@ -32,12 +32,14 @@ namespace Renderer {
     }
     
     float Interpolator::QuadraticEaseOut(float start, float end, float k) {
+#warning Works incorrectly
         float quadraticK = k * k;
         float result = LERP(end, start, quadraticK);
         return result;
     }
     
     float Interpolator::QuadraticEaseInOut(float start, float end, float k) {
+#warning Works incorrectly
         if (k < 0.0f) {
             return start;
         }

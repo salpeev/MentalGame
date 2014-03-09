@@ -13,6 +13,7 @@
 namespace Renderer {
     
     void DrawingLeaf::UpdateHierarchy(float interval) {
+        DrawingComponent::UpdateHierarchy(interval);
         Update(interval);
     }
     

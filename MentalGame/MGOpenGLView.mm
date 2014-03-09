@@ -26,12 +26,6 @@ using namespace Renderer;
     Renderbuffer *m_sampleColorRenderbuffer;
     Renderbuffer *m_sampleDepthStencilRenderbuffer;
     Renderbuffer *m_resolveColorRenderbuffer;
-    
-//    GLuint m_resolveFramebuffer;
-//    GLuint m_sampleFramebuffer;
-//    GLuint m_resolveColorRenderbuffer;
-//    GLuint m_sampleColorRenderbuffer;
-//    GLuint m_sampleDepthStencilRenderbuffer;
 }
 
 @property (strong, nonatomic) EAGLContext *eaglContext;
@@ -46,15 +40,13 @@ using namespace Renderer;
 
 #pragma mark - Class Methods
 
-+ (Class)layerClass
-{
++ (Class)layerClass {
     return [CAEAGLLayer class];
 }
 
 #pragma mark - Lifecycle
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         CGFloat scale = [UIScreen mainScreen].scale;
@@ -96,17 +88,33 @@ using namespace Renderer;
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     delete m_sampleFramebuffer;
     delete m_sampleColorRenderbuffer;
     delete m_sampleDepthStencilRenderbuffer;
 }
 
+#pragma mark - Overridden
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+
 #pragma mark - Private Methods
 
-- (void)draw:(CADisplayLink *)displayLink
-{
+- (void)draw:(CADisplayLink *)displayLink {
     m_sampleFramebuffer->BindAll();
     
     RenderingEngine::SharedInstance().Render(displayLink.duration);

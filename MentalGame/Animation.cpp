@@ -7,6 +7,8 @@
 //
 
 #include "Animation.h"
+#include "Interpolator.h"
+#include "GLLogger.h"
 
 
 
@@ -22,7 +24,30 @@ namespace Renderer {
     }
     
     float Animation::Phase() const {
-        float phase = m_elapsedTime / m_duration;
+        float phase = 0.0f;
+        float completion = m_elapsedTime / m_duration;
+        
+        switch (m_curve) {
+            case ANIMATION_CURVE_LINEAR: {
+                phase = Interpolator::LERP(0.0f, 1.0f, completion);
+                break;
+            }
+            case ANIMATION_CURVE_EASE_IN: {
+                phase = Interpolator::QuadraticEaseIn(0.0f, 1.0f, completion);
+                break;
+            }
+            case ANIMATION_CURVE_EASE_OUT: {
+                phase = Interpolator::QuadraticEaseOut(0.0f, 1.0f, completion);
+                break;
+            }
+            case ANIMATION_CURVE_EASE_IN_OUT: {
+                phase = Interpolator::QuadraticEaseInOut(0.0f, 1.0f, completion);
+                break;
+            }
+        }
+        
+        Log("COMPLETION: %f     PHASE: %f", completion, phase);
+        
         return phase;
     }
     
@@ -32,5 +57,11 @@ namespace Renderer {
         if (m_elapsedTime >= m_duration) {
             m_elapsedTime = m_duration;
         }
+    }
+    
+#pragma mark - Protected Methods
+    
+    void Animation::SetAnimationDelegate(AnimationDelegate *pAnimationDelegate) {
+        m_animationDelegate = pAnimationDelegate;
     }
 }

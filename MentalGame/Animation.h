@@ -22,6 +22,10 @@ enum ANIMATION_CURVE {
 
 namespace Renderer {
     
+    class AnimationDelegate;
+    
+    
+    
     class Animation {
     public:
         Animation(float duration, ANIMATION_CURVE curve);
@@ -31,9 +35,15 @@ namespace Renderer {
         
         virtual void Update(float interval);
         
+    protected:
+        friend class AnimationDelegate;
+        virtual void SetAnimationDelegate(AnimationDelegate *pAnimationDelegate);
+        
     private:
         float m_duration;
         float m_elapsedTime;
         ANIMATION_CURVE m_curve;
+        
+        AnimationDelegate *m_animationDelegate;
     };
 }
