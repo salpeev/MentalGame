@@ -32,9 +32,9 @@
 		B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229818BA424F006A0386 /* TextureDrawing.cpp */; };
 		B47D229E18BA43DF006A0386 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229C18BA43DF006A0386 /* Texture.cpp */; };
 		B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1690918C1FCEA0097F2D1 /* Animation.cpp */; };
-		B4A1690E18C218D10097F2D1 /* Matrix4Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1690C18C218D10097F2D1 /* Matrix4Animation.cpp */; };
 		B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */; };
 		B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */; };
+		B4B095EE18CB4FA70045789A /* AnimationDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B095EC18CB4FA70045789A /* AnimationDelegate.cpp */; };
 		B4CE1DE417DFB72C009094E8 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE217DFB72C009094E8 /* Program.cpp */; };
 		B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE517DFBBD9009094E8 /* GLSLShader.cpp */; };
 		B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE817DFCCE9009094E8 /* GLLogger.cpp */; };
@@ -128,12 +128,12 @@
 		B4963F9518003B650037FC39 /* GLConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLConstants.h; sourceTree = "<group>"; };
 		B4A1690918C1FCEA0097F2D1 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		B4A1690A18C1FCEA0097F2D1 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
-		B4A1690C18C218D10097F2D1 /* Matrix4Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4Animation.cpp; sourceTree = "<group>"; };
-		B4A1690D18C218D10097F2D1 /* Matrix4Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4Animation.h; sourceTree = "<group>"; };
 		B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderbuffer.cpp; sourceTree = "<group>"; };
 		B4AC5D7D1896FB8B00FBE8D8 /* Renderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderbuffer.h; sourceTree = "<group>"; };
 		B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Framebuffer.cpp; sourceTree = "<group>"; };
 		B4AC5D801896FB9500FBE8D8 /* Framebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Framebuffer.h; sourceTree = "<group>"; };
+		B4B095EC18CB4FA70045789A /* AnimationDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationDelegate.cpp; sourceTree = "<group>"; };
+		B4B095ED18CB4FA70045789A /* AnimationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDelegate.h; sourceTree = "<group>"; };
 		B4CE1DE217DFB72C009094E8 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cpp; sourceTree = "<group>"; };
 		B4CE1DE317DFB72C009094E8 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		B4CE1DE517DFBBD9009094E8 /* GLSLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLShader.cpp; sourceTree = "<group>"; };
@@ -385,10 +385,10 @@
 		B4A1690818C1FCAA0097F2D1 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				B4B095EC18CB4FA70045789A /* AnimationDelegate.cpp */,
+				B4B095ED18CB4FA70045789A /* AnimationDelegate.h */,
 				B4A1690918C1FCEA0097F2D1 /* Animation.cpp */,
 				B4A1690A18C1FCEA0097F2D1 /* Animation.h */,
-				B4A1690C18C218D10097F2D1 /* Matrix4Animation.cpp */,
-				B4A1690D18C218D10097F2D1 /* Matrix4Animation.h */,
 			);
 			name = Animation;
 			sourceTree = "<group>";
@@ -776,11 +776,11 @@
 				B47177DC188BEA75006B6215 /* GLSLProgramContainer.cpp in Sources */,
 				B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */,
 				B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */,
-				B4A1690E18C218D10097F2D1 /* Matrix4Animation.cpp in Sources */,
 				B4CE1DE417DFB72C009094E8 /* Program.cpp in Sources */,
 				B4EF8494187863D900234C28 /* GLSLVertexArray.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* VertexBuffer.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */,
+				B4B095EE18CB4FA70045789A /* AnimationDelegate.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* GLSLShader.cpp in Sources */,
