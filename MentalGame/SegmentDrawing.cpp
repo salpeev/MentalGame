@@ -17,23 +17,16 @@
 
 namespace Renderer {
     
-    SegmentDrawing::SegmentDrawing (): m_start(Point()), m_end(Point()) {
-        Point point0(-2.0, 0.0, 0.0);
-        Point point1(2.0, 0.0, 0.0);
-        
+    SegmentDrawing::SegmentDrawing (): m_start(Point()), m_end(Point()), m_startColor(GLColor(1.0, 1.0, 1.0)), m_endColor(GLColor(1.0, 1.0, 1.0)) {
         vector<GLSLVertex1P1C> vertices;
-        vertices.push_back(GLSLVertex1P1C(point0, GLColor(0.0, 0.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(point1, GLColor(1.0, 0.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(m_start, m_startColor));
+        vertices.push_back(GLSLVertex1P1C(m_end, m_endColor));
         
         m_vertexBuffer = new VertexBuffer();
-        m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(GLSLVertex1P1C), vertices.size());
+        m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(GLSLVertex1P1C), vertices.size(), GLSL_BUFFER_USAGE_DYNAMIC_DRAW);
         
         m_attributeInitializer = new PositionColorInitializer();
         m_uniformInitializer = new ProjectionModelviewInitializer();
-        
-        Matrix4 modelview;
-        modelview.Translate(0.0, 0.0, -4.5).RotateZ(0.1).RotateY(0.2);
-        m_uniformInitializer->SetModelviewMatrix(modelview);
         
         m_drawRequest = new VertexBufferRequest(m_vertexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
@@ -52,10 +45,29 @@ namespace Renderer {
     
     void SegmentDrawing::SetStartPoint(const Point &rStart) {
         m_start = rStart;
+        
+        m_vertexBuffer->LoadBufferSubData(&m_start, 0, sizeof(Point));
     }
     
     void SegmentDrawing::SetEndPoint(const Point &rEnd) {
         m_end = rEnd;
+        
+        GLintptr offset = sizeof(Point) + sizeof(GLColor);
+        m_vertexBuffer->LoadBufferSubData(&m_end, offset, sizeof(Point));
+    }
+    
+    void SegmentDrawing::SetStartColor(const GLColor &rStartColor) {
+        m_startColor = rStartColor;
+        
+        GLintptr offset = sizeof(Point);
+        m_vertexBuffer->LoadBufferSubData(&m_startColor, offset, sizeof(GLColor));
+    }
+    
+    void SegmentDrawing::SetEndColor(const GLColor &rEndColor) {
+        m_endColor = rEndColor;
+        
+        GLintptr offset = sizeof(Point) + sizeof(GLColor) + sizeof(Point);
+        m_vertexBuffer->LoadBufferSubData(&m_endColor, offset, sizeof(GLColor));
     }
     
     Point SegmentDrawing::GetStartPoint() const {
@@ -64,6 +76,14 @@ namespace Renderer {
     
     Point SegmentDrawing::GetEndPoint() const {
         return m_end;
+    }
+    
+    GLColor SegmentDrawing::GetStartColor() const {
+        return m_startColor;
+    }
+    
+    GLColor SegmentDrawing::GetEndColor() const {
+        return m_endColor;
     }
     
 #pragma mark - Private Methods

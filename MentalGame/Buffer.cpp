@@ -54,16 +54,24 @@ namespace Renderer {
     
 #pragma mark - Protected methods
     
-    void Buffer::LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage) {
+    void Buffer::LoadBufferData(const GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage) {
         SetElementsCount(elementsCount);
         SetElementSize(elementSize);
         
-        GLSL_BUFFER targetBuffer = TargetBuffer();
-        GLfloat dataSize = elementSize * elementsCount;
-        
         Bind();
         
+        GLSL_BUFFER targetBuffer = TargetBuffer();
+        GLfloat dataSize = elementSize * elementsCount;
         glBufferData(targetBuffer, dataSize, bufferData, usage);
+        CheckError();
+    }
+    
+    void Buffer::LoadBufferSubData(const GLvoid *bufferData, GLintptr offset, GLsizeiptr size) const {
+        // TODO: Check correctness
+        Bind();
+        
+        GLSL_BUFFER targetBuffer = TargetBuffer();
+        glBufferSubData(targetBuffer, offset, size, bufferData);
         CheckError();
     }
     

@@ -8,6 +8,7 @@
 
 #pragma once
 #include "DrawingLeaf.h"
+#include "GLColor.h"
 
 
 
@@ -27,9 +28,13 @@ namespace Renderer {
         
         void SetStartPoint(const Point &rStart);
         void SetEndPoint(const Point &rEnd);
+        void SetStartColor(const GLColor &rStartColor);
+        void SetEndColor(const GLColor &rEndColor);
         
         Point GetStartPoint() const;
         Point GetEndPoint() const;
+        GLColor GetStartColor() const;
+        GLColor GetEndColor() const;
         
     protected:
         void Update(float interval);
@@ -43,5 +48,7 @@ namespace Renderer {
         
         Point m_start;
         Point m_end;
+        GLColor m_startColor;
+        GLColor m_endColor;
     };
 }

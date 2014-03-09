@@ -18,8 +18,9 @@ namespace Renderer {
     
     class VertexBuffer : public Buffer {
     public:
-        void LoadBufferData(vector<float> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
-        void LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        void LoadBufferData(const vector<float> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        void LoadBufferData(const GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        void LoadBufferSubData(const GLvoid *bufferData, GLintptr offset, GLsizeiptr size) const;
         
         GLSL_BUFFER TargetBuffer() const;
         GET_PARAMETER BufferBindingParameter() const;

@@ -30,7 +30,8 @@ namespace Renderer {
         virtual GET_PARAMETER BufferBindingParameter() const = 0;
         
     protected:
-        void LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        virtual void LoadBufferData(const GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        virtual void LoadBufferSubData(const GLvoid *bufferData, GLintptr offset, GLsizeiptr size) const;
         
     private:
         void SetElementsCount(GLuint elementsCount);

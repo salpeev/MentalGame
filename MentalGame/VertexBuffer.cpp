@@ -13,13 +13,17 @@
 
 namespace Renderer {
     
-    void VertexBuffer::LoadBufferData(vector<float> &rBufferData, GLSL_BUFFER_USAGE usage) {
+    void VertexBuffer::LoadBufferData(const vector<float> &rBufferData, GLSL_BUFFER_USAGE usage) {
         // TODO: What happens if elements count is 0?
         Buffer::LoadBufferData(&rBufferData[0], sizeof(rBufferData[0]), rBufferData.size(), usage);
     }
     
-    void VertexBuffer::LoadBufferData(GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage) {
+    void VertexBuffer::LoadBufferData(const GLvoid *bufferData, GLsizei elementSize, GLuint elementsCount, GLSL_BUFFER_USAGE usage) {
         Buffer::LoadBufferData(bufferData, elementSize, elementsCount, usage);
+    }
+    
+    void VertexBuffer::LoadBufferSubData(const GLvoid *bufferData, GLintptr offset, GLsizeiptr size) const {
+        Buffer::LoadBufferSubData(bufferData, offset, size);
     }
     
     GLSL_BUFFER VertexBuffer::TargetBuffer() const {

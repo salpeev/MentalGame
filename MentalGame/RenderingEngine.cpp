@@ -46,6 +46,8 @@ namespace Renderer {
         m_rootDrawing->AddSubDrawing(drawing);
         
         SegmentDrawing *segmentDrawing = new SegmentDrawing();
+        segmentDrawing->SetStartPoint(Point(-1.5, -1.5, -4));
+        segmentDrawing->SetEndPoint(Point(1.5, 1.5, -5));
         m_rootDrawing->AddSubDrawing(segmentDrawing);
     }
     

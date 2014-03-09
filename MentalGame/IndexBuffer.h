@@ -18,8 +18,8 @@ namespace Renderer {
     
     class IndexBuffer : public Buffer {
     public:
-        void LoadBufferData(vector<GLushort> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
-        void LoadBufferData(vector<GLubyte> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        void LoadBufferData(const vector<GLushort> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
+        void LoadBufferData(const vector<GLubyte> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
         
         GLSL_DATA_TYPE GetDataType() const;
         

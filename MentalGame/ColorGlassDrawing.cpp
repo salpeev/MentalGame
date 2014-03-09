@@ -125,15 +125,8 @@ namespace Renderer {
         Matrix4 result = m_uniformInitializer->GetModelviewMatrix();
         Polyhedron polyhedron = m_shape->Transformed(result, true);
         
-        Matrix4 segmentTranslation;
-        segmentTranslation.Translate(0.0, 0.0, -4.5).RotateZ(0.1).RotateY(0.2);
-        
-        Vector4 vA(-2.0, 0.0, 0.0, 1.0);
-        Vector4 vB(2.0, 0.0, 0.0, 1.0);
-        Vector4 vTA = vA * segmentTranslation;
-        Vector4 vTB = vB * segmentTranslation;
-        Point pA(vTA.x, vTA.y, vTA.z);
-        Point pB(vTB.x, vTB.y, vTB.z);
+        Point pA(-1.5, -1.5, -4);
+        Point pB(1.5, 1.5, -5);
         
         float start;
         float end;
