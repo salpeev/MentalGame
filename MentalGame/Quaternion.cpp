@@ -25,7 +25,19 @@ namespace Renderer {
         return result;
     }
     
-    float Quaternion::Dot(const Quaternion &rQuaternion) const {
+    Quaternion Quaternion::Rotated(const Quaternion &rQuaternion) const {
+        Quaternion quaternion;
+        
+        quaternion.w = w * rQuaternion.w - x * rQuaternion.x - y * rQuaternion.y - z * rQuaternion.z;
+        quaternion.x = w * rQuaternion.x + x * rQuaternion.w + y * rQuaternion.z - z * rQuaternion.y;
+        quaternion.y = w * rQuaternion.y + y * rQuaternion.w + z * rQuaternion.x - x * rQuaternion.z;
+        quaternion.z = w * rQuaternion.z + z * rQuaternion.w + x * rQuaternion.y - y * rQuaternion.x;
+        quaternion.Normalize();
+        
+        return quaternion;
+    }
+    
+    float Quaternion::InnerProduct(const Quaternion &rQuaternion) const {
         float dot = x * rQuaternion.x + y * rQuaternion.y + z * rQuaternion.z;
         return dot;
     }
@@ -35,8 +47,51 @@ namespace Renderer {
         return result;
     }
     
+    float Quaternion::Norm() const {
+        float norm = InnerProduct(*this);
+        return norm;
+    }
+    
+    float Quaternion::Magnitude() const {
+        float norm = Norm();
+        float magnitude = sqrtf(norm);
+        return magnitude;
+    }
+    
+    void Quaternion::Normalize() {
+        float scale = 1.0f / Magnitude();
+        *this = Scaled(scale);
+    }
+    
     Quaternion Quaternion::operator-(const Quaternion &rQuaternion) const {
         Quaternion result(x - rQuaternion.x, y - rQuaternion.y, z - rQuaternion.z, w - rQuaternion.w);
         return result;
+    }
+    
+    Quaternion Quaternion::CreateFromVectors(const Vector3 &rVector0, const Vector3 &rVector1) {
+        Vector3 vector0 = rVector0.Normalized();
+        Vector3 vector1 = rVector1.Normalized();
+        
+        // TODO: This function numerically instable when rVector0 equal to -rVector1. Check could be added. Game Programming Gems page 215
+        Vector3 cross = vector0.Cross(vector1);
+        float dot = vector0.Dot(vector1);
+        float s = sqrtf((1.0f + dot) * 2.0f);
+        
+        Quaternion quaternion;
+        quaternion.x = cross.x / s;
+        quaternion.y = cross.y / s;
+        quaternion.z = cross.z / s;
+        quaternion.w = s / 2.0f;
+        return quaternion;
+    }
+    
+    Quaternion Quaternion::CreateFromAxisAngle(const Vector3 &rAxis, float radians) {
+        Quaternion quaternion;
+        quaternion.w = cosf(radians / 2.0f);
+        quaternion.x = quaternion.y = quaternion.z = sinf(radians / 2.0f);
+        quaternion.x *= rAxis.x;
+        quaternion.y *= rAxis.y;
+        quaternion.z *= rAxis.z;
+        return quaternion;
     }
 }

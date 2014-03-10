@@ -81,7 +81,7 @@ namespace Renderer {
             return rEnd;
         }
         
-        float dot = rStart.Dot(rEnd);
+        float dot = rStart.InnerProduct(rEnd);
         float theta0 = acosf(dot);
         float theta = theta0 * k;
         

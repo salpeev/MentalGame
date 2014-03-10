@@ -68,6 +68,11 @@ namespace Renderer
         return dot;
     }
     
+    Vector3 Vector3::operator-() const {
+        Vector3 vector(-x, -y, -z);
+        return vector;
+    }
+    
     Vector3 Vector3::operator-(const Vector3 &rVector) const {
         Vector3 vector(x - rVector.x, y - rVector.y, z - rVector.z);
         return vector;
@@ -84,6 +89,11 @@ namespace Renderer
         float newZ = x * rMatrix.x.z + y * rMatrix.y.z + z * rMatrix.z.z;
         Vector3 vector(newX, newY, newZ);
         return vector;
+    }
+    
+    bool Vector3::operator==(const Vector3 &rVector) const {
+        bool equal = (x == rVector.x) && (y == rVector.y) && (z == rVector.z);
+        return equal;
     }
     
     Vector3::operator Point() const {

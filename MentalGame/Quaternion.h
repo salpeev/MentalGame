@@ -19,10 +19,17 @@ namespace Renderer {
         Quaternion(float x, float y, float z, float w);
         
         Quaternion Scaled(float scale) const;
-        float Dot(const Quaternion &rQuaternion) const;
+        Quaternion Rotated(const Quaternion &rQuaternion) const;
+        float InnerProduct(const Quaternion &rQuaternion) const; // Dot
+        float Norm() const;
+        float Magnitude() const;
+        void Normalize();
         
         Quaternion operator+(const Quaternion &rQuaternion) const;
         Quaternion operator-(const Quaternion &rQuaternion) const;
+        
+        static Quaternion CreateFromVectors(const Vector3 &rVector0, const Vector3 &rVector1);
+        static Quaternion CreateFromAxisAngle(const Vector3 &rAxis, float radians);
         
         float x;
         float y;
