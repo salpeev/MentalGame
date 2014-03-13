@@ -38,7 +38,7 @@ namespace Renderer {
     }
     
     float Quaternion::InnerProduct(const Quaternion &rQuaternion) const {
-        float dot = x * rQuaternion.x + y * rQuaternion.y + z * rQuaternion.z;
+        float dot = x * rQuaternion.x + y * rQuaternion.y + z * rQuaternion.z + w * rQuaternion.w;
         return dot;
     }
     
@@ -101,12 +101,14 @@ namespace Renderer {
     }
     
     Quaternion Quaternion::CreateFromAxisAngle(const Vector3 &rAxis, float radians) {
+        Vector3 axis = rAxis.Normalized();
+        
         Quaternion quaternion;
         quaternion.w = cosf(radians / 2.0f);
         quaternion.x = quaternion.y = quaternion.z = sinf(radians / 2.0f);
-        quaternion.x *= rAxis.x;
-        quaternion.y *= rAxis.y;
-        quaternion.z *= rAxis.z;
+        quaternion.x *= axis.x;
+        quaternion.y *= axis.y;
+        quaternion.z *= axis.z;
         return quaternion;
     }
 }

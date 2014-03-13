@@ -37,6 +37,6 @@ namespace Renderer {
     void RotateToQuaternionAnimation::SetAnimationDelegate(AnimationDelegate *pAnimationDelegate) {
         Animation::SetAnimationDelegate(pAnimationDelegate);
         
-        m_endQuaternion = pAnimationDelegate->GetQuaternion();
+        m_startQuaternion = pAnimationDelegate->GetQuaternion();
     }
 }

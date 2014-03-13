@@ -24,10 +24,6 @@
 namespace Renderer {
     
     ColorGlassDrawing::ColorGlassDrawing() {
-        
-#warning Comment this and check animation
-        m_quaternion = Quaternion::CreateFromAxisAngle(Vector3(1.0f, 0.0f, 0.0f), M_PI_2);
-        
         glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
         
@@ -123,10 +119,10 @@ namespace Renderer {
     }
     
     void ColorGlassDrawing::Update(float interval) {
-        Matrix4 modelview;
+        Matrix4 rotationMatrix(m_quaternion.ToMatrix3());
+        
+        Matrix4 modelview(rotationMatrix);
         modelview.MakeTranslation(m_position.x, m_position.y, m_position.z);
-//        modelview = Matrix4(m_quaternion.ToMatrix3()) * modelview;
-//        Log("%f %f %f %f", m_quaternion.x, m_quaternion.y, m_quaternion.z, m_quaternion.w);
         m_uniformInitializer->SetModelviewMatrix(modelview);
         
         Matrix4 result = m_uniformInitializer->GetModelviewMatrix();
@@ -145,15 +141,15 @@ namespace Renderer {
         static bool added = false;
         static float duration = 0.0f;
         duration += interval;
-        if (duration > 5.0f && !added) {
+        if (duration > 3.0f && !added) {
             added = true;
             
-            MoveToAnimation *moveTo = new MoveToAnimation(Point(-2, -2, -9), 2, ANIMATION_CURVE_EASE_IN);
+            MoveToAnimation *moveTo = new MoveToAnimation(Point(-2, -2, -9), 15, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
             
-//            Quaternion newQuaternion = Quaternion::CreateFromAxisAngle(Vector3(0.0f, 1.0f, 0.0f), M_PI);
-//            RotateToQuaternionAnimation *rotateToQuaternion = new RotateToQuaternionAnimation(newQuaternion, 2, ANIMATION_CURVE_EASE_IN);
-//            AddAnimation(rotateToQuaternion);
+            Quaternion newQuaternion = Quaternion::CreateFromAxisAngle(Vector3(1, 1, 0), M_PI);
+            RotateToQuaternionAnimation *rotateToQuaternion = new RotateToQuaternionAnimation(newQuaternion, 15, ANIMATION_CURVE_LINEAR);
+            AddAnimation(rotateToQuaternion);
         }
     }
     
