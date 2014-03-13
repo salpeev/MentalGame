@@ -63,6 +63,21 @@ namespace Renderer {
         *this = Scaled(scale);
     }
     
+    Matrix3 Quaternion::ToMatrix3() const {
+        // TODO: Probably quaternion should be normalized http://stackoverflow.com/questions/1556260/convert-quaternion-rotation-to-rotation-matrix
+        Matrix3 matrix;
+        matrix.x.x = 1.0f - 2.0f * (y * y + z * z);
+        matrix.x.y = 2.0f * (x * y + w * z);
+        matrix.x.z = 2.0f * (x * z - y * w);
+        matrix.y.x = 2.0f * (x * y - z * w);
+        matrix.y.y = 1.0f - 2.0f * (x * x + z * z);
+        matrix.y.z = 2.0f * (y * z + x * w);
+        matrix.z.x = 2.0f * (y * w + x * z);
+        matrix.z.y = 2.0f * (y * z - x * w);
+        matrix.z.z = 1.0f - 2.0f * (x * x + y * y);
+        return matrix;
+    }
+    
     Quaternion Quaternion::operator-(const Quaternion &rQuaternion) const {
         Quaternion result(x - rQuaternion.x, y - rQuaternion.y, z - rQuaternion.z, w - rQuaternion.w);
         return result;

@@ -25,6 +25,8 @@ namespace Renderer {
         float Magnitude() const;
         void Normalize();
         
+        Matrix3 ToMatrix3() const;
+        
         Quaternion operator+(const Quaternion &rQuaternion) const;
         Quaternion operator-(const Quaternion &rQuaternion) const;
         

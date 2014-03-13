@@ -133,6 +133,13 @@ namespace Renderer {
         w.x = 0.0f; w.y = 0.0f; w.z = 0.0f; w.w = 1.0f;
     }
     
+    Matrix4::Matrix4(const Matrix3 &rMatrix) {
+        x.x = rMatrix.x.x; x.y = rMatrix.x.y; x.z = rMatrix.x.z; x.w = 0.0f;
+        y.x = rMatrix.y.x; y.y = rMatrix.y.y; y.z = rMatrix.y.z; y.w = 0.0f;
+        z.x = rMatrix.z.x; z.y = rMatrix.z.y; z.z = rMatrix.z.z; z.w = 0.0f;
+        w.x = 0.0f;        w.y = 0.0f;        w.z = 0.0f;        w.w = 1.0f;
+    }
+    
     Matrix4 Matrix4::operator*(const Matrix4 &m) const {
         Matrix4 r;
         

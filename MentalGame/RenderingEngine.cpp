@@ -42,7 +42,7 @@ namespace Renderer {
         
         // TODO: Remove later
         ColorGlassDrawing *drawing = new ColorGlassDrawing();
-        drawing->SetPosition(Point(0.0f, 0.0f, -5.5f));
+        drawing->SetPosition(Point(0.0f, 0.0f, -4.5f));
         m_rootDrawing->AddSubDrawing(drawing);
         
         SegmentDrawing *segmentDrawing = new SegmentDrawing();

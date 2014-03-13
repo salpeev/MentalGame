@@ -17,12 +17,16 @@
 #include "Polyhedron.h"
 #include "CollisionDetector.h"
 #include "MoveToAnimation.h"
+#include "RotateToQuaternionAnimation.h"
 
 
 
 namespace Renderer {
     
     ColorGlassDrawing::ColorGlassDrawing() {
+        
+#warning Comment this and check animation
+        m_quaternion = Quaternion::CreateFromAxisAngle(Vector3(1.0f, 0.0f, 0.0f), M_PI_2);
         
         glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
@@ -119,8 +123,10 @@ namespace Renderer {
     }
     
     void ColorGlassDrawing::Update(float interval) {
-        Matrix4 modelview = m_uniformInitializer->GetModelviewMatrix();
-        modelview.MakeTranslation(m_position.x, m_position.y, m_position.z).RotateX(interval * 0.1f).RotateY(interval * 0.1f).RotateZ(interval * 0.1f);
+        Matrix4 modelview;
+        modelview.MakeTranslation(m_position.x, m_position.y, m_position.z);
+//        modelview = Matrix4(m_quaternion.ToMatrix3()) * modelview;
+//        Log("%f %f %f %f", m_quaternion.x, m_quaternion.y, m_quaternion.z, m_quaternion.w);
         m_uniformInitializer->SetModelviewMatrix(modelview);
         
         Matrix4 result = m_uniformInitializer->GetModelviewMatrix();
@@ -139,11 +145,15 @@ namespace Renderer {
         static bool added = false;
         static float duration = 0.0f;
         duration += interval;
-        if (duration > 15.0f && !added) {
+        if (duration > 5.0f && !added) {
             added = true;
             
             MoveToAnimation *moveTo = new MoveToAnimation(Point(-2, -2, -9), 2, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
+            
+//            Quaternion newQuaternion = Quaternion::CreateFromAxisAngle(Vector3(0.0f, 1.0f, 0.0f), M_PI);
+//            RotateToQuaternionAnimation *rotateToQuaternion = new RotateToQuaternionAnimation(newQuaternion, 2, ANIMATION_CURVE_EASE_IN);
+//            AddAnimation(rotateToQuaternion);
         }
     }
     
@@ -171,7 +181,7 @@ namespace Renderer {
     }
     
     Quaternion ColorGlassDrawing::GetQuaternion() const {
-        return Quaternion();
+        return m_quaternion;
     }
     
     
@@ -192,7 +202,7 @@ namespace Renderer {
     }
     
     void ColorGlassDrawing::SetQuaternion(const Quaternion &rQuaternion) {
-        
+        m_quaternion = rQuaternion;
     }
     
 }

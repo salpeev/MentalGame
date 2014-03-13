@@ -52,5 +52,6 @@ namespace Renderer {
         Polyhedron *m_shape;
         
         Point m_position;
+        Quaternion m_quaternion;
     };
 }
