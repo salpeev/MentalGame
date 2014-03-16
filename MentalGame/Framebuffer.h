@@ -9,7 +9,7 @@
 #pragma once
 #include <OpenGLES/ES2/gl.h>
 #include "Renderbuffer.h"
-#include "GLColor.h"
+#include "Color.h"
 
 
 
@@ -43,11 +43,11 @@ namespace Renderer {
         Renderbuffer * GetDepthRenderbuffer() const;
         Renderbuffer * GetStencilRenderbuffer() const;
         
-        void SetClearColor(const GLColor &rColor) const;
+        void SetClearColor(const Color &rColor) const;
         void SetClearDepth(GLclampf depth) const;
         void SetClearStencil(GLint stencil) const;
         
-        GLColor GetClearColor() const;
+        Color GetClearColor() const;
         GLclampf GetClearDepth() const;
         GLint GetClearStencil() const;
         

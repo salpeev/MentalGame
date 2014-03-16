@@ -38,14 +38,14 @@ namespace Renderer {
         
         // Rendering
         vector<GLSLVertex1P1C> vertices;
-        vertices.push_back(GLSLVertex1P1C(point0, GLColor(1.0, 0.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(point1, GLColor(0.0, 1.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(point2, GLColor(0.0, 0.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(point3, GLColor(1.0, 1.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(point4, GLColor(0.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(point5, GLColor(1.0, 0.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(point6, GLColor(0.4, 0.2, 0.9)));
-        vertices.push_back(GLSLVertex1P1C(point7, GLColor(0.7, 0.2, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(point0, Color(1.0, 0.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(point1, Color(0.0, 1.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(point2, Color(0.0, 0.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(point3, Color(1.0, 1.0, 0.0)));
+        vertices.push_back(GLSLVertex1P1C(point4, Color(0.0, 1.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(point5, Color(1.0, 0.0, 1.0)));
+        vertices.push_back(GLSLVertex1P1C(point6, Color(0.4, 0.2, 0.9)));
+        vertices.push_back(GLSLVertex1P1C(point7, Color(0.7, 0.2, 0.0)));
         
         vector<GLushort> indices;
         indices.push_back(0);

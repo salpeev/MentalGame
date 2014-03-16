@@ -26,7 +26,7 @@
 		B468F7161899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7141899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp */; };
 		B468F7191899AA0C00AAE773 /* ColorRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7171899AA0C00AAE773 /* ColorRenderbuffer.cpp */; };
 		B468F71D1899B4E600AAE773 /* MultisampleFramebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F71B1899B4E600AAE773 /* MultisampleFramebuffer.cpp */; };
-		B469605317F75C25002BCF6C /* GLColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605117F75C25002BCF6C /* GLColor.cpp */; };
+		B469605317F75C25002BCF6C /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605117F75C25002BCF6C /* Color.cpp */; };
 		B469605717F76B5E002BCF6C /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605517F76B5E002BCF6C /* Point.cpp */; };
 		B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605817F8526F002BCF6C /* ShaderValue.cpp */; };
 		B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605B17F858BF002BCF6C /* GLSLVertex.cpp */; };
@@ -119,8 +119,8 @@
 		B468F7181899AA0C00AAE773 /* ColorRenderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbuffer.h; sourceTree = "<group>"; };
 		B468F71B1899B4E600AAE773 /* MultisampleFramebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MultisampleFramebuffer.cpp; sourceTree = "<group>"; };
 		B468F71C1899B4E600AAE773 /* MultisampleFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultisampleFramebuffer.h; sourceTree = "<group>"; };
-		B469605117F75C25002BCF6C /* GLColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLColor.cpp; sourceTree = "<group>"; };
-		B469605217F75C25002BCF6C /* GLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLColor.h; sourceTree = "<group>"; };
+		B469605117F75C25002BCF6C /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
+		B469605217F75C25002BCF6C /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		B469605517F76B5E002BCF6C /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		B469605617F76B5E002BCF6C /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		B469605817F8526F002BCF6C /* ShaderValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderValue.cpp; sourceTree = "<group>"; };
@@ -385,8 +385,8 @@
 		B4963F911800228F0037FC39 /* Primitive types */ = {
 			isa = PBXGroup;
 			children = (
-				B469605117F75C25002BCF6C /* GLColor.cpp */,
-				B469605217F75C25002BCF6C /* GLColor.h */,
+				B469605117F75C25002BCF6C /* Color.cpp */,
+				B469605217F75C25002BCF6C /* Color.h */,
 			);
 			name = "Primitive types";
 			sourceTree = "<group>";
@@ -797,7 +797,7 @@
 				B469605717F76B5E002BCF6C /* Point.cpp in Sources */,
 				B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */,
 				B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */,
-				B469605317F75C25002BCF6C /* GLColor.cpp in Sources */,
+				B469605317F75C25002BCF6C /* Color.cpp in Sources */,
 				B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */,
 				B4EF8480186AE08300234C28 /* Quaternion.cpp in Sources */,
 				B468F7161899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp in Sources */,

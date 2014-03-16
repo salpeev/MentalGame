@@ -17,7 +17,7 @@
 
 namespace Renderer {
     
-    SegmentDrawing::SegmentDrawing (): m_start(Point()), m_end(Point()), m_startColor(GLColor(1.0, 1.0, 1.0)), m_endColor(GLColor(1.0, 1.0, 1.0)) {
+    SegmentDrawing::SegmentDrawing (): m_start(Point()), m_end(Point()), m_startColor(Color(1.0, 1.0, 1.0)), m_endColor(Color(1.0, 1.0, 1.0)) {
         vector<GLSLVertex1P1C> vertices;
         vertices.push_back(GLSLVertex1P1C(m_start, m_startColor));
         vertices.push_back(GLSLVertex1P1C(m_end, m_endColor));
@@ -52,22 +52,22 @@ namespace Renderer {
     void SegmentDrawing::SetEndPoint(const Point &rEnd) {
         m_end = rEnd;
         
-        GLintptr offset = sizeof(Point) + sizeof(GLColor);
+        GLintptr offset = sizeof(Point) + sizeof(Color);
         m_vertexBuffer->LoadBufferSubData(&m_end, offset, sizeof(Point));
     }
     
-    void SegmentDrawing::SetStartColor(const GLColor &rStartColor) {
+    void SegmentDrawing::SetStartColor(const Color &rStartColor) {
         m_startColor = rStartColor;
         
         GLintptr offset = sizeof(Point);
-        m_vertexBuffer->LoadBufferSubData(&m_startColor, offset, sizeof(GLColor));
+        m_vertexBuffer->LoadBufferSubData(&m_startColor, offset, sizeof(Color));
     }
     
-    void SegmentDrawing::SetEndColor(const GLColor &rEndColor) {
+    void SegmentDrawing::SetEndColor(const Color &rEndColor) {
         m_endColor = rEndColor;
         
-        GLintptr offset = sizeof(Point) + sizeof(GLColor) + sizeof(Point);
-        m_vertexBuffer->LoadBufferSubData(&m_endColor, offset, sizeof(GLColor));
+        GLintptr offset = sizeof(Point) + sizeof(Color) + sizeof(Point);
+        m_vertexBuffer->LoadBufferSubData(&m_endColor, offset, sizeof(Color));
     }
     
     Point SegmentDrawing::GetStartPoint() const {
@@ -78,11 +78,11 @@ namespace Renderer {
         return m_end;
     }
     
-    GLColor SegmentDrawing::GetStartColor() const {
+    Color SegmentDrawing::GetStartColor() const {
         return m_startColor;
     }
     
-    GLColor SegmentDrawing::GetEndColor() const {
+    Color SegmentDrawing::GetEndColor() const {
         return m_endColor;
     }
     

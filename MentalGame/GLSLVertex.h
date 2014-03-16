@@ -8,7 +8,7 @@
 
 #pragma once
 #include "Point.h"
-#include "GLColor.h"
+#include "Color.h"
 
 
 
@@ -29,9 +29,9 @@ namespace Renderer
     {
     public:
         GLSLVertex1C();
-        GLSLVertex1C(GLColor color);
+        GLSLVertex1C(Color color);
         
-        GLColor m_color;
+        Color m_color;
     };
     
     
@@ -40,9 +40,9 @@ namespace Renderer
     {
     public:
         GLSLVertex1P1C();
-        GLSLVertex1P1C(Point position, GLColor color);
+        GLSLVertex1P1C(Point position, Color color);
         
         Point m_position;
-        GLColor m_color;
+        Color m_color;
     };
 }

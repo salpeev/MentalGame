@@ -156,7 +156,7 @@ namespace Renderer {
         return m_stencilRenderbuffer;
     }
     
-    void Framebuffer::SetClearColor(const GLColor &rColor) const {
+    void Framebuffer::SetClearColor(const Color &rColor) const {
         Bind();
         
         glClearColor(rColor.r, rColor.g, rColor.b, rColor.a);
@@ -177,8 +177,8 @@ namespace Renderer {
         CheckError();
     }
     
-    GLColor Framebuffer::GetClearColor() const {
-        GLColor color;
+    Color Framebuffer::GetClearColor() const {
+        Color color;
         glGetFloatv(GET_PARAMETER_COLOR_CLEAR_VALUE, (GLfloat *)(&color));
         CheckError();
         

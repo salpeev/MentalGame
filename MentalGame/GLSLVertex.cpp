@@ -25,24 +25,24 @@ namespace Renderer
     
     
     
-    GLSLVertex1C::GLSLVertex1C(): GLSLVertex1C(GLColor())
+    GLSLVertex1C::GLSLVertex1C(): GLSLVertex1C(Color())
     {
         
     }
     
-    GLSLVertex1C::GLSLVertex1C(GLColor color): m_color(color)
+    GLSLVertex1C::GLSLVertex1C(Color color): m_color(color)
     {
         
     }
     
     
     
-    GLSLVertex1P1C::GLSLVertex1P1C(): GLSLVertex1P1C(Point(), GLColor())
+    GLSLVertex1P1C::GLSLVertex1P1C(): GLSLVertex1P1C(Point(), Color())
     {
         
     }
     
-    GLSLVertex1P1C::GLSLVertex1P1C(Point position, GLColor color): m_position(position), m_color(color)
+    GLSLVertex1P1C::GLSLVertex1P1C(Point position, Color color): m_position(position), m_color(color)
     {
         
     }

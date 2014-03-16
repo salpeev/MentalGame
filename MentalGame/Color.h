@@ -1,5 +1,5 @@
 //
-//  GLColor.h
+//  Color.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 28.09.13.
@@ -11,14 +11,13 @@
 
 
 
-namespace Renderer
-{
-    class GLColor
-    {
+namespace Renderer {
+    
+    class Color {
     public:
-        GLColor();
-        GLColor(GLfloat r, GLfloat g, GLfloat b);
-        GLColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
+        Color();
+        Color(GLfloat r, GLfloat g, GLfloat b);
+        Color(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
         
         GLfloat r;
         GLfloat g;
