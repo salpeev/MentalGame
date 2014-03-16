@@ -164,37 +164,12 @@ namespace Renderer {
         return m_position;
     }
     
-    float ColorGlassDrawing::GetXRotation() const {
-        return 0.0f;
-    }
-    
-    float ColorGlassDrawing::GetYRotation() const {
-        return 0.0f;
-    }
-    
-    float ColorGlassDrawing::GetZRotation() const {
-        return 0.0f;
-    }
-    
     Quaternion ColorGlassDrawing::GetQuaternion() const {
         return m_quaternion;
     }
     
-    
     void ColorGlassDrawing::SetPosition(const Point &rPosition) {
         m_position = rPosition;
-    }
-    
-    void ColorGlassDrawing::SetXRotation(float angle) {
-        
-    }
-    
-    void ColorGlassDrawing::SetYRotation(float angle) {
-        
-    }
-    
-    void ColorGlassDrawing::SetZRotation(float angle) {
-        
     }
     
     void ColorGlassDrawing::SetQuaternion(const Quaternion &rQuaternion) {

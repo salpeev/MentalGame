@@ -9,8 +9,6 @@
 #include "RenderingEngine.h"
 #include "GLLogger.h"
 #include "GLConstants.h"
-#include "ColorGlassDrawing.h"  // TODO: Remove later
-#include "SegmentDrawing.h"        // TODO: Remove later
 
 
 
@@ -18,12 +16,12 @@ namespace Renderer {
     
 #pragma mark - Lifecycle
     
-    RenderingEngine::RenderingEngine(): m_framebuffer(nullptr), m_rootDrawing(nullptr), m_windowSize(0.0f, 0.0f) {
-        m_rootDrawing = new CompositeDrawing();
+    RenderingEngine::RenderingEngine(): m_framebuffer(nullptr), m_drawingController(nullptr), m_windowSize(0.0f, 0.0f) {
+        
     }
     
     RenderingEngine::~RenderingEngine() {
-        delete m_rootDrawing;
+        delete m_drawingController;
     }
     
 #pragma mark - Public Methods
@@ -36,19 +34,18 @@ namespace Renderer {
         return m_framebuffer;
     }
     
+    void RenderingEngine::SetDrawingController(DrawingController *pDrawingController) {
+        delete m_drawingController;
+        m_drawingController = pDrawingController;
+    }
+    
+    DrawingController * RenderingEngine::GetDrawingController() const {
+        return m_drawingController;
+    }
+    
     void RenderingEngine::SetWindowSize(const CSize &rSize) {
         m_windowSize = rSize;
         ResetRenderFrame();
-        
-        // TODO: Remove later
-        ColorGlassDrawing *drawing = new ColorGlassDrawing();
-        drawing->SetPosition(Point(0.0f, 0.0f, -5.5f));
-        m_rootDrawing->AddSubDrawing(drawing);
-        
-        SegmentDrawing *segmentDrawing = new SegmentDrawing();
-        segmentDrawing->SetStartPoint(Point(-1.5, -1.5, -4));
-        segmentDrawing->SetEndPoint(Point(1.5, 1.5, -5));
-        m_rootDrawing->AddSubDrawing(segmentDrawing);
     }
     
     CSize RenderingEngine::GetWindowSize() const {
@@ -77,7 +74,7 @@ namespace Renderer {
     void RenderingEngine::Render(float interval) const {
         m_framebuffer->Clear();
         
-        m_rootDrawing->UpdateHierarchy(interval);
-        m_rootDrawing->DrawHierarchy();
+        m_drawingController->GetDrawing()->UpdateHierarchy(interval);
+        m_drawingController->GetDrawing()->DrawHierarchy();
     }
 }

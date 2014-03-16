@@ -14,6 +14,8 @@
 		B41CAA2518AC0C76001E1B1A /* DrawingLeaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2318AC0C76001E1B1A /* DrawingLeaf.cpp */; };
 		B41CAA2C18AC1ABA001E1B1A /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */; };
 		B42E7F7418CE1D8E0048515C /* RotateToQuaternionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7218CE1D8E0048515C /* RotateToQuaternionAnimation.cpp */; };
+		B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7618D5C2E80048515C /* DrawingController.cpp */; };
+		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
 		B457A15817F6D486004EF4E0 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B457A15617F6D486004EF4E0 /* Buffer.cpp */; };
 		B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */; };
 		B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70218999CF700AAE773 /* ColorRenderbufferRGB565.cpp */; };
@@ -93,6 +95,10 @@
 		B41CAA2B18AC1ABA001E1B1A /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
 		B42E7F7218CE1D8E0048515C /* RotateToQuaternionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateToQuaternionAnimation.cpp; sourceTree = "<group>"; };
 		B42E7F7318CE1D8E0048515C /* RotateToQuaternionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateToQuaternionAnimation.h; sourceTree = "<group>"; };
+		B42E7F7618D5C2E80048515C /* DrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingController.cpp; sourceTree = "<group>"; };
+		B42E7F7718D5C2E80048515C /* DrawingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingController.h; sourceTree = "<group>"; };
+		B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameDrawingController.cpp; sourceTree = "<group>"; };
+		B42E7F7B18D5C5320048515C /* GameDrawingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDrawingController.h; sourceTree = "<group>"; };
 		B457A15617F6D486004EF4E0 /* Buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buffer.cpp; sourceTree = "<group>"; };
 		B457A15717F6D486004EF4E0 /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
 		B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbufferRGBA4.cpp; sourceTree = "<group>"; };
@@ -235,6 +241,24 @@
 			name = "Program Container";
 			sourceTree = "<group>";
 		};
+		B42E7F7518D5C2BD0048515C /* DrawingController */ = {
+			isa = PBXGroup;
+			children = (
+				B42E7F7618D5C2E80048515C /* DrawingController.cpp */,
+				B42E7F7718D5C2E80048515C /* DrawingController.h */,
+			);
+			name = DrawingController;
+			sourceTree = "<group>";
+		};
+		B42E7F7918D5C51F0048515C /* DrawingController */ = {
+			isa = PBXGroup;
+			children = (
+				B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */,
+				B42E7F7B18D5C5320048515C /* GameDrawingController.h */,
+			);
+			name = DrawingController;
+			sourceTree = "<group>";
+		};
 		B468F6FE18999CC900AAE773 /* ColorRenderbuffer */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +341,7 @@
 				B4AC5D7A1896FB6400FBE8D8 /* Framebuffer */,
 				B4AC5D7B1896FB7000FBE8D8 /* Renderbuffer */,
 				B4E069D41891C08600F2E995 /* Drawing */,
+				B42E7F7518D5C2BD0048515C /* DrawingController */,
 				B4ECF823189D2282007E2669 /* RenderingEngine.cpp */,
 				B4ECF824189D2282007E2669 /* RenderingEngine.h */,
 			);
@@ -624,6 +649,7 @@
 				B468F71018999F6900AAE773 /* Renderbuffer */,
 				B468F71A1899B4CC00AAE773 /* Framebuffer */,
 				B4E23D2018951FE6008CCFED /* Drawing */,
+				B42E7F7918D5C51F0048515C /* DrawingController */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -770,6 +796,7 @@
 				B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */,
 				B469605717F76B5E002BCF6C /* Point.cpp in Sources */,
 				B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */,
+				B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */,
 				B469605317F75C25002BCF6C /* GLColor.cpp in Sources */,
 				B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */,
 				B4EF8480186AE08300234C28 /* Quaternion.cpp in Sources */,
@@ -798,6 +825,7 @@
 				B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */,
 				B4D64F87188179F6005E78AC /* AttributeInitializer.cpp in Sources */,
 				B41CAA2C18AC1ABA001E1B1A /* Plane.cpp in Sources */,
+				B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */,
 				B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* GLLogger.cpp in Sources */,
 				B42E7F7418CE1D8E0048515C /* RotateToQuaternionAnimation.cpp in Sources */,

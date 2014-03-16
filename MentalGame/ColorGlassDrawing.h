@@ -28,15 +28,9 @@ namespace Renderer {
         
         // Animation delegate
         Point GetPosition() const;
-        float GetXRotation() const;
-        float GetYRotation() const;
-        float GetZRotation() const;
         Quaternion GetQuaternion() const;
         
         void SetPosition(const Point &rPosition);
-        void SetXRotation(float angle);
-        void SetYRotation(float angle);
-        void SetZRotation(float angle);
         void SetQuaternion(const Quaternion &rQuaternion);
         
     protected:

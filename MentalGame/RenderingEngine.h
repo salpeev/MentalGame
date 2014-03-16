@@ -9,8 +9,8 @@
 #pragma once
 #include "Framebuffer.h"
 #include "Size.h"
-#include "CompositeDrawing.h"
 #include "Rect.h"
+#include "DrawingController.h"
 
 
 
@@ -25,6 +25,9 @@ namespace Renderer {
         
         void SetFramebuffer(Framebuffer *pFramebuffer);
         Framebuffer * GetFramebuffer() const;
+        
+        void SetDrawingController(DrawingController *pDrawingController);
+        DrawingController * GetDrawingController() const;
         
         void SetWindowSize(const CSize &rSize);
         CSize GetWindowSize() const;
@@ -41,8 +44,8 @@ namespace Renderer {
         ~RenderingEngine();
         RenderingEngine & operator= (const RenderingEngine &rRenderingEngine) = delete;
         
-        Framebuffer *m_framebuffer;
-        CompositeDrawing *m_rootDrawing;
         CSize m_windowSize;
+        Framebuffer *m_framebuffer;
+        DrawingController * m_drawingController;
     };
 }

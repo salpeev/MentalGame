@@ -12,6 +12,7 @@
 #import "MultisampleFramebuffer.h"
 #include "ColorRenderbufferMultisampleRGBA8.h"
 #include "Depth24Stencil8MultisampleRenderbuffer.h"
+#include "GameDrawingController.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -80,6 +81,7 @@ using namespace Renderer;
         
         RenderingEngine::SharedInstance().SetFramebuffer(m_sampleFramebuffer);
         RenderingEngine::SharedInstance().SetWindowSize(CSize(width, height));
+        RenderingEngine::SharedInstance().SetDrawingController(new GameDrawingController());
 
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
