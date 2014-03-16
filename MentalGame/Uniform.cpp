@@ -7,7 +7,7 @@
 //
 
 #include "Uniform.h"
-#include "GLLogger.h"
+#include "Logger.h"
 #include "Program.h"
 
 

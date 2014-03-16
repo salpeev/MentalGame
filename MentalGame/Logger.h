@@ -10,8 +10,8 @@
 
 
 
-namespace Renderer
-{
+namespace Renderer {
+    
     void Log(const char *formatString, ...);
     bool CheckError();
 }

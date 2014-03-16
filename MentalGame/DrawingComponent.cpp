@@ -7,7 +7,7 @@
 //
 
 #include "DrawingComponent.h"
-#include "CompositeDrawing.h"
+#include "DrawingComposite.h"
 
 
 
@@ -31,13 +31,14 @@ namespace Renderer {
         m_parentDrawing->RemoveSubDrawing(this);
     }
     
-    CompositeDrawing * DrawingComponent::GetParentDrawing() const {
+    DrawingComposite * DrawingComponent::GetParentDrawing() const {
         return m_parentDrawing;
     }
     
 #pragma mark - Protected Methods
     
-    void DrawingComponent::SetParentDrawing(CompositeDrawing *pDrawing) {
+    void DrawingComponent::SetParentDrawing(DrawingComposite *pDrawing) {
         m_parentDrawing = pDrawing;
+        SetNextTouchesHandler(pDrawing);
     }
 }

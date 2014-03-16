@@ -7,7 +7,7 @@
 //
 
 #include "IndexBuffer.h"
-#include "GLLogger.h"
+#include "Logger.h"
 
 
 

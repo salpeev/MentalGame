@@ -15,7 +15,7 @@ namespace Renderer {
     class PositionColorInitializer: public GLSLAttributeInitializer {
     public:
         void InitializeAttributes(map<string, Attribute *> *pAttributes) const;
-        void InitializeAttributes(map<string, Attribute *> *pAttributes, GLSLVertexArray *pVertexArray) const;
-        void InitializeAttributes(map<string, Attribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const;
+        void InitializeAttributes(map<string, Attribute *> *pAttributes, VertexArray *pVertexArray) const;
+        void InitializeAttributes(map<string, Attribute *> *pAttributes, vector<VertexArray *> *pVertexArrays) const;
     };
 }

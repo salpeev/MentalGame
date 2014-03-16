@@ -8,7 +8,7 @@
 
 #include "Depth24Stencil8MultisampleRenderbuffer.h"
 #include "GLConstants.h"
-#include "GLLogger.h"
+#include "Logger.h"
 #include <OpenGLES/ES2/glext.h>
 
 

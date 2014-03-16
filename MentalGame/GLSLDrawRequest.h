@@ -20,7 +20,7 @@ namespace Renderer
 {
     class VertexBuffer;
     class IndexBuffer;
-    class GLSLVertexArray;
+    class VertexArray;
     class GLSLAttributeInitializer;
     class UniformInitializer;
     class Attribute;
@@ -157,13 +157,13 @@ namespace Renderer
     
     
     
-#pragma mark - GLSLVertexArrayIndexBufferRequest
+#pragma mark - VertexArrayIndexBufferRequest
     
-    class GLSLVertexArrayIndexBufferRequest: public GLSLDrawRequest
+    class VertexArrayIndexBufferRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayIndexBufferRequest(GLSLVertexArray &rVertexArray, IndexBuffer *pIndexBuffer);
-        ~GLSLVertexArrayIndexBufferRequest();
+        VertexArrayIndexBufferRequest(VertexArray &rVertexArray, IndexBuffer *pIndexBuffer);
+        ~VertexArrayIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -173,19 +173,19 @@ namespace Renderer
         void Draw() const;
         
     private:
-        GLSLVertexArray *m_vertexArray;
+        VertexArray *m_vertexArray;
         IndexBuffer *m_indexBuffer;
     };
     
     
     
-#pragma mark - GLSLVertexArrayShortIndicesRequest
+#pragma mark - VertexArrayShortIndicesRequest
     
-    class GLSLVertexArrayShortIndicesRequest: public GLSLDrawRequest
+    class VertexArrayShortIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayShortIndicesRequest(GLSLVertexArray &rVertexArray, vector<GLushort> &rIndices);
-        ~GLSLVertexArrayShortIndicesRequest();
+        VertexArrayShortIndicesRequest(VertexArray &rVertexArray, vector<GLushort> &rIndices);
+        ~VertexArrayShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -195,19 +195,19 @@ namespace Renderer
         void Draw() const;
         
     private:
-        GLSLVertexArray *m_vertexArray;
+        VertexArray *m_vertexArray;
         vector<GLushort> *m_indices;
     };
     
     
     
-#pragma mark - GLSLVertexArrayByteIndicesRequest
+#pragma mark - VertexArrayByteIndicesRequest
     
-    class GLSLVertexArrayByteIndicesRequest: public GLSLDrawRequest
+    class VertexArrayByteIndicesRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayByteIndicesRequest(GLSLVertexArray &rVertexArray, vector<GLubyte> &rIndices);
-        ~GLSLVertexArrayByteIndicesRequest();
+        VertexArrayByteIndicesRequest(VertexArray &rVertexArray, vector<GLubyte> &rIndices);
+        ~VertexArrayByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -217,19 +217,19 @@ namespace Renderer
         void Draw() const;
         
     private:
-        GLSLVertexArray *m_vertexArray;
+        VertexArray *m_vertexArray;
         vector<GLubyte> *m_indices;
     };
     
     
     
-#pragma mark - GLSLVertexArrayRequest
+#pragma mark - VertexArrayRequest
     
-    class GLSLVertexArrayRequest: public GLSLDrawRequest
+    class VertexArrayRequest: public GLSLDrawRequest
     {
     public:
-        GLSLVertexArrayRequest(GLSLVertexArray &rVertexArray);
-        ~GLSLVertexArrayRequest();
+        VertexArrayRequest(VertexArray &rVertexArray);
+        ~VertexArrayRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -239,19 +239,19 @@ namespace Renderer
         void Draw() const;
         
     private:
-        GLSLVertexArray *m_vertexArray;
+        VertexArray *m_vertexArray;
     };
     
     
     
-#pragma mark - GLSLVertexArraysIndexBufferRequest
+#pragma mark - VertexArraysIndexBufferRequest
     
-    class GLSLVertexArraysIndexBufferRequest: public GLSLDrawRequest
+    class VertexArraysIndexBufferRequest: public GLSLDrawRequest
     {
     public:
         // TODO: Replace pointer with value?
-        GLSLVertexArraysIndexBufferRequest(vector<GLSLVertexArray> &rVertexArrays, IndexBuffer *pIndexBuffer);
-        ~GLSLVertexArraysIndexBufferRequest();
+        VertexArraysIndexBufferRequest(vector<VertexArray> &rVertexArrays, IndexBuffer *pIndexBuffer);
+        ~VertexArraysIndexBufferRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -261,20 +261,20 @@ namespace Renderer
         void Draw() const;
         
     private:
-        vector<GLSLVertexArray *> *m_vertexArrays;
+        vector<VertexArray *> *m_vertexArrays;
         IndexBuffer *m_indexBuffer;
     };
     
     
     
-#pragma mark - GLSLVertexArraysShortIndicesRequest
+#pragma mark - VertexArraysShortIndicesRequest
     
-    class GLSLVertexArraysShortIndicesRequest: public GLSLDrawRequest
+    class VertexArraysShortIndicesRequest: public GLSLDrawRequest
     {
     public:
         // TODO: Replace pointer with value?
-        GLSLVertexArraysShortIndicesRequest(vector<GLSLVertexArray> &rVertexArrays, vector<GLushort> &rIndices);
-        ~GLSLVertexArraysShortIndicesRequest();
+        VertexArraysShortIndicesRequest(vector<VertexArray> &rVertexArrays, vector<GLushort> &rIndices);
+        ~VertexArraysShortIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -284,20 +284,20 @@ namespace Renderer
         void Draw() const;
         
     private:
-        vector<GLSLVertexArray *> *m_vertexArrays;
+        vector<VertexArray *> *m_vertexArrays;
         vector<GLushort> *m_indices;
     };
     
     
     
-#pragma mark - GLSLVertexArraysByteIndicesRequest
+#pragma mark - VertexArraysByteIndicesRequest
     
-    class GLSLVertexArraysByteIndicesRequest: public GLSLDrawRequest
+    class VertexArraysByteIndicesRequest: public GLSLDrawRequest
     {
     public:
         // TODO: Replace pointer with value?
-        GLSLVertexArraysByteIndicesRequest(vector<GLSLVertexArray> &rVertexArrays, vector<GLubyte> &rIndices);
-        ~GLSLVertexArraysByteIndicesRequest();
+        VertexArraysByteIndicesRequest(vector<VertexArray> &rVertexArrays, vector<GLubyte> &rIndices);
+        ~VertexArraysByteIndicesRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -307,20 +307,20 @@ namespace Renderer
         void Draw() const;
         
     private:
-        vector<GLSLVertexArray *> *m_vertexArrays;
+        vector<VertexArray *> *m_vertexArrays;
         vector<GLubyte> *m_indices;
     };
     
     
     
-#pragma mark - GLSLVertexArraysRequest
+#pragma mark - VertexArraysRequest
     
-    class GLSLVertexArraysRequest: public GLSLDrawRequest
+    class VertexArraysRequest: public GLSLDrawRequest
     {
     public:
         // TODO: Replace pointer with value?
-        GLSLVertexArraysRequest(vector<GLSLVertexArray> &rVertexArrays);
-        ~GLSLVertexArraysRequest();
+        VertexArraysRequest(vector<VertexArray> &rVertexArrays);
+        ~VertexArraysRequest();
         
         GLsizei GetVerticesCount() const;
         
@@ -332,7 +332,7 @@ namespace Renderer
         void CalculateVerticesCount();
         
     private:
-        vector<GLSLVertexArray *> *m_vertexArrays;
+        vector<VertexArray *> *m_vertexArrays;
         GLsizei m_verticesCount;
     };
 }

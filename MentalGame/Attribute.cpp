@@ -8,7 +8,7 @@
 
 #include "Attribute.h"
 #include "GLConstants.h"
-#include "GLLogger.h"
+#include "Logger.h"
 
 
 

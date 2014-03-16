@@ -13,14 +13,15 @@
 namespace Renderer {
     
     DrawingController::DrawingController() {
-        m_drawing = new CompositeDrawing();
+        m_drawing = new DrawingComposite();
+        m_drawing->SetNextTouchesHandler(this);
     }
     
     DrawingController::~DrawingController() {
         delete m_drawing;
     }
     
-    CompositeDrawing * DrawingController::GetDrawing() const {
+    DrawingComposite * DrawingController::GetDrawing() const {
         return m_drawing;
     }
 }

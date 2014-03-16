@@ -6,24 +6,22 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLVertexArray.h"
+#include "VertexArray.h"
 #include <stdlib.h>
 #include <string>
 
 
 
-namespace Renderer
-{
-    GLSLVertexArray::GLSLVertexArray(GLvoid *pData, GLsizei vertexSize, GLuint verticesCount): m_vertexSize(vertexSize), m_verticesCount(verticesCount)
-    {
+namespace Renderer {
+    
+    VertexArray::VertexArray(GLvoid *pData, GLsizei vertexSize, GLuint verticesCount): m_vertexSize(vertexSize), m_verticesCount(verticesCount) {
         m_dataSize = vertexSize * verticesCount;
         
         m_data = malloc(m_dataSize);
         memcpy(m_data, pData, m_dataSize);
     }
     
-    GLSLVertexArray::GLSLVertexArray(const GLSLVertexArray &rVertexArray)
-    {
+    VertexArray::VertexArray(const VertexArray &rVertexArray) {
         m_dataSize = rVertexArray.m_dataSize;
         m_vertexSize = rVertexArray.m_vertexSize;
         m_verticesCount = rVertexArray.m_verticesCount;
@@ -32,28 +30,23 @@ namespace Renderer
         memcpy(m_data, rVertexArray.GetData(), m_dataSize);
     }
     
-    GLSLVertexArray::~GLSLVertexArray()
-    {
+    VertexArray::~VertexArray() {
         free(m_data);
     }
     
-    GLvoid * GLSLVertexArray::GetData() const
-    {
+    GLvoid * VertexArray::GetData() const {
         return m_data;
     }
     
-    GLsizei GLSLVertexArray::GetDataSize() const
-    {
+    GLsizei VertexArray::GetDataSize() const {
         return m_dataSize;
     }
     
-    GLsizei GLSLVertexArray::GetVertexSize() const
-    {
+    GLsizei VertexArray::GetVertexSize() const {
         return m_vertexSize;
     }
     
-    GLuint GLSLVertexArray::GetVerticesCount() const
-    {
+    GLuint VertexArray::GetVerticesCount() const {
         return m_verticesCount;
     }
 }

@@ -7,7 +7,7 @@
 //
 
 #include "VertexBuffer.h"
-#include "GLLogger.h"
+#include "Logger.h"
 
 
 

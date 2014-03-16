@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "CompositeDrawing.h"
+#include "DrawingComposite.h"
 
 
 
@@ -21,7 +21,7 @@ namespace Renderer {
     
     
     
-    class ColorGlassDrawing: public CompositeDrawing {
+    class ColorGlassDrawing: public DrawingComposite {
     public:
         ColorGlassDrawing();
         ~ColorGlassDrawing();

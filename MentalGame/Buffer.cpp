@@ -7,7 +7,7 @@
 //
 
 #include "Buffer.h"
-#include "GLLogger.h"
+#include "Logger.h"
 
 
 

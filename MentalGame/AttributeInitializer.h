@@ -17,7 +17,7 @@ using namespace std;
 
 namespace Renderer {
     class Attribute;
-    class GLSLVertexArray;
+    class VertexArray;
     
     
     
@@ -26,7 +26,7 @@ namespace Renderer {
         virtual ~GLSLAttributeInitializer();
         
         virtual void InitializeAttributes(map<string, Attribute *> *pAttributes) const = 0;
-        virtual void InitializeAttributes(map<string, Attribute *> *pAttributes, GLSLVertexArray *pVertexArray) const = 0;
-        virtual void InitializeAttributes(map<string, Attribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const = 0;
+        virtual void InitializeAttributes(map<string, Attribute *> *pAttributes, VertexArray *pVertexArray) const = 0;
+        virtual void InitializeAttributes(map<string, Attribute *> *pAttributes, vector<VertexArray *> *pVertexArrays) const = 0;
     };
 }

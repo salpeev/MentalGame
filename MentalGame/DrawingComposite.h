@@ -16,10 +16,10 @@ using namespace std;
 
 namespace Renderer {
     
-    class CompositeDrawing: public DrawingComponent {
+    class DrawingComposite: public DrawingComponent {
     public:
-        CompositeDrawing();
-        ~CompositeDrawing();
+        DrawingComposite();
+        ~DrawingComposite();
         
         void UpdateHierarchy(float interval);
         void DrawHierarchy() const;

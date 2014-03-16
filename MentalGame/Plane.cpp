@@ -7,7 +7,7 @@
 //
 
 #include "Plane.h"
-#include "GLLogger.h"
+#include "Logger.h"
 
 
 

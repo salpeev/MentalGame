@@ -9,7 +9,7 @@
 #include "PositionColorInitializer.h"
 #include "Attribute.h"
 #include "GLSLVertex.h"
-#include "GLSLVertexArray.h"
+#include "VertexArray.h"
 
 
 
@@ -31,7 +31,7 @@ namespace Renderer {
         colorAttribute->SetBufferPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), colorOffset);
     }
     
-    void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, GLSLVertexArray *pVertexArray) const {
+    void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, VertexArray *pVertexArray) const {
         Attribute *positionAttribute = pAttributes->at(PositionAttributeName);
         Attribute *colorAttribute = pAttributes->at(ColorAttributeName);
         
@@ -44,12 +44,12 @@ namespace Renderer {
         colorAttribute->SetDataPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, vertexSize, pColor);
     }
     
-    void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, vector<GLSLVertexArray *> *pVertexArrays) const {
+    void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, vector<VertexArray *> *pVertexArrays) const {
         Attribute *positionAttribute = pAttributes->at(PositionAttributeName);
         Attribute *colorAttribute = pAttributes->at(ColorAttributeName);
         
-        GLSLVertexArray *pPositionArray = pVertexArrays->at(0);
-        GLSLVertexArray *pColorArray = pVertexArrays->at(1);
+        VertexArray *pPositionArray = pVertexArrays->at(0);
+        VertexArray *pColorArray = pVertexArrays->at(1);
         
         GLvoid *pPosition = pPositionArray->GetData();
         GLvoid *pColor = pColorArray->GetData();

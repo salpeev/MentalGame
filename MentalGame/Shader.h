@@ -1,5 +1,5 @@
 //
-//  GLSLShader.h
+//  Shader.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 10.09.13.
@@ -16,14 +16,13 @@ using namespace std;
 
 
 
-namespace Renderer
-{
-    class GLSLShader
-    {
+namespace Renderer {
+    
+    class Shader {
     public:
-        GLSLShader(GLSL_SHADER_TYPE type, const string &rSource);
-        GLSLShader(const GLSLShader &shader) = delete;
-        ~GLSLShader();
+        Shader(GLSL_SHADER_TYPE type, const string &rSource);
+        Shader(const Shader &shader) = delete;
+        ~Shader();
         
         GLuint GetShaderHandle() const;
         

@@ -11,15 +11,14 @@
 
 
 
-namespace Renderer
-{
-    class GLSLVertexArray
-    {
+namespace Renderer {
+    
+    class VertexArray {
     public:
         // TODO: Probably this class can have the same interface as GLSLBuffer
-        GLSLVertexArray(GLvoid *pData, GLsizei vertexSize, GLuint verticesCount);
-        GLSLVertexArray(const GLSLVertexArray &rVertexArray);
-        ~GLSLVertexArray();
+        VertexArray(GLvoid *pData, GLsizei vertexSize, GLuint verticesCount);
+        VertexArray(const VertexArray &rVertexArray);
+        ~VertexArray();
         
         GLvoid *GetData() const;
         GLsizei GetDataSize() const;

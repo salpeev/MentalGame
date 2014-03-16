@@ -1,42 +1,38 @@
 //
-//  GLSLShader.cpp
+//  Shader.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 10.09.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLShader.h"
-#include "GLLogger.h"
+#include "Shader.h"
+#include "Logger.h"
 #include <iostream>
 
 
 
-namespace Renderer
-{
+namespace Renderer {
+    
 #pragma mark - Lifecycle
     
-    GLSLShader::GLSLShader(GLSL_SHADER_TYPE type, const string &rSource)
-    {
+    Shader::Shader(GLSL_SHADER_TYPE type, const string &rSource) {
         SetType(type);
         SetSource(rSource);
         Compile();
     }
     
-    GLSLShader::~GLSLShader()
-    {
+    Shader::~Shader() {
         Delete();
     }
     
 #pragma mark - Public Methods
     
-    GLuint GLSLShader::GetShaderHandle() const
-    {
+    GLuint Shader::GetShaderHandle() const {
         return m_shaderHandle;
     }
     
-    bool GLSLShader::IsCompiled() const
-    {
+    bool Shader::IsCompiled() const {
         GLint compileStatus;
         glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_COMPILE_STATUS, &compileStatus);
         
@@ -47,37 +43,31 @@ namespace Renderer
     
 #pragma mark - Private Methods
     
-    void GLSLShader::SetType(GLSL_SHADER_TYPE type)
-    {
+    void Shader::SetType(GLSL_SHADER_TYPE type) {
         m_shaderHandle = glCreateShader(type);
         CheckError();
         
-        if (m_shaderHandle == 0)
-        {
+        if (m_shaderHandle == 0) {
             Log("Unable to create shader");
         }
     }
     
-    void GLSLShader::SetSource(const string &rSource)
-    {
+    void Shader::SetSource(const string &rSource) {
         const char *sourceCStr = rSource.c_str();
         glShaderSource(m_shaderHandle, 1, &sourceCStr, NULL);
         
         CheckError();
     }
     
-    void GLSLShader::Compile() const
-    {
+    void Shader::Compile() const {
         glCompileShader(m_shaderHandle);
         CheckError();
         
-        if (!IsCompiled())
-        {
+        if (!IsCompiled()) {
             GLint infoLength;
             glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_INFO_LOG_LENGTH, &infoLength);
             
-            if (infoLength > 1)
-            {
+            if (infoLength > 1) {
                 char *infoLog = (char *)malloc(sizeof(char) * infoLength);
                 
                 glGetShaderInfoLog(m_shaderHandle, infoLength, NULL, infoLog);
@@ -88,10 +78,8 @@ namespace Renderer
         }
     }
     
-    void GLSLShader::Delete()
-    {
-        if (!IsDeleted())
-        {
+    void Shader::Delete() {
+        if (!IsDeleted()) {
             glDeleteShader(m_shaderHandle);
             m_shaderHandle = 0;
             
@@ -99,8 +87,7 @@ namespace Renderer
         }
     }
     
-    bool GLSLShader::IsDeleted() const
-    {
+    bool Shader::IsDeleted() const {
         GLint deleteStatus;
         glGetShaderiv(m_shaderHandle, GLSL_SHADER_IV_DELETE_STATUS, &deleteStatus);
         

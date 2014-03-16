@@ -7,7 +7,7 @@
 //
 
 #include "RenderingEngine.h"
-#include "GLLogger.h"
+#include "Logger.h"
 #include "GLConstants.h"
 
 
@@ -77,4 +77,22 @@ namespace Renderer {
         m_drawingController->GetDrawing()->UpdateHierarchy(interval);
         m_drawingController->GetDrawing()->DrawHierarchy();
     }
+    
+//#pragma mark Touches
+//    
+//    void RenderingEngine::TouchesBegan(vector<Touch> &rTouches) const {
+//        
+//    }
+//    
+//    void RenderingEngine::TouchesMoved(vector<Touch> &rTouches) const {
+//        
+//    }
+//    
+//    void RenderingEngine::TouchesEnded(vector<Touch> &rTouches) const {
+//        
+//    }
+//    
+//    void RenderingEngine::TouchesCancelled(vector<Touch> &rTouches) const {
+//        
+//    }
 }

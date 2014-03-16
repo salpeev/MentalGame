@@ -7,7 +7,7 @@
 //
 
 #include "Texture.h"
-#include "GLLogger.h"
+#include "Logger.h"
 
 
 

@@ -10,6 +10,7 @@
 #include "Framebuffer.h"
 #include "Size.h"
 #include "Rect.h"
+#include "Touch.h"
 #include "DrawingController.h"
 
 
@@ -37,6 +38,12 @@ namespace Renderer {
         Rect GetRenderFrame() const;
         
         void Render(float interval) const;
+        
+//        // Touches
+//        void TouchesBegan(vector<Touch> &rTouches) const;
+//        void TouchesMoved(vector<Touch> &rTouches) const;
+//        void TouchesEnded(vector<Touch> &rTouches) const;
+//        void TouchesCancelled(vector<Touch> &rTouches) const;
         
     private:
         RenderingEngine();

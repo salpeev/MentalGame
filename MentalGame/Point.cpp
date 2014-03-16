@@ -16,6 +16,10 @@ namespace Renderer {
         
     }
     
+    Point::Point(GLfloat x, GLfloat y): Point(x, y, 0.0f) {
+        
+    }
+    
     Point::Point(GLfloat x, GLfloat y, GLfloat z): x(x), y(y), z(z) {
         
     }

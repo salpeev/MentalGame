@@ -7,7 +7,7 @@
 //
 
 #include "ColorGlassDrawing.h"
-#include "GLLogger.h"
+#include "Logger.h"
 #include "GLSLVertex.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
@@ -131,10 +131,10 @@ namespace Renderer {
         Point pA(-1.5, -1.5, -4);
         Point pB(1.5, 1.5, -5);
         
-        float start;
-        float end;
-        bool intersects = CollisionDetector::IntersectSegmentPolyhedron(pA, pB, polyhedron, start, end);
-        Log("INTERSECTION: %d     %f   %f", intersects, start, end);
+//        float start;
+//        float end;
+//        bool intersects = CollisionDetector::IntersectSegmentPolyhedron(pA, pB, polyhedron, start, end);
+//        Log("INTERSECTION: %d     %f   %f", intersects, start, end);
         
         
         

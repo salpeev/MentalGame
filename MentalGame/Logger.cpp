@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLLogger.h"
+#include "Logger.h"
 #include "GLConstants.h"
 #include <iostream>
 #include <OpenGLES/ES2/gl.h>
@@ -15,10 +15,9 @@ using namespace std;
 
 
 
-namespace Renderer
-{
-    void Log(const char *formatString, ...)
-    {
+namespace Renderer {
+    
+    void Log(const char *formatString, ...) {
         va_list params;
         char buf[BUFSIZ];
         
@@ -30,8 +29,7 @@ namespace Renderer
         va_end(params);
     }
     
-    bool CheckError()
-    {
+    bool CheckError() {
         GLenum errorType = glGetError();
         switch (errorType) {
             case GLSL_ERROR_NO_ERROR: return false;

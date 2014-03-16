@@ -8,7 +8,7 @@
 
 #include "Program.h"
 #include "GLConstants.h"
-#include "GLLogger.h"
+#include "Logger.h"
 #include "Attribute.h"
 #include "Uniform.h"
 #include <iostream>
@@ -18,8 +18,8 @@
 namespace Renderer {
     
     Program::Program(const string &rVertexShaderSource, const string &rFragmentShaderSource): m_attributes(NULL), m_uniforms(NULL) {
-        m_vertexShader = new GLSLShader(GLSL_SHADER_TYPE_VERTEX, rVertexShaderSource);
-        m_fragmentShader = new GLSLShader(GLSL_SHADER_TYPE_FRAGMENT, rFragmentShaderSource);
+        m_vertexShader = new Shader(GLSL_SHADER_TYPE_VERTEX, rVertexShaderSource);
+        m_fragmentShader = new Shader(GLSL_SHADER_TYPE_FRAGMENT, rFragmentShaderSource);
         
         Create();
         Link();

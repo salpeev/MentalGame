@@ -7,20 +7,21 @@
 //
 
 #pragma once
-#include "CompositeDrawing.h"
+#include "DrawingComposite.h"
+#include "TouchesHandler.h"
 
 
 
 namespace Renderer {
     
-    class DrawingController {
+    class DrawingController: public TouchesHandler {
     public:
         DrawingController();
         ~DrawingController();
         
-        CompositeDrawing *GetDrawing() const;
+        DrawingComposite *GetDrawing() const;
         
     private:
-        CompositeDrawing *m_drawing;
+        DrawingComposite *m_drawing;
     };
 }

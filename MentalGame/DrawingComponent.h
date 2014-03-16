@@ -8,6 +8,7 @@
 
 #pragma once
 #include "AnimationDelegate.h"
+#include "TouchesHandler.h"
 #include <vector>
 
 using namespace std;
@@ -16,11 +17,11 @@ using namespace std;
 
 namespace Renderer {
     
-    class CompositeDrawing;
+    class DrawingComposite;
     
     
     
-    class DrawingComponent: public AnimationDelegate {
+    class DrawingComponent: public AnimationDelegate, public TouchesHandler {
     public:
         DrawingComponent();
         virtual ~DrawingComponent();
@@ -29,16 +30,16 @@ namespace Renderer {
         virtual void DrawHierarchy() const = 0;
         
         void RemoveFromParentDrawing();
-        CompositeDrawing * GetParentDrawing() const;
+        DrawingComposite * GetParentDrawing() const;
         
     protected:
         virtual void Update(float interval) = 0;
         virtual void Draw() const = 0;
         
-        friend class CompositeDrawing;
-        void SetParentDrawing(CompositeDrawing *pDrawing);
+        friend class DrawingComposite;
+        void SetParentDrawing(DrawingComposite *pDrawing);
         
     private:
-        CompositeDrawing *m_parentDrawing;
+        DrawingComposite *m_parentDrawing;
     };
 }

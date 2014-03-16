@@ -7,7 +7,7 @@
 //
 
 #include "CollisionDetector.h"
-#include "GLLogger.h"
+#include "Logger.h"
 
 
 

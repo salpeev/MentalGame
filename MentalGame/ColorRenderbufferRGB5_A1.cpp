@@ -8,7 +8,7 @@
 
 #include "ColorRenderbufferRGB5_A1.h"
 #include "GLConstants.h"
-#include "GLLogger.h"
+#include "Logger.h"
 
 
 

@@ -21,6 +21,8 @@ namespace Renderer
     {
     public:
         Point();
+        
+        Point(GLfloat x, GLfloat y);
         Point(GLfloat x, GLfloat y, GLfloat z);
         
         Vector3 operator-(const Point &rPoint) const;

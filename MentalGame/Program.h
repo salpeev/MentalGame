@@ -7,7 +7,7 @@
 //
 
 #pragma once
-#include "GLSLShader.h"
+#include "Shader.h"
 #include "GLSLDrawRequest.h"
 #include <map>
 
@@ -43,8 +43,8 @@ namespace Renderer {
         
         GLuint m_programHandle;
         
-        GLSLShader *m_vertexShader;
-        GLSLShader *m_fragmentShader;
+        Shader *m_vertexShader;
+        Shader *m_fragmentShader;
         
         map<string, Attribute *> *m_attributes;
         map<string, Uniform *> *m_uniforms;

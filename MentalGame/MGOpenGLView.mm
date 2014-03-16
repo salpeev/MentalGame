@@ -20,8 +20,7 @@ using namespace Renderer;
 
 
 
-@interface MGOpenGLView ()
-{
+@interface MGOpenGLView () {
     MultisampleFramebuffer *m_sampleFramebuffer;
     MultisampleFramebuffer *m_resolveFramebuffer;
     Renderbuffer *m_sampleColorRenderbuffer;
@@ -30,6 +29,8 @@ using namespace Renderer;
 }
 
 @property (strong, nonatomic) EAGLContext *eaglContext;
+
+- (vector<Touch>)engineTouhesFromTouches:(NSSet *)touches;
 
 - (void)draw:(CADisplayLink *)displayLink;
 
@@ -99,22 +100,40 @@ using namespace Renderer;
 #pragma mark - Overridden
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+//    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
+//    RenderingEngine::SharedInstance().TouchesBegan(engineTouhes);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+//    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
+//    RenderingEngine::SharedInstance().TouchesMoved(engineTouhes);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+//    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
+//    RenderingEngine::SharedInstance().TouchesEnded(engineTouhes);
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+//    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
+//    RenderingEngine::SharedInstance().TouchesCancelled(engineTouhes);
 }
 
 #pragma mark - Private Methods
+
+- (vector<Touch>)engineTouhesFromTouches:(NSSet *)touches {
+    vector<Touch> engineTouches;
+    
+    CGFloat scale = [UIScreen mainScreen].scale;
+    for (UITouch *touch in touches) {
+        CGPoint touchLocation = [touch locationInView:self.window];
+        Renderer::Point engineLocation(touchLocation.x * scale, touchLocation.y * scale);
+        Touch engineTouch(engineLocation);
+        engineTouches.push_back(engineTouch);
+    }
+    
+    return engineTouches;
+}
 
 - (void)draw:(CADisplayLink *)displayLink {
     m_sampleFramebuffer->BindAll();
