@@ -80,9 +80,12 @@ using namespace Renderer;
         m_sampleFramebuffer->AttachDepthRenderbuffer(m_sampleDepthStencilRenderbuffer);
 //        m_sampleFramebuffer->AttachStencilRenderbuffer(m_sampleDepthStencilRenderbuffer);
         
+        float aspectRatio = width / height;
+        
         RenderingEngine::SharedInstance().SetFramebuffer(m_sampleFramebuffer);
         RenderingEngine::SharedInstance().SetWindowSize(CSize(width, height));
         RenderingEngine::SharedInstance().SetDrawingController(new GameDrawingController());
+        RenderingEngine::SharedInstance().SetProjection(Projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f));
 
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];

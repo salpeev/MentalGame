@@ -268,18 +268,36 @@ namespace Renderer {
     }
     
     Matrix4 Matrix4::Frustum(float left, float right, float bottom, float top, float near, float far) {
-        float a = 2 * near / (right - left);
-        float b = 2 * near / (top - bottom);
+        float a = 2.0f * near / (right - left);
+        float b = 2.0f * near / (top - bottom);
         float c = (right + left) / (right - left);
         float d = (top + bottom) / (top - bottom);
         float e = -(far + near) / (far - near);
-        float f = - 2 * far * near / (far - near);
+        float f = -2.0f * far * near / (far - near);
         
         Matrix4 m;
         m.x.x = a;   m.x.y = 0.0; m.x.z = 0.0; m.x.w = 0.0;
         m.y.x = 0.0; m.y.y = b;   m.y.z = 0.0; m.y.w = 0.0;
         m.z.x = c;   m.z.y = d;   m.z.z = e;   m.z.w = -1.0;
         m.w.x = 0.0; m.w.y = 0.0; m.w.z = f;   m.w.w = 0.0;
+        return m;
+    }
+    
+    Matrix4 Matrix4::Frustum(float fovy, float aspect, float near, float far) {
+        // TODO: Not tested. Doesn't work as expected
+        // http://unspecified.wordpress.com/2012/06/21/calculating-the-gluperspective-matrix-and-other-opengl-matrix-maths/
+        float f = 1.0f / tan(fovy / 2.0f);
+        
+        float a = f / aspect;
+        float b = f;
+        float c = (near + far) / (near - far);
+        float d = 2.0f * near * far / (near - far);
+        
+        Matrix4 m;
+        m.x.x = a;   m.x.y = 0.0; m.x.z = 0.0; m.x.w = 0.0;
+        m.y.x = 0.0; m.y.y = b;   m.y.z = 0.0; m.y.w = 0.0;
+        m.z.x = 0.0; m.z.y = 0.0; m.z.z = c;   m.z.w = -1.0;
+        m.w.x = 0.0; m.w.y = 0.0; m.w.z = d;   m.w.w = 0.0;
         return m;
     }
     

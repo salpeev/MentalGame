@@ -56,6 +56,7 @@
 		B4D64F8F18817BCC005E78AC /* ProjectionModelviewInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8D18817BCC005E78AC /* ProjectionModelviewInitializer.cpp */; };
 		B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */; };
 		B4DBE42A18D5E4E3004CB98F /* TouchesHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DBE42818D5E4E3004CB98F /* TouchesHandler.cpp */; };
+		B4DBE42D18D8C13B004CB98F /* Projection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DBE42B18D8C13B004CB98F /* Projection.cpp */; };
 		B4E069D71891C11300F2E995 /* DrawingComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4E069D51891C11300F2E995 /* DrawingComposite.cpp */; };
 		B4E069DA1891E06200F2E995 /* ColorGlassDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4E069D81891E06200F2E995 /* ColorGlassDrawing.cpp */; };
 		B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971317DB671400F4A436 /* UIKit.framework */; };
@@ -178,6 +179,8 @@
 		B4DB8F9A185343B800FD292D /* GLSLDrawRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawRequest.h; sourceTree = "<group>"; };
 		B4DBE42818D5E4E3004CB98F /* TouchesHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchesHandler.cpp; sourceTree = "<group>"; };
 		B4DBE42918D5E4E3004CB98F /* TouchesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchesHandler.h; sourceTree = "<group>"; };
+		B4DBE42B18D8C13B004CB98F /* Projection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projection.cpp; sourceTree = "<group>"; };
+		B4DBE42C18D8C13B004CB98F /* Projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projection.h; sourceTree = "<group>"; };
 		B4E069D51891C11300F2E995 /* DrawingComposite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingComposite.cpp; sourceTree = "<group>"; };
 		B4E069D61891C11300F2E995 /* DrawingComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingComposite.h; sourceTree = "<group>"; };
 		B4E069D81891E06200F2E995 /* ColorGlassDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorGlassDrawing.cpp; sourceTree = "<group>"; };
@@ -704,6 +707,8 @@
 				B41CAA2B18AC1ABA001E1B1A /* Plane.h */,
 				B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */,
 				B4D1B85118AEC120004FD4B2 /* Polyhedron.h */,
+				B4DBE42B18D8C13B004CB98F /* Projection.cpp */,
+				B4DBE42C18D8C13B004CB98F /* Projection.h */,
 			);
 			name = "Geometry Primitives";
 			sourceTree = "<group>";
@@ -799,6 +804,7 @@
 				B4E0972017DB671400F4A436 /* main.m in Sources */,
 				B4E069DA1891E06200F2E995 /* ColorGlassDrawing.cpp in Sources */,
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
+				B4DBE42D18D8C13B004CB98F /* Projection.cpp in Sources */,
 				B4EF847A186AE06E00234C28 /* Vector.cpp in Sources */,
 				B41CAA2518AC0C76001E1B1A /* DrawingLeaf.cpp in Sources */,
 				B47D229E18BA43DF006A0386 /* Texture.cpp in Sources */,

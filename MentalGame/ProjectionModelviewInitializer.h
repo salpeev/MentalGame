@@ -18,16 +18,13 @@ namespace Renderer {
         ProjectionModelviewInitializer();
         ~ProjectionModelviewInitializer();
         
-        void SetProjectionMatrix(const Matrix4 &rProjectionMatrix);
         void SetModelviewMatrix(const Matrix4 &rModelviewMatix);
         
-        const Matrix4 & GetProjectionMatrix() const;
         const Matrix4 & GetModelviewMatrix() const;
         
         void InitializeUniforms(map<string, Uniform *> *pUniforms) const;
         
     private:
-        Matrix4 m_projection;
         Matrix4 m_modelview;
     };
 }

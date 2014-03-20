@@ -11,6 +11,7 @@
 #include "Size.h"
 #include "Rect.h"
 #include "Touch.h"
+#include "Projection.h"
 #include "DrawingController.h"
 
 
@@ -33,6 +34,9 @@ namespace Renderer {
         void SetWindowSize(const CSize &rSize);
         CSize GetWindowSize() const;
         
+        void SetProjection(const Projection &rProjection);
+        Projection GetProjection() const;
+        
         void SetRenderFrame(const Rect &rFrame) const;
         void ResetRenderFrame() const;
         Rect GetRenderFrame() const;
@@ -52,6 +56,7 @@ namespace Renderer {
         RenderingEngine & operator= (const RenderingEngine &rRenderingEngine) = delete;
         
         CSize m_windowSize;
+        Projection m_projection;
         Framebuffer *m_framebuffer;
         DrawingController * m_drawingController;
     };

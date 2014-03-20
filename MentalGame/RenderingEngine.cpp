@@ -16,6 +16,7 @@ namespace Renderer {
     
 #pragma mark - Lifecycle
     
+    // TODO: Size has default constructor, that initializes to 0. Is initialization required here?
     RenderingEngine::RenderingEngine(): m_framebuffer(nullptr), m_drawingController(nullptr), m_windowSize(0.0f, 0.0f) {
         
     }
@@ -50,6 +51,14 @@ namespace Renderer {
     
     CSize RenderingEngine::GetWindowSize() const {
         return m_windowSize;
+    }
+    
+    void RenderingEngine::SetProjection(const Projection &rProjection) {
+        m_projection = rProjection;
+    }
+    
+    Projection RenderingEngine::GetProjection() const {
+        return m_projection;
     }
     
     void RenderingEngine::SetRenderFrame(const Rect &rFrame) const {

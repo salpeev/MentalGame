@@ -69,8 +69,8 @@ namespace Renderer {
         
         const float * Pointer() const;
         
-        // TODO: There is another way to create frustum
         static Matrix4 Frustum(float left, float right, float bottom, float top, float near, float far);
+        static Matrix4 Frustum(float fovy, float aspect, float near, float far);    // Doesn't work as expected
         static Matrix4 Translation(float xTranslation, float yTranslation, float zTranslation);
         static Matrix4 RotationX(float radians);
         static Matrix4 RotationY(float radians);
