@@ -43,11 +43,11 @@ namespace Renderer {
         
         void Render(float interval) const;
         
-//        // Touches
-//        void TouchesBegan(vector<Touch> &rTouches) const;
-//        void TouchesMoved(vector<Touch> &rTouches) const;
-//        void TouchesEnded(vector<Touch> &rTouches) const;
-//        void TouchesCancelled(vector<Touch> &rTouches) const;
+        // Touches
+        void HandleTouchesBegan(vector<Touch> &rTouches) const;
+        void HandleTouchesMoved(vector<Touch> &rTouches) const;
+        void HandleTouchesEnded(vector<Touch> &rTouches) const;
+        void HandleTouchesCancelled(vector<Touch> &rTouches) const;
         
     private:
         RenderingEngine();

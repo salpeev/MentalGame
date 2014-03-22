@@ -37,6 +37,10 @@ namespace Renderer {
 //        m_projection = Matrix4::Frustum(fovy, aspect, near, far);
     }
     
+    Rect Projection::GetFrontRect() const {
+        return m_frontRect;
+    }
+    
     Matrix4 Projection::GetProjectionMatrix() const {
         return m_projectionMatrix;
     }

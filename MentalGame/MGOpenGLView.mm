@@ -103,23 +103,23 @@ using namespace Renderer;
 #pragma mark - Overridden
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
-//    RenderingEngine::SharedInstance().TouchesBegan(engineTouhes);
+    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
+    RenderingEngine::SharedInstance().HandleTouchesBegan(engineTouhes);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-//    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
-//    RenderingEngine::SharedInstance().TouchesMoved(engineTouhes);
+    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
+    RenderingEngine::SharedInstance().HandleTouchesMoved(engineTouhes);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
-//    RenderingEngine::SharedInstance().TouchesEnded(engineTouhes);
+    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
+    RenderingEngine::SharedInstance().HandleTouchesEnded(engineTouhes);
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-//    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
-//    RenderingEngine::SharedInstance().TouchesCancelled(engineTouhes);
+    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
+    RenderingEngine::SharedInstance().HandleTouchesCancelled(engineTouhes);
 }
 
 #pragma mark - Private Methods
@@ -127,10 +127,13 @@ using namespace Renderer;
 - (vector<Touch>)engineTouhesFromTouches:(NSSet *)touches {
     vector<Touch> engineTouches;
     
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
     CGFloat scale = [UIScreen mainScreen].scale;
     for (UITouch *touch in touches) {
         CGPoint touchLocation = [touch locationInView:self.window];
-        Renderer::Point engineLocation(touchLocation.x * scale, touchLocation.y * scale);
+        CGFloat yConverted = screenSize.height - touchLocation.y;
+        
+        Renderer::Point engineLocation(touchLocation.x * scale, yConverted * scale);
         Touch engineTouch(engineLocation);
         engineTouches.push_back(engineTouch);
     }

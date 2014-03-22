@@ -19,6 +19,7 @@ namespace Renderer {
         ~Touch();
         
         Point GetWindowPosition() const;
+        Point GetProjectionPosition() const;
         
     private:
         Point m_windowPosition;

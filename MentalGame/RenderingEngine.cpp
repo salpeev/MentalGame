@@ -87,21 +87,22 @@ namespace Renderer {
         m_drawingController->GetDrawing()->DrawHierarchy();
     }
     
-//#pragma mark Touches
-//    
-//    void RenderingEngine::TouchesBegan(vector<Touch> &rTouches) const {
-//        
-//    }
-//    
-//    void RenderingEngine::TouchesMoved(vector<Touch> &rTouches) const {
-//        
-//    }
-//    
-//    void RenderingEngine::TouchesEnded(vector<Touch> &rTouches) const {
-//        
-//    }
-//    
-//    void RenderingEngine::TouchesCancelled(vector<Touch> &rTouches) const {
-//        
-//    }
+#pragma mark Touches
+    
+    void RenderingEngine::HandleTouchesBegan(vector<Touch> &rTouches) const {
+        Touch touch = rTouches[0];
+        Log("AAA %f %f", touch.GetProjectionPosition().x, touch.GetProjectionPosition().y);
+    }
+    
+    void RenderingEngine::HandleTouchesMoved(vector<Touch> &rTouches) const {
+        
+    }
+    
+    void RenderingEngine::HandleTouchesEnded(vector<Touch> &rTouches) const {
+        
+    }
+    
+    void RenderingEngine::HandleTouchesCancelled(vector<Touch> &rTouches) const {
+        
+    }
 }

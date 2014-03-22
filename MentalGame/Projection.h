@@ -23,6 +23,7 @@ namespace Renderer {
         void SetFrustum(float left, float right, float bottom, float top, float near, float far);
         void SetFrustum(float fovy, float aspect, float near, float far);
         
+        Rect GetFrontRect() const;
         Matrix4 GetProjectionMatrix() const;
         
     private:
