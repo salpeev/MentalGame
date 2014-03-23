@@ -60,6 +60,21 @@ namespace Renderer {
         }
     }
     
+    void DrawingComponent::RemoveFromParentDrawing() {
+        m_parentDrawing->RemoveSubDrawing(this);
+    }
+    
+    DrawingComposite * DrawingComponent::GetParentDrawing() const {
+        return m_parentDrawing;
+    }
+    
+#pragma mark - Protected Methods
+    
+    void DrawingComponent::SetParentDrawing(DrawingComposite *pDrawing) {
+        m_parentDrawing = pDrawing;
+        SetNextTouchesHandler(pDrawing);
+    }
+    
     void DrawingComponent::SetModelviewModifier(ModelviewModifier *pModelviewModifier) {
         delete m_modelviewModifier;
         m_modelviewModifier = pModelviewModifier;
@@ -82,20 +97,5 @@ namespace Renderer {
         
         Matrix4 modelviewMatrix = parentMatrix * currentMatrix;
         return modelviewMatrix;
-    }
-    
-    void DrawingComponent::RemoveFromParentDrawing() {
-        m_parentDrawing->RemoveSubDrawing(this);
-    }
-    
-    DrawingComposite * DrawingComponent::GetParentDrawing() const {
-        return m_parentDrawing;
-    }
-    
-#pragma mark - Protected Methods
-    
-    void DrawingComponent::SetParentDrawing(DrawingComposite *pDrawing) {
-        m_parentDrawing = pDrawing;
-        SetNextTouchesHandler(pDrawing);
     }
 }

@@ -33,10 +33,6 @@ namespace Renderer {
         void AddAnimation(Animation *pAnimation);
         void UpdateAnimations(float interval);
         
-        void SetModelviewModifier(ModelviewModifier *pModelviewModifier);
-        ModelviewModifier *GetModelviewModifier() const;
-        Matrix4 GetModelviewMatrix() const;
-        
         void RemoveFromParentDrawing();
         DrawingComposite * GetParentDrawing() const;
         
@@ -46,6 +42,10 @@ namespace Renderer {
         
         friend class DrawingComposite;
         void SetParentDrawing(DrawingComposite *pDrawing);
+        
+        void SetModelviewModifier(ModelviewModifier *pModelviewModifier);
+        ModelviewModifier *GetModelviewModifier() const;
+        Matrix4 GetModelviewMatrix() const;
         
     private:
         DrawingComposite *m_parentDrawing;
