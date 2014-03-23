@@ -13,6 +13,7 @@
 		B408BB7817F6DD3C00CC6900 /* IndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7617F6DD3C00CC6900 /* IndexBuffer.cpp */; };
 		B41CAA2518AC0C76001E1B1A /* DrawingLeaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2318AC0C76001E1B1A /* DrawingLeaf.cpp */; };
 		B41CAA2C18AC1ABA001E1B1A /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */; };
+		B422969518DEEE73004A3089 /* ModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B422969318DEEE73004A3089 /* ModelviewModifier.cpp */; };
 		B42E7F7418CE1D8E0048515C /* RotateToQuaternionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7218CE1D8E0048515C /* RotateToQuaternionAnimation.cpp */; };
 		B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7618D5C2E80048515C /* DrawingController.cpp */; };
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
@@ -96,6 +97,8 @@
 		B41CAA2418AC0C76001E1B1A /* DrawingLeaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLeaf.h; sourceTree = "<group>"; };
 		B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
 		B41CAA2B18AC1ABA001E1B1A /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		B422969318DEEE73004A3089 /* ModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelviewModifier.cpp; sourceTree = "<group>"; };
+		B422969418DEEE73004A3089 /* ModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelviewModifier.h; sourceTree = "<group>"; };
 		B42E7F7218CE1D8E0048515C /* RotateToQuaternionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateToQuaternionAnimation.cpp; sourceTree = "<group>"; };
 		B42E7F7318CE1D8E0048515C /* RotateToQuaternionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateToQuaternionAnimation.h; sourceTree = "<group>"; };
 		B42E7F7618D5C2E80048515C /* DrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingController.cpp; sourceTree = "<group>"; };
@@ -241,6 +244,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B422969118DEEC93004A3089 /* Collisions */ = {
+			isa = PBXGroup;
+			children = (
+				B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */,
+				B4D1B84E18AEBBA9004FD4B2 /* CollisionDetector.h */,
+			);
+			name = Collisions;
+			sourceTree = "<group>";
+		};
+		B422969218DEEE4D004A3089 /* ModelviewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				B422969318DEEE73004A3089 /* ModelviewModifier.cpp */,
+				B422969418DEEE73004A3089 /* ModelviewModifier.h */,
+			);
+			name = ModelviewModifier;
+			sourceTree = "<group>";
+		};
 		B4246169182ED2BC00B51DB1 /* Program Container */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +357,7 @@
 				B4EF8485186B3CA900234C28 /* Logger */,
 				B4EF84771869EA1F00234C28 /* Geometry Primitives */,
 				B4D1B84C18AEBB84004FD4B2 /* Math */,
+				B422969118DEEC93004A3089 /* Collisions */,
 				B4D70D5E182C2EBE00771FA8 /* Program */,
 				B47D229B18BA439B006A0386 /* Texture */,
 				B4A1690818C1FCAA0097F2D1 /* Animation */,
@@ -352,6 +374,7 @@
 				B4E069D41891C08600F2E995 /* Drawing */,
 				B42E7F7518D5C2BD0048515C /* DrawingController */,
 				B4DBE42718D5E2CD004CB98F /* TouchesHandler */,
+				B422969218DEEE4D004A3089 /* ModelviewModifier */,
 				B4ECF823189D2282007E2669 /* RenderingEngine.cpp */,
 				B4ECF824189D2282007E2669 /* RenderingEngine.h */,
 			);
@@ -497,8 +520,6 @@
 			children = (
 				B4ECF82F18A4CE9B007E2669 /* Interpolator.cpp */,
 				B4ECF83018A4CE9B007E2669 /* Interpolator.h */,
-				B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */,
-				B4D1B84E18AEBBA9004FD4B2 /* CollisionDetector.h */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -854,6 +875,7 @@
 				B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */,
 				B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* Logger.cpp in Sources */,
+				B422969518DEEE73004A3089 /* ModelviewModifier.cpp in Sources */,
 				B42E7F7418CE1D8E0048515C /* RotateToQuaternionAnimation.cpp in Sources */,
 				B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */,
 				B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */,

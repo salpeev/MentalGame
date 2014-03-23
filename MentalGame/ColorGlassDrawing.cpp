@@ -118,12 +118,21 @@ namespace Renderer {
         delete m_shape;
     }
     
-    void ColorGlassDrawing::Update(float interval) {
+    Matrix4 ColorGlassDrawing::GetModelviewMatrix() const {
         Matrix4 rotationMatrix(m_quaternion.ToMatrix3());
+        Matrix4 translationMatrix = Matrix4::Translation(m_position.x, m_position.y, m_position.z);
+        Matrix4 modelviewMatrix = rotationMatrix * translationMatrix;
         
-        Matrix4 modelview(rotationMatrix);
-        modelview.MakeTranslation(m_position.x, m_position.y, m_position.z);
-        m_uniformInitializer->SetModelviewMatrix(modelview);
+        if (GetParentDrawing()) {
+            Matrix4 relativeMatrix = GetParentDrawing()->GetModelviewMatrix() * modelviewMatrix;
+            return relativeMatrix;
+        }
+        
+        return modelviewMatrix;
+    }
+    
+    void ColorGlassDrawing::Update(float interval) {
+        m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
         
         Matrix4 result = m_uniformInitializer->GetModelviewMatrix();
         Polyhedron polyhedron = m_shape->Transformed(result, true);

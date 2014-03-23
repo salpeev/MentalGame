@@ -28,6 +28,7 @@ namespace Renderer {
         
         virtual void UpdateHierarchy(float interval);
         virtual void DrawHierarchy() const = 0;
+        virtual Matrix4 GetModelviewMatrix() const;
         
         void RemoveFromParentDrawing();
         DrawingComposite * GetParentDrawing() const;

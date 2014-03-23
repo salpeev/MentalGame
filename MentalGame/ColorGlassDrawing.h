@@ -26,6 +26,8 @@ namespace Renderer {
         ColorGlassDrawing();
         ~ColorGlassDrawing();
         
+        Matrix4 GetModelviewMatrix() const;
+        
         // Animation delegate
         Point GetPosition() const;
         Quaternion GetQuaternion() const;

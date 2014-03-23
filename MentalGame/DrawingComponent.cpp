@@ -27,6 +27,10 @@ namespace Renderer {
         UpdateAnimations(interval);
     }
     
+    Matrix4 DrawingComponent::GetModelviewMatrix() const {
+        return Matrix4();
+    }
+    
     void DrawingComponent::RemoveFromParentDrawing() {
         m_parentDrawing->RemoveSubDrawing(this);
     }
