@@ -17,7 +17,7 @@
 #include "Polyhedron.h"
 #include "CollisionDetector.h"
 #include "MoveToAnimation.h"
-#include "RotateToQuaternionAnimation.h"
+#include "RotateByQuaternionAnimation.h"
 
 
 
@@ -85,6 +85,11 @@ namespace Renderer {
         indices.push_back(4);
         indices.push_back(5);
         
+        m_quaternionModifier = new QuaternionModelviewModifier();
+        m_positionModifier = new PositionModelviewModifier(m_quaternionModifier);
+        SetModelviewModifier(m_positionModifier);
+        
+        
         m_vertexBuffer = new VertexBuffer();
         m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(GLSLVertex1P1C), vertices.size());
         
@@ -118,17 +123,12 @@ namespace Renderer {
         delete m_shape;
     }
     
-    Matrix4 ColorGlassDrawing::GetModelviewMatrix() const {
-        Matrix4 rotationMatrix(m_quaternion.ToMatrix3());
-        Matrix4 translationMatrix = Matrix4::Translation(m_position.x, m_position.y, m_position.z);
-        Matrix4 modelviewMatrix = rotationMatrix * translationMatrix;
-        
-        if (GetParentDrawing()) {
-            Matrix4 relativeMatrix = GetParentDrawing()->GetModelviewMatrix() * modelviewMatrix;
-            return relativeMatrix;
-        }
-        
-        return modelviewMatrix;
+    PositionModelviewModifier * ColorGlassDrawing::GetPositionModelviewModifier() const {
+        return m_positionModifier;
+    }
+    
+    QuaternionModelviewModifier * ColorGlassDrawing::GetQuaternionModelviewModifier() const {
+        return m_quaternionModifier;
     }
     
     void ColorGlassDrawing::Update(float interval) {
@@ -153,11 +153,11 @@ namespace Renderer {
         if (duration > 3.0f && !added) {
             added = true;
             
-            MoveToAnimation *moveTo = new MoveToAnimation(Point(-2, -2, -9), 15, ANIMATION_CURVE_EASE_IN);
+            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point(-2, -2, -9), 1, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
             
             Quaternion newQuaternion = Quaternion::CreateFromAxisAngle(Vector3(1, 1, 0), M_PI);
-            RotateToQuaternionAnimation *rotateToQuaternion = new RotateToQuaternionAnimation(newQuaternion, 15, ANIMATION_CURVE_LINEAR);
+            RotateByQuaternionAnimation *rotateToQuaternion = new RotateByQuaternionAnimation(m_quaternionModifier, newQuaternion, 1, ANIMATION_CURVE_LINEAR);
             AddAnimation(rotateToQuaternion);
         }
     }
@@ -166,23 +166,4 @@ namespace Renderer {
         Program *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }
-    
-#pragma mark - AnimationDelegate
-    
-    Point ColorGlassDrawing::GetPosition() const {
-        return m_position;
-    }
-    
-    Quaternion ColorGlassDrawing::GetQuaternion() const {
-        return m_quaternion;
-    }
-    
-    void ColorGlassDrawing::SetPosition(const Point &rPosition) {
-        m_position = rPosition;
-    }
-    
-    void ColorGlassDrawing::SetQuaternion(const Quaternion &rQuaternion) {
-        m_quaternion = rQuaternion;
-    }
-    
 }

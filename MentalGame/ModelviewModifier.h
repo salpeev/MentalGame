@@ -7,6 +7,7 @@
 //
 
 #pragma once
+#include "Matrix.h"
 
 
 
@@ -14,7 +15,13 @@ namespace Renderer {
     
     class ModelviewModifier {
     public:
+        ModelviewModifier();
+        ModelviewModifier(ModelviewModifier *pPrevModifier);
+        virtual ~ModelviewModifier();
         
-    private:
+        virtual Matrix4 GetModelviewMatrix() const = 0;
+        
+    protected:
+        ModelviewModifier *m_prevModifier;
     };
 }

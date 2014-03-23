@@ -78,6 +78,10 @@ namespace Renderer {
         return matrix;
     }
     
+    Matrix4 Quaternion::ToMatrix4() const {
+        return Matrix4(ToMatrix3());
+    }
+    
     Quaternion Quaternion::operator-(const Quaternion &rQuaternion) const {
         Quaternion result(x - rQuaternion.x, y - rQuaternion.y, z - rQuaternion.z, w - rQuaternion.w);
         return result;

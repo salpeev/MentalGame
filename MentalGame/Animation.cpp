@@ -55,14 +55,4 @@ namespace Renderer {
             m_elapsedTime = m_duration;
         }
     }
-    
-#pragma mark - Protected Methods
-    
-    void Animation::SetAnimationDelegate(AnimationDelegate *pAnimationDelegate) {
-        m_animationDelegate = pAnimationDelegate;
-    }
-    
-    AnimationDelegate * Animation::GetAnimationDelegate() const {
-        return m_animationDelegate;
-    }
 }

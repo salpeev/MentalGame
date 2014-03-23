@@ -26,6 +26,7 @@ namespace Renderer {
         void Normalize();
         
         Matrix3 ToMatrix3() const;
+        Matrix4 ToMatrix4() const;
         
         Quaternion operator+(const Quaternion &rQuaternion) const;
         Quaternion operator-(const Quaternion &rQuaternion) const;

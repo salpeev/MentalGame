@@ -17,7 +17,7 @@ namespace Renderer {
     GameDrawingController::GameDrawingController() {
         // TODO: Memory management
         ColorGlassDrawing *colorGlassDrawing = new ColorGlassDrawing();
-        colorGlassDrawing->SetPosition(Point(0.0f, 0.0f, -5.5f));
+        colorGlassDrawing->GetPositionModelviewModifier()->SetPosition(Point(0.0f, 0.0f, -5.5f));
         GetDrawing()->AddSubDrawing(colorGlassDrawing);
         
         SegmentDrawing *segmentDrawing = new SegmentDrawing();

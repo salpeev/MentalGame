@@ -13,8 +13,8 @@
 
 namespace Renderer {
     
-    MoveToAnimation::MoveToAnimation(const Point &rPosition, float duration, ANIMATION_CURVE curve): Animation(duration, curve), m_endPosition(rPosition) {
-        
+    MoveToAnimation::MoveToAnimation(PositionModelviewModifier *pModelviewModifier, const Point &rPosition, float duration, ANIMATION_CURVE curve): Animation(duration, curve), m_modelviewModifier(pModelviewModifier), m_endPosition(rPosition) {
+        m_startPosition = m_modelviewModifier->GetPosition();
     }
     
     MoveToAnimation::~MoveToAnimation() {
@@ -34,14 +34,6 @@ namespace Renderer {
         intermediatePosition.y = m_startPosition.y + phase * vector.y;
         intermediatePosition.z = m_startPosition.z + phase * vector.z;
         
-        GetAnimationDelegate()->SetPosition(intermediatePosition);
-    }
-    
-#pragma mark - Protected Methods
-    
-    void MoveToAnimation::SetAnimationDelegate(AnimationDelegate *pAnimationDelegate) {
-        Animation::SetAnimationDelegate(pAnimationDelegate);
-        
-        m_startPosition = pAnimationDelegate->GetPosition();
+        m_modelviewModifier->SetPosition(intermediatePosition);
     }
 }

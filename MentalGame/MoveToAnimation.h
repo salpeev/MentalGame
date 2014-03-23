@@ -8,6 +8,7 @@
 
 #pragma once
 #include "Animation.h"
+#include "PositionModelviewModifier.h"
 
 
 
@@ -15,15 +16,13 @@ namespace Renderer {
     
     class MoveToAnimation: public Animation {
     public:
-        MoveToAnimation(const Point &rPosition, float duration, ANIMATION_CURVE curve);
+        MoveToAnimation(PositionModelviewModifier *pModelviewModifier, const Point &rPosition, float duration, ANIMATION_CURVE curve);
         ~MoveToAnimation();
         
         void Update(float interval);
         
-    protected:
-        void SetAnimationDelegate(AnimationDelegate *pAnimationDelegate);
-        
     private:
+        PositionModelviewModifier *m_modelviewModifier;
         Point m_startPosition;
         Point m_endPosition;
     };

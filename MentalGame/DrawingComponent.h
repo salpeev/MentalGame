@@ -7,8 +7,9 @@
 //
 
 #pragma once
-#include "AnimationDelegate.h"
+#include "Animation.h"
 #include "TouchesHandler.h"
+#include "ModelviewModifier.h"
 #include <vector>
 
 using namespace std;
@@ -21,14 +22,20 @@ namespace Renderer {
     
     
     
-    class DrawingComponent: public AnimationDelegate, public TouchesHandler {
+    class DrawingComponent: public TouchesHandler {
     public:
         DrawingComponent();
         virtual ~DrawingComponent();
         
         virtual void UpdateHierarchy(float interval);
         virtual void DrawHierarchy() const = 0;
-        virtual Matrix4 GetModelviewMatrix() const;
+        
+        void AddAnimation(Animation *pAnimation);
+        void UpdateAnimations(float interval);
+        
+        void SetModelviewModifier(ModelviewModifier *pModelviewModifier);
+        ModelviewModifier *GetModelviewModifier() const;
+        Matrix4 GetModelviewMatrix() const;
         
         void RemoveFromParentDrawing();
         DrawingComposite * GetParentDrawing() const;
@@ -42,5 +49,7 @@ namespace Renderer {
         
     private:
         DrawingComposite *m_parentDrawing;
+        ModelviewModifier *m_modelviewModifier;
+        vector<Animation *> *m_animations;
     };
 }

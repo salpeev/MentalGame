@@ -12,6 +12,7 @@
 
 
 namespace Renderer {
+    
     Point::Point(): Point(0.0f, 0.0f, 0.0f) {
         
     }

@@ -7,7 +7,6 @@
 //
 
 #pragma once
-#include "DrawingComponent.h"
 
 
 
@@ -35,16 +34,9 @@ namespace Renderer {
         
         virtual void Update(float interval);
         
-    protected:
-        friend class AnimationDelegate;
-        virtual void SetAnimationDelegate(AnimationDelegate *pAnimationDelegate);
-        AnimationDelegate * GetAnimationDelegate() const;
-        
     private:
         float m_duration;
         float m_elapsedTime;
         ANIMATION_CURVE m_curve;
-        
-        AnimationDelegate *m_animationDelegate;
     };
 }

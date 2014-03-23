@@ -1,5 +1,5 @@
 //
-//  RotateToQuaternionAnimation.h
+//  RotateByQuaternionAnimation.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 10.03.14.
@@ -8,15 +8,16 @@
 
 #pragma once
 #include "Animation.h"
+#include "QuaternionModelviewModifier.h"
 
 
 
 namespace Renderer {
     
-    class RotateToQuaternionAnimation: public Animation {
+    class RotateByQuaternionAnimation: public Animation {
     public:
-        RotateToQuaternionAnimation(const Quaternion &rQuaternion, float duration, ANIMATION_CURVE curve);
-        ~RotateToQuaternionAnimation();
+        RotateByQuaternionAnimation(QuaternionModelviewModifier *pModelviewModifier, const Quaternion &rQuaternion, float duration, ANIMATION_CURVE curve);
+        ~RotateByQuaternionAnimation();
         
         void Update(float interval);
         
@@ -24,6 +25,7 @@ namespace Renderer {
         void SetAnimationDelegate(AnimationDelegate *pAnimationDelegate);
         
     private:
+        QuaternionModelviewModifier *m_modelviewModifier;
         Quaternion m_startQuaternion;
         Quaternion m_endQuaternion;
     };

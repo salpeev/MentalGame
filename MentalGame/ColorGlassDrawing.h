@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
 #include "DrawingComposite.h"
+#include "PositionModelviewModifier.h"
+#include "QuaternionModelviewModifier.h"
 
 
 
@@ -26,14 +29,8 @@ namespace Renderer {
         ColorGlassDrawing();
         ~ColorGlassDrawing();
         
-        Matrix4 GetModelviewMatrix() const;
-        
-        // Animation delegate
-        Point GetPosition() const;
-        Quaternion GetQuaternion() const;
-        
-        void SetPosition(const Point &rPosition);
-        void SetQuaternion(const Quaternion &rQuaternion);
+        PositionModelviewModifier *GetPositionModelviewModifier() const;
+        QuaternionModelviewModifier *GetQuaternionModelviewModifier() const;
         
     protected:
         void Update(float interval);
@@ -47,7 +44,7 @@ namespace Renderer {
         GLSLDrawRequest *m_drawRequest;
         Polyhedron *m_shape;
         
-        Point m_position;
-        Quaternion m_quaternion;
+        PositionModelviewModifier *m_positionModifier;
+        QuaternionModelviewModifier *m_quaternionModifier;
     };
 }

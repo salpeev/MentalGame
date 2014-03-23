@@ -13,8 +13,10 @@
 		B408BB7817F6DD3C00CC6900 /* IndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7617F6DD3C00CC6900 /* IndexBuffer.cpp */; };
 		B41CAA2518AC0C76001E1B1A /* DrawingLeaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2318AC0C76001E1B1A /* DrawingLeaf.cpp */; };
 		B41CAA2C18AC1ABA001E1B1A /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */; };
-		B422969518DEEE73004A3089 /* ModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B422969318DEEE73004A3089 /* ModelviewModifier.cpp */; };
-		B42E7F7418CE1D8E0048515C /* RotateToQuaternionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7218CE1D8E0048515C /* RotateToQuaternionAnimation.cpp */; };
+		B42296B018DEFC5E004A3089 /* ModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296AF18DEFC5E004A3089 /* ModelviewModifier.cpp */; };
+		B42296B318DF0159004A3089 /* PositionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B118DF0159004A3089 /* PositionModelviewModifier.cpp */; };
+		B42296B618DF0167004A3089 /* QuaternionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */; };
+		B42E7F7418CE1D8E0048515C /* RotateByQuaternionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */; };
 		B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7618D5C2E80048515C /* DrawingController.cpp */; };
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
 		B42E7F7F18D5CD470048515C /* Touch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7D18D5CD470048515C /* Touch.cpp */; };
@@ -39,7 +41,6 @@
 		B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1690918C1FCEA0097F2D1 /* Animation.cpp */; };
 		B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */; };
 		B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */; };
-		B4B095EE18CB4FA70045789A /* AnimationDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B095EC18CB4FA70045789A /* AnimationDelegate.cpp */; };
 		B4B095F118CCEC430045789A /* MoveToAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B095EF18CCEC430045789A /* MoveToAnimation.cpp */; };
 		B4CE1DE417DFB72C009094E8 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE217DFB72C009094E8 /* Program.cpp */; };
 		B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE517DFBBD9009094E8 /* Shader.cpp */; };
@@ -97,10 +98,14 @@
 		B41CAA2418AC0C76001E1B1A /* DrawingLeaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLeaf.h; sourceTree = "<group>"; };
 		B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
 		B41CAA2B18AC1ABA001E1B1A /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
-		B422969318DEEE73004A3089 /* ModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelviewModifier.cpp; sourceTree = "<group>"; };
 		B422969418DEEE73004A3089 /* ModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelviewModifier.h; sourceTree = "<group>"; };
-		B42E7F7218CE1D8E0048515C /* RotateToQuaternionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateToQuaternionAnimation.cpp; sourceTree = "<group>"; };
-		B42E7F7318CE1D8E0048515C /* RotateToQuaternionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateToQuaternionAnimation.h; sourceTree = "<group>"; };
+		B42296AF18DEFC5E004A3089 /* ModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelviewModifier.cpp; sourceTree = "<group>"; };
+		B42296B118DF0159004A3089 /* PositionModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionModelviewModifier.cpp; sourceTree = "<group>"; };
+		B42296B218DF0159004A3089 /* PositionModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionModelviewModifier.h; sourceTree = "<group>"; };
+		B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuaternionModelviewModifier.cpp; sourceTree = "<group>"; };
+		B42296B518DF0167004A3089 /* QuaternionModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuaternionModelviewModifier.h; sourceTree = "<group>"; };
+		B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateByQuaternionAnimation.cpp; sourceTree = "<group>"; };
+		B42E7F7318CE1D8E0048515C /* RotateByQuaternionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateByQuaternionAnimation.h; sourceTree = "<group>"; };
 		B42E7F7618D5C2E80048515C /* DrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingController.cpp; sourceTree = "<group>"; };
 		B42E7F7718D5C2E80048515C /* DrawingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingController.h; sourceTree = "<group>"; };
 		B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameDrawingController.cpp; sourceTree = "<group>"; };
@@ -150,8 +155,6 @@
 		B4AC5D7D1896FB8B00FBE8D8 /* Renderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderbuffer.h; sourceTree = "<group>"; };
 		B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Framebuffer.cpp; sourceTree = "<group>"; };
 		B4AC5D801896FB9500FBE8D8 /* Framebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Framebuffer.h; sourceTree = "<group>"; };
-		B4B095EC18CB4FA70045789A /* AnimationDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationDelegate.cpp; sourceTree = "<group>"; };
-		B4B095ED18CB4FA70045789A /* AnimationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDelegate.h; sourceTree = "<group>"; };
 		B4B095EF18CCEC430045789A /* MoveToAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveToAnimation.cpp; sourceTree = "<group>"; };
 		B4B095F018CCEC430045789A /* MoveToAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveToAnimation.h; sourceTree = "<group>"; };
 		B4CE1DE217DFB72C009094E8 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cpp; sourceTree = "<group>"; };
@@ -256,8 +259,12 @@
 		B422969218DEEE4D004A3089 /* ModelviewModifier */ = {
 			isa = PBXGroup;
 			children = (
-				B422969318DEEE73004A3089 /* ModelviewModifier.cpp */,
+				B42296AF18DEFC5E004A3089 /* ModelviewModifier.cpp */,
 				B422969418DEEE73004A3089 /* ModelviewModifier.h */,
+				B42296B118DF0159004A3089 /* PositionModelviewModifier.cpp */,
+				B42296B218DF0159004A3089 /* PositionModelviewModifier.h */,
+				B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */,
+				B42296B518DF0167004A3089 /* QuaternionModelviewModifier.h */,
 			);
 			name = ModelviewModifier;
 			sourceTree = "<group>";
@@ -451,14 +458,12 @@
 		B4A1690818C1FCAA0097F2D1 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				B4B095EC18CB4FA70045789A /* AnimationDelegate.cpp */,
-				B4B095ED18CB4FA70045789A /* AnimationDelegate.h */,
 				B4A1690918C1FCEA0097F2D1 /* Animation.cpp */,
 				B4A1690A18C1FCEA0097F2D1 /* Animation.h */,
 				B4B095EF18CCEC430045789A /* MoveToAnimation.cpp */,
 				B4B095F018CCEC430045789A /* MoveToAnimation.h */,
-				B42E7F7218CE1D8E0048515C /* RotateToQuaternionAnimation.cpp */,
-				B42E7F7318CE1D8E0048515C /* RotateToQuaternionAnimation.h */,
+				B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */,
+				B42E7F7318CE1D8E0048515C /* RotateByQuaternionAnimation.h */,
 			);
 			name = Animation;
 			sourceTree = "<group>";
@@ -839,6 +844,8 @@
 				B42E7F7F18D5CD470048515C /* Touch.cpp in Sources */,
 				B468F70718999D1100AAE773 /* ColorRenderbufferRGB5_A1.cpp in Sources */,
 				B4ECF82E189E7132007E2669 /* Rect.cpp in Sources */,
+				B42296B618DF0167004A3089 /* QuaternionModelviewModifier.cpp in Sources */,
+				B42296B318DF0159004A3089 /* PositionModelviewModifier.cpp in Sources */,
 				B4EF847D186AE07900234C28 /* Matrix.cpp in Sources */,
 				B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */,
 				B469605717F76B5E002BCF6C /* Point.cpp in Sources */,
@@ -862,9 +869,9 @@
 				B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */,
 				B4CE1DE417DFB72C009094E8 /* Program.cpp in Sources */,
 				B4EF8494187863D900234C28 /* VertexArray.cpp in Sources */,
+				B42296B018DEFC5E004A3089 /* ModelviewModifier.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* VertexBuffer.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */,
-				B4B095EE18CB4FA70045789A /* AnimationDelegate.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */,
@@ -875,8 +882,7 @@
 				B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */,
 				B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* Logger.cpp in Sources */,
-				B422969518DEEE73004A3089 /* ModelviewModifier.cpp in Sources */,
-				B42E7F7418CE1D8E0048515C /* RotateToQuaternionAnimation.cpp in Sources */,
+				B42E7F7418CE1D8E0048515C /* RotateByQuaternionAnimation.cpp in Sources */,
 				B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */,
 				B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */,
 				B46FCD0118B6D902004E6221 /* SegmentDrawing.cpp in Sources */,

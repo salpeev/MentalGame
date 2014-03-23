@@ -11,14 +11,13 @@
 
 
 
-namespace Renderer
-{
+namespace Renderer {
+    
     class Vector3;
     
     
     
-    class Point
-    {
+    class Point {
     public:
         Point();
         

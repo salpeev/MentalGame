@@ -7,3 +7,20 @@
 //
 
 #include "ModelviewModifier.h"
+
+
+
+namespace Renderer {
+    
+    ModelviewModifier::ModelviewModifier(): m_prevModifier(nullptr) {
+        
+    }
+    
+    ModelviewModifier::ModelviewModifier(ModelviewModifier *pPrevModifier): m_prevModifier(pPrevModifier) {
+        
+    }
+    
+    ModelviewModifier::~ModelviewModifier() {
+        delete m_prevModifier;
+    }
+}
