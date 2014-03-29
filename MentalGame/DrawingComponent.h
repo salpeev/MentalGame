@@ -29,6 +29,8 @@ namespace Renderer {
         
         virtual void UpdateHierarchy(float interval);
         virtual void DrawHierarchy() const = 0;
+        virtual bool PointInside(const Point &rPoint) const;
+        virtual const DrawingComponent * HitTest(const Point &rPoint) const = 0;
         
         void AddAnimation(Animation *pAnimation);
         void UpdateAnimations(float interval);

@@ -21,6 +21,14 @@ namespace Renderer {
         Draw();
     }
     
+    const DrawingComponent * DrawingLeaf::HitTest(const Point &rPoint) const {
+        if (PointInside(rPoint)) {
+            return this;
+        }
+        
+        return nullptr;
+    }
+    
     void DrawingLeaf::Update(float interval) {
         
     }

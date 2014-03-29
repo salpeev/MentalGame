@@ -23,6 +23,7 @@ namespace Renderer {
         
         void UpdateHierarchy(float interval);
         void DrawHierarchy() const;
+        const DrawingComponent * HitTest(const Point &rPoint) const;
         
         void AddSubDrawing(DrawingComponent *pDrawing);
         void RemoveSubDrawing(DrawingComponent *pDrawing);

@@ -16,6 +16,7 @@
 		B42296B018DEFC5E004A3089 /* ModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296AF18DEFC5E004A3089 /* ModelviewModifier.cpp */; };
 		B42296B318DF0159004A3089 /* PositionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B118DF0159004A3089 /* PositionModelviewModifier.cpp */; };
 		B42296B618DF0167004A3089 /* QuaternionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */; };
+		B42296BC18E6DA99004A3089 /* FullscreenDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296BA18E6DA99004A3089 /* FullscreenDrawing.cpp */; };
 		B42E7F7418CE1D8E0048515C /* RotateByQuaternionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */; };
 		B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7618D5C2E80048515C /* DrawingController.cpp */; };
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
@@ -56,7 +57,7 @@
 		B4D64F87188179F6005E78AC /* AttributeInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F85188179F6005E78AC /* AttributeInitializer.cpp */; };
 		B4D64F8A18817A02005E78AC /* UniformInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8818817A02005E78AC /* UniformInitializer.cpp */; };
 		B4D64F8F18817BCC005E78AC /* ProjectionModelviewInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8D18817BCC005E78AC /* ProjectionModelviewInitializer.cpp */; };
-		B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */; };
+		B4DB8F9B185343B800FD292D /* DrawRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* DrawRequest.cpp */; };
 		B4DBE42A18D5E4E3004CB98F /* TouchesHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DBE42818D5E4E3004CB98F /* TouchesHandler.cpp */; };
 		B4DBE42D18D8C13B004CB98F /* Projection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DBE42B18D8C13B004CB98F /* Projection.cpp */; };
 		B4E069D71891C11300F2E995 /* DrawingComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4E069D51891C11300F2E995 /* DrawingComposite.cpp */; };
@@ -104,6 +105,8 @@
 		B42296B218DF0159004A3089 /* PositionModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionModelviewModifier.h; sourceTree = "<group>"; };
 		B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuaternionModelviewModifier.cpp; sourceTree = "<group>"; };
 		B42296B518DF0167004A3089 /* QuaternionModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuaternionModelviewModifier.h; sourceTree = "<group>"; };
+		B42296BA18E6DA99004A3089 /* FullscreenDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FullscreenDrawing.cpp; sourceTree = "<group>"; };
+		B42296BB18E6DA99004A3089 /* FullscreenDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullscreenDrawing.h; sourceTree = "<group>"; };
 		B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateByQuaternionAnimation.cpp; sourceTree = "<group>"; };
 		B42E7F7318CE1D8E0048515C /* RotateByQuaternionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateByQuaternionAnimation.h; sourceTree = "<group>"; };
 		B42E7F7618D5C2E80048515C /* DrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingController.cpp; sourceTree = "<group>"; };
@@ -181,8 +184,8 @@
 		B4D64F8918817A02005E78AC /* UniformInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniformInitializer.h; sourceTree = "<group>"; };
 		B4D64F8D18817BCC005E78AC /* ProjectionModelviewInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectionModelviewInitializer.cpp; sourceTree = "<group>"; };
 		B4D64F8E18817BCC005E78AC /* ProjectionModelviewInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionModelviewInitializer.h; sourceTree = "<group>"; };
-		B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLDrawRequest.cpp; sourceTree = "<group>"; };
-		B4DB8F9A185343B800FD292D /* GLSLDrawRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLDrawRequest.h; sourceTree = "<group>"; };
+		B4DB8F99185343B800FD292D /* DrawRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawRequest.cpp; sourceTree = "<group>"; };
+		B4DB8F9A185343B800FD292D /* DrawRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRequest.h; sourceTree = "<group>"; };
 		B4DBE42818D5E4E3004CB98F /* TouchesHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchesHandler.cpp; sourceTree = "<group>"; };
 		B4DBE42918D5E4E3004CB98F /* TouchesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchesHandler.h; sourceTree = "<group>"; };
 		B4DBE42B18D8C13B004CB98F /* Projection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projection.cpp; sourceTree = "<group>"; };
@@ -283,6 +286,8 @@
 			children = (
 				B42E7F7618D5C2E80048515C /* DrawingController.cpp */,
 				B42E7F7718D5C2E80048515C /* DrawingController.h */,
+				B42296BA18E6DA99004A3089 /* FullscreenDrawing.cpp */,
+				B42296BB18E6DA99004A3089 /* FullscreenDrawing.h */,
 			);
 			name = DrawingController;
 			sourceTree = "<group>";
@@ -555,7 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A98DA3187C288300D05BBB /* Program Initializer */,
-				B4DB8F98185343A400FD292D /* GLSLDrawRequest */,
+				B4DB8F98185343A400FD292D /* DrawRequest */,
 				B4CE1DE217DFB72C009094E8 /* Program.cpp */,
 				B4CE1DE317DFB72C009094E8 /* Program.h */,
 				B4CE1DE517DFBBD9009094E8 /* Shader.cpp */,
@@ -564,13 +569,13 @@
 			name = Program;
 			sourceTree = "<group>";
 		};
-		B4DB8F98185343A400FD292D /* GLSLDrawRequest */ = {
+		B4DB8F98185343A400FD292D /* DrawRequest */ = {
 			isa = PBXGroup;
 			children = (
-				B4DB8F99185343B800FD292D /* GLSLDrawRequest.cpp */,
-				B4DB8F9A185343B800FD292D /* GLSLDrawRequest.h */,
+				B4DB8F99185343B800FD292D /* DrawRequest.cpp */,
+				B4DB8F9A185343B800FD292D /* DrawRequest.h */,
 			);
-			name = GLSLDrawRequest;
+			name = DrawRequest;
 			sourceTree = "<group>";
 		};
 		B4DBE42718D5E2CD004CB98F /* TouchesHandler */ = {
@@ -864,6 +869,7 @@
 				B408BB7817F6DD3C00CC6900 /* IndexBuffer.cpp in Sources */,
 				B4ECF83118A4CE9B007E2669 /* Interpolator.cpp in Sources */,
 				B468F71D1899B4E600AAE773 /* MultisampleFramebuffer.cpp in Sources */,
+				B42296BC18E6DA99004A3089 /* FullscreenDrawing.cpp in Sources */,
 				B47177DC188BEA75006B6215 /* GLSLProgramContainer.cpp in Sources */,
 				B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */,
 				B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */,
@@ -871,7 +877,7 @@
 				B4EF8494187863D900234C28 /* VertexArray.cpp in Sources */,
 				B42296B018DEFC5E004A3089 /* ModelviewModifier.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* VertexBuffer.cpp in Sources */,
-				B4DB8F9B185343B800FD292D /* GLSLDrawRequest.cpp in Sources */,
+				B4DB8F9B185343B800FD292D /* DrawRequest.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */,

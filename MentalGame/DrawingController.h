@@ -7,7 +7,7 @@
 //
 
 #pragma once
-#include "DrawingComposite.h"
+#include "FullscreenDrawing.h"
 #include "TouchesHandler.h"
 
 
@@ -19,9 +19,9 @@ namespace Renderer {
         DrawingController();
         ~DrawingController();
         
-        DrawingComposite *GetDrawing() const;
+        FullscreenDrawing *GetDrawing() const;
         
     private:
-        DrawingComposite *m_drawing;
+        FullscreenDrawing *m_drawing;
     };
 }

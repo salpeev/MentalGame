@@ -33,6 +33,7 @@ namespace Renderer {
         Rect frontRect = RenderingEngine::SharedInstance().GetProjection().GetFrontRect();
         float xPosition = frontRect.x + frontRect.width * xOffset;
         float yPosition = frontRect.y + frontRect.height * yOffset;
-        return Point(xPosition, yPosition);
+        float zPosition = RenderingEngine::SharedInstance().GetProjection().GetDistance();
+        return Point(xPosition, yPosition, zPosition);
     }
 }

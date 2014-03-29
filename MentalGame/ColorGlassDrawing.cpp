@@ -123,6 +123,17 @@ namespace Renderer {
         delete m_shape;
     }
     
+    bool ColorGlassDrawing::PointInside(const Point &rPoint) const {
+        float start = 0.0f;
+        float end = FLT_MAX;
+        
+        Matrix4 modelview = m_uniformInitializer->GetModelviewMatrix();
+        Polyhedron transformedShape = m_shape->Transformed(modelview, false);
+        
+        bool intersect = CollisionDetector::IntersectSegmentPolyhedron(Point(), rPoint, transformedShape, start, end);
+        return intersect;
+    }
+    
     PositionModelviewModifier * ColorGlassDrawing::GetPositionModelviewModifier() const {
         return m_positionModifier;
     }
@@ -134,30 +145,17 @@ namespace Renderer {
     void ColorGlassDrawing::Update(float interval) {
         m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
         
-        Matrix4 result = m_uniformInitializer->GetModelviewMatrix();
-        Polyhedron polyhedron = m_shape->Transformed(result, true);
-        
-        Point pA(-1.5, -1.5, -4);
-        Point pB(1.5, 1.5, -5);
-        
-//        float start;
-//        float end;
-//        bool intersects = CollisionDetector::IntersectSegmentPolyhedron(pA, pB, polyhedron, start, end);
-//        Log("INTERSECTION: %d     %f   %f", intersects, start, end);
-        
-        
-        
         static bool added = false;
         static float duration = 0.0f;
         duration += interval;
         if (duration > 3.0f && !added) {
             added = true;
             
-            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point(-2, -2, -9), 1, ANIMATION_CURVE_EASE_IN);
+            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point(-2, -2, -9), 5, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
             
             Quaternion newQuaternion = Quaternion::CreateFromAxisAngle(Vector3(1, 1, 0), M_PI);
-            RotateByQuaternionAnimation *rotateToQuaternion = new RotateByQuaternionAnimation(m_quaternionModifier, newQuaternion, 1, ANIMATION_CURVE_LINEAR);
+            RotateByQuaternionAnimation *rotateToQuaternion = new RotateByQuaternionAnimation(m_quaternionModifier, newQuaternion, 5, ANIMATION_CURVE_LINEAR);
             AddAnimation(rotateToQuaternion);
         }
     }

@@ -8,6 +8,7 @@
 
 #include "DrawingComponent.h"
 #include "DrawingComposite.h"
+#include "CollisionDetector.h"
 
 
 
@@ -32,6 +33,10 @@ namespace Renderer {
     
     void DrawingComponent::UpdateHierarchy(float interval) {
         UpdateAnimations(interval);
+    }
+    
+    bool DrawingComponent::PointInside(const Point &rPoint) const {
+        return false;
     }
     
     void DrawingComponent::AddAnimation(Animation *pAnimation) {

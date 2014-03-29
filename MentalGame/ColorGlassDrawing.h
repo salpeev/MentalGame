@@ -19,7 +19,7 @@ namespace Renderer {
     class IndexBuffer;
     class PositionColorInitializer;
     class ProjectionModelviewInitializer;
-    class GLSLDrawRequest;
+    class DrawRequest;
     class Polyhedron;
     
     
@@ -28,6 +28,8 @@ namespace Renderer {
     public:
         ColorGlassDrawing();
         ~ColorGlassDrawing();
+        
+        bool PointInside(const Point &rPoint) const;
         
         PositionModelviewModifier *GetPositionModelviewModifier() const;
         QuaternionModelviewModifier *GetQuaternionModelviewModifier() const;
@@ -41,7 +43,7 @@ namespace Renderer {
         IndexBuffer *m_indexBuffer;
         PositionColorInitializer*m_attributeInitializer;
         ProjectionModelviewInitializer *m_uniformInitializer;
-        GLSLDrawRequest *m_drawRequest;
+        DrawRequest *m_drawRequest;
         Polyhedron *m_shape;
         
         PositionModelviewModifier *m_positionModifier;

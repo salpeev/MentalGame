@@ -17,7 +17,7 @@ namespace Renderer {
     class PositionColorInitializer;
     class ProjectionModelviewInitializer;
     class VertexBuffer;
-    class GLSLDrawRequest;
+    class DrawRequest;
     
     
     
@@ -44,7 +44,7 @@ namespace Renderer {
         PositionColorInitializer*m_attributeInitializer;
         ProjectionModelviewInitializer *m_uniformInitializer;
         VertexBuffer *m_vertexBuffer;
-        GLSLDrawRequest *m_drawRequest;
+        DrawRequest *m_drawRequest;
         
         Point m_start;
         Point m_end;

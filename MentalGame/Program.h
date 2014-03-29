@@ -8,7 +8,7 @@
 
 #pragma once
 #include "Shader.h"
-#include "GLSLDrawRequest.h"
+#include "DrawRequest.h"
 #include <map>
 
 using namespace std;
@@ -25,7 +25,7 @@ namespace Renderer {
         Program(const Program *program) = delete;
         ~Program();
         
-        void ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const;
+        void ExecuteDrawRequest(DrawRequest *pDrawRequest) const;
         
         GLuint GetProgramHandle() const;
         

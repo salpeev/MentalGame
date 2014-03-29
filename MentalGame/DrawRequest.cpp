@@ -1,12 +1,12 @@
 //
-//  GLSLDrawRequest.cpp
+//  DrawRequest.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 07.12.13.
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLSLDrawRequest.h"
+#include "DrawRequest.h"
 #include "Logger.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
@@ -20,36 +20,36 @@
 namespace Renderer
 {
     
-#pragma mark - GLSLDrawRequest
+#pragma mark - DrawRequest
     
-    GLSLDrawRequest::GLSLDrawRequest(): m_attributeInitializer(NULL), m_uniformInitalizer(NULL), m_renderMode(GLSL_RENDER_MODE_LINES), m_startDrawIndex(0), m_drawElementsCount(0)
+    DrawRequest::DrawRequest(): m_attributeInitializer(NULL), m_uniformInitalizer(NULL), m_renderMode(GLSL_RENDER_MODE_LINES), m_startDrawIndex(0), m_drawElementsCount(0)
     {
         
     }
     
-    GLSLDrawRequest::~GLSLDrawRequest()
+    DrawRequest::~DrawRequest()
     {
         
     }
     
 #pragma mark Public Methods
     
-    void GLSLDrawRequest::SetAttributeInitializer(GLSLAttributeInitializer *pAttributeInitializer)
+    void DrawRequest::SetAttributeInitializer(GLSLAttributeInitializer *pAttributeInitializer)
     {
         m_attributeInitializer = pAttributeInitializer;
     }
     
-    void GLSLDrawRequest::SetUniformInitializer(UniformInitializer *pUniformInitializer)
+    void DrawRequest::SetUniformInitializer(UniformInitializer *pUniformInitializer)
     {
         m_uniformInitalizer = pUniformInitializer;
     }
     
-    void GLSLDrawRequest::SetRenderMode(GLSL_RENDER_MODE renderMode)
+    void DrawRequest::SetRenderMode(GLSL_RENDER_MODE renderMode)
     {
         m_renderMode = renderMode;
     }
     
-    void GLSLDrawRequest::SetStartDrawIndex(GLint startDrawIndex)
+    void DrawRequest::SetStartDrawIndex(GLint startDrawIndex)
     {
         if (startDrawIndex < GetVerticesCount())
         {
@@ -71,7 +71,7 @@ namespace Renderer
         }
     }
     
-    void GLSLDrawRequest::SetDrawElementsCount(GLsizei drawElementsCount)
+    void DrawRequest::SetDrawElementsCount(GLsizei drawElementsCount)
     {
         GLint lastDrawIndex = GetStartDrawIndex() + drawElementsCount - 1;
         if (lastDrawIndex < GetVerticesCount())
@@ -85,49 +85,49 @@ namespace Renderer
         }
     }
     
-    GLSLAttributeInitializer * GLSLDrawRequest::GetAttributeInitializer() const
+    GLSLAttributeInitializer * DrawRequest::GetAttributeInitializer() const
     {
         return m_attributeInitializer;
     }
     
-    UniformInitializer * GLSLDrawRequest::GetUniformInitializer() const
+    UniformInitializer * DrawRequest::GetUniformInitializer() const
     {
         return m_uniformInitalizer;
     }
     
-    GLSL_RENDER_MODE GLSLDrawRequest::GetRenderMode() const
+    GLSL_RENDER_MODE DrawRequest::GetRenderMode() const
     {
         return m_renderMode;
     }
     
-    GLint GLSLDrawRequest::GetStartDrawIndex() const
+    GLint DrawRequest::GetStartDrawIndex() const
     {
         return m_startDrawIndex;
     }
     
-    GLsizei GLSLDrawRequest::GetDrawElementsCount() const
+    GLsizei DrawRequest::GetDrawElementsCount() const
     {
         return m_drawElementsCount;
     }
     
-    void GLSLDrawRequest::ResetStartDrawIndex()
+    void DrawRequest::ResetStartDrawIndex()
     {
         SetStartDrawIndex(0);
     }
     
-    void GLSLDrawRequest::ResetDrawCount()
+    void DrawRequest::ResetDrawCount()
     {
         GLsizei drawCount = GetVerticesCount() - GetStartDrawIndex();
         SetDrawElementsCount(drawCount);
     }
     
-    void GLSLDrawRequest::ResetStartDrawIndexAndDrawElementsCount()
+    void DrawRequest::ResetStartDrawIndexAndDrawElementsCount()
     {
         ResetStartDrawIndex();
         ResetDrawCount();
     }
     
-    void GLSLDrawRequest::Draw(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
+    void DrawRequest::Draw(map<string, Attribute *> *pAttributes, map<string, Uniform *> *pUniforms) const
     {
         Activate();
         Initialize(pAttributes, pUniforms);

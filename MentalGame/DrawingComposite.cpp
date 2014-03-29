@@ -9,7 +9,7 @@
 #include "DrawingComposite.h"
 #include "AttributeInitializer.h"
 #include "UniformInitializer.h"
-#include "GLSLDrawRequest.h"
+#include "DrawRequest.h"
 
 
 
@@ -36,6 +36,24 @@ namespace Renderer {
     void DrawingComposite::DrawHierarchy() const {
         Draw();
         DrawSubDrawings();
+    }
+    
+    const DrawingComponent * DrawingComposite::HitTest(const Point &rPoint) const {
+        // TODO: Probably rewrite this method to take into account hit coordinate, not just subdrawing position in hierarchy
+        if (!PointInside(rPoint)) {
+            return nullptr;
+        }
+        
+        for (int subdrawingIndex = m_subDrawings->size() - 1; subdrawingIndex >= 0; subdrawingIndex--) {
+            DrawingComponent *subDrawing = m_subDrawings->at(subdrawingIndex);
+            const DrawingComponent *hitDrawing = subDrawing->HitTest(rPoint);
+            
+            if (hitDrawing) {
+                return hitDrawing;
+            }
+        }
+        
+        return this;
     }
     
     void DrawingComposite::AddSubDrawing(DrawingComponent *pDrawing) {

@@ -13,13 +13,9 @@
 
 namespace Renderer {
     
-    bool CollisionDetector::IntersectSegmentPolyhedron(Point &rA, Point &rB, Polyhedron &rPolyhedron, float &tStart, float &tEnd) {
+    bool CollisionDetector::IntersectSegmentPolyhedron(const Point &rA, const Point &rB, const Polyhedron &rPolyhedron, float &tStart, float &tEnd) {
         // Compute direction vector for the segment
         Vector3 directionVector = rB - rA;
-        
-        // Set initial interval to being the whole segment. For a ray, tEnd should be set to +FLT_MAX. For a line, additionaly tStart should be set to -FLT_MAX
-        tStart = 0.0f;
-        tEnd = 1.0f;
         
         // Intersect segment against each plane
         const vector<Plane> &planes = rPolyhedron.GetPlanes();

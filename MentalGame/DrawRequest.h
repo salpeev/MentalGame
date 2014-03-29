@@ -1,5 +1,5 @@
 //
-//  GLSLDrawRequest.h
+//  DrawRequest.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 07.12.13.
@@ -28,14 +28,14 @@ namespace Renderer
     
     
     
-#pragma mark - GLSLDrawRequest
+#pragma mark - DrawRequest
     
-    class GLSLDrawRequest
+    class DrawRequest
     {
     public:
-        GLSLDrawRequest();
-        GLSLDrawRequest(const GLSLDrawRequest &rDrawRequest) = delete;
-        virtual ~GLSLDrawRequest();
+        DrawRequest();
+        DrawRequest(const DrawRequest &rDrawRequest) = delete;
+        virtual ~DrawRequest();
         
         void SetAttributeInitializer(GLSLAttributeInitializer *pAttributeInitializer);
         void SetUniformInitializer(UniformInitializer *pUniformInitializer);
@@ -74,7 +74,7 @@ namespace Renderer
     
 #pragma mark - VertexBufferIndexBufferRequest
     
-    class VertexBufferIndexBufferRequest: public GLSLDrawRequest
+    class VertexBufferIndexBufferRequest: public DrawRequest
     {
     public:
         VertexBufferIndexBufferRequest(VertexBuffer *pVertexBuffer, IndexBuffer *pIndexBuffer);
@@ -95,7 +95,7 @@ namespace Renderer
     
 #pragma mark - VertexBufferShortIndicesRequest
     
-    class VertexBufferShortIndicesRequest: public GLSLDrawRequest
+    class VertexBufferShortIndicesRequest: public DrawRequest
     {
     public:
         VertexBufferShortIndicesRequest(VertexBuffer *pVertexBuffer, vector<GLushort> &rIndices);
@@ -117,7 +117,7 @@ namespace Renderer
     
 #pragma mark - VertexBufferByteIndicesRequest
     
-    class VertexBufferByteIndicesRequest: public GLSLDrawRequest
+    class VertexBufferByteIndicesRequest: public DrawRequest
     {
     public:
         VertexBufferByteIndicesRequest(VertexBuffer *pVertexBuffer, vector<GLubyte> &rIndices);
@@ -139,7 +139,7 @@ namespace Renderer
     
 #pragma mark - VertexBufferRequest
     
-    class VertexBufferRequest: public GLSLDrawRequest
+    class VertexBufferRequest: public DrawRequest
     {
     public:
         VertexBufferRequest(VertexBuffer *pVertexBuffer);
@@ -159,7 +159,7 @@ namespace Renderer
     
 #pragma mark - VertexArrayIndexBufferRequest
     
-    class VertexArrayIndexBufferRequest: public GLSLDrawRequest
+    class VertexArrayIndexBufferRequest: public DrawRequest
     {
     public:
         VertexArrayIndexBufferRequest(VertexArray &rVertexArray, IndexBuffer *pIndexBuffer);
@@ -181,7 +181,7 @@ namespace Renderer
     
 #pragma mark - VertexArrayShortIndicesRequest
     
-    class VertexArrayShortIndicesRequest: public GLSLDrawRequest
+    class VertexArrayShortIndicesRequest: public DrawRequest
     {
     public:
         VertexArrayShortIndicesRequest(VertexArray &rVertexArray, vector<GLushort> &rIndices);
@@ -203,7 +203,7 @@ namespace Renderer
     
 #pragma mark - VertexArrayByteIndicesRequest
     
-    class VertexArrayByteIndicesRequest: public GLSLDrawRequest
+    class VertexArrayByteIndicesRequest: public DrawRequest
     {
     public:
         VertexArrayByteIndicesRequest(VertexArray &rVertexArray, vector<GLubyte> &rIndices);
@@ -225,7 +225,7 @@ namespace Renderer
     
 #pragma mark - VertexArrayRequest
     
-    class VertexArrayRequest: public GLSLDrawRequest
+    class VertexArrayRequest: public DrawRequest
     {
     public:
         VertexArrayRequest(VertexArray &rVertexArray);
@@ -246,7 +246,7 @@ namespace Renderer
     
 #pragma mark - VertexArraysIndexBufferRequest
     
-    class VertexArraysIndexBufferRequest: public GLSLDrawRequest
+    class VertexArraysIndexBufferRequest: public DrawRequest
     {
     public:
         // TODO: Replace pointer with value?
@@ -269,7 +269,7 @@ namespace Renderer
     
 #pragma mark - VertexArraysShortIndicesRequest
     
-    class VertexArraysShortIndicesRequest: public GLSLDrawRequest
+    class VertexArraysShortIndicesRequest: public DrawRequest
     {
     public:
         // TODO: Replace pointer with value?
@@ -292,7 +292,7 @@ namespace Renderer
     
 #pragma mark - VertexArraysByteIndicesRequest
     
-    class VertexArraysByteIndicesRequest: public GLSLDrawRequest
+    class VertexArraysByteIndicesRequest: public DrawRequest
     {
     public:
         // TODO: Replace pointer with value?
@@ -315,7 +315,7 @@ namespace Renderer
     
 #pragma mark - VertexArraysRequest
     
-    class VertexArraysRequest: public GLSLDrawRequest
+    class VertexArraysRequest: public DrawRequest
     {
     public:
         // TODO: Replace pointer with value?

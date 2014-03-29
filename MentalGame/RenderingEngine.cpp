@@ -91,7 +91,9 @@ namespace Renderer {
     
     void RenderingEngine::HandleTouchesBegan(vector<Touch> &rTouches) const {
         Touch touch = rTouches[0];
-        Log("AAA %f %f", touch.GetProjectionPosition().x, touch.GetProjectionPosition().y);
+        Point touchPosition = touch.GetProjectionPosition();
+        const DrawingComponent *hitDrawing = m_drawingController->GetDrawing()->HitTest(touchPosition);
+        Log("%p", hitDrawing);
     }
     
     void RenderingEngine::HandleTouchesMoved(vector<Touch> &rTouches) const {

@@ -44,7 +44,7 @@ namespace Renderer {
     
 #pragma mark - Public Mehods
     
-    void Program::ExecuteDrawRequest(GLSLDrawRequest *pDrawRequest) const {
+    void Program::ExecuteDrawRequest(DrawRequest *pDrawRequest) const {
         Use();
         pDrawRequest->Draw(m_attributes, m_uniforms);
     }

@@ -12,7 +12,7 @@
 
 namespace Renderer {
     
-    Projection::Projection() {
+    Projection::Projection(): m_distance(0.0f) {
         
     }
     
@@ -28,13 +28,19 @@ namespace Renderer {
         float width = right - left;
         float height = top - bottom;
         m_frontRect = Rect(left, bottom, width, height);
+        m_distance = -near;
         
         m_projectionMatrix = Matrix4::Frustum(left, right, bottom, top, near, far);
     }
     
     void Projection::SetFrustum(float fovy, float aspect, float near, float far) {
         // TODO: Set front rect
+        // TODO: Set front rect distance
 //        m_projection = Matrix4::Frustum(fovy, aspect, near, far);
+    }
+    
+    float Projection::GetDistance() const {
+        return m_distance;
     }
     
     Rect Projection::GetFrontRect() const {

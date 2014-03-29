@@ -13,7 +13,7 @@
 namespace Renderer {
     
     DrawingController::DrawingController() {
-        m_drawing = new DrawingComposite();
+        m_drawing = new FullscreenDrawing();
         m_drawing->SetNextTouchesHandler(this);
     }
     
@@ -21,7 +21,7 @@ namespace Renderer {
         delete m_drawing;
     }
     
-    DrawingComposite * DrawingController::GetDrawing() const {
+    FullscreenDrawing * DrawingController::GetDrawing() const {
         return m_drawing;
     }
 }
