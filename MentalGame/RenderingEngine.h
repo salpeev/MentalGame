@@ -44,10 +44,11 @@ namespace Renderer {
         void Render(float interval) const;
         
         // Touches
-        void HandleTouchesBegan(vector<Touch> &rTouches) const;
-        void HandleTouchesMoved(vector<Touch> &rTouches) const;
-        void HandleTouchesEnded(vector<Touch> &rTouches) const;
-        void HandleTouchesCancelled(vector<Touch> &rTouches) const;
+        Touch * GetTouchForSystemTouch(const void *pSystemTouch) const;
+        void HandleTouchesBegan(vector<Touch *> &rTouches) const;
+        void HandleTouchesMoved(vector<Touch *> &rTouches) const;
+        void HandleTouchesEnded(vector<Touch *> &rTouches) const;
+        void HandleTouchesCancelled(vector<Touch *> &rTouches) const;
         
     private:
         RenderingEngine();
@@ -58,6 +59,7 @@ namespace Renderer {
         CSize m_windowSize;
         Projection m_projection;
         Framebuffer *m_framebuffer;
-        DrawingController * m_drawingController;
+        DrawingController *m_drawingController;
+        vector<Touch *> *m_touches;
     };
 }

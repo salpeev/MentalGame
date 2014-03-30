@@ -13,12 +13,20 @@
 
 namespace Renderer {
     
-    Touch::Touch(Point windowPosition): m_windowPosition(windowPosition) {
+    Touch::Touch(Point windowPosition, void *pSystemTouch): m_windowPosition(windowPosition), m_systemTouch(pSystemTouch) {
         
     }
     
     Touch::~Touch() {
         
+    }
+    
+    void Touch::SetWindowPosition(const Point &rPosition) {
+        m_windowPosition = rPosition;
+    }
+    
+    void * Touch::GetSystemTouch() const {
+        return m_systemTouch;
     }
     
     Point Touch::GetWindowPosition() const {

@@ -18,11 +18,16 @@ namespace Renderer {
     
     // TODO: Size has default constructor, that initializes to 0. Is initialization required here?
     RenderingEngine::RenderingEngine(): m_framebuffer(nullptr), m_drawingController(nullptr), m_windowSize(0.0f, 0.0f) {
-        
+        m_touches = new vector<Touch *>;
     }
     
     RenderingEngine::~RenderingEngine() {
         delete m_drawingController;
+        
+        for (vector<Touch *>::iterator iterator = m_touches->begin(); iterator != m_touches->end(); iterator++) {
+            delete *iterator;
+        }
+        delete m_touches;
     }
     
 #pragma mark - Public Methods
@@ -89,22 +94,43 @@ namespace Renderer {
     
 #pragma mark Touches
     
-    void RenderingEngine::HandleTouchesBegan(vector<Touch> &rTouches) const {
-        Touch touch = rTouches[0];
-        Point touchPosition = touch.GetProjectionPosition();
+    Touch * RenderingEngine::GetTouchForSystemTouch(const void *pSystemTouch) const {
+        for (int touchIndex = 0; touchIndex < m_touches->size(); touchIndex++) {
+            Touch *touch = m_touches->at(touchIndex);
+            if (touch->GetSystemTouch() == pSystemTouch) {
+                return touch;
+            }
+        }
+        
+        return nullptr;
+    }
+    
+    void RenderingEngine::HandleTouchesBegan(vector<Touch *> &rTouches) const {
+        m_touches->insert(m_touches->end(), rTouches.begin(), rTouches.end());
+        
+        Touch *touch = rTouches[0];
+        Point touchPosition = touch->GetProjectionPosition();
         const DrawingComponent *hitDrawing = m_drawingController->GetDrawing()->HitTest(touchPosition);
         Log("%p", hitDrawing);
     }
     
-    void RenderingEngine::HandleTouchesMoved(vector<Touch> &rTouches) const {
+    void RenderingEngine::HandleTouchesMoved(vector<Touch *> &rTouches) const {
         
     }
     
-    void RenderingEngine::HandleTouchesEnded(vector<Touch> &rTouches) const {
-        
+    void RenderingEngine::HandleTouchesEnded(vector<Touch *> &rTouches) const {
+        for (int touchIndex = 0; touchIndex < rTouches.size(); touchIndex++) {
+            Touch *touch = rTouches[touchIndex];
+            m_touches->erase(remove(m_touches->begin(), m_touches->end(), touch));
+            delete touch;
+        }
     }
     
-    void RenderingEngine::HandleTouchesCancelled(vector<Touch> &rTouches) const {
-        
+    void RenderingEngine::HandleTouchesCancelled(vector<Touch *> &rTouches) const {
+        for (int touchIndex = 0; touchIndex < rTouches.size(); touchIndex++) {
+            Touch *touch = rTouches[touchIndex];
+            m_touches->erase(remove(m_touches->begin(), m_touches->end(), touch));
+            delete touch;
+        }
     }
 }

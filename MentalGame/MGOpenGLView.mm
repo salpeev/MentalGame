@@ -30,8 +30,6 @@ using namespace Renderer;
 
 @property (strong, nonatomic) EAGLContext *eaglContext;
 
-- (vector<Touch>)engineTouhesFromTouches:(NSSet *)touches;
-
 - (void)draw:(CADisplayLink *)displayLink;
 
 @end
@@ -51,6 +49,8 @@ using namespace Renderer;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.multipleTouchEnabled = YES;
+        
         CGFloat scale = [UIScreen mainScreen].scale;
         CGFloat width = CGRectGetWidth(frame) * scale;
         CGFloat height = CGRectGetHeight(frame) * scale;
@@ -103,29 +103,7 @@ using namespace Renderer;
 #pragma mark - Overridden
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
-    RenderingEngine::SharedInstance().HandleTouchesBegan(engineTouhes);
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
-    RenderingEngine::SharedInstance().HandleTouchesMoved(engineTouhes);
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
-    RenderingEngine::SharedInstance().HandleTouchesEnded(engineTouhes);
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    vector<Touch> engineTouhes = [self engineTouhesFromTouches:touches];
-    RenderingEngine::SharedInstance().HandleTouchesCancelled(engineTouhes);
-}
-
-#pragma mark - Private Methods
-
-- (vector<Touch>)engineTouhesFromTouches:(NSSet *)touches {
-    vector<Touch> engineTouches;
+    vector<Touch *> engineTouches;
     
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     CGFloat scale = [UIScreen mainScreen].scale;
@@ -134,12 +112,54 @@ using namespace Renderer;
         CGFloat yConverted = screenSize.height - touchLocation.y;
         
         Renderer::Point engineLocation(touchLocation.x * scale, yConverted * scale);
-        Touch engineTouch(engineLocation);
+        Touch *engineTouch = new Touch(engineLocation, (__bridge void *)touch);
         engineTouches.push_back(engineTouch);
     }
     
-    return engineTouches;
+    RenderingEngine::SharedInstance().HandleTouchesBegan(engineTouches);
 }
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    vector<Touch *> movedTouches;
+    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    for (UITouch *touch in touches) {
+        CGPoint touchLocation = [touch locationInView:self.window];
+        CGFloat yConverted = screenSize.height - touchLocation.y;
+        
+        Touch *engineTouch = RenderingEngine::SharedInstance().GetTouchForSystemTouch((__bridge void *)touch);
+        engineTouch->SetWindowPosition(Renderer::Point(touchLocation.x * scale, yConverted * scale));
+        
+        movedTouches.push_back(engineTouch);
+    }
+    
+    RenderingEngine::SharedInstance().HandleTouchesMoved(movedTouches);
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    vector<Touch *> endedTouches;
+    
+    for (UITouch *touch in touches) {
+        Touch *engineTouch = RenderingEngine::SharedInstance().GetTouchForSystemTouch((__bridge void *)touch);
+        endedTouches.push_back(engineTouch);
+    }
+    
+    RenderingEngine::SharedInstance().HandleTouchesEnded(endedTouches);
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    vector<Touch *> cancelledTouches;
+    
+    for (UITouch *touch in touches) {
+        Touch *engineTouch = RenderingEngine::SharedInstance().GetTouchForSystemTouch((__bridge void *)touch);
+        cancelledTouches.push_back(engineTouch);
+    }
+    
+    RenderingEngine::SharedInstance().HandleTouchesCancelled(cancelledTouches);
+}
+
+#pragma mark - Private Methods
 
 - (void)draw:(CADisplayLink *)displayLink {
     m_sampleFramebuffer->BindAll();
