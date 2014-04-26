@@ -12,6 +12,14 @@
 
 namespace Renderer {
     
+    TouchesHandler::TouchesHandler(): m_nextHandler(nullptr) {
+        
+    }
+    
+    TouchesHandler::~TouchesHandler() {
+        
+    }
+    
     void TouchesHandler::SetNextTouchesHandler(TouchesHandler *pTouchesHandler) {
         m_nextHandler = pTouchesHandler;
     }
@@ -20,19 +28,35 @@ namespace Renderer {
         return m_nextHandler;
     }
     
-    void TouchesHandler::TouchesBegan(vector<Touch> &rTouches) const {
+    void TouchesHandler::TouchesBegan(vector<Touch *> &rTouches) const {
+        if (!m_nextHandler) {
+            return;
+        }
+        
         m_nextHandler->TouchesBegan(rTouches);
     }
     
-    void TouchesHandler::TouchesMoved(vector<Touch> &rTouches) const {
+    void TouchesHandler::TouchesMoved(vector<Touch *> &rTouches) const {
+        if (!m_nextHandler) {
+            return;
+        }
+        
         m_nextHandler->TouchesMoved(rTouches);
     }
     
-    void TouchesHandler::TouchesEnded(vector<Touch> &rTouches) const {
+    void TouchesHandler::TouchesEnded(vector<Touch *> &rTouches) const {
+        if (!m_nextHandler) {
+            return;
+        }
+        
         m_nextHandler->TouchesEnded(rTouches);
     }
     
-    void TouchesHandler::TouchesCancelled(vector<Touch> &rTouches) const {
+    void TouchesHandler::TouchesCancelled(vector<Touch *> &rTouches) const {
+        if (!m_nextHandler) {
+            return;
+        }
+        
         m_nextHandler->TouchesCancelled(rTouches);
     }
 }

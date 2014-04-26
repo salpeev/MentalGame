@@ -17,7 +17,7 @@ namespace Renderer {
     public:
         void UpdateHierarchy(float interval);
         void DrawHierarchy() const;
-        const DrawingComponent * HitTest(const Point &rPoint) const;
+        DrawingComponent * HitTest(const Point &rPoint);
         
     protected:
         void Update(float interval);

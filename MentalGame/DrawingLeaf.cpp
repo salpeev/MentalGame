@@ -21,7 +21,7 @@ namespace Renderer {
         Draw();
     }
     
-    const DrawingComponent * DrawingLeaf::HitTest(const Point &rPoint) const {
+    DrawingComponent * DrawingLeaf::HitTest(const Point &rPoint) {
         if (PointInside(rPoint)) {
             return this;
         }

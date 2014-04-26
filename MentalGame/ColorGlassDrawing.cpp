@@ -142,6 +142,22 @@ namespace Renderer {
         return m_quaternionModifier;
     }
     
+    void ColorGlassDrawing::TouchesBegan(vector<Touch *> &rTouches) const {
+        DrawingComposite::TouchesBegan(rTouches);
+    }
+    
+    void ColorGlassDrawing::TouchesMoved(vector<Touch *> &rTouches) const {
+        DrawingComposite::TouchesMoved(rTouches);
+    }
+    
+    void ColorGlassDrawing::TouchesEnded(vector<Touch *> &rTouches) const {
+        DrawingComposite::TouchesEnded(rTouches);
+    }
+    
+    void ColorGlassDrawing::TouchesCancelled(vector<Touch *> &rTouches) const {
+        DrawingComposite::TouchesCancelled(rTouches);
+    }
+    
     void ColorGlassDrawing::Update(float interval) {
         m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
         

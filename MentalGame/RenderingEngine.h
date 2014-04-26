@@ -13,6 +13,9 @@
 #include "Touch.h"
 #include "Projection.h"
 #include "DrawingController.h"
+#include <map>
+
+using namespace std;
 
 
 
@@ -55,6 +58,8 @@ namespace Renderer {
         RenderingEngine(const RenderingEngine &rRenderingEngine) = delete;
         ~RenderingEngine();
         RenderingEngine & operator= (const RenderingEngine &rRenderingEngine) = delete;
+        
+        map<DrawingComponent *, vector<Touch *>> SortTouchesByDrawingComponent(vector<Touch *> &rTouches) const;
         
         CSize m_windowSize;
         Projection m_projection;

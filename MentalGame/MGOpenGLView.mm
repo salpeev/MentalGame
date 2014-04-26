@@ -146,6 +146,11 @@ using namespace Renderer;
     }
     
     RenderingEngine::SharedInstance().HandleTouchesEnded(endedTouches);
+    
+    for (vector<Touch *>::iterator iterator = endedTouches.begin(); iterator != endedTouches.end(); iterator++) {
+        Touch *pTouch = *iterator;
+        delete pTouch;
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -157,6 +162,11 @@ using namespace Renderer;
     }
     
     RenderingEngine::SharedInstance().HandleTouchesCancelled(cancelledTouches);
+    
+    for (vector<Touch *>::iterator iterator = cancelledTouches.begin(); iterator != cancelledTouches.end(); iterator++) {
+        Touch *pTouch = *iterator;
+        delete pTouch;
+    }
 }
 
 #pragma mark - Private Methods

@@ -8,6 +8,7 @@
 
 #include "Touch.h"
 #include "RenderingEngine.h"
+#include "DrawingComponent.h"
 
 
 
@@ -25,8 +26,16 @@ namespace Renderer {
         m_windowPosition = rPosition;
     }
     
+    void Touch::SetDrawingComponent(DrawingComponent *pDrawingComponent) {
+        m_drawingComponent = pDrawingComponent;
+    }
+    
     void * Touch::GetSystemTouch() const {
         return m_systemTouch;
+    }
+    
+    DrawingComponent * Touch::GetDrawingComponent() const {
+        return m_drawingComponent;
     }
     
     Point Touch::GetWindowPosition() const {

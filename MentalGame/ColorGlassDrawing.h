@@ -34,6 +34,11 @@ namespace Renderer {
         PositionModelviewModifier *GetPositionModelviewModifier() const;
         QuaternionModelviewModifier *GetQuaternionModelviewModifier() const;
         
+        void TouchesBegan(vector<Touch *> &rTouches) const;
+        void TouchesMoved(vector<Touch *> &rTouches) const;
+        void TouchesEnded(vector<Touch *> &rTouches) const;
+        void TouchesCancelled(vector<Touch *> &rTouches) const;
+        
     protected:
         void Update(float interval);
         void Draw() const;

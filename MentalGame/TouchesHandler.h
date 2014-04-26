@@ -18,13 +18,16 @@ namespace Renderer {
     
     class TouchesHandler {
     public:
+        TouchesHandler();
+        virtual ~TouchesHandler();
+        
         void SetNextTouchesHandler(TouchesHandler *pTouchesHandler);
         TouchesHandler * GetNextTouchesHandler() const;
         
-        virtual void TouchesBegan(vector<Touch> &rTouches) const;
-        virtual void TouchesMoved(vector<Touch> &rTouches) const;
-        virtual void TouchesEnded(vector<Touch> &rTouches) const;
-        virtual void TouchesCancelled(vector<Touch> &rTouches) const;
+        virtual void TouchesBegan(vector<Touch *> &rTouches) const;
+        virtual void TouchesMoved(vector<Touch *> &rTouches) const;
+        virtual void TouchesEnded(vector<Touch *> &rTouches) const;
+        virtual void TouchesCancelled(vector<Touch *> &rTouches) const;
         
     private:
         TouchesHandler *m_nextHandler;

@@ -108,29 +108,73 @@ namespace Renderer {
     void RenderingEngine::HandleTouchesBegan(vector<Touch *> &rTouches) const {
         m_touches->insert(m_touches->end(), rTouches.begin(), rTouches.end());
         
-        Touch *touch = rTouches[0];
-        Point touchPosition = touch->GetProjectionPosition();
-        const DrawingComponent *hitDrawing = m_drawingController->GetDrawing()->HitTest(touchPosition);
-        Log("%p", hitDrawing);
+        for (int touchIndex = 0; touchIndex < rTouches.size(); touchIndex++) {
+            Touch *touch = rTouches[touchIndex];
+            Point touchPosition = touch->GetProjectionPosition();
+            DrawingComponent *hitDrawing = m_drawingController->GetDrawing()->HitTest(touchPosition);
+            touch->SetDrawingComponent(hitDrawing);
+        }
+        
+        map<DrawingComponent *, vector<Touch *>> sortedTouches = SortTouchesByDrawingComponent(rTouches);
+        
+        for (map<DrawingComponent *, vector<Touch *>>::iterator iterator = sortedTouches.begin(); iterator != sortedTouches.end(); iterator++) {
+            DrawingComponent *pDrawing = iterator->first;
+            vector<Touch *> &rDrawingTouches = iterator->second;
+            pDrawing->TouchesBegan(rDrawingTouches);
+        }
     }
     
     void RenderingEngine::HandleTouchesMoved(vector<Touch *> &rTouches) const {
+        map<DrawingComponent *, vector<Touch *>> sortedTouches = SortTouchesByDrawingComponent(rTouches);
         
+        for (map<DrawingComponent *, vector<Touch *>>::iterator iterator = sortedTouches.begin(); iterator != sortedTouches.end(); iterator++) {
+            DrawingComponent *pDrawing = iterator->first;
+            vector<Touch *> &rDrawingTouches = iterator->second;
+            pDrawing->TouchesMoved(rDrawingTouches);
+        }
     }
     
     void RenderingEngine::HandleTouchesEnded(vector<Touch *> &rTouches) const {
+        map<DrawingComponent *, vector<Touch *>> sortedTouches = SortTouchesByDrawingComponent(rTouches);
+        
+        for (map<DrawingComponent *, vector<Touch *>>::iterator iterator = sortedTouches.begin(); iterator != sortedTouches.end(); iterator++) {
+            DrawingComponent *pDrawing = iterator->first;
+            vector<Touch *> &rDrawingTouches = iterator->second;
+            pDrawing->TouchesEnded(rDrawingTouches);
+        }
+        
         for (int touchIndex = 0; touchIndex < rTouches.size(); touchIndex++) {
             Touch *touch = rTouches[touchIndex];
             m_touches->erase(remove(m_touches->begin(), m_touches->end(), touch));
-            delete touch;
         }
     }
     
     void RenderingEngine::HandleTouchesCancelled(vector<Touch *> &rTouches) const {
+        map<DrawingComponent *, vector<Touch *>> sortedTouches = SortTouchesByDrawingComponent(rTouches);
+        
+        for (map<DrawingComponent *, vector<Touch *>>::iterator iterator = sortedTouches.begin(); iterator != sortedTouches.end(); iterator++) {
+            DrawingComponent *pDrawing = iterator->first;
+            vector<Touch *> &rDrawingTouches = iterator->second;
+            pDrawing->TouchesCancelled(rDrawingTouches);
+        }
+        
         for (int touchIndex = 0; touchIndex < rTouches.size(); touchIndex++) {
             Touch *touch = rTouches[touchIndex];
             m_touches->erase(remove(m_touches->begin(), m_touches->end(), touch));
-            delete touch;
         }
+    }
+    
+#pragma mark - Private Methods
+    
+    map<DrawingComponent *, vector<Touch *>> RenderingEngine::SortTouchesByDrawingComponent(vector<Touch *> &rTouches) const {
+        map<DrawingComponent *, vector<Touch *>> sortedTouches;
+        for (int touchIndex = 0; touchIndex < rTouches.size(); touchIndex++) {
+            Touch *touch = rTouches[touchIndex];
+            DrawingComponent *pDrawing = touch->GetDrawingComponent();
+            
+            vector<Touch *> &rDrawingTouches = sortedTouches[pDrawing];
+            rDrawingTouches.push_back(touch);
+        }
+        return sortedTouches;
     }
 }

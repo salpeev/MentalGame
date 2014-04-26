@@ -13,19 +13,26 @@
 
 namespace Renderer {
     
+    class DrawingComponent;
+    
+    
+    
     class Touch {
     public:
         Touch(Point windowPosition, void *pSystemTouch);
         ~Touch();
         
         void SetWindowPosition(const Point &rPosition);
+        void SetDrawingComponent(DrawingComponent *pDrawingComponent);
         
         Point GetWindowPosition() const;
+        DrawingComponent * GetDrawingComponent() const;
         void * GetSystemTouch() const;
         Point GetProjectionPosition() const;
         
     private:
         Point m_windowPosition;
+        DrawingComponent *m_drawingComponent;
         void *m_systemTouch;
     };
 }
