@@ -21,6 +21,7 @@
 		B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7618D5C2E80048515C /* DrawingController.cpp */; };
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
 		B42E7F7F18D5CD470048515C /* Touch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7D18D5CD470048515C /* Touch.cpp */; };
+		B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4436009190CF5520094661D /* ScaleModelviewModifier.cpp */; };
 		B457A15817F6D486004EF4E0 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B457A15617F6D486004EF4E0 /* Buffer.cpp */; };
 		B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */; };
 		B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70218999CF700AAE773 /* ColorRenderbufferRGB565.cpp */; };
@@ -115,6 +116,8 @@
 		B42E7F7B18D5C5320048515C /* GameDrawingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDrawingController.h; sourceTree = "<group>"; };
 		B42E7F7D18D5CD470048515C /* Touch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Touch.cpp; sourceTree = "<group>"; };
 		B42E7F7E18D5CD470048515C /* Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Touch.h; sourceTree = "<group>"; };
+		B4436009190CF5520094661D /* ScaleModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScaleModelviewModifier.cpp; sourceTree = "<group>"; };
+		B443600A190CF5520094661D /* ScaleModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleModelviewModifier.h; sourceTree = "<group>"; };
 		B457A15617F6D486004EF4E0 /* Buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buffer.cpp; sourceTree = "<group>"; };
 		B457A15717F6D486004EF4E0 /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
 		B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbufferRGBA4.cpp; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 				B42296B218DF0159004A3089 /* PositionModelviewModifier.h */,
 				B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */,
 				B42296B518DF0167004A3089 /* QuaternionModelviewModifier.h */,
+				B4436009190CF5520094661D /* ScaleModelviewModifier.cpp */,
+				B443600A190CF5520094661D /* ScaleModelviewModifier.h */,
 			);
 			name = ModelviewModifier;
 			sourceTree = "<group>";
@@ -880,6 +885,7 @@
 				B4DB8F9B185343B800FD292D /* DrawRequest.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
+				B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */,
 				B4ECF825189D2282007E2669 /* RenderingEngine.cpp in Sources */,
 				B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */,

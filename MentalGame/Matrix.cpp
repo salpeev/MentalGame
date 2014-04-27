@@ -174,10 +174,42 @@ namespace Renderer {
         return *this;
     }
     
+    Matrix4 & Matrix4::MakeScale(float xScale, float yScale, float zScale) {
+        x.x = xScale;
+        y.y = yScale;
+        z.z = zScale;
+        
+        return *this;
+    }
+    
+    Matrix4 & Matrix4::MakeScale(float scale) {
+        x.x = scale;
+        y.y = scale;
+        z.z = scale;
+        
+        return *this;
+    }
+    
     Matrix4 & Matrix4::Translate(float tX, float tY, float tZ) {
         w.x += tX;
         w.y += tY;
         w.z += tZ;
+        
+        return *this;
+    }
+    
+    Matrix4 & Matrix4::Scale(float xScale, float yScale, float zScale) {
+        x.x *= xScale;
+        y.y *= yScale;
+        z.z *= zScale;
+        
+        return *this;
+    }
+    
+    Matrix4 & Matrix4::Scale(float scale) {
+        x.x *= scale;
+        y.y *= scale;
+        z.z *= scale;
         
         return *this;
     }
@@ -307,6 +339,24 @@ namespace Renderer {
         m.y.x = 0.0f; m.y.y = 1.0f; m.y.z = 0.0f; m.y.w = 0.0f;
         m.z.x = 0.0f; m.z.y = 0.0f; m.z.z = 1.0f; m.z.w = 0.0f;
         m.w.x = tX;   m.w.y = tY;   m.w.z = tZ;   m.w.w = 1.0f;
+        return m;
+    }
+    
+    Matrix4 Matrix4::DoScale(float xScale, float yScale, float zScale) {
+        Matrix4 m;
+        m.x.x = xScale; m.x.y = 0.0f;   m.x.z = 0.0f;   m.x.w = 0.0f;
+        m.y.x = 0.0f;   m.y.y = yScale; m.y.z = 0.0f;   m.y.w = 0.0f;
+        m.z.x = 0.0f;   m.z.y = 0.0f;   m.z.z = zScale; m.z.w = 0.0f;
+        m.w.x = 0.0f;   m.w.y = 0.0f;   m.w.z = 0.0f;   m.w.w = 1.0f;
+        return m;
+    }
+    
+    Matrix4 Matrix4::DoScale(float scale) {
+        Matrix4 m;
+        m.x.x = scale; m.x.y = 0.0f;  m.x.z = 0.0f;  m.x.w = 0.0f;
+        m.y.x = 0.0f;  m.y.y = scale; m.y.z = 0.0f;  m.y.w = 0.0f;
+        m.z.x = 0.0f;  m.z.y = 0.0f;  m.z.z = scale; m.z.w = 0.0f;
+        m.w.x = 0.0f;  m.w.y = 0.0f;  m.w.z = 0.0f;  m.w.w = 1.0f;
         return m;
     }
     

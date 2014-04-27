@@ -85,7 +85,8 @@ namespace Renderer {
         indices.push_back(4);
         indices.push_back(5);
         
-        m_quaternionModifier = new QuaternionModelviewModifier();
+        m_scaleModifier = new ScaleModelviewModifier();
+        m_quaternionModifier = new QuaternionModelviewModifier(m_scaleModifier);
         m_positionModifier = new PositionModelviewModifier(m_quaternionModifier);
         SetModelviewModifier(m_positionModifier);
         
@@ -121,6 +122,9 @@ namespace Renderer {
         delete m_attributeInitializer;
         delete m_uniformInitializer;
         delete m_shape;
+        delete m_positionModifier;
+        delete m_quaternionModifier;
+        delete m_scaleModifier;
     }
     
     bool ColorGlassDrawing::PointInside(const Point &rPoint) const {
@@ -144,6 +148,8 @@ namespace Renderer {
     
     void ColorGlassDrawing::TouchesBegan(vector<Touch *> &rTouches) const {
         DrawingComposite::TouchesBegan(rTouches);
+        
+        m_scaleModifier->SetScale(1.1f);
     }
     
     void ColorGlassDrawing::TouchesMoved(vector<Touch *> &rTouches) const {
@@ -152,10 +158,14 @@ namespace Renderer {
     
     void ColorGlassDrawing::TouchesEnded(vector<Touch *> &rTouches) const {
         DrawingComposite::TouchesEnded(rTouches);
+        
+        m_scaleModifier->SetScale(1.0f);
     }
     
     void ColorGlassDrawing::TouchesCancelled(vector<Touch *> &rTouches) const {
         DrawingComposite::TouchesCancelled(rTouches);
+        
+        m_scaleModifier->SetScale(1.0f);
     }
     
     void ColorGlassDrawing::Update(float interval) {

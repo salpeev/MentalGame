@@ -57,7 +57,11 @@ namespace Renderer {
         Matrix4 operator*(const Matrix4 &rMatrix) const;
         
         Matrix4 & MakeTranslation(float xTranslation, float yTranslation, float zTranslation);
+        Matrix4 & MakeScale(float xScale, float yScale, float zScale);
+        Matrix4 & MakeScale(float scale);
         Matrix4 & Translate(float xTranslation, float yTranslation, float zTranslation);
+        Matrix4 & Scale(float xScale, float yScale, float zScale);
+        Matrix4 & Scale(float scale);
         Matrix4 & RotateX(float radians);
         Matrix4 & RotateY(float radians);
         Matrix4 & RotateZ(float radians);
@@ -72,6 +76,8 @@ namespace Renderer {
         static Matrix4 Frustum(float left, float right, float bottom, float top, float near, float far);
         static Matrix4 Frustum(float fovy, float aspect, float near, float far);    // Doesn't work as expected
         static Matrix4 Translation(float xTranslation, float yTranslation, float zTranslation);
+        static Matrix4 DoScale(float xScale, float yScale, float zScale);
+        static Matrix4 DoScale(float scale);
         static Matrix4 RotationX(float radians);
         static Matrix4 RotationY(float radians);
         static Matrix4 RotationZ(float radians);

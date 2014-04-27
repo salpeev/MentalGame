@@ -10,6 +10,7 @@
 #include "DrawingComposite.h"
 #include "PositionModelviewModifier.h"
 #include "QuaternionModelviewModifier.h"
+#include "ScaleModelviewModifier.h"
 
 
 
@@ -53,5 +54,6 @@ namespace Renderer {
         
         PositionModelviewModifier *m_positionModifier;
         QuaternionModelviewModifier *m_quaternionModifier;
+        ScaleModelviewModifier *m_scaleModifier;
     };
 }
