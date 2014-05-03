@@ -8,7 +8,7 @@
 
 #import "MGOpenGLView.h"
 #import "RenderingEngine.h"
-#import "GLResourceManager.h"
+#import "ResourceManager.h"
 #import "MultisampleFramebuffer.h"
 #include "ColorRenderbufferMultisampleRGBA8.h"
 #include "Depth24Stencil8MultisampleRenderbuffer.h"

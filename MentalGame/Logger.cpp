@@ -7,7 +7,7 @@
 //
 
 #include "Logger.h"
-#include "GLConstants.h"
+#include "Constants.h"
 #include <iostream>
 #include <OpenGLES/ES2/gl.h>
 

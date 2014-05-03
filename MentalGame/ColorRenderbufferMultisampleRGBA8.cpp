@@ -7,7 +7,7 @@
 //
 
 #include "ColorRenderbufferMultisampleRGBA8.h"
-#include "GLConstants.h"
+#include "Constants.h"
 #include "Logger.h"
 #include <OpenGLES/ES2/glext.h>
 

@@ -1,5 +1,5 @@
 //
-//  GLSLProgramContainer.h
+//  ProgramContainer.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 19.01.14.
@@ -11,14 +11,12 @@
 
 
 
-namespace Renderer
-{
-    class GLSLProgramContainer
-    {
+namespace Renderer {
+    
+    class ProgramContainer {
     public:
-        static const GLSLProgramContainer & SharedInstance()
-        {
-            static GLSLProgramContainer programContainer;
+        static const ProgramContainer & SharedInstance() {
+            static ProgramContainer programContainer;
             return programContainer;
         }
         
@@ -26,9 +24,9 @@ namespace Renderer
         Program * GetPerspectiveProgram() const;
         
     private:
-        GLSLProgramContainer();
-        GLSLProgramContainer(const GLSLProgramContainer &);
-        GLSLProgramContainer & operator= (const GLSLProgramContainer &);
+        ProgramContainer();
+        ProgramContainer(const ProgramContainer &);
+        ProgramContainer & operator= (const ProgramContainer &);
         
         void LoadPositionColorProgram();
         void LoadPerspectiveProgram();

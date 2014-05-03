@@ -7,7 +7,7 @@
 //
 
 #include "Program.h"
-#include "GLConstants.h"
+#include "Constants.h"
 #include "Logger.h"
 #include "Attribute.h"
 #include "Uniform.h"

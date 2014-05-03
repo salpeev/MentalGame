@@ -13,7 +13,7 @@
 #include "IndexBuffer.h"
 #include "PositionColorInitializer.h"
 #include "ProjectionModelviewInitializer.h"
-#include "GLSLProgramContainer.h"
+#include "ProgramContainer.h"
 #include "Polyhedron.h"
 #include "CollisionDetector.h"
 #include "MoveToAnimation.h"
@@ -187,7 +187,7 @@ namespace Renderer {
     }
     
     void ColorGlassDrawing::Draw() const {
-        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
+        Program *pProgram = ProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }
 }

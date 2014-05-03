@@ -1,5 +1,5 @@
 //
-//  GLConstants.h
+//  Constants.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 05.10.13.
@@ -7,4 +7,4 @@
 //
 
 #pragma once
-#include "GLDefaultConstants.h"
+#include "DefaultConstants.h"

@@ -7,7 +7,7 @@
 //
 
 #include "SegmentDrawing.h"
-#include "GLSLProgramContainer.h"
+#include "ProgramContainer.h"
 #include "PositionColorInitializer.h"
 #include "ProjectionModelviewInitializer.h"
 #include "GLSLVertex.h"
@@ -93,7 +93,7 @@ namespace Renderer {
     }
     
     void SegmentDrawing::Draw() const {
-        Program *pProgram = GLSLProgramContainer::SharedInstance().GetPerspectiveProgram();
+        Program *pProgram = ProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Sergey Alpeev. All rights reserved.
 //
 
-#include "GLResourceManager.h"
+#include "ResourceManager.h"
 #include <iostream>
 #include <string>
 
@@ -14,10 +14,13 @@ using namespace std;
 
 
 
-namespace Renderer
-{
-    string GLResourceManager::LoadTextFileNamed(const string &fileName) const
-    {
+namespace Renderer {
+    
+    ResourceManager::ResourceManager() {
+        
+    }
+    
+    string ResourceManager::LoadTextFileNamed(const string &fileName) const {
         NSString *nameOfFile = [NSString stringWithCString:fileName.c_str() encoding:NSUTF8StringEncoding];
         
         NSString *resourcePath = [NSBundle mainBundle].resourcePath;

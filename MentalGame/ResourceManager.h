@@ -13,23 +13,21 @@ using namespace std;
 
 
 
-namespace Renderer
-{
-    class GLResourceManager
-    {
+namespace Renderer {
+    
+    class ResourceManager {
     public:
-        static const GLResourceManager & SharedInstance()
-        {
-            static GLResourceManager resourceManager;
+        static const ResourceManager & SharedInstance() {
+            static ResourceManager resourceManager;
             return resourceManager;
         }
         
         string LoadTextFileNamed(const string &fileName) const;
         
     private:
-        GLResourceManager(){}
-        GLResourceManager(const GLResourceManager &);
-        GLResourceManager & operator= (const GLResourceManager &);
+        ResourceManager();
+        ResourceManager(const ResourceManager &);
+        ResourceManager & operator= (const ResourceManager &);
     };
 }
 

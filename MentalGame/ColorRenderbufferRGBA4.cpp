@@ -7,7 +7,7 @@
 //
 
 #include "ColorRenderbufferRGBA4.h"
-#include "GLConstants.h"
+#include "Constants.h"
 #include "Logger.h"
 
 

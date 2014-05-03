@@ -10,7 +10,7 @@
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 #include <string>
-#include "GLConstants.h"
+#include "Constants.h"
 
 using namespace std;
 

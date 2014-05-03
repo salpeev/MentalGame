@@ -8,7 +8,7 @@
 
 #pragma once
 #include <OpenglES/ES2/gl.h>
-#include "GLConstants.h"
+#include "Constants.h"
 
 
 
