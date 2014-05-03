@@ -7,6 +7,7 @@
 //
 
 #pragma once
+#include "TextureInfo.h"
 #include <string>
 
 using namespace std;
@@ -23,6 +24,7 @@ namespace Renderer {
         }
         
         string LoadTextFileNamed(const string &fileName) const;
+        TextureInfo * LoadTexturePOT(const string &fileName) const;
         
     private:
         ResourceManager();

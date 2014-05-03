@@ -9,6 +9,7 @@
 #include "GameDrawingController.h"
 #include "ColorGlassDrawing.h"
 #include "SegmentDrawing.h"
+#include "ResourceManager.h"
 
 
 
@@ -24,6 +25,9 @@ namespace Renderer {
         segmentDrawing->SetStartPoint(Point(-1.5, -1.5, -4));
         segmentDrawing->SetEndPoint(Point(1.5, 1.5, -5));
         GetDrawing()->AddSubDrawing(segmentDrawing);
+        
+        TextureInfo *pTextureInfo = ResourceManager::SharedInstance().LoadTexturePOT("Ukraine.jpg");
+        delete pTextureInfo;
     }
     
     GameDrawingController::~GameDrawingController() {

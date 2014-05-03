@@ -17,6 +17,8 @@
 		B42296B318DF0159004A3089 /* PositionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B118DF0159004A3089 /* PositionModelviewModifier.cpp */; };
 		B42296B618DF0167004A3089 /* QuaternionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */; };
 		B42296BC18E6DA99004A3089 /* FullscreenDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296BA18E6DA99004A3089 /* FullscreenDrawing.cpp */; };
+		B429BEDA19150B6800DA2D3C /* Ukraine.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B429BED919150B6800DA2D3C /* Ukraine.jpg */; };
+		B429BEDD19150ECD00DA2D3C /* TextureInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B429BEDB19150ECD00DA2D3C /* TextureInfo.cpp */; };
 		B42E7F7418CE1D8E0048515C /* RotateByQuaternionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */; };
 		B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7618D5C2E80048515C /* DrawingController.cpp */; };
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
@@ -108,6 +110,9 @@
 		B42296B518DF0167004A3089 /* QuaternionModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuaternionModelviewModifier.h; sourceTree = "<group>"; };
 		B42296BA18E6DA99004A3089 /* FullscreenDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FullscreenDrawing.cpp; sourceTree = "<group>"; };
 		B42296BB18E6DA99004A3089 /* FullscreenDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullscreenDrawing.h; sourceTree = "<group>"; };
+		B429BED919150B6800DA2D3C /* Ukraine.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ukraine.jpg; sourceTree = "<group>"; };
+		B429BEDB19150ECD00DA2D3C /* TextureInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureInfo.cpp; path = MentalGame/TextureInfo.cpp; sourceTree = "<group>"; };
+		B429BEDC19150ECD00DA2D3C /* TextureInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureInfo.h; path = MentalGame/TextureInfo.h; sourceTree = "<group>"; };
 		B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateByQuaternionAnimation.cpp; sourceTree = "<group>"; };
 		B42E7F7318CE1D8E0048515C /* RotateByQuaternionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateByQuaternionAnimation.h; sourceTree = "<group>"; };
 		B42E7F7618D5C2E80048515C /* DrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingController.cpp; sourceTree = "<group>"; };
@@ -286,6 +291,22 @@
 			name = "Program Container";
 			sourceTree = "<group>";
 		};
+		B429BED719150A9400DA2D3C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B429BED819150AB400DA2D3C /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B429BED819150AB400DA2D3C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B429BED919150B6800DA2D3C /* Ukraine.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		B42E7F7518D5C2BD0048515C /* DrawingController */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +435,8 @@
 			children = (
 				B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */,
 				B4CE1DEE17DFD906009094E8 /* ResourceManager.h */,
+				B429BEDB19150ECD00DA2D3C /* TextureInfo.cpp */,
+				B429BEDC19150ECD00DA2D3C /* TextureInfo.h */,
 			);
 			name = ResourceManager;
 			path = ..;
@@ -604,6 +627,7 @@
 			isa = PBXGroup;
 			children = (
 				B4E0971917DB671400F4A436 /* MentalGame */,
+				B429BED719150A9400DA2D3C /* Resources */,
 				B4E0971217DB671400F4A436 /* Frameworks */,
 				B4E0971117DB671400F4A436 /* Products */,
 			);
@@ -821,6 +845,7 @@
 			files = (
 				B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */,
 				B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */,
+				B429BEDA19150B6800DA2D3C /* Ukraine.jpg in Resources */,
 				B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */,
 				B4D64F81187F3D3E005E78AC /* PerspectiveShader.fsh in Resources */,
 				B4E0971E17DB671400F4A436 /* InfoPlist.strings in Resources */,
@@ -886,6 +911,7 @@
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
 				B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */,
+				B429BEDD19150ECD00DA2D3C /* TextureInfo.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */,
 				B4ECF825189D2282007E2669 /* RenderingEngine.cpp in Sources */,
 				B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */,
