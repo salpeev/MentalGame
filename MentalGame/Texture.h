@@ -8,6 +8,7 @@
 
 #pragma once
 #include "Constants.h"
+#include "TextureImage.h"
 #include <OpenglES/ES2/gl.h>
 
 
@@ -21,6 +22,8 @@ namespace Renderer {
         
         void Bind() const;
         bool IsBound() const;
+        
+        void SetTextureImage(TextureImage *textureImage, int level) const;
         
         void SetMinFilter(TEX_MIN_FILTER minFilter) const;
         void SetMagFilter(TEX_MAG_FILTER magFilter) const;

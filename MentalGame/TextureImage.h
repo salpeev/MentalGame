@@ -1,11 +1,12 @@
 //
-//  TextureInfo.h
+//  TextureImage.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 03.05.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
 #include "Constants.h"
 #include "Size.h"
 
@@ -13,10 +14,10 @@
 
 namespace Renderer {
     
-    class TextureInfo {
+    class TextureImage {
     public:
-        TextureInfo(void *bytes, CSize size, int bitsPerComponent, PIXEL_FORMAT pixelFormat);
-        ~TextureInfo();
+        TextureImage(void *bytes, CSize size, int bitsPerComponent, PIXEL_FORMAT pixelFormat);
+        ~TextureImage();
         
         const void *GetBytes() const;
         CSize GetSize() const;

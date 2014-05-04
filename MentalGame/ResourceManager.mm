@@ -29,7 +29,7 @@ namespace Renderer {
         return contents;
     }
     
-    TextureInfo * ResourceManager::LoadTexturePOT(const string &fileName) const {
+    TextureImage * ResourceManager::LoadTexturePOT(const string &fileName) const {
         // Load image
         NSString *resourceName = [NSString stringWithCString:fileName.c_str() encoding:NSUTF8StringEncoding];
         NSString *resourcePath = [[NSBundle mainBundle] pathForResource:resourceName ofType:nil];
@@ -49,6 +49,7 @@ namespace Renderer {
         CGColorSpaceRef colorSpaceRef = CGImageGetColorSpace(image.CGImage);
         CGColorSpaceModel colorSpaceModel = CGColorSpaceGetModel(colorSpaceRef);
         
+        // TODO: Format Alpha not handled
         PIXEL_FORMAT pixelFormat = PIXEL_FORMAT_NONE;
         switch (colorSpaceModel) {
             case kCGColorSpaceModelMonochrome: {
@@ -65,7 +66,7 @@ namespace Renderer {
             }
         }
         
-        TextureInfo *pTextureInfo = new TextureInfo(bytes, textureSize, bitsPerComponent, pixelFormat);
-        return pTextureInfo;
+        TextureImage *pTextureImage = new TextureImage(bytes, textureSize, bitsPerComponent, pixelFormat);
+        return pTextureImage;
     }
 }

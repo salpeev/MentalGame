@@ -10,6 +10,7 @@
 #include "ColorGlassDrawing.h"
 #include "SegmentDrawing.h"
 #include "ResourceManager.h"
+#include "Texture.h"
 
 
 
@@ -26,8 +27,12 @@ namespace Renderer {
         segmentDrawing->SetEndPoint(Point(1.5, 1.5, -5));
         GetDrawing()->AddSubDrawing(segmentDrawing);
         
-        TextureInfo *pTextureInfo = ResourceManager::SharedInstance().LoadTexturePOT("Ukraine.jpg");
-        delete pTextureInfo;
+        TextureImage *pTextureImage = ResourceManager::SharedInstance().LoadTexturePOT("Ukraine.jpg");
+        Texture *pTexture = new Texture();
+        pTexture->SetTextureImage(pTextureImage, 0);
+        
+        delete pTextureImage;
+        delete pTexture;
     }
     
     GameDrawingController::~GameDrawingController() {

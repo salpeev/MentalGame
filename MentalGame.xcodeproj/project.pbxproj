@@ -18,7 +18,7 @@
 		B42296B618DF0167004A3089 /* QuaternionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */; };
 		B42296BC18E6DA99004A3089 /* FullscreenDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296BA18E6DA99004A3089 /* FullscreenDrawing.cpp */; };
 		B429BEDA19150B6800DA2D3C /* Ukraine.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B429BED919150B6800DA2D3C /* Ukraine.jpg */; };
-		B429BEDD19150ECD00DA2D3C /* TextureInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B429BEDB19150ECD00DA2D3C /* TextureInfo.cpp */; };
+		B429BEDD19150ECD00DA2D3C /* TextureImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B429BEDB19150ECD00DA2D3C /* TextureImage.cpp */; };
 		B42E7F7418CE1D8E0048515C /* RotateByQuaternionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */; };
 		B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7618D5C2E80048515C /* DrawingController.cpp */; };
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
@@ -111,8 +111,8 @@
 		B42296BA18E6DA99004A3089 /* FullscreenDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FullscreenDrawing.cpp; sourceTree = "<group>"; };
 		B42296BB18E6DA99004A3089 /* FullscreenDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullscreenDrawing.h; sourceTree = "<group>"; };
 		B429BED919150B6800DA2D3C /* Ukraine.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ukraine.jpg; sourceTree = "<group>"; };
-		B429BEDB19150ECD00DA2D3C /* TextureInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureInfo.cpp; path = MentalGame/TextureInfo.cpp; sourceTree = "<group>"; };
-		B429BEDC19150ECD00DA2D3C /* TextureInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureInfo.h; path = MentalGame/TextureInfo.h; sourceTree = "<group>"; };
+		B429BEDB19150ECD00DA2D3C /* TextureImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureImage.cpp; sourceTree = "<group>"; };
+		B429BEDC19150ECD00DA2D3C /* TextureImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureImage.h; sourceTree = "<group>"; };
 		B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateByQuaternionAnimation.cpp; sourceTree = "<group>"; };
 		B42E7F7318CE1D8E0048515C /* RotateByQuaternionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateByQuaternionAnimation.h; sourceTree = "<group>"; };
 		B42E7F7618D5C2E80048515C /* DrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingController.cpp; sourceTree = "<group>"; };
@@ -385,6 +385,8 @@
 			children = (
 				B47D229C18BA43DF006A0386 /* Texture.cpp */,
 				B47D229D18BA43DF006A0386 /* Texture.h */,
+				B429BEDB19150ECD00DA2D3C /* TextureImage.cpp */,
+				B429BEDC19150ECD00DA2D3C /* TextureImage.h */,
 			);
 			name = Texture;
 			sourceTree = "<group>";
@@ -435,8 +437,6 @@
 			children = (
 				B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */,
 				B4CE1DEE17DFD906009094E8 /* ResourceManager.h */,
-				B429BEDB19150ECD00DA2D3C /* TextureInfo.cpp */,
-				B429BEDC19150ECD00DA2D3C /* TextureInfo.h */,
 			);
 			name = ResourceManager;
 			path = ..;
@@ -911,7 +911,7 @@
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
 				B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */,
-				B429BEDD19150ECD00DA2D3C /* TextureInfo.cpp in Sources */,
+				B429BEDD19150ECD00DA2D3C /* TextureImage.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */,
 				B4ECF825189D2282007E2669 /* RenderingEngine.cpp in Sources */,
 				B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */,

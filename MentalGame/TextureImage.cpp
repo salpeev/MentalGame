@@ -1,12 +1,12 @@
 //
-//  TextureInfo.cpp
+//  TextureImage.cpp
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 03.05.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "TextureInfo.h"
+#include "TextureImage.h"
 #include <stdlib.h>
 #include <assert.h>
 
@@ -14,31 +14,31 @@
 
 namespace Renderer {
     
-    TextureInfo::TextureInfo (void *bytes, CSize size, int bitsPerComponent, PIXEL_FORMAT pixelFormat): m_bytes(bytes), m_size(size), m_bitsPerComponent(bitsPerComponent), m_pixelFormat(pixelFormat) {
+    TextureImage::TextureImage (void *bytes, CSize size, int bitsPerComponent, PIXEL_FORMAT pixelFormat): m_bytes(bytes), m_size(size), m_bitsPerComponent(bitsPerComponent), m_pixelFormat(pixelFormat) {
         
     }
     
-    TextureInfo::~TextureInfo() {
+    TextureImage::~TextureImage() {
         free(m_bytes);
     }
     
-    const void * TextureInfo::GetBytes() const {
+    const void * TextureImage::GetBytes() const {
         return m_bytes;
     }
     
-    CSize TextureInfo::GetSize() const {
+    CSize TextureImage::GetSize() const {
         return m_size;
     }
     
-    int TextureInfo::GetBitsPerComponent() const {
+    int TextureImage::GetBitsPerComponent() const {
         return m_bitsPerComponent;
     }
     
-    PIXEL_FORMAT TextureInfo::GetPixelFormat() const {
+    PIXEL_FORMAT TextureImage::GetPixelFormat() const {
         return m_pixelFormat;
     }
     
-    PIXEL_TYPE TextureInfo::GetPixelType() const {
+    PIXEL_TYPE TextureImage::GetPixelType() const {
         PIXEL_TYPE pixelType = PIXEL_TYPE_NONE;
         
         
