@@ -22,8 +22,8 @@ namespace Renderer {
         
         // TODO: Test for GL_MAX_VERTEX_ATTRIBS
         
-        void SetBufferPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, GLsizei offset) const;
-        void SetDataPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, const GLvoid *pData) const;
+        void SetBufferPointer(GLsizei size, DATA_TYPE type, bool normalized, GLsizei stride, GLsizei offset) const;
+        void SetDataPointer(GLsizei size, DATA_TYPE type, bool normalized, GLsizei stride, const GLvoid *pData) const;
         
         void Set1f(GLfloat value) const;
         void Set2f(GLfloat value0, GLfloat value1) const;

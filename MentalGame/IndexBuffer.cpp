@@ -14,18 +14,18 @@
 namespace Renderer {
     
     void IndexBuffer::LoadBufferData(const vector<GLushort> &rBufferData, GLSL_BUFFER_USAGE usage) {
-        m_dataType = GLSL_DATA_TYPE_UNSIGNED_SHORT;
+        m_dataType = DATA_TYPE_UNSIGNED_SHORT;
         // TODO: What happens if elements count is 0?
         Buffer::LoadBufferData(&rBufferData[0], sizeof(rBufferData[0]), rBufferData.size(), usage);
     }
     
     void IndexBuffer::LoadBufferData(const vector<GLubyte> &rBufferData, GLSL_BUFFER_USAGE usage) {
-        m_dataType = GLSL_DATA_TYPE_UNSIGNED_BYTE;
+        m_dataType = DATA_TYPE_UNSIGNED_BYTE;
         // TODO: What happens if elements count is 0?
         Buffer::LoadBufferData(&rBufferData[0], sizeof(rBufferData[0]), rBufferData.size(), usage);
     }
     
-    GLSL_DATA_TYPE IndexBuffer::GetDataType() const {
+    DATA_TYPE IndexBuffer::GetDataType() const {
         return m_dataType;
     }
     

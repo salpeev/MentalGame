@@ -8,7 +8,7 @@
 
 #include "PositionColorInitializer.h"
 #include "Attribute.h"
-#include "GLSLVertex.h"
+#include "Vertex.h"
 #include "VertexArray.h"
 
 
@@ -27,8 +27,8 @@ namespace Renderer {
         
         GLsizei colorOffset = PositionSize * sizeof(GLfloat);
         
-        positionAttribute->SetBufferPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), 0);
-        colorAttribute->SetBufferPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLSLVertex1P1C), colorOffset);
+        positionAttribute->SetBufferPointer(PositionSize, DATA_TYPE_FLOAT, false, sizeof(Vertex1P1C), 0);
+        colorAttribute->SetBufferPointer(ColorSize, DATA_TYPE_FLOAT, false, sizeof(Vertex1P1C), colorOffset);
     }
     
     void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, VertexArray *pVertexArray) const {
@@ -40,8 +40,8 @@ namespace Renderer {
         
         GLsizei vertexSize = pVertexArray->GetVertexSize();
         
-        positionAttribute->SetDataPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, vertexSize, pPosition);
-        colorAttribute->SetDataPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, vertexSize, pColor);
+        positionAttribute->SetDataPointer(PositionSize, DATA_TYPE_FLOAT, false, vertexSize, pPosition);
+        colorAttribute->SetDataPointer(ColorSize, DATA_TYPE_FLOAT, false, vertexSize, pColor);
     }
     
     void PositionColorInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, vector<VertexArray *> *pVertexArrays) const {
@@ -54,7 +54,7 @@ namespace Renderer {
         GLvoid *pPosition = pPositionArray->GetData();
         GLvoid *pColor = pColorArray->GetData();
         
-        positionAttribute->SetDataPointer(PositionSize, GLSL_DATA_TYPE_FLOAT, false, sizeof(GLfloat) * 3, pPosition);
-        colorAttribute->SetDataPointer(ColorSize, GLSL_DATA_TYPE_FLOAT, false, 0, pColor);
+        positionAttribute->SetDataPointer(PositionSize, DATA_TYPE_FLOAT, false, 0, pPosition);
+        colorAttribute->SetDataPointer(ColorSize, DATA_TYPE_FLOAT, false, 0, pColor);
     }
 }

@@ -14,6 +14,8 @@
 
 
 namespace Renderer {
+    
+    // TODO: Hint, generate mipmap
     class Texture {
     public:
         Texture();

@@ -39,13 +39,13 @@ namespace Renderer
         
         void SetAttributeInitializer(GLSLAttributeInitializer *pAttributeInitializer);
         void SetUniformInitializer(UniformInitializer *pUniformInitializer);
-        void SetRenderMode(GLSL_RENDER_MODE renderMode);
+        void SetRenderMode(RENDER_MODE renderMode);
         void SetStartDrawIndex(GLint startDrawIndex);
         void SetDrawElementsCount(GLsizei drawElementsCount);
         
         GLSLAttributeInitializer * GetAttributeInitializer() const;
         UniformInitializer * GetUniformInitializer() const;
-        GLSL_RENDER_MODE GetRenderMode() const;
+        RENDER_MODE GetRenderMode() const;
         GLint GetStartDrawIndex() const;
         GLsizei GetDrawElementsCount() const;
         
@@ -65,7 +65,7 @@ namespace Renderer
     private:
         GLSLAttributeInitializer *m_attributeInitializer;
         UniformInitializer *m_uniformInitalizer;
-        GLSL_RENDER_MODE m_renderMode;
+        RENDER_MODE m_renderMode;
         GLint m_startDrawIndex;
         GLsizei m_drawElementsCount;
     };

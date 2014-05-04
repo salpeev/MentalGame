@@ -21,8 +21,7 @@
 
 #pragma mark - Lifecycle
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         
@@ -32,12 +31,21 @@
 
 #pragma mark - View Lifecycle
 
-- (void)loadView
-{
+- (void)loadView {
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     
     MGOpenGLView *openglView = [[MGOpenGLView alloc] initWithFrame:screenBounds];
     self.view = openglView;
+}
+
+#pragma mark - Rotations
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

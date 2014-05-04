@@ -22,7 +22,7 @@ namespace Renderer
     
 #pragma mark - DrawRequest
     
-    DrawRequest::DrawRequest(): m_attributeInitializer(NULL), m_uniformInitalizer(NULL), m_renderMode(GLSL_RENDER_MODE_LINES), m_startDrawIndex(0), m_drawElementsCount(0)
+    DrawRequest::DrawRequest(): m_attributeInitializer(NULL), m_uniformInitalizer(NULL), m_renderMode(RENDER_MODE_LINES), m_startDrawIndex(0), m_drawElementsCount(0)
     {
         
     }
@@ -44,7 +44,7 @@ namespace Renderer
         m_uniformInitalizer = pUniformInitializer;
     }
     
-    void DrawRequest::SetRenderMode(GLSL_RENDER_MODE renderMode)
+    void DrawRequest::SetRenderMode(RENDER_MODE renderMode)
     {
         m_renderMode = renderMode;
     }
@@ -95,7 +95,7 @@ namespace Renderer
         return m_uniformInitalizer;
     }
     
-    GLSL_RENDER_MODE DrawRequest::GetRenderMode() const
+    RENDER_MODE DrawRequest::GetRenderMode() const
     {
         return m_renderMode;
     }
@@ -172,9 +172,9 @@ namespace Renderer
     
     void VertexBufferIndexBufferRequest::Draw() const
     {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
-        GLSL_DATA_TYPE dataType = m_indexBuffer->GetDataType();
+        DATA_TYPE dataType = m_indexBuffer->GetDataType();
         GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
         
         glDrawElements(renderMode, elementsCount, dataType, indicesOffset);
@@ -226,12 +226,12 @@ namespace Renderer
     
     void VertexBufferShortIndicesRequest::Draw() const
     {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_SHORT, pIndices);
+        glDrawElements(renderMode, elementsCount, DATA_TYPE_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -280,12 +280,12 @@ namespace Renderer
     
     void VertexBufferByteIndicesRequest::Draw() const
     {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_BYTE, pIndices);
+        glDrawElements(renderMode, elementsCount, DATA_TYPE_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     
@@ -326,7 +326,7 @@ namespace Renderer
     
     void VertexBufferRequest::Draw() const
     {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
         GLuint elementsCount = GetDrawElementsCount();
         
@@ -379,9 +379,9 @@ namespace Renderer
     
     void VertexArrayIndexBufferRequest::Draw() const
     {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
-        GLSL_DATA_TYPE dataType = m_indexBuffer->GetDataType();
+        DATA_TYPE dataType = m_indexBuffer->GetDataType();
         GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
         
         glDrawElements(renderMode, elementsCount, dataType, indicesOffset);
@@ -435,12 +435,12 @@ namespace Renderer
     
     void VertexArrayShortIndicesRequest::Draw() const
     {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_SHORT, pIndices);
+        glDrawElements(renderMode, elementsCount, DATA_TYPE_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -491,12 +491,12 @@ namespace Renderer
     
     void VertexArrayByteIndicesRequest::Draw() const
     {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_BYTE, pIndices);
+        glDrawElements(renderMode, elementsCount, DATA_TYPE_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     
@@ -543,7 +543,7 @@ namespace Renderer
     
     void VertexArrayRequest::Draw() const
     {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
         GLuint elementsCount = GetDrawElementsCount();
         
@@ -597,9 +597,9 @@ namespace Renderer
     }
     
     void VertexArraysIndexBufferRequest::Draw() const {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
-        GLSL_DATA_TYPE dataType = m_indexBuffer->GetDataType();
+        DATA_TYPE dataType = m_indexBuffer->GetDataType();
         GLvoid *indicesOffset = (GLvoid *)(m_indexBuffer->GetElementSize() * GetStartDrawIndex());
         
         glDrawElements(renderMode, elementsCount, dataType, indicesOffset);
@@ -654,12 +654,12 @@ namespace Renderer
     }
     
     void VertexArraysShortIndicesRequest::Draw() const {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_SHORT, pIndices);
+        glDrawElements(renderMode, elementsCount, DATA_TYPE_UNSIGNED_SHORT, pIndices);
         CheckError();
     }
     
@@ -711,12 +711,12 @@ namespace Renderer
     }
     
     void VertexArraysByteIndicesRequest::Draw() const {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLuint elementsCount = GetDrawElementsCount();
         GLint startIndex = GetStartDrawIndex();
         GLvoid *pIndices = (GLvoid *)(&m_indices->at(startIndex));
         
-        glDrawElements(renderMode, elementsCount, GLSL_DATA_TYPE_UNSIGNED_BYTE, pIndices);
+        glDrawElements(renderMode, elementsCount, DATA_TYPE_UNSIGNED_BYTE, pIndices);
         CheckError();
     }
     
@@ -765,7 +765,7 @@ namespace Renderer
     }
     
     void VertexArraysRequest::Draw() const {
-        GLSL_RENDER_MODE renderMode = GetRenderMode();
+        RENDER_MODE renderMode = GetRenderMode();
         GLint startIndex = GetStartDrawIndex();
         GLuint elementsCount = GetDrawElementsCount();
         

@@ -8,7 +8,7 @@
 
 #include "ColorGlassDrawing.h"
 #include "Logger.h"
-#include "GLSLVertex.h"
+#include "Vertex.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "PositionColorInitializer.h"
@@ -25,7 +25,6 @@ namespace Renderer {
     
     ColorGlassDrawing::ColorGlassDrawing() {
         glEnable(GL_CULL_FACE);
-        glEnable(GL_DEPTH_TEST);
         
         Point point0(-1.0, -1.0, 0.25);
         Point point1(1.0, -1.0, 0.25);
@@ -37,15 +36,15 @@ namespace Renderer {
         Point point7(-1.0, 1.0, -0.25);
         
         // Rendering
-        vector<GLSLVertex1P1C> vertices;
-        vertices.push_back(GLSLVertex1P1C(point0, Color(1.0, 0.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(point1, Color(0.0, 1.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(point2, Color(0.0, 0.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(point3, Color(1.0, 1.0, 0.0)));
-        vertices.push_back(GLSLVertex1P1C(point4, Color(0.0, 1.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(point5, Color(1.0, 0.0, 1.0)));
-        vertices.push_back(GLSLVertex1P1C(point6, Color(0.4, 0.2, 0.9)));
-        vertices.push_back(GLSLVertex1P1C(point7, Color(0.7, 0.2, 0.0)));
+        vector<Vertex1P1C> vertices;
+        vertices.push_back(Vertex1P1C(point0, Color(1.0, 0.0, 0.0)));
+        vertices.push_back(Vertex1P1C(point1, Color(0.0, 1.0, 0.0)));
+        vertices.push_back(Vertex1P1C(point2, Color(0.0, 0.0, 1.0)));
+        vertices.push_back(Vertex1P1C(point3, Color(1.0, 1.0, 0.0)));
+        vertices.push_back(Vertex1P1C(point4, Color(0.0, 1.0, 1.0)));
+        vertices.push_back(Vertex1P1C(point5, Color(1.0, 0.0, 1.0)));
+        vertices.push_back(Vertex1P1C(point6, Color(0.4, 0.2, 0.9)));
+        vertices.push_back(Vertex1P1C(point7, Color(0.7, 0.2, 0.0)));
         
         vector<GLushort> indices;
         indices.push_back(0);
@@ -92,7 +91,7 @@ namespace Renderer {
         
         
         m_vertexBuffer = new VertexBuffer();
-        m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(GLSLVertex1P1C), vertices.size());
+        m_vertexBuffer->LoadBufferData(&vertices[0], sizeof(Vertex1P1C), vertices.size());
         
         m_indexBuffer = new IndexBuffer();
         m_indexBuffer->LoadBufferData(indices);
@@ -103,7 +102,7 @@ namespace Renderer {
         m_drawRequest = new VertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
         m_drawRequest->SetUniformInitializer(m_uniformInitializer);
-        m_drawRequest->SetRenderMode(GLSL_RENDER_MODE_TRIANGLES);
+        m_drawRequest->SetRenderMode(RENDER_MODE_TRIANGLES);
         
         // Collision
         vector<Plane> planes;

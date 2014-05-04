@@ -124,7 +124,7 @@ namespace Renderer {
             GLsizei attributeNameLength;
             GLint attributeSize;
             GLenum attributeType;
-            GLchar *attributeName = new GLchar(maxAttributeNameLength + 1);
+            GLchar *attributeName = new GLchar(maxAttributeNameLength);
             
             glGetActiveAttrib(m_programHandle, attributeIndex, maxAttributeNameLength, &attributeNameLength, &attributeSize, &attributeType, attributeName);
             CheckError();
@@ -132,7 +132,7 @@ namespace Renderer {
             GLint attributeLocation = glGetAttribLocation(m_programHandle, attributeName);
             CheckError();
             
-            GLSL_DATA_TYPE type = (GLSL_DATA_TYPE)attributeType;
+            DATA_TYPE type = (DATA_TYPE)attributeType;
             Attribute *pAttribute = new Attribute(this, attributeName, type, attributeSize, attributeLocation);
             pAttributes->insert(make_pair(attributeName, pAttribute));
             
@@ -159,7 +159,7 @@ namespace Renderer {
             GLsizei uniformNameLength;
             GLint uniformSize;
             GLenum uniformType;
-            GLchar *uniformName = new GLchar(maxUniformNameLength + 1);
+            GLchar *uniformName = new GLchar(maxUniformNameLength);
             
             glGetActiveUniform(m_programHandle, uniformIndex, maxUniformNameLength, &uniformNameLength, &uniformSize, &uniformType, uniformName);
             CheckError();
@@ -167,7 +167,7 @@ namespace Renderer {
             GLint uniformLocation = glGetUniformLocation(m_programHandle, uniformName);
             CheckError();
             
-            Uniform *pUniform = new Uniform(this, uniformName, (GLSL_DATA_TYPE)uniformType, uniformSize, uniformLocation);
+            Uniform *pUniform = new Uniform(this, uniformName, (DATA_TYPE)uniformType, uniformSize, uniformLocation);
             pUniforms->insert(make_pair(uniformName, pUniform));
             
             delete uniformName;

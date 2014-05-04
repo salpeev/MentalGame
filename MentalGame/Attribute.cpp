@@ -20,14 +20,14 @@ namespace Renderer {
     
 #pragma mark - Public Methods
     
-    void Attribute::SetBufferPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, GLsizei offset) const {
+    void Attribute::SetBufferPointer(GLsizei size, DATA_TYPE type, bool normalized, GLsizei stride, GLsizei offset) const {
         EnableArray();
         
         glVertexAttribPointer(GetLocation(), size, type, normalized, stride, (GLvoid *)offset);
         CheckError();
     }
     
-    void Attribute::SetDataPointer(GLsizei size, GLSL_DATA_TYPE type, bool normalized, GLsizei stride, const GLvoid *pData) const {
+    void Attribute::SetDataPointer(GLsizei size, DATA_TYPE type, bool normalized, GLsizei stride, const GLvoid *pData) const {
         EnableArray();
         
         glVertexAttribPointer(GetLocation(), size, type, normalized, stride, pData);

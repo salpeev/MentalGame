@@ -22,6 +22,7 @@ namespace Renderer {
         
         Program * GetPositionColorProgram() const;
         Program * GetPerspectiveProgram() const;
+        Program * GetTextureProgram() const;
         
     private:
         ProgramContainer();
@@ -30,8 +31,10 @@ namespace Renderer {
         
         void LoadPositionColorProgram();
         void LoadPerspectiveProgram();
+        void LoadTextureProgram();
         
         Program *m_positionColorProgram;
         Program *m_perspectiveProgram;
+        Program *m_textureProgram;
     };
 }

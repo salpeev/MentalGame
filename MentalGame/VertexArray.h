@@ -1,5 +1,5 @@
 //
-//  GLSLVertexData.h
+//  VertexData.h
 //  MentalGame
 //
 //  Created by Sergey Alpeev on 04.01.14.

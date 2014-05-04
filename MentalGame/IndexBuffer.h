@@ -21,7 +21,7 @@ namespace Renderer {
         void LoadBufferData(const vector<GLushort> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
         void LoadBufferData(const vector<GLubyte> &rBufferData, GLSL_BUFFER_USAGE usage = GLSL_BUFFER_USAGE_STATIC_DRAW);
         
-        GLSL_DATA_TYPE GetDataType() const;
+        DATA_TYPE GetDataType() const;
         
         GLSL_BUFFER TargetBuffer() const;
         GET_PARAMETER BufferBindingParameter() const;
@@ -29,7 +29,7 @@ namespace Renderer {
         static void UnbindCurrentBuffer();
         
     private:
-        GLSL_DATA_TYPE m_dataType;
+        DATA_TYPE m_dataType;
     };
 }
 

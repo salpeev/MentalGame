@@ -40,6 +40,8 @@ namespace Renderer {
     }
     
     void Texture::SetTextureImage(TextureImage *textureImage, int level) const {
+        Bind();
+        
         PIXEL_FORMAT pixelFormat = textureImage->GetPixelFormat();
         GLsizei width = textureImage->GetSize().width;
         GLsizei height = textureImage->GetSize().height;

@@ -16,6 +16,7 @@ namespace Renderer {
     ProgramContainer::ProgramContainer() {
         LoadPositionColorProgram();
         LoadPerspectiveProgram();
+        LoadTextureProgram();
     }
     
     Program * ProgramContainer::GetPositionColorProgram() const {
@@ -24,6 +25,10 @@ namespace Renderer {
     
     Program * ProgramContainer::GetPerspectiveProgram() const {
         return m_perspectiveProgram;
+    }
+    
+    Program * ProgramContainer::GetTextureProgram() const {
+        return m_textureProgram;
     }
     
 #pragma mark - Private Methods
@@ -40,5 +45,12 @@ namespace Renderer {
         string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("PerspectiveShader.fsh");
         
         m_perspectiveProgram = new Program(vertexShaderSource, fragmentShaderSource);
+    }
+    
+    void ProgramContainer::LoadTextureProgram() {
+        string vertexShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("TextureShader.vsh");
+        string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("TextureShader.fsh");
+        
+        m_textureProgram = new Program(vertexShaderSource, fragmentShaderSource);
     }
 }

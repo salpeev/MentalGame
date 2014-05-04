@@ -19,6 +19,9 @@
 		B42296BC18E6DA99004A3089 /* FullscreenDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296BA18E6DA99004A3089 /* FullscreenDrawing.cpp */; };
 		B429BEDA19150B6800DA2D3C /* Ukraine.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B429BED919150B6800DA2D3C /* Ukraine.jpg */; };
 		B429BEDD19150ECD00DA2D3C /* TextureImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B429BEDB19150ECD00DA2D3C /* TextureImage.cpp */; };
+		B429BEDF191652DD00DA2D3C /* TextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B429BEDE191652DD00DA2D3C /* TextureShader.vsh */; };
+		B429BEE1191652EA00DA2D3C /* TextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B429BEE0191652EA00DA2D3C /* TextureShader.fsh */; };
+		B429BEE419165D3100DA2D3C /* TexturePositionInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B429BEE219165D3100DA2D3C /* TexturePositionInitializer.cpp */; };
 		B42E7F7418CE1D8E0048515C /* RotateByQuaternionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */; };
 		B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7618D5C2E80048515C /* DrawingController.cpp */; };
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
@@ -37,7 +40,7 @@
 		B469605317F75C25002BCF6C /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605117F75C25002BCF6C /* Color.cpp */; };
 		B469605717F76B5E002BCF6C /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605517F76B5E002BCF6C /* Point.cpp */; };
 		B469605A17F8526F002BCF6C /* ShaderValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605817F8526F002BCF6C /* ShaderValue.cpp */; };
-		B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605B17F858BF002BCF6C /* GLSLVertex.cpp */; };
+		B469605D17F858BF002BCF6C /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605B17F858BF002BCF6C /* Vertex.cpp */; };
 		B46FCD0118B6D902004E6221 /* SegmentDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46FCCFF18B6D902004E6221 /* SegmentDrawing.cpp */; };
 		B47177DC188BEA75006B6215 /* ProgramContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47177DA188BEA75006B6215 /* ProgramContainer.cpp */; };
 		B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229818BA424F006A0386 /* TextureDrawing.cpp */; };
@@ -113,6 +116,10 @@
 		B429BED919150B6800DA2D3C /* Ukraine.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ukraine.jpg; sourceTree = "<group>"; };
 		B429BEDB19150ECD00DA2D3C /* TextureImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureImage.cpp; sourceTree = "<group>"; };
 		B429BEDC19150ECD00DA2D3C /* TextureImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureImage.h; sourceTree = "<group>"; };
+		B429BEDE191652DD00DA2D3C /* TextureShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = TextureShader.vsh; sourceTree = "<group>"; };
+		B429BEE0191652EA00DA2D3C /* TextureShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = TextureShader.fsh; sourceTree = "<group>"; };
+		B429BEE219165D3100DA2D3C /* TexturePositionInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TexturePositionInitializer.cpp; sourceTree = "<group>"; };
+		B429BEE319165D3100DA2D3C /* TexturePositionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexturePositionInitializer.h; sourceTree = "<group>"; };
 		B42E7F7218CE1D8E0048515C /* RotateByQuaternionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateByQuaternionAnimation.cpp; sourceTree = "<group>"; };
 		B42E7F7318CE1D8E0048515C /* RotateByQuaternionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateByQuaternionAnimation.h; sourceTree = "<group>"; };
 		B42E7F7618D5C2E80048515C /* DrawingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingController.cpp; sourceTree = "<group>"; };
@@ -149,8 +156,8 @@
 		B469605617F76B5E002BCF6C /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		B469605817F8526F002BCF6C /* ShaderValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderValue.cpp; sourceTree = "<group>"; };
 		B469605917F8526F002BCF6C /* ShaderValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderValue.h; sourceTree = "<group>"; };
-		B469605B17F858BF002BCF6C /* GLSLVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLVertex.cpp; sourceTree = "<group>"; };
-		B469605C17F858BF002BCF6C /* GLSLVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLVertex.h; sourceTree = "<group>"; };
+		B469605B17F858BF002BCF6C /* Vertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
+		B469605C17F858BF002BCF6C /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
 		B46FCCFF18B6D902004E6221 /* SegmentDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SegmentDrawing.cpp; sourceTree = "<group>"; };
 		B46FCD0018B6D902004E6221 /* SegmentDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentDrawing.h; sourceTree = "<group>"; };
 		B47177DA188BEA75006B6215 /* ProgramContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProgramContainer.cpp; sourceTree = "<group>"; };
@@ -428,6 +435,8 @@
 				B4D64F78187F3877005E78AC /* PositionColorShader.fsh */,
 				B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */,
 				B4D64F7C187F3891005E78AC /* PerspectiveShader.fsh */,
+				B429BEDE191652DD00DA2D3C /* TextureShader.vsh */,
+				B429BEE0191652EA00DA2D3C /* TextureShader.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -547,8 +556,8 @@
 		B4AFEF841809716C007846A1 /* Vertex */ = {
 			isa = PBXGroup;
 			children = (
-				B469605B17F858BF002BCF6C /* GLSLVertex.cpp */,
-				B469605C17F858BF002BCF6C /* GLSLVertex.h */,
+				B469605B17F858BF002BCF6C /* Vertex.cpp */,
+				B469605C17F858BF002BCF6C /* Vertex.h */,
 			);
 			name = Vertex;
 			sourceTree = "<group>";
@@ -569,6 +578,8 @@
 				B4D64F86188179F6005E78AC /* AttributeInitializer.h */,
 				B4D64F82188179A5005E78AC /* PositionColorInitializer.cpp */,
 				B4D64F83188179A5005E78AC /* PositionColorInitializer.h */,
+				B429BEE219165D3100DA2D3C /* TexturePositionInitializer.cpp */,
+				B429BEE319165D3100DA2D3C /* TexturePositionInitializer.h */,
 			);
 			name = "Attribute Initializer";
 			sourceTree = "<group>";
@@ -843,8 +854,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B429BEE1191652EA00DA2D3C /* TextureShader.fsh in Resources */,
 				B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */,
 				B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */,
+				B429BEDF191652DD00DA2D3C /* TextureShader.vsh in Resources */,
 				B429BEDA19150B6800DA2D3C /* Ukraine.jpg in Resources */,
 				B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */,
 				B4D64F81187F3D3E005E78AC /* PerspectiveShader.fsh in Resources */,
@@ -882,8 +895,9 @@
 				B42296B618DF0167004A3089 /* QuaternionModelviewModifier.cpp in Sources */,
 				B42296B318DF0159004A3089 /* PositionModelviewModifier.cpp in Sources */,
 				B4EF847D186AE07900234C28 /* Matrix.cpp in Sources */,
-				B469605D17F858BF002BCF6C /* GLSLVertex.cpp in Sources */,
+				B469605D17F858BF002BCF6C /* Vertex.cpp in Sources */,
 				B469605717F76B5E002BCF6C /* Point.cpp in Sources */,
+				B429BEE419165D3100DA2D3C /* TexturePositionInitializer.cpp in Sources */,
 				B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */,
 				B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */,
 				B469605317F75C25002BCF6C /* Color.cpp in Sources */,
