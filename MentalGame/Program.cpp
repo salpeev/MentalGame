@@ -58,8 +58,7 @@ namespace Renderer {
     void Program::Create() {
         m_programHandle = glCreateProgram();
         
-        if (m_programHandle == 0)
-        {
+        if (m_programHandle == 0) {
             Log("Unable to create program");
         }
     }
@@ -124,7 +123,7 @@ namespace Renderer {
             GLsizei attributeNameLength;
             GLint attributeSize;
             GLenum attributeType;
-            GLchar *attributeName = new GLchar(maxAttributeNameLength);
+            GLchar *attributeName = new GLchar[maxAttributeNameLength];
             
             glGetActiveAttrib(m_programHandle, attributeIndex, maxAttributeNameLength, &attributeNameLength, &attributeSize, &attributeType, attributeName);
             CheckError();
@@ -136,14 +135,13 @@ namespace Renderer {
             Attribute *pAttribute = new Attribute(this, attributeName, type, attributeSize, attributeLocation);
             pAttributes->insert(make_pair(attributeName, pAttribute));
             
-            delete attributeName;
+            delete []attributeName;
         }
         
         m_attributes = pAttributes;
     }
     
-    void Program::ExtractUniforms()
-    {
+    void Program::ExtractUniforms() {
         GLint uniformsCount;
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_ACTIVE_UNIFORMS, &uniformsCount);
         CheckError();
@@ -154,12 +152,11 @@ namespace Renderer {
         
         map<string, Uniform *> *pUniforms = new map<string, Uniform *>();
         
-        for (GLint uniformIndex = 0; uniformIndex < uniformsCount; uniformIndex++)
-        {
+        for (GLint uniformIndex = 0; uniformIndex < uniformsCount; uniformIndex++) {
             GLsizei uniformNameLength;
             GLint uniformSize;
             GLenum uniformType;
-            GLchar *uniformName = new GLchar(maxUniformNameLength);
+            GLchar *uniformName = new GLchar[maxUniformNameLength];
             
             glGetActiveUniform(m_programHandle, uniformIndex, maxUniformNameLength, &uniformNameLength, &uniformSize, &uniformType, uniformName);
             CheckError();
@@ -170,14 +167,13 @@ namespace Renderer {
             Uniform *pUniform = new Uniform(this, uniformName, (DATA_TYPE)uniformType, uniformSize, uniformLocation);
             pUniforms->insert(make_pair(uniformName, pUniform));
             
-            delete uniformName;
+            delete []uniformName;
         }
         
         m_uniforms = pUniforms;
     }
     
-    bool Program::IsLinked() const
-    {
+    bool Program::IsLinked() const {
         GLint linkStatus;
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_LINK_STATUS, &linkStatus);
         CheckError();
@@ -185,8 +181,7 @@ namespace Renderer {
         return (linkStatus == GLSL_TRUE);
     }
     
-    bool Program::IsUsed() const
-    {
+    bool Program::IsUsed() const {
         GLint currentProgramHandle;
         glGetIntegerv(GET_PARAMETER_CURRENT_PROGRAM, &currentProgramHandle);
         CheckError();
@@ -195,8 +190,7 @@ namespace Renderer {
         return used;
     }
     
-    bool Program::IsDeleted() const
-    {
+    bool Program::IsDeleted() const {
         GLint deleteStatus;
         glGetProgramiv(m_programHandle, GLSL_PROGRAM_IV_DELETE_STATUS, &deleteStatus);
         
