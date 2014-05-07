@@ -85,6 +85,20 @@ namespace Renderer {
         return renderFrame;
     }
     
+    void RenderingEngine::Enable(SERVER_CAPABILITY serverCapability) const {
+        if (glIsEnabled(serverCapability) == GLSL_FALSE) {
+            glEnable(serverCapability);
+            CheckError();
+        }
+    }
+    
+    void RenderingEngine::Disable(SERVER_CAPABILITY serverCapability) const {
+        if (glIsEnabled(serverCapability) == GLSL_TRUE) {
+            glDisable(serverCapability);
+            CheckError();
+        }
+    }
+    
     void RenderingEngine::Render(float interval) const {
         m_framebuffer->Clear();
         

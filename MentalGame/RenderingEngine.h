@@ -13,6 +13,7 @@
 #include "Touch.h"
 #include "Projection.h"
 #include "DrawingController.h"
+#include "Constants.h"
 #include <map>
 
 using namespace std;
@@ -43,6 +44,9 @@ namespace Renderer {
         void SetRenderFrame(const Rect &rFrame) const;
         void ResetRenderFrame() const;
         Rect GetRenderFrame() const;
+        
+        void Enable(SERVER_CAPABILITY serverCapability) const;
+        void Disable(SERVER_CAPABILITY serverCapability) const;
         
         void Render(float interval) const;
         

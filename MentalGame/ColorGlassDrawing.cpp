@@ -18,14 +18,13 @@
 #include "CollisionDetector.h"
 #include "MoveToAnimation.h"
 #include "RotateByQuaternionAnimation.h"
+#include "RenderingEngine.h"
 
 
 
 namespace Renderer {
     
     ColorGlassDrawing::ColorGlassDrawing() {
-        glEnable(GL_CULL_FACE);
-        
         Point point0(-1.0, -1.0, 0.25);
         Point point1(1.0, -1.0, 0.25);
         Point point2(1.0, 1.0, 0.25);
@@ -186,6 +185,9 @@ namespace Renderer {
     }
     
     void ColorGlassDrawing::Draw() const {
+        RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_CULL_FACE);
+        RenderingEngine::SharedInstance().Disable(SERVER_CAPABILITY_DEPTH_TEST);
+        
         Program *pProgram = ProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }
