@@ -333,6 +333,22 @@ namespace Renderer {
         return m;
     }
     
+    Matrix4 Matrix4::Ortho(float left, float right, float bottom, float top, float near, float far) {
+        float a = 2.0f / (right - left);
+        float b = -(right + left) / (right - left);
+        float c = 2.0f / (top - bottom);
+        float d = -(top + bottom) / (top - bottom);
+        float e = -2.0f / (far - near);
+        float f = -(far + near) / (far - near);
+        
+        Matrix4 m;
+        m.x.x = a;   m.x.y = 0.0; m.x.z = 0.0; m.x.w = 0.0;
+        m.y.x = 0.0; m.y.y = c;   m.y.z = 0.0; m.y.w = 0.0;
+        m.z.x = 0.0; m.z.y = 0.0; m.z.z = e;   m.z.w = 0.0;
+        m.w.x = b;   m.w.y = d;   m.w.z = f;   m.w.w = 1.0;
+        return m;
+    }
+    
     Matrix4 Matrix4::Translation(float tX, float tY, float tZ) {
         Matrix4 m;
         m.x.x = 1.0f; m.x.y = 0.0f; m.x.z = 0.0f; m.x.w = 0.0f;
