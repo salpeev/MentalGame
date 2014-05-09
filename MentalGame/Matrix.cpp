@@ -316,7 +316,6 @@ namespace Renderer {
     }
     
     Matrix4 Matrix4::Frustum(float fovy, float aspect, float near, float far) {
-        // TODO: Not tested. Doesn't work as expected
         // http://unspecified.wordpress.com/2012/06/21/calculating-the-gluperspective-matrix-and-other-opengl-matrix-maths/
         float f = 1.0f / tan(fovy / 2.0f);
         

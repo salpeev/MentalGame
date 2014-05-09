@@ -34,9 +34,12 @@ namespace Renderer {
     }
     
     void Projection::SetFrustum(float fovy, float aspect, float near, float far) {
-        // TODO: Set front rect
-        // TODO: Set front rect distance
-//        m_projection = Matrix4::Frustum(fovy, aspect, near, far);
+        float halfY = near * tan(fovy / 2.0f);
+        float halfX = aspect * halfY;
+        m_frontRect = Rect(-halfX, -halfY, halfX * 2.0f, halfY * 2.0f);
+        m_distance = -near;
+        
+        m_projectionMatrix = Matrix4::Frustum(fovy, aspect, near, far);
     }
     
     float Projection::GetDistance() const {
