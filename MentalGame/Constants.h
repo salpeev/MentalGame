@@ -8,3 +8,4 @@
 
 #pragma once
 #include "DefaultConstants.h"
+#include "Enums.h"

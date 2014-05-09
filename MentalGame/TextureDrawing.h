@@ -16,7 +16,7 @@ namespace Renderer {
     class VertexBuffer;
     class IndexBuffer;
     class TexturePositionInitializer;
-    class Texture;
+    class Texture2D;
     class DrawRequest;
     
     
@@ -34,7 +34,7 @@ namespace Renderer {
         VertexBuffer *m_vertexBuffer;
         IndexBuffer *m_indexBuffer;
         TexturePositionInitializer *m_attributeInitializer;
-        Texture *m_texture;
+        Texture2D *m_texture;
         DrawRequest *m_drawRequest;
     };
 }

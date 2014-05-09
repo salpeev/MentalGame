@@ -14,7 +14,11 @@
 
 namespace Renderer {
     
-    TextureImage::TextureImage (void *bytes, CSize size, int bitsPerComponent, PIXEL_FORMAT pixelFormat): m_bytes(bytes), m_size(size), m_bitsPerComponent(bitsPerComponent), m_pixelFormat(pixelFormat) {
+    TextureImage::TextureImage(CSize size, BITS_PER_COMPONENT bitsPerComponent, PIXEL_FORMAT pixelFormat, void *bytes): m_bytes(bytes), m_size(size), m_bitsPerComponent(bitsPerComponent), m_pixelFormat(pixelFormat) {
+        
+    }
+    
+    TextureImage::TextureImage(CSize size, BITS_PER_COMPONENT bitsPerComponent, PIXEL_FORMAT pixelFormat): TextureImage(size, bitsPerComponent, pixelFormat, nullptr) {
         
     }
     
@@ -30,7 +34,7 @@ namespace Renderer {
         return m_size;
     }
     
-    int TextureImage::GetBitsPerComponent() const {
+    BITS_PER_COMPONENT TextureImage::GetBitsPerComponent() const {
         return m_bitsPerComponent;
     }
     
@@ -43,13 +47,13 @@ namespace Renderer {
         
         
         switch (GetBitsPerComponent()) {
-            case 4: {
+            case BITS_PER_COMPONENT_4: {
                 if (GetPixelFormat() == GL_RGBA) {
                     pixelType = PIXEL_TYPE_USHORT_4_4_4_4;
                     break;
                 }
             }
-            case 8: {
+            case BITS_PER_COMPONENT_8: {
                 pixelType = PIXEL_TYPE_UBYTE;
                 break;
             }

@@ -22,10 +22,9 @@ namespace Renderer {
         Texture(const Texture &rTexture) = delete;
         ~Texture();
         
-        void Bind() const;
-        bool IsBound() const;
-        
-        void SetTextureImage(TextureImage *textureImage, int level) const;
+        virtual void Bind() const = 0;
+        virtual bool IsBound() const = 0;
+        virtual void GenerateMipMap(MIPMAP_HINT hint) const = 0;
         
         void SetMinFilter(TEX_MIN_FILTER minFilter) const;
         void SetMagFilter(TEX_MAG_FILTER magFilter) const;
@@ -36,6 +35,11 @@ namespace Renderer {
         TEX_MAG_FILTER GetMagFilter() const;
         TEX_WRAP GetWrapS() const;
         TEX_WRAP GetWrapT() const;
+        
+        void GenerateMipMap() const;
+        
+    protected:
+        GLuint GetTextureHandle() const;
         
     private:
         GLuint m_textureHandle;

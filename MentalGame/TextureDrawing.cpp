@@ -13,7 +13,7 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "TexturePositionInitializer.h"
-#include "Texture.h"
+#include "Texture2D.h"
 #include "ResourceManager.h"
 #include <vector>
 
@@ -61,11 +61,9 @@ namespace Renderer {
         m_drawRequest->SetRenderMode(RENDER_MODE_TRIANGLES);
         
         TextureImage *pTextureImage = ResourceManager::SharedInstance().LoadTexturePOT("Ukraine.jpg");
-        m_texture = new Texture();
+        m_texture = new Texture2D();
         m_texture->SetTextureImage(pTextureImage, 0);
-        
-        glHint(GL_GENERATE_MIPMAP_HINT, GL_NICEST);
-        glGenerateMipmap(GL_TEXTURE_2D);
+        m_texture->GenerateMipMap(MIPMAP_HINT_FASTEST);
         
         delete pTextureImage;
     }

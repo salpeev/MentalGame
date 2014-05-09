@@ -42,7 +42,7 @@ namespace Renderer {
         [data getBytes:bytes length:data.length];
         
         CSize textureSize(CGImageGetWidth(image.CGImage), CGImageGetHeight(image.CGImage));
-        size_t bitsPerComponent = CGImageGetBitsPerComponent(image.CGImage);
+        BITS_PER_COMPONENT bitsPerComponent = (BITS_PER_COMPONENT)CGImageGetBitsPerComponent(image.CGImage);
         
         BOOL hasAlpha = (CGImageGetAlphaInfo(image.CGImage) != kCGImageAlphaNone);
         
@@ -66,7 +66,7 @@ namespace Renderer {
             }
         }
         
-        TextureImage *pTextureImage = new TextureImage(bytes, textureSize, bitsPerComponent, pixelFormat);
+        TextureImage *pTextureImage = new TextureImage(textureSize, bitsPerComponent, pixelFormat, bytes);
         return pTextureImage;
     }
 }

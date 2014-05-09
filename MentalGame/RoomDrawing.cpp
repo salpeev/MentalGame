@@ -66,7 +66,7 @@ namespace Renderer {
         vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, 1.0), Color(0.8, 0.0, 0.2)));
         vertices.push_back(Vertex1P1C(Point(4.0, 4.0, 1.0), Color(0.8, 0.0, 0.2)));
         
-//        Quaternion quaternion = Quaternion::CreateFromAxisAngle(Vector3(0, 1, 0), M_PI);
+//        Quaternion quaternion = Quaternion::CreateFromAxisAngle(Vector3(0, 1, 0), M_PI_4);
         Quaternion quaternion;
         m_quaternionModifier = new QuaternionModelviewModifier();
         m_quaternionModifier->SetQuaternion(quaternion);

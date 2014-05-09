@@ -23,35 +23,6 @@ namespace Renderer {
         CheckError();
     }
     
-    void Texture::Bind() const {
-        if(!IsBound()) {
-            glBindTexture(TEXTURE_2D, m_textureHandle);
-            CheckError();
-        }
-    }
-    
-    bool Texture::IsBound() const {
-        GLint boundTextureHandle;
-        glGetIntegerv(GET_PARAMETER_TEXTURE_BINDING_2D, &boundTextureHandle);
-        CheckError();
-        
-        bool bound = (boundTextureHandle == m_textureHandle);
-        return bound;
-    }
-    
-    void Texture::SetTextureImage(TextureImage *textureImage, int level) const {
-        Bind();
-        
-        PIXEL_FORMAT pixelFormat = textureImage->GetPixelFormat();
-        GLsizei width = textureImage->GetSize().width;
-        GLsizei height = textureImage->GetSize().height;
-        PIXEL_TYPE pixelType = textureImage->GetPixelType();
-        const GLvoid *pixels = textureImage->GetBytes();
-        
-        glTexImage2D(TEXTURE_2D, level, pixelFormat, width, height, 0, pixelFormat, pixelType, pixels);
-        CheckError();
-    }
-    
     void Texture::SetMinFilter(TEX_MIN_FILTER minFilter) const {
         glTexParameteri(TEXTURE_2D, TEX_PARAMETER_MIN_FILTER, minFilter);
         CheckError();
@@ -106,5 +77,9 @@ namespace Renderer {
         
         TEX_WRAP wrapT = (TEX_WRAP)wrapTParameter;
         return wrapT;
+    }
+    
+    GLuint Texture::GetTextureHandle() const {
+        return m_textureHandle;
     }
 }
