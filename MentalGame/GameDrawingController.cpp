@@ -12,6 +12,7 @@
 #include "SegmentDrawing.h"
 #include "ResourceManager.h"
 #include "RoomDrawing.h"
+#include "GlassSphereDrawing.h"
 
 
 
@@ -33,6 +34,10 @@ namespace Renderer {
 //        segmentDrawing->SetStartPoint(Point(-1.5, -1.5, -4));
 //        segmentDrawing->SetEndPoint(Point(1.5, 1.5, -5));
 //        GetDrawing()->AddSubDrawing(segmentDrawing);
+        
+        GlassSphereDrawing *glassSphereDrawing = new GlassSphereDrawing();
+        glassSphereDrawing->GetPositionModelviewModifier()->SetPosition(Point(0.0f, 2.0f, -5.5f));
+        GetDrawing()->AddSubDrawing(glassSphereDrawing);
     }
     
     GameDrawingController::~GameDrawingController() {

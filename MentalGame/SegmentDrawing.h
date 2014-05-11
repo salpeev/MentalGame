@@ -41,7 +41,7 @@ namespace Renderer {
         void Draw() const;
         
     private:
-        PositionColorInitializer*m_attributeInitializer;
+        PositionColorInitializer *m_attributeInitializer;
         ProjectionModelviewInitializer *m_uniformInitializer;
         VertexBuffer *m_vertexBuffer;
         DrawRequest *m_drawRequest;

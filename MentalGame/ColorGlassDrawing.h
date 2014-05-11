@@ -47,7 +47,7 @@ namespace Renderer {
     private:
         VertexBuffer *m_vertexBuffer;
         IndexBuffer *m_indexBuffer;
-        PositionColorInitializer*m_attributeInitializer;
+        PositionColorInitializer *m_attributeInitializer;
         ProjectionModelviewInitializer *m_uniformInitializer;
         DrawRequest *m_drawRequest;
         Polyhedron *m_shape;

@@ -18,6 +18,10 @@ namespace Renderer {
         
     }
     
+    ParametricSurface::~ParametricSurface() {
+        
+    }
+    
     int ParametricSurface::GetVertexCount() const {
         int vertexCount = m_xDivisions * m_yDivisions;
         return vertexCount;
