@@ -44,6 +44,8 @@
 		B469605D17F858BF002BCF6C /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605B17F858BF002BCF6C /* Vertex.cpp */; };
 		B46CAC90191CB30300B7BA86 /* Texture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46CAC8E191CB30300B7BA86 /* Texture2D.cpp */; };
 		B46CAC93191CB30B00B7BA86 /* TextureCubeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46CAC91191CB30B00B7BA86 /* TextureCubeMap.cpp */; };
+		B46CAC99191F79AB00B7BA86 /* ParametricSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46CAC97191F79AB00B7BA86 /* ParametricSurface.cpp */; };
+		B46CAC9C191F9F8E00B7BA86 /* SphereSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46CAC9A191F9F8E00B7BA86 /* SphereSurface.cpp */; };
 		B46FCD0118B6D902004E6221 /* SegmentDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46FCCFF18B6D902004E6221 /* SegmentDrawing.cpp */; };
 		B47177DC188BEA75006B6215 /* ProgramContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47177DA188BEA75006B6215 /* ProgramContainer.cpp */; };
 		B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229818BA424F006A0386 /* TextureDrawing.cpp */; };
@@ -168,6 +170,11 @@
 		B46CAC8F191CB30300B7BA86 /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
 		B46CAC91191CB30B00B7BA86 /* TextureCubeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureCubeMap.cpp; sourceTree = "<group>"; };
 		B46CAC92191CB30B00B7BA86 /* TextureCubeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureCubeMap.h; sourceTree = "<group>"; };
+		B46CAC96191E27E100B7BA86 /* Surface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Surface.h; sourceTree = "<group>"; };
+		B46CAC97191F79AB00B7BA86 /* ParametricSurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParametricSurface.cpp; sourceTree = "<group>"; };
+		B46CAC98191F79AB00B7BA86 /* ParametricSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParametricSurface.h; sourceTree = "<group>"; };
+		B46CAC9A191F9F8E00B7BA86 /* SphereSurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SphereSurface.cpp; sourceTree = "<group>"; };
+		B46CAC9B191F9F8E00B7BA86 /* SphereSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SphereSurface.h; sourceTree = "<group>"; };
 		B46FCCFF18B6D902004E6221 /* SegmentDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SegmentDrawing.cpp; sourceTree = "<group>"; };
 		B46FCD0018B6D902004E6221 /* SegmentDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentDrawing.h; sourceTree = "<group>"; };
 		B47177DA188BEA75006B6215 /* ProgramContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProgramContainer.cpp; sourceTree = "<group>"; };
@@ -406,6 +413,18 @@
 			name = TextureImage;
 			sourceTree = "<group>";
 		};
+		B46CAC95191E27C600B7BA86 /* Surface */ = {
+			isa = PBXGroup;
+			children = (
+				B46CAC96191E27E100B7BA86 /* Surface.h */,
+				B46CAC97191F79AB00B7BA86 /* ParametricSurface.cpp */,
+				B46CAC98191F79AB00B7BA86 /* ParametricSurface.h */,
+				B46CAC9A191F9F8E00B7BA86 /* SphereSurface.cpp */,
+				B46CAC9B191F9F8E00B7BA86 /* SphereSurface.h */,
+			);
+			name = Surface;
+			sourceTree = "<group>";
+		};
 		B47D229B18BA439B006A0386 /* Texture */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +445,7 @@
 				B4963F9418003B490037FC39 /* Constants */,
 				B4EF8485186B3CA900234C28 /* Logger */,
 				B4EF84771869EA1F00234C28 /* Geometry Primitives */,
+				B46CAC95191E27C600B7BA86 /* Surface */,
 				B4D1B84C18AEBB84004FD4B2 /* Math */,
 				B422969118DEEC93004A3089 /* Collisions */,
 				B4D70D5E182C2EBE00771FA8 /* Program */,
@@ -902,6 +922,7 @@
 			files = (
 				B4E0972017DB671400F4A436 /* main.m in Sources */,
 				B4E069DA1891E06200F2E995 /* ColorGlassDrawing.cpp in Sources */,
+				B46CAC99191F79AB00B7BA86 /* ParametricSurface.cpp in Sources */,
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
 				B4DBE42D18D8C13B004CB98F /* Projection.cpp in Sources */,
 				B4EF847A186AE06E00234C28 /* Vector.cpp in Sources */,
@@ -949,6 +970,7 @@
 				B42296B018DEFC5E004A3089 /* ModelviewModifier.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* VertexBuffer.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* DrawRequest.cpp in Sources */,
+				B46CAC9C191F9F8E00B7BA86 /* SphereSurface.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
 				B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */,
