@@ -18,12 +18,12 @@ namespace Renderer {
         PositionModelviewModifier();
         PositionModelviewModifier(ModelviewModifier *pPrevModifier);
         
-        void SetPosition(const Point &rPosition);
-        Point GetPosition() const;
+        void SetPosition(const Point3 &rPosition);
+        Point3 GetPosition() const;
         
         Matrix4 GetModelviewMatrix() const;
         
     private:
-        Point m_position;
+        Point3 m_position;
     };
 }

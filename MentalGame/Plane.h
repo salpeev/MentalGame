@@ -15,14 +15,14 @@ namespace Renderer {
     
     class Plane {
     public:
-        Plane(const Point &a, const Point &b, const Point &c);
+        Plane(const Point3 &a, const Point3 &b, const Point3 &c);
         
         Plane Transformed(Matrix4 &rMatrix, bool translatedRotatedOnly) const;
         void Transform(Matrix4 &rMatrix, bool translatedRotatedOnly);
         
         const Vector3 & GetNormal() const;
         float GetDistance() const;
-        Point GetPosition() const;
+        Point3 GetPosition() const;
         
     private:
         Vector3 m_normal;

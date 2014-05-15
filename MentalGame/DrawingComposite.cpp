@@ -38,7 +38,7 @@ namespace Renderer {
         DrawSubDrawings();
     }
     
-    DrawingComponent * DrawingComposite::HitTest(const Point &rPoint) {
+    DrawingComponent * DrawingComposite::HitTest(const Point3 &rPoint) {
         // TODO: Probably rewrite this method to take into account hit coordinate, not just subdrawing position in hierarchy
         if (!PointInside(rPoint)) {
             return nullptr;

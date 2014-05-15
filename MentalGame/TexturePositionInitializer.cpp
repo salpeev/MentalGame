@@ -56,6 +56,6 @@ namespace Renderer {
         GLvoid *pTexCoord = pColorArray->GetData();
         
         positionAttribute->SetDataPointer(PositionSize, DATA_TYPE_FLOAT, false, 0, pPosition);
-        texCoordAttribute->SetDataPointer(TextureCoordSize, DATA_TYPE_FLOAT, false, sizeof(Point), pTexCoord);
+        texCoordAttribute->SetDataPointer(TextureCoordSize, DATA_TYPE_FLOAT, false, sizeof(Point3), pTexCoord);
     }
 }

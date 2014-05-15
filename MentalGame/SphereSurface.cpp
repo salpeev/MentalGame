@@ -17,7 +17,7 @@ namespace Renderer {
         
     }
     
-    Point SphereSurface::Evaluate(const Point &domain) const {
+    Point3 SphereSurface::Evaluate(const Point3 &domain) const {
         float u = domain.x;
         float v = domain.y;
         
@@ -25,6 +25,6 @@ namespace Renderer {
         float y = m_radius * cos(u);
         float z = m_radius * -sin(u) * sin(v);
         
-        return Point(x, y, z);
+        return Point3(x, y, z);
     }
 }

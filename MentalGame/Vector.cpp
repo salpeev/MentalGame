@@ -96,8 +96,8 @@ namespace Renderer
         return equal;
     }
     
-    Vector3::operator Point() const {
-        Point point(x, y, z);
+    Vector3::operator Point3() const {
+        Point3 point(x, y, z);
         return point;
     }
     

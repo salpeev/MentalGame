@@ -17,9 +17,9 @@ namespace Renderer {
     class Vertex1P {
     public:
         Vertex1P();
-        Vertex1P(Point position);
+        Vertex1P(Point3 position);
         
-        Point m_position;
+        Point3 m_position;
     };
     
     
@@ -37,9 +37,9 @@ namespace Renderer {
     class Vertex1P1C {
     public:
         Vertex1P1C();
-        Vertex1P1C(Point position, Color color);
+        Vertex1P1C(Point3 position, Color color);
         
-        Point m_position;
+        Point3 m_position;
         Color m_color;
     };
     
@@ -48,9 +48,9 @@ namespace Renderer {
     class Vertex1P1T {
     public:
         Vertex1P1T();
-        Vertex1P1T(Point position, Point textureCoordinate);
+        Vertex1P1T(Point3 position, Point2 textureCoordinate);
         
-        Point m_position;
-        Point m_textureCoordinate;
+        Point3 m_position;
+        Point2 m_textureCoordinate;
     };
 }

@@ -13,24 +13,39 @@
 
 namespace Renderer {
     
-    Point::Point(): Point(0.0f, 0.0f, 0.0f) {
+    Point2::Point2(): Point2(0.0f, 0.0f) {
         
     }
     
-    Point::Point(GLfloat x, GLfloat y): Point(x, y, 0.0f) {
+    Point2::Point2(float x, float y): x(x), y(y) {
         
     }
     
-    Point::Point(GLfloat x, GLfloat y, GLfloat z): x(x), y(y), z(z) {
+    
+    
+    
+    Point3::Point3(): Point3(0.0f, 0.0f, 0.0f) {
         
     }
     
-    Vector3 Point::operator-(const Point &rPoint) const {
+    Point3::Point3(const Point2 &rPoint): Point3(rPoint.x, rPoint.y, 0.0f) {
+        
+    }
+    
+    Point3::Point3(float x, float y): Point3(x, y, 0.0f) {
+        
+    }
+    
+    Point3::Point3(float x, float y, float z): x(x), y(y), z(z) {
+        
+    }
+    
+    Vector3 Point3::operator-(const Point3 &rPoint) const {
         Vector3 resultVector = Vector3(x - rPoint.x, y - rPoint.y, z - rPoint.z);
         return resultVector;
     }
     
-    Point::operator Vector3() const {
+    Point3::operator Vector3() const {
         Vector3 vector(x, y, z);
         return vector;
     }

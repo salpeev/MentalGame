@@ -50,7 +50,7 @@ namespace Renderer
         Vector3 operator*(float scale) const;
         Vector3 operator*(const Matrix3 &rMatrix) const;
         bool operator==(const Vector3 &rVector) const;
-        operator Point() const;
+        operator Point3() const;
         
         float Length() const;
         const float * Pointer() const;

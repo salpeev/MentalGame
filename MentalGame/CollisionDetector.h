@@ -17,7 +17,7 @@ namespace Renderer {
     
     class CollisionDetector {
     public:
-        static bool IntersectSegmentPolyhedron(const Point &rA, const Point &rB, const Polyhedron &rPolyhedron, float &tStart, float &tEnd);
+        static bool IntersectSegmentPolyhedron(const Point3 &rA, const Point3 &rB, const Polyhedron &rPolyhedron, float &tStart, float &tEnd);
     };
 }
 

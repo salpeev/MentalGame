@@ -16,7 +16,7 @@ namespace Renderer {
         
     }
     
-    Rect::Rect(GLfloat x, GLfloat y, GLfloat width, GLfloat height): x(x), y(y), width(width), height(height) {
+    Rect::Rect(float x, float y, float width, float height): origin(Point2(x, y)), size(CSize(width, height)) {
         
     }
 }

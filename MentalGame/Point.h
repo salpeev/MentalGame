@@ -7,7 +7,6 @@
 //
 
 #pragma once
-#include <OpenGLES/ES2/gl.h>
 
 
 
@@ -17,18 +16,29 @@ namespace Renderer {
     
     
     
-    class Point {
+    class Point2 {
     public:
-        Point();
+        Point2();
+        Point2(float x, float y);
         
-        Point(GLfloat x, GLfloat y);
-        Point(GLfloat x, GLfloat y, GLfloat z);
+        float x;
+        float y;
+    };
+    
+    
+    
+    class Point3 {
+    public:
+        Point3();
+        Point3(const Point2 &rPoint);
+        Point3(float x, float y);
+        Point3(float x, float y, float z);
         
-        Vector3 operator-(const Point &rPoint) const;
+        Vector3 operator-(const Point3 &rPoint) const;
         operator Vector3() const;
         
-        GLfloat x;
-        GLfloat y;
-        GLfloat z;
+        float x;
+        float y;
+        float z;
     };
 }

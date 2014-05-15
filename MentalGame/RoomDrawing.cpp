@@ -24,47 +24,47 @@ namespace Renderer {
     RoomDrawing::RoomDrawing() {
         // Rendering
         vector<Vertex1P1C> vertices;
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, -9.0), Color(0.0, 0.8, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, -9.0), Color(0.0, 0.8, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, -9.0), Color(0.0, 0.8, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, -9.0), Color(0.0, 0.6, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, -9.0), Color(0.0, 0.6, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, -9.0), Color(0.0, 0.6, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, -9.0), Color(0.0, 0.8, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, -9.0), Color(0.0, 0.8, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, -9.0), Color(0.0, 0.8, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, -9.0), Color(0.0, 0.6, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, -9.0), Color(0.0, 0.6, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, -9.0), Color(0.0, 0.6, 0.0)));
         
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, 1.0), Color(0.6, 0.0, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, 1.0), Color(0.6, 0.0, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, -9.0), Color(0.6, 0.0, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, 1.0), Color(0.4, 0.0, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, -9.0), Color(0.4, 0.0, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, -9.0), Color(0.4, 0.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, 1.0), Color(0.6, 0.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, 1.0), Color(0.6, 0.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, -9.0), Color(0.6, 0.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, 1.0), Color(0.4, 0.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, -9.0), Color(0.4, 0.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, -9.0), Color(0.4, 0.0, 0.0)));
         
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, -9.0), Color(0.0, 0.0, 1.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, 1.0), Color(0.0, 0.0, 1.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, 1.0), Color(0.0, 0.0, 1.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, -9.0), Color(0.0, 0.0, 0.8)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, 1.0), Color(0.0, 0.0, 0.8)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, -9.0), Color(0.0, 0.0, 0.8)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, -9.0), Color(0.0, 0.0, 1.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, 1.0), Color(0.0, 0.0, 1.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, 1.0), Color(0.0, 0.0, 1.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, -9.0), Color(0.0, 0.0, 0.8)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, 1.0), Color(0.0, 0.0, 0.8)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, -9.0), Color(0.0, 0.0, 0.8)));
         
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, -9.0), Color(1.0, 1.0, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, -9.0), Color(1.0, 1.0, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, 1.0), Color(1.0, 1.0, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, -9.0), Color(0.8, 0.8, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, 1.0), Color(0.8, 0.8, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, 1.0), Color(0.8, 0.8, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, -9.0), Color(1.0, 1.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, -9.0), Color(1.0, 1.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, 1.0), Color(1.0, 1.0, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, -9.0), Color(0.8, 0.8, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, 1.0), Color(0.8, 0.8, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, 1.0), Color(0.8, 0.8, 0.0)));
         
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, 1.0), Color(0.5, 0.25, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, -9.0), Color(0.5, 0.25, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, -9.0), Color(0.5, 0.25, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, 1.0), Color(0.4, 0.2, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, -9.0), Color(0.4, 0.2, 0.0)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, 1.0), Color(0.4, 0.2, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, 1.0), Color(0.5, 0.25, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, -9.0), Color(0.5, 0.25, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, -9.0), Color(0.5, 0.25, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, 1.0), Color(0.4, 0.2, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, -9.0), Color(0.4, 0.2, 0.0)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, 1.0), Color(0.4, 0.2, 0.0)));
         
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, 1.0), Color(1.0, 0.0, 0.4)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, -4.0, 1.0), Color(1.0, 0.0, 0.4)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, 1.0), Color(1.0, 0.0, 0.4)));
-        vertices.push_back(Vertex1P1C(Point(4.0, -4.0, 1.0), Color(0.8, 0.0, 0.2)));
-        vertices.push_back(Vertex1P1C(Point(-4.0, 4.0, 1.0), Color(0.8, 0.0, 0.2)));
-        vertices.push_back(Vertex1P1C(Point(4.0, 4.0, 1.0), Color(0.8, 0.0, 0.2)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, 1.0), Color(1.0, 0.0, 0.4)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, -4.0, 1.0), Color(1.0, 0.0, 0.4)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, 1.0), Color(1.0, 0.0, 0.4)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, -4.0, 1.0), Color(0.8, 0.0, 0.2)));
+        vertices.push_back(Vertex1P1C(Point3(-4.0, 4.0, 1.0), Color(0.8, 0.0, 0.2)));
+        vertices.push_back(Vertex1P1C(Point3(4.0, 4.0, 1.0), Color(0.8, 0.0, 0.2)));
         
 //        Quaternion quaternion = Quaternion::CreateFromAxisAngle(Vector3(0, 1, 0), M_PI_4);
         Quaternion quaternion;

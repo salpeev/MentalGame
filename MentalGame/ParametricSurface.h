@@ -28,11 +28,11 @@ namespace Renderer {
         void GenerateTriangleIndices(vector<unsigned short> &indices);
         
     protected:
-        virtual Point Evaluate(const Point &domain) const = 0;
-        virtual bool InvertNormal(const Point &domain) const;
+        virtual Point3 Evaluate(const Point3 &domain) const = 0;
+        virtual bool InvertNormal(const Point3 &domain) const;
         
     private:
-        Point ComputeDomain(float x, float y) const;
+        Point3 ComputeDomain(float x, float y) const;
         
         int m_xDivisions;
         int m_yDivisions;

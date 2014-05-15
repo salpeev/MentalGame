@@ -17,7 +17,7 @@ namespace Renderer {
     public:
         SphereSurface(int xDivisions, int yDivisions, float radius);
         
-        Point Evaluate(const Point &domain) const;
+        Point3 Evaluate(const Point3 &domain) const;
         
     private:
         float m_radius;

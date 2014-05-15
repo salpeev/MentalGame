@@ -12,7 +12,7 @@
 
 namespace Renderer {
     
-    bool FullscreenDrawing::PointInside(const Point &rPoint) const {
+    bool FullscreenDrawing::PointInside(const Point3 &rPoint) const {
         return true;
     }
 }

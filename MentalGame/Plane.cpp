@@ -13,7 +13,7 @@
 
 namespace Renderer {
     
-    Plane::Plane(const Point &a, const Point &b, const Point &c) {
+    Plane::Plane(const Point3 &a, const Point3 &b, const Point3 &c) {
         Vector3 ab = b - a;
         Vector3 ac = c - a;
         
@@ -30,7 +30,7 @@ namespace Renderer {
     }
     
     void Plane::Transform(Matrix4 &rMatrix, bool translatedRotatedOnly) {
-        Point position = GetPosition();
+        Point3 position = GetPosition();
         
         // Transform normal
         Matrix4 normalMatrix(rMatrix);
@@ -61,8 +61,8 @@ namespace Renderer {
         return m_distance;
     }
     
-    Point Plane::GetPosition() const {
-        Point position = m_normal * m_distance;
+    Point3 Plane::GetPosition() const {
+        Point3 position = m_normal * m_distance;
         return position;
     }
 }

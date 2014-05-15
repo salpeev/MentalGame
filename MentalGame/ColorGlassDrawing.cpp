@@ -25,14 +25,14 @@
 namespace Renderer {
     
     ColorGlassDrawing::ColorGlassDrawing() {
-        Point point0(-1.0, -1.0, 0.25);
-        Point point1(1.0, -1.0, 0.25);
-        Point point2(1.0, 1.0, 0.25);
-        Point point3(-1.0, 1.0, 0.25);
-        Point point4(-1.0, -1.0, -0.25);
-        Point point5(1.0, -1.0, -0.25);
-        Point point6(1.0, 1.0, -0.25);
-        Point point7(-1.0, 1.0, -0.25);
+        Point3 point0(-1.0, -1.0, 0.25);
+        Point3 point1(1.0, -1.0, 0.25);
+        Point3 point2(1.0, 1.0, 0.25);
+        Point3 point3(-1.0, 1.0, 0.25);
+        Point3 point4(-1.0, -1.0, -0.25);
+        Point3 point5(1.0, -1.0, -0.25);
+        Point3 point6(1.0, 1.0, -0.25);
+        Point3 point7(-1.0, 1.0, -0.25);
         
         // Rendering
         vector<Vertex1P1C> vertices;
@@ -125,14 +125,14 @@ namespace Renderer {
         delete m_scaleModifier;
     }
     
-    bool ColorGlassDrawing::PointInside(const Point &rPoint) const {
+    bool ColorGlassDrawing::PointInside(const Point3 &rPoint) const {
         float start = 0.0f;
         float end = FLT_MAX;
         
         Matrix4 modelview = m_uniformInitializer->GetModelviewMatrix();
         Polyhedron transformedShape = m_shape->Transformed(modelview, false);
         
-        bool intersect = CollisionDetector::IntersectSegmentPolyhedron(Point(), rPoint, transformedShape, start, end);
+        bool intersect = CollisionDetector::IntersectSegmentPolyhedron(Point3(), rPoint, transformedShape, start, end);
         return intersect;
     }
     
@@ -175,7 +175,7 @@ namespace Renderer {
         if (duration > 3.0f && !added) {
             added = true;
             
-            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point(-2, -2, -9), 5, ANIMATION_CURVE_EASE_IN);
+            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point3(-2, -2, -9), 5, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
             
             Quaternion newQuaternion = Quaternion::CreateFromAxisAngle(Vector3(1, 1, 0), M_PI);

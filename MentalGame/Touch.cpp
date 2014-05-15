@@ -14,7 +14,7 @@
 
 namespace Renderer {
     
-    Touch::Touch(Point windowPosition, void *pSystemTouch): m_windowPosition(windowPosition), m_systemTouch(pSystemTouch) {
+    Touch::Touch(Point2 windowPosition, void *pSystemTouch): m_windowPosition(windowPosition), m_systemTouch(pSystemTouch) {
         
     }
     
@@ -22,7 +22,7 @@ namespace Renderer {
         
     }
     
-    void Touch::SetWindowPosition(const Point &rPosition) {
+    void Touch::SetWindowPosition(const Point2 &rPosition) {
         m_windowPosition = rPosition;
     }
     
@@ -38,19 +38,19 @@ namespace Renderer {
         return m_drawingComponent;
     }
     
-    Point Touch::GetWindowPosition() const {
+    Point2 Touch::GetWindowPosition() const {
         return m_windowPosition;
     }
     
-    Point Touch::GetProjectionPosition() const {
+    Point3 Touch::GetProjectionPosition() const {
         CSize windowSize = RenderingEngine::SharedInstance().GetWindowSize();
         float xOffset = m_windowPosition.x / windowSize.width;
         float yOffset = m_windowPosition.y / windowSize.height;
         
         Rect frontRect = RenderingEngine::SharedInstance().GetProjection().GetFrontRect();
-        float xPosition = frontRect.x + frontRect.width * xOffset;
-        float yPosition = frontRect.y + frontRect.height * yOffset;
+        float xPosition = frontRect.origin.x + frontRect.size.width * xOffset;
+        float yPosition = frontRect.origin.y + frontRect.size.height * yOffset;
         float zPosition = RenderingEngine::SharedInstance().GetProjection().GetDistance();
-        return Point(xPosition, yPosition, zPosition);
+        return Point3(xPosition, yPosition, zPosition);
     }
 }

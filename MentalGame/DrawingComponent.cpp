@@ -35,7 +35,7 @@ namespace Renderer {
         UpdateAnimations(interval);
     }
     
-    bool DrawingComponent::PointInside(const Point &rPoint) const {
+    bool DrawingComponent::PointInside(const Point3 &rPoint) const {
         return false;
     }
     

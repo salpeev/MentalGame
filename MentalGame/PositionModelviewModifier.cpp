@@ -21,11 +21,11 @@ namespace Renderer {
         
     }
         
-    void PositionModelviewModifier::SetPosition(const Point &rPosition) {
+    void PositionModelviewModifier::SetPosition(const Point3 &rPosition) {
         m_position = rPosition;
     }
     
-    Point PositionModelviewModifier::GetPosition() const {
+    Point3 PositionModelviewModifier::GetPosition() const {
         return m_position;
     }
     

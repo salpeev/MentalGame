@@ -24,15 +24,15 @@ using namespace std;
 namespace Renderer {
     
     TextureDrawing::TextureDrawing() {
-        Point point0(-1.0, -1.0);
-        Point point1(1.0, -1.0);
-        Point point2(1.0, 1.0);
-        Point point3(-1.0, 1.0);
+        Point3 point0(-1.0, -1.0);
+        Point3 point1(1.0, -1.0);
+        Point3 point2(1.0, 1.0);
+        Point3 point3(-1.0, 1.0);
         
-        Point textureCoordinate0(0.0, 1.0);
-        Point textureCoordinate1(1.0, 1.0);
-        Point textureCoordinate2(1.0, 0.0);
-        Point textureCoordinate3(0.0, 0.0);
+        Point2 textureCoordinate0(0.0, 1.0);
+        Point2 textureCoordinate1(1.0, 1.0);
+        Point2 textureCoordinate2(1.0, 0.0);
+        Point2 textureCoordinate3(0.0, 0.0);
         
         vector<Vertex1P1T> vertices;
         vertices.push_back(Vertex1P1T(point0, textureCoordinate0));

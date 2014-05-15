@@ -16,14 +16,14 @@ namespace Renderer {
     
     class MoveToAnimation: public Animation {
     public:
-        MoveToAnimation(PositionModelviewModifier *pModelviewModifier, const Point &rPosition, float duration, ANIMATION_CURVE curve);
+        MoveToAnimation(PositionModelviewModifier *pModelviewModifier, const Point3 &rPosition, float duration, ANIMATION_CURVE curve);
         ~MoveToAnimation();
         
         void Update(float interval);
         
     private:
         PositionModelviewModifier *m_modelviewModifier;
-        Point m_startPosition;
-        Point m_endPosition;
+        Point3 m_startPosition;
+        Point3 m_endPosition;
     };
 }

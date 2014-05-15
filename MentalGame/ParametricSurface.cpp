@@ -53,10 +53,10 @@ namespace Renderer {
         
         for (int j = 0; j < m_yDivisions; j++) {
             for (int i = 0; i < m_xDivisions; i++) {
-                Point domain = ComputeDomain(i, j);
-                Point range = Evaluate(domain);
+                Point3 domain = ComputeDomain(i, j);
+                Point3 range = Evaluate(domain);
                 
-                Point *pPosition = (Point *)attribute;
+                Point3 *pPosition = (Point3 *)attribute;
                 *pPosition++ = range;
                 attribute = (float *)pPosition;
                 
@@ -138,13 +138,13 @@ namespace Renderer {
         }
     }
     
-    Point ParametricSurface::ComputeDomain(float x, float y) const {
+    Point3 ParametricSurface::ComputeDomain(float x, float y) const {
         float xDomain = x * m_xUpperBound / m_xSlices;
         float yDomain = y * m_yUpperBound / m_ySlices;
-        return Point(xDomain, yDomain);
+        return Point3(xDomain, yDomain);
     }
     
-    bool ParametricSurface::InvertNormal(const Point &domain) const {
+    bool ParametricSurface::InvertNormal(const Point3 &domain) const {
         return false;
     }
 }

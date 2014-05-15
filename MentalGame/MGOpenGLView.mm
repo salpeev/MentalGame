@@ -13,6 +13,7 @@
 #include "ColorRenderbufferMultisampleRGBA8.h"
 #include "Depth24Stencil8MultisampleRenderbuffer.h"
 #include "GameDrawingController.h"
+#include "Camera.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -85,12 +86,15 @@ using namespace Renderer;
         RenderingEngine::SharedInstance().SetFramebuffer(m_sampleFramebuffer);
         RenderingEngine::SharedInstance().SetWindowSize(CSize(width, height));
         RenderingEngine::SharedInstance().SetDrawingController(new GameDrawingController());
-//        RenderingEngine::SharedInstance().SetProjection(Projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f));
-        RenderingEngine::SharedInstance().SetProjection(Projection(M_PI_2, aspectRatio, 4.0f, 10.0f));
+        RenderingEngine::SharedInstance().SetProjection(Projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f));
+//        RenderingEngine::SharedInstance().SetProjection(Projection(M_PI_2, aspectRatio, 4.0f, 10.0f));
 
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-
+        
+        // TODO: Remove
+        Camera *camera = new Camera();
+        camera->GetViewport();
     }
     return self;
 }
@@ -112,7 +116,7 @@ using namespace Renderer;
         CGPoint touchLocation = [touch locationInView:self.window];
         CGFloat yConverted = screenSize.height - touchLocation.y;
         
-        Renderer::Point engineLocation(touchLocation.x * scale, yConverted * scale);
+        Point2 engineLocation(touchLocation.x * scale, yConverted * scale);
         Touch *engineTouch = new Touch(engineLocation, (__bridge void *)touch);
         engineTouches.push_back(engineTouch);
     }
@@ -130,7 +134,7 @@ using namespace Renderer;
         CGFloat yConverted = screenSize.height - touchLocation.y;
         
         Touch *engineTouch = RenderingEngine::SharedInstance().GetTouchForSystemTouch((__bridge void *)touch);
-        engineTouch->SetWindowPosition(Renderer::Point(touchLocation.x * scale, yConverted * scale));
+        engineTouch->SetWindowPosition(Point2(touchLocation.x * scale, yConverted * scale));
         
         movedTouches.push_back(engineTouch);
     }

@@ -7,7 +7,8 @@
 //
 
 #pragma once
-#include <OpenGLES/ES2/gl.h>
+#include "Point.h"
+#include "Size.h"
 
 
 
@@ -16,11 +17,9 @@ namespace Renderer {
     class Rect {
     public:
         Rect();
-        Rect(GLfloat x, GLfloat y, GLfloat width, GLfloat height);
+        Rect(float x, float y, float width, float height);
         
-        GLfloat x;
-        GLfloat y;
-        GLfloat width;
-        GLfloat height;
+        Point2 origin;
+        CSize size;
     };
 }

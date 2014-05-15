@@ -13,11 +13,11 @@
 
 namespace Renderer {
     
-    Vertex1P::Vertex1P(): Vertex1P(Point()) {
+    Vertex1P::Vertex1P(): Vertex1P(Point3()) {
         
     }
     
-    Vertex1P::Vertex1P(Point position): m_position(position) {
+    Vertex1P::Vertex1P(Point3 position): m_position(position) {
         
     }
     
@@ -33,21 +33,21 @@ namespace Renderer {
     
     
     
-    Vertex1P1C::Vertex1P1C(): Vertex1P1C(Point(), Color()) {
+    Vertex1P1C::Vertex1P1C(): Vertex1P1C(Point3(), Color()) {
         
     }
     
-    Vertex1P1C::Vertex1P1C(Point position, Color color): m_position(position), m_color(color) {
+    Vertex1P1C::Vertex1P1C(Point3 position, Color color): m_position(position), m_color(color) {
         
     }
     
     
     
-    Vertex1P1T::Vertex1P1T(): Vertex1P1T(Point(), Point()) {
+    Vertex1P1T::Vertex1P1T(): Vertex1P1T(Point3(), Point2()) {
         
     }
     
-    Vertex1P1T::Vertex1P1T(Point position, Point textureCoordinate): m_position(position), m_textureCoordinate(textureCoordinate) {
+    Vertex1P1T::Vertex1P1T(Point3 position, Point2 textureCoordinate): m_position(position), m_textureCoordinate(textureCoordinate) {
         
     }
 }

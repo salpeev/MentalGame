@@ -27,16 +27,16 @@ namespace Renderer {
 //        GetDrawing()->AddSubDrawing(textureDrawing);
         
         ColorGlassDrawing *colorGlassDrawing = new ColorGlassDrawing();
-        colorGlassDrawing->GetPositionModelviewModifier()->SetPosition(Point(0.0f, 0.0f, -5.5f));
+        colorGlassDrawing->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 0.0f, -5.5f));
         GetDrawing()->AddSubDrawing(colorGlassDrawing);
         
 //        SegmentDrawing *segmentDrawing = new SegmentDrawing();
-//        segmentDrawing->SetStartPoint(Point(-1.5, -1.5, -4));
-//        segmentDrawing->SetEndPoint(Point(1.5, 1.5, -5));
+//        segmentDrawing->SetStartPoint(Point3(-1.5, -1.5, -4));
+//        segmentDrawing->SetEndPoint(Point3(1.5, 1.5, -5));
 //        GetDrawing()->AddSubDrawing(segmentDrawing);
         
         GlassSphereDrawing *glassSphereDrawing = new GlassSphereDrawing();
-        glassSphereDrawing->GetPositionModelviewModifier()->SetPosition(Point(0.0f, 2.0f, -5.5f));
+        glassSphereDrawing->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 2.0f, -5.5f));
         GetDrawing()->AddSubDrawing(glassSphereDrawing);
     }
     

@@ -13,7 +13,7 @@
 
 namespace Renderer {
     
-    bool CollisionDetector::IntersectSegmentPolyhedron(const Point &rA, const Point &rB, const Polyhedron &rPolyhedron, float &tStart, float &tEnd) {
+    bool CollisionDetector::IntersectSegmentPolyhedron(const Point3 &rA, const Point3 &rB, const Polyhedron &rPolyhedron, float &tStart, float &tEnd) {
         // Compute direction vector for the segment
         Vector3 directionVector = rB - rA;
         

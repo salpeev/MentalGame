@@ -30,7 +30,7 @@ namespace Renderer {
         ColorGlassDrawing();
         ~ColorGlassDrawing();
         
-        bool PointInside(const Point &rPoint) const;
+        bool PointInside(const Point3 &rPoint) const;
         
         PositionModelviewModifier *GetPositionModelviewModifier() const;
         QuaternionModelviewModifier *GetQuaternionModelviewModifier() const;

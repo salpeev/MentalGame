@@ -68,7 +68,7 @@ namespace Renderer {
     
     void RenderingEngine::SetRenderFrame(const Rect &rFrame) const {
         // TODO: GL_MAX_VIEWPORT_DIMS
-        glViewport(rFrame.x, rFrame.y, rFrame.width, rFrame.height);
+        glViewport(rFrame.origin.x, rFrame.origin.y, rFrame.size.width, rFrame.size.height);
         CheckError();
     }
     
@@ -124,7 +124,7 @@ namespace Renderer {
         
         for (int touchIndex = 0; touchIndex < rTouches.size(); touchIndex++) {
             Touch *touch = rTouches[touchIndex];
-            Point touchPosition = touch->GetProjectionPosition();
+            Point3 touchPosition = touch->GetProjectionPosition();
             DrawingComponent *hitDrawing = m_drawingController->GetDrawing()->HitTest(touchPosition);
             touch->SetDrawingComponent(hitDrawing);
         }

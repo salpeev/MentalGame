@@ -26,13 +26,13 @@ namespace Renderer {
         SegmentDrawing();
         ~SegmentDrawing();
         
-        void SetStartPoint(const Point &rStart);
-        void SetEndPoint(const Point &rEnd);
+        void SetStartPoint(const Point3 &rStart);
+        void SetEndPoint(const Point3 &rEnd);
         void SetStartColor(const Color &rStartColor);
         void SetEndColor(const Color &rEndColor);
         
-        Point GetStartPoint() const;
-        Point GetEndPoint() const;
+        Point3 GetStartPoint() const;
+        Point3 GetEndPoint() const;
         Color GetStartColor() const;
         Color GetEndColor() const;
         
@@ -46,8 +46,8 @@ namespace Renderer {
         VertexBuffer *m_vertexBuffer;
         DrawRequest *m_drawRequest;
         
-        Point m_start;
-        Point m_end;
+        Point3 m_start;
+        Point3 m_end;
         Color m_startColor;
         Color m_endColor;
     };

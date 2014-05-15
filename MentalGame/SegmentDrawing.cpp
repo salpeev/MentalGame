@@ -17,7 +17,7 @@
 
 namespace Renderer {
     
-    SegmentDrawing::SegmentDrawing (): m_start(Point()), m_end(Point()), m_startColor(Color(1.0, 1.0, 1.0)), m_endColor(Color(1.0, 1.0, 1.0)) {
+    SegmentDrawing::SegmentDrawing (): m_start(Point3()), m_end(Point3()), m_startColor(Color(1.0, 1.0, 1.0)), m_endColor(Color(1.0, 1.0, 1.0)) {
         vector<Vertex1P1C> vertices;
         vertices.push_back(Vertex1P1C(m_start, m_startColor));
         vertices.push_back(Vertex1P1C(m_end, m_endColor));
@@ -43,38 +43,38 @@ namespace Renderer {
     
 #pragma mark - Public Methods
     
-    void SegmentDrawing::SetStartPoint(const Point &rStart) {
+    void SegmentDrawing::SetStartPoint(const Point3 &rStart) {
         m_start = rStart;
         
-        m_vertexBuffer->LoadBufferSubData(&m_start, 0, sizeof(Point));
+        m_vertexBuffer->LoadBufferSubData(&m_start, 0, sizeof(Point3));
     }
     
-    void SegmentDrawing::SetEndPoint(const Point &rEnd) {
+    void SegmentDrawing::SetEndPoint(const Point3 &rEnd) {
         m_end = rEnd;
         
-        GLintptr offset = sizeof(Point) + sizeof(Color);
-        m_vertexBuffer->LoadBufferSubData(&m_end, offset, sizeof(Point));
+        GLintptr offset = sizeof(Point3) + sizeof(Color);
+        m_vertexBuffer->LoadBufferSubData(&m_end, offset, sizeof(Point3));
     }
     
     void SegmentDrawing::SetStartColor(const Color &rStartColor) {
         m_startColor = rStartColor;
         
-        GLintptr offset = sizeof(Point);
+        GLintptr offset = sizeof(Point3);
         m_vertexBuffer->LoadBufferSubData(&m_startColor, offset, sizeof(Color));
     }
     
     void SegmentDrawing::SetEndColor(const Color &rEndColor) {
         m_endColor = rEndColor;
         
-        GLintptr offset = sizeof(Point) + sizeof(Color) + sizeof(Point);
+        GLintptr offset = sizeof(Point3) + sizeof(Color) + sizeof(Point3);
         m_vertexBuffer->LoadBufferSubData(&m_endColor, offset, sizeof(Color));
     }
     
-    Point SegmentDrawing::GetStartPoint() const {
+    Point3 SegmentDrawing::GetStartPoint() const {
         return m_start;
     }
     
-    Point SegmentDrawing::GetEndPoint() const {
+    Point3 SegmentDrawing::GetEndPoint() const {
         return m_end;
     }
     

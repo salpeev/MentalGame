@@ -51,6 +51,7 @@
 		B47177DC188BEA75006B6215 /* ProgramContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47177DA188BEA75006B6215 /* ProgramContainer.cpp */; };
 		B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229818BA424F006A0386 /* TextureDrawing.cpp */; };
 		B47D229E18BA43DF006A0386 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229C18BA43DF006A0386 /* Texture.cpp */; };
+		B49BC2601923D556000C909B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B49BC25E1923D556000C909B /* Camera.cpp */; };
 		B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1690918C1FCEA0097F2D1 /* Animation.cpp */; };
 		B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */; };
 		B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */; };
@@ -187,6 +188,8 @@
 		B47D229C18BA43DF006A0386 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		B47D229D18BA43DF006A0386 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		B4963F9518003B650037FC39 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		B49BC25E1923D556000C909B /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		B49BC25F1923D556000C909B /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		B4A1690918C1FCEA0097F2D1 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		B4A1690A18C1FCEA0097F2D1 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderbuffer.cpp; sourceTree = "<group>"; };
@@ -467,6 +470,7 @@
 				B42E7F7518D5C2BD0048515C /* DrawingController */,
 				B4DBE42718D5E2CD004CB98F /* TouchesHandler */,
 				B422969218DEEE4D004A3089 /* ModelviewModifier */,
+				B49BC25A1923D521000C909B /* Camera */,
 				B4ECF823189D2282007E2669 /* RenderingEngine.cpp */,
 				B4ECF824189D2282007E2669 /* RenderingEngine.h */,
 			);
@@ -541,6 +545,15 @@
 				B46CAC8D191CAF5A00B7BA86 /* Enums.h */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		B49BC25A1923D521000C909B /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				B49BC25E1923D556000C909B /* Camera.cpp */,
+				B49BC25F1923D556000C909B /* Camera.h */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 		B4A1690818C1FCAA0097F2D1 /* Animation */ = {
@@ -987,6 +1000,7 @@
 				B4D64F87188179F6005E78AC /* AttributeInitializer.cpp in Sources */,
 				B41CAA2C18AC1ABA001E1B1A /* Plane.cpp in Sources */,
 				B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */,
+				B49BC2601923D556000C909B /* Camera.cpp in Sources */,
 				B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* Logger.cpp in Sources */,
 				B42E7F7418CE1D8E0048515C /* RotateByQuaternionAnimation.cpp in Sources */,
