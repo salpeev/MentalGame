@@ -58,11 +58,11 @@ namespace Renderer {
         return m_windowSize;
     }
     
-    void RenderingEngine::SetProjection(const Projection &rProjection) {
+    void RenderingEngine::SetProjection(const PerspectiveProjection &rProjection) {
         m_projection = rProjection;
     }
     
-    Projection RenderingEngine::GetProjection() const {
+    PerspectiveProjection RenderingEngine::GetProjection() const {
         return m_projection;
     }
     

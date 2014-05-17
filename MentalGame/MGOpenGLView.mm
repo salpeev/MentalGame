@@ -13,7 +13,7 @@
 #include "ColorRenderbufferMultisampleRGBA8.h"
 #include "Depth24Stencil8MultisampleRenderbuffer.h"
 #include "GameDrawingController.h"
-#include "Camera.h"
+#include "MainCamera.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -63,7 +63,7 @@ using namespace Renderer;
         self.eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
         [EAGLContext setCurrentContext:self.eaglContext];
         
-        m_resolveColorRenderbuffer = new ColorRenderbuffer();
+        m_resolveColorRenderbuffer = new Renderbuffer();
         m_resolveColorRenderbuffer->Bind();
         [self.eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
         
@@ -86,15 +86,11 @@ using namespace Renderer;
         RenderingEngine::SharedInstance().SetFramebuffer(m_sampleFramebuffer);
         RenderingEngine::SharedInstance().SetWindowSize(CSize(width, height));
         RenderingEngine::SharedInstance().SetDrawingController(new GameDrawingController());
-        RenderingEngine::SharedInstance().SetProjection(Projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f));
+        RenderingEngine::SharedInstance().SetProjection(PerspectiveProjection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f));
 //        RenderingEngine::SharedInstance().SetProjection(Projection(M_PI_2, aspectRatio, 4.0f, 10.0f));
 
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        
-        // TODO: Remove
-        Camera *camera = new Camera();
-        camera->GetViewport();
     }
     return self;
 }

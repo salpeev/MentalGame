@@ -50,6 +50,10 @@ namespace Renderer {
         return m_name;
     }
     
+    void Renderbuffer::CreateStorage(int width, int height) const {
+        
+    }
+    
 #pragma mark - Private Methods
     
     void Renderbuffer::Generate() {

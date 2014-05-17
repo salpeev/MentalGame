@@ -14,25 +14,32 @@
 
 namespace Renderer {
     
-    Camera::Camera() {
-        
+    Camera::Camera(float width, float height) {
+        m_resolution = CSize(width, height);
     }
     
     Camera::~Camera() {
         
     }
     
-    void Camera::SetResolution(const CSize &rSize) {
-        m_resolution = rSize;
+    void Camera::Initialize() const {
+        Framebuffer *framebuffer = GetFramebuffer();
+        Renderbuffer *colorRenderbuffer = GetColorRenderbuffer();
+        Renderbuffer *depthRenderbuffer = GetDepthRenderbuffer();
+        Renderbuffer *stencilRenderbuffer = GetStencilRenderbuffer();
+        
+        colorRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
+        depthRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
+        stencilRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
+        
+        framebuffer->AttachColorRenderbuffer(colorRenderbuffer);
+        framebuffer->AttachDepthRenderbuffer(depthRenderbuffer);
+        framebuffer->AttachStencilRenderbuffer(stencilRenderbuffer);
     }
     
     void Camera::SetViewport(const Rect &rViewport) const {
         glViewport(rViewport.origin.x, rViewport.origin.y, rViewport.size.width, rViewport.size.height);
         CheckError();
-    }
-    
-    CSize Camera::GetResolution() const {
-        return m_resolution;
     }
     
     Rect Camera::GetViewport() const {

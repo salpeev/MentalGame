@@ -6,25 +6,25 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "Projection.h"
+#include "PerspectiveProjection.h"
 
 
 
 namespace Renderer {
     
-    Projection::Projection(): m_distance(0.0f) {
+    PerspectiveProjection::PerspectiveProjection(): m_distance(0.0f) {
         
     }
     
-    Projection::Projection(float left, float right, float bottom, float top, float near, float far) {
+    PerspectiveProjection::PerspectiveProjection(float left, float right, float bottom, float top, float near, float far) {
         SetFrustum(left, right, bottom, top, near, far);
     }
     
-    Projection::Projection(float fovy, float aspect, float near, float far) {
+    PerspectiveProjection::PerspectiveProjection(float fovy, float aspect, float near, float far) {
         SetFrustum(fovy, aspect, near, far);
     }
     
-    void Projection::SetFrustum(float left, float right, float bottom, float top, float near, float far) {
+    void PerspectiveProjection::SetFrustum(float left, float right, float bottom, float top, float near, float far) {
         float width = right - left;
         float height = top - bottom;
         m_frontRect = Rect(left, bottom, width, height);
@@ -33,7 +33,7 @@ namespace Renderer {
         m_projectionMatrix = Matrix4::Frustum(left, right, bottom, top, near, far);
     }
     
-    void Projection::SetFrustum(float fovy, float aspect, float near, float far) {
+    void PerspectiveProjection::SetFrustum(float fovy, float aspect, float near, float far) {
         float halfY = near * tan(fovy / 2.0f);
         float halfX = aspect * halfY;
         m_frontRect = Rect(-halfX, -halfY, halfX * 2.0f, halfY * 2.0f);
@@ -42,15 +42,15 @@ namespace Renderer {
         m_projectionMatrix = Matrix4::Frustum(fovy, aspect, near, far);
     }
     
-    float Projection::GetDistance() const {
+    float PerspectiveProjection::GetDistance() const {
         return m_distance;
     }
     
-    Rect Projection::GetFrontRect() const {
+    Rect PerspectiveProjection::GetFrontRect() const {
         return m_frontRect;
     }
     
-    Matrix4 Projection::GetProjectionMatrix() const {
+    Matrix4 PerspectiveProjection::GetProjectionMatrix() const {
         return m_projectionMatrix;
     }
 }

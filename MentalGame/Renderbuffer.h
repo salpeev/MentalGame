@@ -25,7 +25,7 @@ namespace Renderer {
         GLuint GetName() const;
         
     protected:
-        virtual void CreateStorage(int width, int height) const = 0;
+        virtual void CreateStorage(int width, int height) const;
         
     private:
         void Generate();

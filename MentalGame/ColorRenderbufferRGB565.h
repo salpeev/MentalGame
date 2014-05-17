@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
-#include "ColorRenderbuffer.h"
+#include "Renderbuffer.h"
 
 
 
 namespace Renderer {
     
-    class ColorRenderbufferRGB565: public ColorRenderbuffer {
+    class ColorRenderbufferRGB565: public Renderbuffer {
     protected:
         void CreateStorage(int width, int height) const;
     };

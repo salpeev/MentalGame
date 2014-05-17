@@ -67,6 +67,10 @@ namespace Renderer {
     }
     
     void Framebuffer::AttachColorRenderbuffer(Renderbuffer *pRenderbuffer) {
+        if (!pRenderbuffer) {
+            return;
+        }
+        
         Bind();
         pRenderbuffer->Bind();
         
@@ -78,6 +82,10 @@ namespace Renderer {
     }
     
     void Framebuffer::AttachDepthRenderbuffer(Renderbuffer *pRenderbuffer) {
+        if (!pRenderbuffer) {
+            return;
+        }
+        
         Bind();
         pRenderbuffer->Bind();
         
@@ -89,6 +97,10 @@ namespace Renderer {
     }
     
     void Framebuffer::AttachStencilRenderbuffer(Renderbuffer *pRenderbuffer) {
+        if (!pRenderbuffer) {
+            return;
+        }
+        
         Bind();
         pRenderbuffer->Bind();
         

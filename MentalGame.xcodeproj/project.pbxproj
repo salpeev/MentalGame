@@ -36,7 +36,6 @@
 		B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70D18999ED400AAE773 /* StencilRenderbufferIndex8.cpp */; };
 		B468F7131899A06700AAE773 /* ColorRenderbufferMultisampleRGBA8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7111899A06700AAE773 /* ColorRenderbufferMultisampleRGBA8.cpp */; };
 		B468F7161899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7141899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp */; };
-		B468F7191899AA0C00AAE773 /* ColorRenderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F7171899AA0C00AAE773 /* ColorRenderbuffer.cpp */; };
 		B468F71D1899B4E600AAE773 /* MultisampleFramebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F71B1899B4E600AAE773 /* MultisampleFramebuffer.cpp */; };
 		B469605317F75C25002BCF6C /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605117F75C25002BCF6C /* Color.cpp */; };
 		B469605717F76B5E002BCF6C /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B469605517F76B5E002BCF6C /* Point.cpp */; };
@@ -62,6 +61,8 @@
 		B4CE1DF017DFD906009094E8 /* ResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */; };
 		B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */; };
 		B4D1B85218AEC120004FD4B2 /* Polyhedron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */; };
+		B4D23AB51927A30500BDDF45 /* MainCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D23AB31927A30500BDDF45 /* MainCamera.cpp */; };
+		B4D23ABA1927B55C00BDDF45 /* OrthogonalProjection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D23AB81927B55C00BDDF45 /* OrthogonalProjection.cpp */; };
 		B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F76187F3867005E78AC /* PositionColorShader.vsh */; };
 		B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F78187F3877005E78AC /* PositionColorShader.fsh */; };
 		B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */; };
@@ -72,7 +73,7 @@
 		B4D64F8F18817BCC005E78AC /* ProjectionModelviewInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D64F8D18817BCC005E78AC /* ProjectionModelviewInitializer.cpp */; };
 		B4DB8F9B185343B800FD292D /* DrawRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DB8F99185343B800FD292D /* DrawRequest.cpp */; };
 		B4DBE42A18D5E4E3004CB98F /* TouchesHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DBE42818D5E4E3004CB98F /* TouchesHandler.cpp */; };
-		B4DBE42D18D8C13B004CB98F /* Projection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DBE42B18D8C13B004CB98F /* Projection.cpp */; };
+		B4DBE42D18D8C13B004CB98F /* PerspectiveProjection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4DBE42B18D8C13B004CB98F /* PerspectiveProjection.cpp */; };
 		B4E069D71891C11300F2E995 /* DrawingComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4E069D51891C11300F2E995 /* DrawingComposite.cpp */; };
 		B4E069DA1891E06200F2E995 /* ColorGlassDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4E069D81891E06200F2E995 /* ColorGlassDrawing.cpp */; };
 		B4E0971417DB671400F4A436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E0971317DB671400F4A436 /* UIKit.framework */; };
@@ -155,8 +156,6 @@
 		B468F7121899A06700AAE773 /* ColorRenderbufferMultisampleRGBA8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbufferMultisampleRGBA8.h; sourceTree = "<group>"; };
 		B468F7141899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Depth24Stencil8MultisampleRenderbuffer.cpp; sourceTree = "<group>"; };
 		B468F7151899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Depth24Stencil8MultisampleRenderbuffer.h; sourceTree = "<group>"; };
-		B468F7171899AA0C00AAE773 /* ColorRenderbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbuffer.cpp; sourceTree = "<group>"; };
-		B468F7181899AA0C00AAE773 /* ColorRenderbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorRenderbuffer.h; sourceTree = "<group>"; };
 		B468F71B1899B4E600AAE773 /* MultisampleFramebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MultisampleFramebuffer.cpp; sourceTree = "<group>"; };
 		B468F71C1899B4E600AAE773 /* MultisampleFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultisampleFramebuffer.h; sourceTree = "<group>"; };
 		B469605117F75C25002BCF6C /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
@@ -210,6 +209,11 @@
 		B4D1B84E18AEBBA9004FD4B2 /* CollisionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetector.h; sourceTree = "<group>"; };
 		B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polyhedron.cpp; sourceTree = "<group>"; };
 		B4D1B85118AEC120004FD4B2 /* Polyhedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyhedron.h; sourceTree = "<group>"; };
+		B4D23AB31927A30500BDDF45 /* MainCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainCamera.cpp; sourceTree = "<group>"; };
+		B4D23AB41927A30500BDDF45 /* MainCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCamera.h; sourceTree = "<group>"; };
+		B4D23AB71927B41D00BDDF45 /* Projection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Projection.h; sourceTree = "<group>"; };
+		B4D23AB81927B55C00BDDF45 /* OrthogonalProjection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OrthogonalProjection.cpp; sourceTree = "<group>"; };
+		B4D23AB91927B55C00BDDF45 /* OrthogonalProjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrthogonalProjection.h; sourceTree = "<group>"; };
 		B4D64F76187F3867005E78AC /* PositionColorShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.vsh; sourceTree = "<group>"; };
 		B4D64F78187F3877005E78AC /* PositionColorShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.fsh; sourceTree = "<group>"; };
 		B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PerspectiveShader.vsh; sourceTree = "<group>"; };
@@ -226,8 +230,8 @@
 		B4DB8F9A185343B800FD292D /* DrawRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRequest.h; sourceTree = "<group>"; };
 		B4DBE42818D5E4E3004CB98F /* TouchesHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchesHandler.cpp; sourceTree = "<group>"; };
 		B4DBE42918D5E4E3004CB98F /* TouchesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchesHandler.h; sourceTree = "<group>"; };
-		B4DBE42B18D8C13B004CB98F /* Projection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projection.cpp; sourceTree = "<group>"; };
-		B4DBE42C18D8C13B004CB98F /* Projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projection.h; sourceTree = "<group>"; };
+		B4DBE42B18D8C13B004CB98F /* PerspectiveProjection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerspectiveProjection.cpp; sourceTree = "<group>"; };
+		B4DBE42C18D8C13B004CB98F /* PerspectiveProjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerspectiveProjection.h; sourceTree = "<group>"; };
 		B4E069D51891C11300F2E995 /* DrawingComposite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingComposite.cpp; sourceTree = "<group>"; };
 		B4E069D61891C11300F2E995 /* DrawingComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingComposite.h; sourceTree = "<group>"; };
 		B4E069D81891E06200F2E995 /* ColorGlassDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorGlassDrawing.cpp; sourceTree = "<group>"; };
@@ -360,8 +364,6 @@
 		B468F6FE18999CC900AAE773 /* ColorRenderbuffer */ = {
 			isa = PBXGroup;
 			children = (
-				B468F7171899AA0C00AAE773 /* ColorRenderbuffer.cpp */,
-				B468F7181899AA0C00AAE773 /* ColorRenderbuffer.h */,
 				B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */,
 				B468F70018999CE300AAE773 /* ColorRenderbufferRGBA4.h */,
 				B468F70218999CF700AAE773 /* ColorRenderbufferRGB565.cpp */,
@@ -464,8 +466,6 @@
 				B4EF8491187863C300234C28 /* Vertex Array */,
 				B4246169182ED2BC00B51DB1 /* Program Container */,
 				B48BCB2A17DFAB50005DBC3D /* ResourceManager */,
-				B4AC5D7A1896FB6400FBE8D8 /* Framebuffer */,
-				B4AC5D7B1896FB7000FBE8D8 /* Renderbuffer */,
 				B4E069D41891C08600F2E995 /* Drawing */,
 				B42E7F7518D5C2BD0048515C /* DrawingController */,
 				B4DBE42718D5E2CD004CB98F /* TouchesHandler */,
@@ -550,6 +550,9 @@
 		B49BC25A1923D521000C909B /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				B4D23AB61927B3CB00BDDF45 /* Projection */,
+				B4AC5D7A1896FB6400FBE8D8 /* Framebuffer */,
+				B4AC5D7B1896FB7000FBE8D8 /* Renderbuffer */,
 				B49BC25E1923D556000C909B /* Camera.cpp */,
 				B49BC25F1923D556000C909B /* Camera.h */,
 			);
@@ -628,6 +631,29 @@
 				B4ECF83018A4CE9B007E2669 /* Interpolator.h */,
 			);
 			name = Math;
+			sourceTree = "<group>";
+		};
+		B4D23AB11927A2DC00BDDF45 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				B468F71A1899B4CC00AAE773 /* Framebuffer */,
+				B468F71018999F6900AAE773 /* Renderbuffer */,
+				B4D23AB31927A30500BDDF45 /* MainCamera.cpp */,
+				B4D23AB41927A30500BDDF45 /* MainCamera.h */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		B4D23AB61927B3CB00BDDF45 /* Projection */ = {
+			isa = PBXGroup;
+			children = (
+				B4D23AB71927B41D00BDDF45 /* Projection.h */,
+				B4DBE42B18D8C13B004CB98F /* PerspectiveProjection.cpp */,
+				B4DBE42C18D8C13B004CB98F /* PerspectiveProjection.h */,
+				B4D23AB81927B55C00BDDF45 /* OrthogonalProjection.cpp */,
+				B4D23AB91927B55C00BDDF45 /* OrthogonalProjection.h */,
+			);
+			name = Projection;
 			sourceTree = "<group>";
 		};
 		B4D64F8B18817A68005E78AC /* Attribute Initializer */ = {
@@ -797,8 +823,7 @@
 		B4E23D1F18951FD7008CCFED /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				B468F71018999F6900AAE773 /* Renderbuffer */,
-				B468F71A1899B4CC00AAE773 /* Framebuffer */,
+				B4D23AB11927A2DC00BDDF45 /* Camera */,
 				B4E23D2018951FE6008CCFED /* Drawing */,
 				B42E7F7918D5C51F0048515C /* DrawingController */,
 			);
@@ -841,8 +866,6 @@
 				B41CAA2B18AC1ABA001E1B1A /* Plane.h */,
 				B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */,
 				B4D1B85118AEC120004FD4B2 /* Polyhedron.h */,
-				B4DBE42B18D8C13B004CB98F /* Projection.cpp */,
-				B4DBE42C18D8C13B004CB98F /* Projection.h */,
 			);
 			name = "Geometry Primitives";
 			sourceTree = "<group>";
@@ -942,7 +965,7 @@
 				B4E069DA1891E06200F2E995 /* ColorGlassDrawing.cpp in Sources */,
 				B46CAC99191F79AB00B7BA86 /* ParametricSurface.cpp in Sources */,
 				B4E0972417DB671400F4A436 /* MGAppDelegate.m in Sources */,
-				B4DBE42D18D8C13B004CB98F /* Projection.cpp in Sources */,
+				B4DBE42D18D8C13B004CB98F /* PerspectiveProjection.cpp in Sources */,
 				B4EF847A186AE06E00234C28 /* Vector.cpp in Sources */,
 				B41CAA2518AC0C76001E1B1A /* DrawingLeaf.cpp in Sources */,
 				B47D229E18BA43DF006A0386 /* Texture.cpp in Sources */,
@@ -969,7 +992,6 @@
 				B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */,
 				B4EF8480186AE08300234C28 /* Quaternion.cpp in Sources */,
 				B468F7161899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp in Sources */,
-				B468F7191899AA0C00AAE773 /* ColorRenderbuffer.cpp in Sources */,
 				B457A15817F6D486004EF4E0 /* Buffer.cpp in Sources */,
 				B403F3C017F0FE0400A2A4E8 /* Uniform.cpp in Sources */,
 				B4E0974417DB75DD00F4A436 /* MGOpenGLView.mm in Sources */,
@@ -992,6 +1014,7 @@
 				B46CAC9C191F9F8E00B7BA86 /* SphereSurface.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
+				B4D23AB51927A30500BDDF45 /* MainCamera.cpp in Sources */,
 				B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */,
 				B429BEDD19150ECD00DA2D3C /* TextureImage.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */,
@@ -1002,6 +1025,7 @@
 				B42E7F7818D5C2E80048515C /* DrawingController.cpp in Sources */,
 				B49BC2601923D556000C909B /* Camera.cpp in Sources */,
 				B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */,
+				B4D23ABA1927B55C00BDDF45 /* OrthogonalProjection.cpp in Sources */,
 				B4CE1DEA17DFCCEA009094E8 /* Logger.cpp in Sources */,
 				B42E7F7418CE1D8E0048515C /* RotateByQuaternionAnimation.cpp in Sources */,
 				B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */,
