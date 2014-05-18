@@ -21,6 +21,13 @@ namespace Renderer {
         Framebuffer(const Framebuffer &rFramebuffer) = delete;
         ~Framebuffer();
         
+        virtual bool IsBoundRead() const;
+        virtual bool IsBoundDraw() const;
+        virtual void BindRead() const;
+        virtual void BindDraw() const;
+        virtual void Resolve() const;
+        virtual void Discard() const;
+        
         // TODO: Determine when Bind() and when BindAll() should be used.
         void Bind() const;
         void BindAll() const;

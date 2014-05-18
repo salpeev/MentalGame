@@ -17,11 +17,12 @@ namespace Renderer {
 #pragma mark - Lifecycle
     
     // TODO: Size has default constructor, that initializes to 0. Is initialization required here?
-    RenderingEngine::RenderingEngine(): m_framebuffer(nullptr), m_drawingController(nullptr), m_windowSize(0.0f, 0.0f) {
+    RenderingEngine::RenderingEngine(): m_camera(nullptr), m_drawingController(nullptr) {
         m_touches = new vector<Touch *>;
     }
     
     RenderingEngine::~RenderingEngine() {
+        delete m_camera;
         delete m_drawingController;
         
         for (vector<Touch *>::iterator iterator = m_touches->begin(); iterator != m_touches->end(); iterator++) {
@@ -32,12 +33,18 @@ namespace Renderer {
     
 #pragma mark - Public Methods
     
-    void RenderingEngine::SetFramebuffer(Framebuffer *pFramebuffer) {
-        m_framebuffer = pFramebuffer;
+    void RenderingEngine::SetCamera(Camera *pCamera) {
+        if (m_camera == pCamera) {
+            return;
+        }
+        
+        delete m_camera;
+        m_camera = pCamera;
+        m_camera->Initialize();
     }
     
-    Framebuffer * RenderingEngine::GetFramebuffer() const {
-        return m_framebuffer;
+    Camera * RenderingEngine::GetCamera() const {
+        return m_camera;
     }
     
     void RenderingEngine::SetDrawingController(DrawingController *pDrawingController) {
@@ -47,42 +54,6 @@ namespace Renderer {
     
     DrawingController * RenderingEngine::GetDrawingController() const {
         return m_drawingController;
-    }
-    
-    void RenderingEngine::SetWindowSize(const CSize &rSize) {
-        m_windowSize = rSize;
-        ResetRenderFrame();
-    }
-    
-    CSize RenderingEngine::GetWindowSize() const {
-        return m_windowSize;
-    }
-    
-    void RenderingEngine::SetProjection(const Projection &rProjection) {
-        m_projection = rProjection;
-    }
-    
-    Projection RenderingEngine::GetProjection() const {
-        return m_projection;
-    }
-    
-    void RenderingEngine::SetRenderFrame(const Rect &rFrame) const {
-        // TODO: GL_MAX_VIEWPORT_DIMS
-        glViewport(rFrame.origin.x, rFrame.origin.y, rFrame.size.width, rFrame.size.height);
-        CheckError();
-    }
-    
-    void RenderingEngine::ResetRenderFrame() const {
-        Rect renderFrame(0.0f, 0.0f, m_windowSize.width, m_windowSize.height);
-        SetRenderFrame(renderFrame);
-    }
-    
-    Rect RenderingEngine::GetRenderFrame() const {
-        Rect renderFrame;
-        glGetFloatv(GET_PARAMETER_VIEWPORT, (GLfloat *)(&renderFrame));
-        CheckError();
-        
-        return renderFrame;
     }
     
     void RenderingEngine::Enable(SERVER_CAPABILITY serverCapability) const {
@@ -100,7 +71,7 @@ namespace Renderer {
     }
     
     void RenderingEngine::Render(float interval) const {
-        m_framebuffer->Clear();
+        m_camera->Enable();
         
         m_drawingController->GetDrawing()->UpdateHierarchy(interval);
         m_drawingController->GetDrawing()->DrawHierarchy();

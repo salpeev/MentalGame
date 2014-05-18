@@ -14,14 +14,11 @@ namespace Renderer {
     
     class MultisampleFramebuffer: public Framebuffer {
     public:
-        void BindDrawApple() const;
-        void BindReadApple() const;
-        void DiscardReadApple() const;
-        
-        static void ResolveMultisampleApple();
-        
-    private:
-        bool IsBoundDrawApple() const;
-        bool IsBoundReadApple() const;
+        bool IsBoundRead() const;
+        bool IsBoundDraw() const;
+        void BindRead() const;
+        void BindDraw() const;
+        void Resolve() const;
+        void Discard() const;
     };
 }

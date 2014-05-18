@@ -14,7 +14,7 @@
 
 
 namespace Renderer {
-    MainCamera::MainCamera(float width, float height): Camera(width, height) {
+    MainCamera::MainCamera(float width, float height, const Projection &rProjection): Camera(width, height, rProjection) {
         m_framebuffer = new MultisampleFramebuffer();
         m_colorRenderbuffer = new ColorRenderbufferMultisampleRGBA8();
         m_depthStencilRenderbuffer = new Depth24Stencil8MultisampleRenderbuffer();

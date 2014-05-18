@@ -14,8 +14,10 @@
 
 namespace Renderer {
     
-    Camera::Camera(float width, float height) {
+    Camera::Camera(float width, float height, const Projection &rProjection) {
         m_resolution = CSize(width, height);
+        SetViewport(Rect(0.0f, 0.0f, width, height));
+        SetProjection(rProjection);
     }
     
     Camera::~Camera() {
@@ -37,6 +39,15 @@ namespace Renderer {
         framebuffer->AttachStencilRenderbuffer(stencilRenderbuffer);
     }
     
+    void Camera::Enable() const {
+        GetFramebuffer()->BindAll();
+        GetFramebuffer()->Clear();
+    }
+    
+    CSize Camera::GetResolution() const {
+        return m_resolution;
+    }
+    
     void Camera::SetViewport(const Rect &rViewport) const {
         glViewport(rViewport.origin.x, rViewport.origin.y, rViewport.size.width, rViewport.size.height);
         CheckError();
@@ -48,5 +59,13 @@ namespace Renderer {
         CheckError();
         
         return viewport;
+    }
+    
+    void Camera::SetProjection(const Projection &rProjection) {
+        m_projection = rProjection;
+    }
+    
+    const Projection & Camera::GetProjection() const {
+        return m_projection;
     }
 }

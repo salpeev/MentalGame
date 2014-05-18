@@ -14,6 +14,7 @@
 #include "Projection.h"
 #include "DrawingController.h"
 #include "Constants.h"
+#include "Camera.h"
 #include <map>
 
 using namespace std;
@@ -29,21 +30,11 @@ namespace Renderer {
             return renderingEngine;
         }
         
-        void SetFramebuffer(Framebuffer *pFramebuffer);
-        Framebuffer * GetFramebuffer() const;
+        void SetCamera(Camera *pCamera);
+        Camera * GetCamera() const;
         
         void SetDrawingController(DrawingController *pDrawingController);
         DrawingController * GetDrawingController() const;
-        
-        void SetWindowSize(const CSize &rSize);
-        CSize GetWindowSize() const;
-        
-        void SetProjection(const Projection &rProjection);
-        Projection GetProjection() const;
-        
-        void SetRenderFrame(const Rect &rFrame) const;
-        void ResetRenderFrame() const;
-        Rect GetRenderFrame() const;
         
         void Enable(SERVER_CAPABILITY serverCapability) const;
         void Disable(SERVER_CAPABILITY serverCapability) const;
@@ -65,9 +56,7 @@ namespace Renderer {
         
         map<DrawingComponent *, vector<Touch *>> SortTouchesByDrawingComponent(vector<Touch *> &rTouches) const;
         
-        CSize m_windowSize;
-        Projection m_projection;
-        Framebuffer *m_framebuffer;
+        Camera *m_camera;
         DrawingController *m_drawingController;
         vector<Touch *> *m_touches;
     };

@@ -26,7 +26,6 @@ namespace Renderer {
     
     void Renderbuffer::EstablishStorage(int width, int height) {
         if (m_storageEstablished) {
-            Log("Renderbuffer storage already established");
             return;
         }
         

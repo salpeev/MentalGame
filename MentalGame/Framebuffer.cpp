@@ -24,6 +24,30 @@ namespace Renderer {
     
 #pragma mark - Public Methods
     
+    bool Framebuffer::IsBoundRead() const {
+        return false;
+    }
+    
+    bool Framebuffer::IsBoundDraw() const {
+        return false;
+    }
+    
+    void Framebuffer::BindRead() const {
+        
+    }
+    
+    void Framebuffer::BindDraw() const {
+        
+    }
+    
+    void Framebuffer::Resolve() const {
+        
+    }
+    
+    void Framebuffer::Discard() const {
+        
+    }
+    
     void Framebuffer::Bind() const {
         if (!IsBound()) {
             glBindFramebuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, m_name);

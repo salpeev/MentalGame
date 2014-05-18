@@ -22,10 +22,7 @@ using namespace Renderer;
 
 
 @interface MGOpenGLView () {
-    MultisampleFramebuffer *m_sampleFramebuffer;
     MultisampleFramebuffer *m_resolveFramebuffer;
-    Renderbuffer *m_sampleColorRenderbuffer;
-    Renderbuffer *m_sampleDepthStencilRenderbuffer;
     Renderbuffer *m_resolveColorRenderbuffer;
 }
 
@@ -70,25 +67,13 @@ using namespace Renderer;
         m_resolveFramebuffer = new MultisampleFramebuffer();
         m_resolveFramebuffer->AttachColorRenderbuffer(m_resolveColorRenderbuffer);
         
-        m_sampleColorRenderbuffer = new ColorRenderbufferMultisampleRGBA8();
-        m_sampleColorRenderbuffer->EstablishStorage(width, height);
-        
-        m_sampleDepthStencilRenderbuffer = new Depth24Stencil8MultisampleRenderbuffer();
-        m_sampleDepthStencilRenderbuffer->EstablishStorage(width, height);
-        
-        m_sampleFramebuffer = new MultisampleFramebuffer();
-        m_sampleFramebuffer->AttachColorRenderbuffer(m_sampleColorRenderbuffer);
-        m_sampleFramebuffer->AttachDepthRenderbuffer(m_sampleDepthStencilRenderbuffer);
-//        m_sampleFramebuffer->AttachStencilRenderbuffer(m_sampleDepthStencilRenderbuffer);
-        
         float aspectRatio = width / height;
         
-        RenderingEngine::SharedInstance().SetFramebuffer(m_sampleFramebuffer);
-        RenderingEngine::SharedInstance().SetWindowSize(CSize(width, height));
+        Projection projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f, false);
+        RenderingEngine::SharedInstance().SetCamera(new MainCamera(width, height, projection));
         RenderingEngine::SharedInstance().SetDrawingController(new GameDrawingController());
-        RenderingEngine::SharedInstance().SetProjection(Projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f, false));
 //        RenderingEngine::SharedInstance().SetProjection(Projection(M_PI_2, aspectRatio, 4.0f, 10.0f));
-
+        
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
@@ -96,9 +81,8 @@ using namespace Renderer;
 }
 
 - (void)dealloc {
-    delete m_sampleFramebuffer;
-    delete m_sampleColorRenderbuffer;
-    delete m_sampleDepthStencilRenderbuffer;
+    delete m_resolveFramebuffer;
+    delete m_resolveColorRenderbuffer;
 }
 
 #pragma mark - Overridden
@@ -173,15 +157,12 @@ using namespace Renderer;
 #pragma mark - Private Methods
 
 - (void)draw:(CADisplayLink *)displayLink {
-    m_sampleFramebuffer->BindAll();
-    
     RenderingEngine::SharedInstance().Render(displayLink.duration);
     
-    m_resolveFramebuffer->BindDrawApple();
-    m_sampleFramebuffer->BindReadApple();
-    MultisampleFramebuffer::ResolveMultisampleApple();
-    
-    m_sampleFramebuffer->DiscardReadApple();
+    m_resolveFramebuffer->BindDraw();
+    RenderingEngine::SharedInstance().GetCamera()->GetFramebuffer()->BindRead();
+    RenderingEngine::SharedInstance().GetCamera()->GetFramebuffer()->Resolve();
+    RenderingEngine::SharedInstance().GetCamera()->GetFramebuffer()->Discard();
     
     m_resolveFramebuffer->Bind();
     m_resolveFramebuffer->GetColorRenderbuffer()->Bind();

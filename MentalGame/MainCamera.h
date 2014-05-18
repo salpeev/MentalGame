@@ -21,7 +21,7 @@ namespace Renderer {
     
     class MainCamera: public Camera {
     public:
-        MainCamera(float width, float height);
+        MainCamera(float width, float height, const Projection &rProjection);
         ~MainCamera();
         
         Framebuffer * GetFramebuffer() const;
