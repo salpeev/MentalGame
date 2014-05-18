@@ -11,7 +11,7 @@
 #include "Size.h"
 #include "Rect.h"
 #include "Touch.h"
-#include "PerspectiveProjection.h"
+#include "Projection.h"
 #include "DrawingController.h"
 #include "Constants.h"
 #include <map>
@@ -38,8 +38,8 @@ namespace Renderer {
         void SetWindowSize(const CSize &rSize);
         CSize GetWindowSize() const;
         
-        void SetProjection(const PerspectiveProjection &rProjection);
-        PerspectiveProjection GetProjection() const;
+        void SetProjection(const Projection &rProjection);
+        Projection GetProjection() const;
         
         void SetRenderFrame(const Rect &rFrame) const;
         void ResetRenderFrame() const;
@@ -66,7 +66,7 @@ namespace Renderer {
         map<DrawingComponent *, vector<Touch *>> SortTouchesByDrawingComponent(vector<Touch *> &rTouches) const;
         
         CSize m_windowSize;
-        PerspectiveProjection m_projection;
+        Projection m_projection;
         Framebuffer *m_framebuffer;
         DrawingController *m_drawingController;
         vector<Touch *> *m_touches;
