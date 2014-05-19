@@ -26,15 +26,21 @@ namespace Renderer {
     
     void Camera::Initialize() const {
         Framebuffer *framebuffer = GetFramebuffer();
+        Texture2D *texture2D = GetTexture2D();
         Renderbuffer *colorRenderbuffer = GetColorRenderbuffer();
         Renderbuffer *depthRenderbuffer = GetDepthRenderbuffer();
         Renderbuffer *stencilRenderbuffer = GetStencilRenderbuffer();
         
-        colorRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
+        if (colorRenderbuffer) {
+            colorRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
+            framebuffer->AttachColorRenderbuffer(colorRenderbuffer);
+        } else if (texture2D) {
+            framebuffer->AttachTexture2D(texture2D);
+        }
+        
         depthRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
         stencilRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
         
-        framebuffer->AttachColorRenderbuffer(colorRenderbuffer);
         framebuffer->AttachDepthRenderbuffer(depthRenderbuffer);
         framebuffer->AttachStencilRenderbuffer(stencilRenderbuffer);
     }
@@ -67,5 +73,21 @@ namespace Renderer {
     
     const Projection & Camera::GetProjection() const {
         return m_projection;
+    }
+    
+    Texture2D * Camera::GetTexture2D() const {
+        return nullptr;
+    }
+    
+    Renderbuffer * Camera::GetColorRenderbuffer() const {
+        return nullptr;
+    }
+    
+    Renderbuffer * Camera::GetDepthRenderbuffer() const {
+        return nullptr;
+    }
+    
+    Renderbuffer * Camera::GetStencilRenderbuffer() const {
+        return nullptr;
     }
 }

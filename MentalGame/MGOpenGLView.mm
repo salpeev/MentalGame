@@ -72,7 +72,6 @@ using namespace Renderer;
         Projection projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f, false);
         RenderingEngine::SharedInstance().SetCamera(new MainCamera(width, height, projection));
         RenderingEngine::SharedInstance().SetDrawingController(new GameDrawingController());
-//        RenderingEngine::SharedInstance().SetProjection(Projection(M_PI_2, aspectRatio, 4.0f, 10.0f));
         
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];

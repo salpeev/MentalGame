@@ -62,6 +62,7 @@
 		B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */; };
 		B4D1B85218AEC120004FD4B2 /* Polyhedron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */; };
 		B4D23AB51927A30500BDDF45 /* MainCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D23AB31927A30500BDDF45 /* MainCamera.cpp */; };
+		B4D23ABF1928FF6700BDDF45 /* TextureCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D23ABD1928FF6700BDDF45 /* TextureCamera.cpp */; };
 		B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F76187F3867005E78AC /* PositionColorShader.vsh */; };
 		B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F78187F3877005E78AC /* PositionColorShader.fsh */; };
 		B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */; };
@@ -210,6 +211,8 @@
 		B4D1B85118AEC120004FD4B2 /* Polyhedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyhedron.h; sourceTree = "<group>"; };
 		B4D23AB31927A30500BDDF45 /* MainCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainCamera.cpp; sourceTree = "<group>"; };
 		B4D23AB41927A30500BDDF45 /* MainCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCamera.h; sourceTree = "<group>"; };
+		B4D23ABD1928FF6700BDDF45 /* TextureCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureCamera.cpp; sourceTree = "<group>"; };
+		B4D23ABE1928FF6700BDDF45 /* TextureCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureCamera.h; sourceTree = "<group>"; };
 		B4D64F76187F3867005E78AC /* PositionColorShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.vsh; sourceTree = "<group>"; };
 		B4D64F78187F3877005E78AC /* PositionColorShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.fsh; sourceTree = "<group>"; };
 		B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PerspectiveShader.vsh; sourceTree = "<group>"; };
@@ -636,6 +639,8 @@
 				B468F71018999F6900AAE773 /* Renderbuffer */,
 				B4D23AB31927A30500BDDF45 /* MainCamera.cpp */,
 				B4D23AB41927A30500BDDF45 /* MainCamera.h */,
+				B4D23ABD1928FF6700BDDF45 /* TextureCamera.cpp */,
+				B4D23ABE1928FF6700BDDF45 /* TextureCamera.h */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -1003,6 +1008,7 @@
 				B46CAC93191CB30B00B7BA86 /* TextureCubeMap.cpp in Sources */,
 				B42296B018DEFC5E004A3089 /* ModelviewModifier.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* VertexBuffer.cpp in Sources */,
+				B4D23ABF1928FF6700BDDF45 /* TextureCamera.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* DrawRequest.cpp in Sources */,
 				B46CAC9C191F9F8E00B7BA86 /* SphereSurface.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,

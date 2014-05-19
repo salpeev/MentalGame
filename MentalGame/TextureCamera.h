@@ -1,8 +1,8 @@
 //
-//  MainCamera.h
+//  TextureCamera.h
 //  MentalGame
 //
-//  Created by Sergey Alpeev on 17.05.14.
+//  Created by Sergey Alpeev on 18.05.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
@@ -13,26 +13,23 @@
 
 namespace Renderer {
     
-    class MultisampleFramebuffer;
-    class ColorRenderbufferMultisampleRGBA8;
     class Depth24Stencil8MultisampleRenderbuffer;
     
     
     
-    class MainCamera: public Camera {
+    class TextureCamera: public Camera {
     public:
-        MainCamera(float width, float height, const Projection &rProjection);
-        ~MainCamera();
+        TextureCamera(float width, float height, const Projection &rProjection);
+        ~TextureCamera();
         
         Framebuffer * GetFramebuffer() const;
-        Renderbuffer * GetColorRenderbuffer() const;
+        Texture2D * GetTexture2D() const;
         Renderbuffer * GetDepthRenderbuffer() const;
         Renderbuffer * GetStencilRenderbuffer() const;
         
     private:
-        MultisampleFramebuffer *m_framebuffer;
+        Framebuffer *m_framebuffer;
         Texture2D *m_texture2D;
-        ColorRenderbufferMultisampleRGBA8 *m_colorRenderbuffer;
         Depth24Stencil8MultisampleRenderbuffer *m_depthStencilRenderbuffer;
     };
 }

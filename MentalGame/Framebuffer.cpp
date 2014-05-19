@@ -57,6 +57,7 @@ namespace Renderer {
     
     void Framebuffer::BindAll() const {
         Bind();
+        BindTexture2D();
         BindColorRenderbuffer();
         BindDepthRenderbuffer();
         BindStencilRenderbuffer();
@@ -68,7 +69,7 @@ namespace Renderer {
         
         GLbitfield mask = 0;
         
-        if (GetColorRenderbuffer()) {
+        if (GetColorRenderbuffer() || GetTexture2D()) {
             mask |= CLEAR_BUFFER_BIT_COLOR;
         }
         if (GetDepthRenderbuffer()) {
@@ -88,6 +89,21 @@ namespace Renderer {
         
         glClear(mask);
         CheckError();
+    }
+    
+    void Framebuffer::AttachTexture2D(Texture2D *pTexture2D) {
+        if (!pTexture2D) {
+            return;
+        }
+        
+        Bind();
+        pTexture2D->Bind();
+        
+        GLuint textureHandle = pTexture2D->GetTextureHandle();
+        glFramebufferTexture2D(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, TEXTURE_2D, textureHandle, 0);
+        CheckError();
+        
+        m_texture2D = pTexture2D;
     }
     
     void Framebuffer::AttachColorRenderbuffer(Renderbuffer *pRenderbuffer) {
@@ -135,6 +151,12 @@ namespace Renderer {
         m_stencilRenderbuffer = pRenderbuffer;
     }
     
+    void Framebuffer::BindTexture2D() const {
+        if (m_texture2D) {
+            m_texture2D->Bind();
+        }
+    }
+    
     void Framebuffer::BindColorRenderbuffer() const {
         if (m_colorRenderbuffer) {
             m_colorRenderbuffer->Bind();
@@ -178,6 +200,10 @@ namespace Renderer {
         CheckError();
         
         m_stencilRenderbuffer = nullptr;
+    }
+    
+    Texture2D * Framebuffer::GetTexture2D() const {
+        return m_texture2D;
     }
     
     Renderbuffer * Framebuffer::GetColorRenderbuffer() const {

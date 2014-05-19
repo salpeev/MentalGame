@@ -38,7 +38,6 @@ namespace Renderer {
         
         void GenerateMipMap() const;
         
-    protected:
         GLuint GetTextureHandle() const;
         
     private:

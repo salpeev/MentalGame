@@ -9,6 +9,7 @@
 #pragma once
 #include <OpenGLES/ES2/gl.h>
 #include "Renderbuffer.h"
+#include "Texture2D.h"
 #include "Color.h"
 
 
@@ -34,18 +35,22 @@ namespace Renderer {
         void Clear() const;
         void Clear(GLbitfield mask) const;
         
+        void AttachTexture2D(Texture2D *pTexture2D);
         void AttachColorRenderbuffer(Renderbuffer *pRenderbuffer);
         void AttachDepthRenderbuffer(Renderbuffer *pRenderbuffer);
         void AttachStencilRenderbuffer(Renderbuffer *pRenderbuffer);
         
+        void BindTexture2D() const;
         void BindColorRenderbuffer() const;
         void BindDepthRenderbuffer() const;
         void BindStencilRenderbuffer() const;
         
+        void DetachTexture2D();
         void DetachColorRenderbuffer();
         void DetachDepthRenderbuffer();
         void DetachStencilRenderbuffer();
         
+        Texture2D * GetTexture2D() const;
         Renderbuffer * GetColorRenderbuffer() const;
         Renderbuffer * GetDepthRenderbuffer() const;
         Renderbuffer * GetStencilRenderbuffer() const;
@@ -70,6 +75,7 @@ namespace Renderer {
         bool IsBound() const;
         
         GLuint m_name;
+        Texture2D *m_texture2D;
         Renderbuffer *m_colorRenderbuffer;
         Renderbuffer *m_depthRenderbuffer;
         Renderbuffer *m_stencilRenderbuffer;

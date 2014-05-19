@@ -33,9 +33,10 @@ namespace Renderer {
         const Projection & GetProjection() const;
         
         virtual Framebuffer * GetFramebuffer() const = 0;
-        virtual Renderbuffer * GetColorRenderbuffer() const = 0;
-        virtual Renderbuffer * GetDepthRenderbuffer() const = 0;
-        virtual Renderbuffer * GetStencilRenderbuffer() const = 0;
+        virtual Texture2D * GetTexture2D() const;
+        virtual Renderbuffer * GetColorRenderbuffer() const;
+        virtual Renderbuffer * GetDepthRenderbuffer() const;
+        virtual Renderbuffer * GetStencilRenderbuffer() const;
         
     private:
         CSize m_resolution;
