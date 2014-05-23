@@ -56,6 +56,19 @@ namespace Renderer {
         return m_drawingController;
     }
     
+    void RenderingEngine::SetViewport(const Rect &rViewport) const {
+        glViewport(rViewport.origin.x, rViewport.origin.y, rViewport.size.width, rViewport.size.height);
+        CheckError();
+    }
+    
+    Rect RenderingEngine::GetViewport() const {
+        Rect viewport;
+        glGetFloatv(GET_PARAMETER_VIEWPORT, (float *)(&viewport));
+        CheckError();
+        
+        return viewport;
+    }
+    
     void RenderingEngine::Enable(SERVER_CAPABILITY serverCapability) const {
         if (glIsEnabled(serverCapability) == GLSL_FALSE) {
             glEnable(serverCapability);
@@ -70,10 +83,12 @@ namespace Renderer {
         }
     }
     
-    void RenderingEngine::Render(float interval) const {
-        m_camera->Enable();
-        
+    void RenderingEngine::Update(float interval) const {
         m_drawingController->GetDrawing()->UpdateHierarchy(interval);
+    }
+    
+    void RenderingEngine::Render() const {
+        m_camera->Enable();
         m_drawingController->GetDrawing()->DrawHierarchy();
     }
     

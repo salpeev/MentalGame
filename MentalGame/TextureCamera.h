@@ -13,7 +13,7 @@
 
 namespace Renderer {
     
-    class Depth24Stencil8MultisampleRenderbuffer;
+    class DepthRenderbufferCompontent16;
     
     
     
@@ -30,6 +30,6 @@ namespace Renderer {
     private:
         Framebuffer *m_framebuffer;
         Texture2D *m_texture2D;
-        Depth24Stencil8MultisampleRenderbuffer *m_depthStencilRenderbuffer;
+        DepthRenderbufferCompontent16 *m_depthRenderbuffer;
     };
 }

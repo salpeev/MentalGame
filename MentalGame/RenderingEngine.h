@@ -36,10 +36,14 @@ namespace Renderer {
         void SetDrawingController(DrawingController *pDrawingController);
         DrawingController * GetDrawingController() const;
         
+        void SetViewport(const Rect &rViewport) const;
+        Rect GetViewport() const;
+        
         void Enable(SERVER_CAPABILITY serverCapability) const;
         void Disable(SERVER_CAPABILITY serverCapability) const;
         
-        void Render(float interval) const;
+        void Update(float interval) const;
+        void Render() const;
         
         // Touches
         Touch * GetTouchForSystemTouch(const void *pSystemTouch) const;

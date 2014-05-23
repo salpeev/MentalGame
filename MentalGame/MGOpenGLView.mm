@@ -11,9 +11,10 @@
 #import "ResourceManager.h"
 #import "MultisampleFramebuffer.h"
 #include "ColorRenderbufferMultisampleRGBA8.h"
-#include "Depth24Stencil8MultisampleRenderbuffer.h"
+#include "DepthRenderbufferComponent16.h"
 #include "GameDrawingController.h"
 #include "MainCamera.h"
+#include "TextureCamera.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -156,7 +157,23 @@ using namespace Renderer;
 #pragma mark - Private Methods
 
 - (void)draw:(CADisplayLink *)displayLink {
-    RenderingEngine::SharedInstance().Render(displayLink.duration);
+    RenderingEngine::SharedInstance().Update(displayLink.duration);
+    
+    
+    // TODO: Remove. Just for testing
+    // *****
+    Projection projection(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f, false);
+    TextureCamera textureCamera(1024, 1024, projection);
+    textureCamera.Initialize();
+    textureCamera.Enable();
+    RenderingEngine::SharedInstance().SetViewport(Renderer::Rect(0.0f, 0.0f, textureCamera.GetResolution().width, textureCamera.GetResolution().height));
+    RenderingEngine::SharedInstance().GetDrawingController()->GetDrawing()->DrawHierarchy();
+    // *****
+    
+    
+    CSize resolution = RenderingEngine::SharedInstance().GetCamera()->GetResolution();
+    RenderingEngine::SharedInstance().SetViewport(Renderer::Rect(0.0f, 0.0f, resolution.width, resolution.height));
+    RenderingEngine::SharedInstance().Render();
     
     m_resolveFramebuffer->BindDraw();
     RenderingEngine::SharedInstance().GetCamera()->GetFramebuffer()->BindRead();

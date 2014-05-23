@@ -8,7 +8,7 @@
 
 #include "TextureCamera.h"
 #include "ColorRenderbufferMultisampleRGBA8.h"
-#include "Depth24Stencil8MultisampleRenderbuffer.h"
+#include "DepthRenderbufferComponent16.h"
 
 
 
@@ -16,9 +16,9 @@ namespace Renderer {
     
     TextureCamera::TextureCamera(float width, float height, const Projection &rProjection): Camera(width, height, rProjection) {
         m_framebuffer = new Framebuffer();
-        m_depthStencilRenderbuffer = new Depth24Stencil8MultisampleRenderbuffer();
+        m_depthRenderbuffer = new DepthRenderbufferCompontent16();
         
-        TextureImage textureImage(CSize(640.0f, 1136.0f), BITS_PER_COMPONENT_4, PIXEL_FORMAT_RGBA);
+        TextureImage textureImage(CSize(1024, 1024.0f), BITS_PER_COMPONENT_4, PIXEL_FORMAT_RGBA);
         m_texture2D = new Texture2D();
         m_texture2D->SetTextureImage(&textureImage, 0);
     }
@@ -26,7 +26,7 @@ namespace Renderer {
     TextureCamera::~TextureCamera() {
         delete m_framebuffer;
         delete m_texture2D;
-        delete m_depthStencilRenderbuffer;
+        delete m_depthRenderbuffer;
     }
     
     Framebuffer * TextureCamera::GetFramebuffer() const {
@@ -38,10 +38,10 @@ namespace Renderer {
     }
     
     Renderbuffer * TextureCamera::GetDepthRenderbuffer() const {
-        return m_depthStencilRenderbuffer;
+        return m_depthRenderbuffer;
     }
     
     Renderbuffer * TextureCamera::GetStencilRenderbuffer() const {
-        return m_depthStencilRenderbuffer;
+        return nullptr;
     }
 }

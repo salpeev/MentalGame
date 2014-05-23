@@ -26,9 +26,6 @@ namespace Renderer {
         
         CSize GetResolution() const;
         
-        void SetViewport(const Rect &rViewport) const;
-        Rect GetViewport() const;
-        
         void SetProjection(const Projection &rProjection);
         const Projection & GetProjection() const;
         
