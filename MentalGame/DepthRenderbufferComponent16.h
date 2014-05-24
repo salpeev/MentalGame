@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
+#pragma once
 #include "Renderbuffer.h"
 
 

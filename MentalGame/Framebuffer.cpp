@@ -75,7 +75,7 @@ namespace Renderer {
         if (GetDepthRenderbuffer()) {
             mask |= CLEAR_BUFFER_BIT_DEPTH;
         }
-        if (GetDepthRenderbuffer()) {
+        if (GetStencilRenderbuffer()) {
             mask |= CLEAR_BUFFER_BIT_STENCIL;
         }
         
@@ -175,7 +175,24 @@ namespace Renderer {
         }
     }
     
+    void Framebuffer::DetachTexture2D() {
+        if (!m_texture2D) {
+            return;
+        }
+        
+        Bind();
+        
+        glFramebufferTexture2D(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, TEXTURE_2D, 0, 0);
+        CheckError();
+        
+        m_texture2D = nullptr;
+    }
+    
     void Framebuffer::DetachColorRenderbuffer() {
+        if (!m_colorRenderbuffer) {
+            return;
+        }
+        
         Bind();
         
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);
@@ -185,6 +202,10 @@ namespace Renderer {
     }
     
     void Framebuffer::DetachDepthRenderbuffer() {
+        if (!m_depthRenderbuffer) {
+            return;
+        }
+        
         Bind();
         
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_DEPTH, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);
@@ -194,6 +215,10 @@ namespace Renderer {
     }
     
     void Framebuffer::DetachStencilRenderbuffer() {
+        if (!m_stencilRenderbuffer) {
+            return;
+        }
+        
         Bind();
         
         glFramebufferRenderbuffer(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_STENCIL, FRAMEBUFFER_OBJECT_RENDERBUFFER, 0);

@@ -12,8 +12,10 @@
 #import "MultisampleFramebuffer.h"
 #include "ColorRenderbufferMultisampleRGBA8.h"
 #include "DepthRenderbufferComponent16.h"
+#include "Depth24Stencil8MultisampleRenderbuffer.h"
+#include "DepthRenderbufferComponent16.h"
 #include "GameDrawingController.h"
-#include "MainCamera.h"
+#include "BufferCamera.h"
 #include "TextureCamera.h"
 #import <OpenGLES/EAGL.h>
 #import <QuartzCore/QuartzCore.h>
@@ -71,7 +73,9 @@ using namespace Renderer;
         float aspectRatio = width / height;
         
         Projection projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f, false);
-        RenderingEngine::SharedInstance().SetCamera(new MainCamera(width, height, projection));
+        BufferCamera *mainCamera = new BufferCamera(CSize(width, height), projection, new MultisampleFramebuffer(), new ColorRenderbufferMultisampleRGBA8(), new Depth24Stencil8MultisampleRenderbuffer());
+        
+        RenderingEngine::SharedInstance().SetCamera(mainCamera);
         RenderingEngine::SharedInstance().SetDrawingController(new GameDrawingController());
         
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
@@ -163,8 +167,7 @@ using namespace Renderer;
     // TODO: Remove. Just for testing
     // *****
     Projection projection(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f, false);
-    TextureCamera textureCamera(1024, 1024, projection);
-    textureCamera.Initialize();
+    TextureCamera textureCamera(CSize(1024, 1024), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_USHORT_5_5_5_1);
     textureCamera.Enable();
     RenderingEngine::SharedInstance().SetViewport(Renderer::Rect(0.0f, 0.0f, textureCamera.GetResolution().width, textureCamera.GetResolution().height));
     RenderingEngine::SharedInstance().GetDrawingController()->GetDrawing()->DrawHierarchy();

@@ -14,47 +14,22 @@
 
 namespace Renderer {
     
-    Camera::Camera(float width, float height, const Projection &rProjection) {
-        m_resolution = CSize(width, height);
-        SetProjection(rProjection);
+    Camera::Camera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer): m_resolution(resolution), m_projection(rProjection), m_framebuffer(pFramebuffer) {
+        
     }
     
     Camera::~Camera() {
-        
+        delete m_framebuffer;
     }
     
-    void Camera::Initialize() const {
-        Framebuffer *framebuffer = GetFramebuffer();
-        Texture2D *texture2D = GetTexture2D();
-        Renderbuffer *colorRenderbuffer = GetColorRenderbuffer();
-        Renderbuffer *depthRenderbuffer = GetDepthRenderbuffer();
-        Renderbuffer *stencilRenderbuffer = GetStencilRenderbuffer();
+    void Camera::Enable() {
+        PrepareForEnable();
         
-        if (colorRenderbuffer) {
-            colorRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
-            framebuffer->AttachColorRenderbuffer(colorRenderbuffer);
-        } else if (texture2D) {
-            framebuffer->AttachTexture2D(texture2D);
-        }
-        
-        if (depthRenderbuffer) {
-            depthRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
-        }
-        
-        if (stencilRenderbuffer) {
-            stencilRenderbuffer->EstablishStorage(m_resolution.width, m_resolution.height);
-        }
-        
-        framebuffer->AttachDepthRenderbuffer(depthRenderbuffer);
-        framebuffer->AttachStencilRenderbuffer(stencilRenderbuffer);
+        m_framebuffer->BindAll();
+        m_framebuffer->Clear();
     }
     
-    void Camera::Enable() const {
-        GetFramebuffer()->BindAll();
-        GetFramebuffer()->Clear();
-    }
-    
-    CSize Camera::GetResolution() const {
+    const CSize & Camera::GetResolution() const {
         return m_resolution;
     }
     
@@ -62,23 +37,15 @@ namespace Renderer {
         m_projection = rProjection;
     }
     
+    Framebuffer * Camera::GetFramebuffer() const {
+        return m_framebuffer;
+    }
+    
     const Projection & Camera::GetProjection() const {
         return m_projection;
     }
     
-    Texture2D * Camera::GetTexture2D() const {
-        return nullptr;
-    }
-    
-    Renderbuffer * Camera::GetColorRenderbuffer() const {
-        return nullptr;
-    }
-    
-    Renderbuffer * Camera::GetDepthRenderbuffer() const {
-        return nullptr;
-    }
-    
-    Renderbuffer * Camera::GetStencilRenderbuffer() const {
-        return nullptr;
+    void Camera::PrepareForEnable() {
+        
     }
 }

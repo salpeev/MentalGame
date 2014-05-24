@@ -40,7 +40,6 @@ namespace Renderer {
         
         delete m_camera;
         m_camera = pCamera;
-        m_camera->Initialize();
     }
     
     Camera * RenderingEngine::GetCamera() const {

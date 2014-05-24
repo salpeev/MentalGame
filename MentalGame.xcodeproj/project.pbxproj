@@ -14,6 +14,8 @@
 		B408BB7817F6DD3C00CC6900 /* IndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408BB7617F6DD3C00CC6900 /* IndexBuffer.cpp */; };
 		B41CAA2518AC0C76001E1B1A /* DrawingLeaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2318AC0C76001E1B1A /* DrawingLeaf.cpp */; };
 		B41CAA2C18AC1ABA001E1B1A /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */; };
+		B41D18251930E7D400ABC580 /* BufferCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41D18231930E7D400ABC580 /* BufferCamera.cpp */; };
+		B41D18281930E90C00ABC580 /* TextureCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B41D18261930E90C00ABC580 /* TextureCamera.cpp */; };
 		B42296B018DEFC5E004A3089 /* ModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296AF18DEFC5E004A3089 /* ModelviewModifier.cpp */; };
 		B42296B318DF0159004A3089 /* PositionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B118DF0159004A3089 /* PositionModelviewModifier.cpp */; };
 		B42296B618DF0167004A3089 /* QuaternionModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42296B418DF0167004A3089 /* QuaternionModelviewModifier.cpp */; };
@@ -61,8 +63,6 @@
 		B4CE1DF017DFD906009094E8 /* ResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */; };
 		B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */; };
 		B4D1B85218AEC120004FD4B2 /* Polyhedron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */; };
-		B4D23AB51927A30500BDDF45 /* MainCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D23AB31927A30500BDDF45 /* MainCamera.cpp */; };
-		B4D23ABF1928FF6700BDDF45 /* TextureCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D23ABD1928FF6700BDDF45 /* TextureCamera.cpp */; };
 		B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F76187F3867005E78AC /* PositionColorShader.vsh */; };
 		B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F78187F3877005E78AC /* PositionColorShader.fsh */; };
 		B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */; };
@@ -115,6 +115,10 @@
 		B41CAA2418AC0C76001E1B1A /* DrawingLeaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLeaf.h; sourceTree = "<group>"; };
 		B41CAA2A18AC1ABA001E1B1A /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
 		B41CAA2B18AC1ABA001E1B1A /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		B41D18231930E7D400ABC580 /* BufferCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BufferCamera.cpp; sourceTree = "<group>"; };
+		B41D18241930E7D400ABC580 /* BufferCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferCamera.h; sourceTree = "<group>"; };
+		B41D18261930E90C00ABC580 /* TextureCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureCamera.cpp; sourceTree = "<group>"; };
+		B41D18271930E90C00ABC580 /* TextureCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureCamera.h; sourceTree = "<group>"; };
 		B422969418DEEE73004A3089 /* ModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelviewModifier.h; sourceTree = "<group>"; };
 		B42296AF18DEFC5E004A3089 /* ModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelviewModifier.cpp; sourceTree = "<group>"; };
 		B42296B118DF0159004A3089 /* PositionModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionModelviewModifier.cpp; sourceTree = "<group>"; };
@@ -209,10 +213,6 @@
 		B4D1B84E18AEBBA9004FD4B2 /* CollisionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetector.h; sourceTree = "<group>"; };
 		B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polyhedron.cpp; sourceTree = "<group>"; };
 		B4D1B85118AEC120004FD4B2 /* Polyhedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyhedron.h; sourceTree = "<group>"; };
-		B4D23AB31927A30500BDDF45 /* MainCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainCamera.cpp; sourceTree = "<group>"; };
-		B4D23AB41927A30500BDDF45 /* MainCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCamera.h; sourceTree = "<group>"; };
-		B4D23ABD1928FF6700BDDF45 /* TextureCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureCamera.cpp; sourceTree = "<group>"; };
-		B4D23ABE1928FF6700BDDF45 /* TextureCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureCamera.h; sourceTree = "<group>"; };
 		B4D64F76187F3867005E78AC /* PositionColorShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.vsh; sourceTree = "<group>"; };
 		B4D64F78187F3877005E78AC /* PositionColorShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.fsh; sourceTree = "<group>"; };
 		B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PerspectiveShader.vsh; sourceTree = "<group>"; };
@@ -554,6 +554,10 @@
 				B4AC5D7B1896FB7000FBE8D8 /* Renderbuffer */,
 				B49BC25E1923D556000C909B /* Camera.cpp */,
 				B49BC25F1923D556000C909B /* Camera.h */,
+				B41D18231930E7D400ABC580 /* BufferCamera.cpp */,
+				B41D18241930E7D400ABC580 /* BufferCamera.h */,
+				B41D18261930E90C00ABC580 /* TextureCamera.cpp */,
+				B41D18271930E90C00ABC580 /* TextureCamera.h */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -637,10 +641,6 @@
 			children = (
 				B468F71A1899B4CC00AAE773 /* Framebuffer */,
 				B468F71018999F6900AAE773 /* Renderbuffer */,
-				B4D23AB31927A30500BDDF45 /* MainCamera.cpp */,
-				B4D23AB41927A30500BDDF45 /* MainCamera.h */,
-				B4D23ABD1928FF6700BDDF45 /* TextureCamera.cpp */,
-				B4D23ABE1928FF6700BDDF45 /* TextureCamera.h */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -988,6 +988,7 @@
 				B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */,
 				B469605317F75C25002BCF6C /* Color.cpp in Sources */,
 				B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */,
+				B41D18251930E7D400ABC580 /* BufferCamera.cpp in Sources */,
 				B4EF8480186AE08300234C28 /* Quaternion.cpp in Sources */,
 				B468F7161899A09000AAE773 /* Depth24Stencil8MultisampleRenderbuffer.cpp in Sources */,
 				B457A15817F6D486004EF4E0 /* Buffer.cpp in Sources */,
@@ -995,6 +996,7 @@
 				B4E0974417DB75DD00F4A436 /* MGOpenGLView.mm in Sources */,
 				B4D64F8A18817A02005E78AC /* UniformInitializer.cpp in Sources */,
 				B46CAC9F191FAD8100B7BA86 /* GlassSphereDrawing.cpp in Sources */,
+				B41D18281930E90C00ABC580 /* TextureCamera.cpp in Sources */,
 				B4E0974517DB75DD00F4A436 /* MGOpenGLViewController.m in Sources */,
 				B408BB7817F6DD3C00CC6900 /* IndexBuffer.cpp in Sources */,
 				B4ECF83118A4CE9B007E2669 /* Interpolator.cpp in Sources */,
@@ -1008,12 +1010,10 @@
 				B46CAC93191CB30B00B7BA86 /* TextureCubeMap.cpp in Sources */,
 				B42296B018DEFC5E004A3089 /* ModelviewModifier.cpp in Sources */,
 				B408BB7517F6DD2A00CC6900 /* VertexBuffer.cpp in Sources */,
-				B4D23ABF1928FF6700BDDF45 /* TextureCamera.cpp in Sources */,
 				B4DB8F9B185343B800FD292D /* DrawRequest.cpp in Sources */,
 				B46CAC9C191F9F8E00B7BA86 /* SphereSurface.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
-				B4D23AB51927A30500BDDF45 /* MainCamera.cpp in Sources */,
 				B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */,
 				B429BEDD19150ECD00DA2D3C /* TextureImage.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */,

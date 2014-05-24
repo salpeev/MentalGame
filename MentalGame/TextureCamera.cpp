@@ -2,46 +2,65 @@
 //  TextureCamera.cpp
 //  MentalGame
 //
-//  Created by Sergey Alpeev on 18.05.14.
+//  Created by Sergey Alpeev on 24.05.14.
 //  Copyright (c) 2014 Sergey Alpeev. All rights reserved.
 //
 
 #include "TextureCamera.h"
-#include "ColorRenderbufferMultisampleRGBA8.h"
-#include "DepthRenderbufferComponent16.h"
 
 
 
 namespace Renderer {
     
-    TextureCamera::TextureCamera(float width, float height, const Projection &rProjection): Camera(width, height, rProjection) {
-        m_framebuffer = new Framebuffer();
-        m_depthRenderbuffer = new DepthRenderbufferCompontent16();
+    TextureCamera::TextureCamera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer, Renderbuffer *depthRenderbuffer, Renderbuffer *stencilRenderbuffer, PIXEL_FORMAT pixelFormat, PIXEL_TYPE pixelType): Camera(resolution, rProjection, pFramebuffer), m_depthRenderbuffer(depthRenderbuffer), m_stencilRenderbuffer(stencilRenderbuffer), m_pixelFormat(pixelFormat), m_pixelType(pixelType) {
+        GenerateTexture();
         
-        TextureImage textureImage(CSize(1024, 1024), PIXEL_FORMAT_RGBA, PIXEL_TYPE_USHORT_5_5_5_1);
-        m_texture2D = new Texture2D();
-        m_texture2D->SetTextureImage(&textureImage, 0);
+        if (depthRenderbuffer) {
+            depthRenderbuffer->EstablishStorage(resolution.width, resolution.height);
+            GetFramebuffer()->AttachDepthRenderbuffer(depthRenderbuffer);
+        }
+        
+        if (stencilRenderbuffer) {
+            stencilRenderbuffer->EstablishStorage(resolution.width, resolution.height);
+            GetFramebuffer()->AttachStencilRenderbuffer(stencilRenderbuffer);
+        }
+    }
+    
+    TextureCamera::TextureCamera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer, Renderbuffer *depthStencilRenderbuffer, PIXEL_FORMAT pixelFormat, PIXEL_TYPE pixelType): Camera(resolution, rProjection, pFramebuffer), m_depthRenderbuffer(depthStencilRenderbuffer), m_stencilRenderbuffer(nullptr), m_pixelFormat(pixelFormat), m_pixelType(pixelType) {
+        GenerateTexture();
+        
+        if (depthStencilRenderbuffer) {
+            depthStencilRenderbuffer->EstablishStorage(resolution.width, resolution.height);
+            GetFramebuffer()->AttachDepthRenderbuffer(depthStencilRenderbuffer);
+            GetFramebuffer()->AttachStencilRenderbuffer(depthStencilRenderbuffer);
+        }
     }
     
     TextureCamera::~TextureCamera() {
-        delete m_framebuffer;
         delete m_texture2D;
         delete m_depthRenderbuffer;
+        delete m_stencilRenderbuffer;
     }
     
-    Framebuffer * TextureCamera::GetFramebuffer() const {
-        return m_framebuffer;
+    Texture2D * TextureCamera::RetrieveTexture() {
+        GetFramebuffer()->DetachTexture2D();
+        Texture2D *texture2D = m_texture2D;
+        m_texture2D = nullptr;
+        return texture2D;
     }
     
-    Texture2D * TextureCamera::GetTexture2D() const {
-        return m_texture2D;
+    void TextureCamera::PrepareForEnable() {
+        if (!m_texture2D) {
+            GenerateTexture();
+        }
     }
     
-    Renderbuffer * TextureCamera::GetDepthRenderbuffer() const {
-        return m_depthRenderbuffer;
-    }
-    
-    Renderbuffer * TextureCamera::GetStencilRenderbuffer() const {
-        return nullptr;
+    void TextureCamera::GenerateTexture() {
+        CSize resolution = GetResolution();
+        TextureImage textureImage(resolution, m_pixelFormat, m_pixelType);
+        m_texture2D = new Texture2D();
+        m_texture2D->SetTextureImage(&textureImage, 0);
+        
+        GetFramebuffer()->AttachTexture2D(m_texture2D);
     }
 }
