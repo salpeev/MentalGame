@@ -18,7 +18,7 @@ namespace Renderer {
         m_framebuffer = new Framebuffer();
         m_depthRenderbuffer = new DepthRenderbufferCompontent16();
         
-        TextureImage textureImage(CSize(1024, 1024.0f), BITS_PER_COMPONENT_4, PIXEL_FORMAT_RGBA);
+        TextureImage textureImage(CSize(1024, 1024), PIXEL_FORMAT_RGBA, PIXEL_TYPE_USHORT_5_5_5_1);
         m_texture2D = new Texture2D();
         m_texture2D->SetTextureImage(&textureImage, 0);
     }

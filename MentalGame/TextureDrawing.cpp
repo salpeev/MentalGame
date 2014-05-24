@@ -82,6 +82,8 @@ namespace Renderer {
     }
     
     void TextureDrawing::Draw() const {
+        m_texture->Bind();
+        
         Program *pProgram = ProgramContainer::SharedInstance().GetTextureProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }

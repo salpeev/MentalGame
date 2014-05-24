@@ -16,20 +16,18 @@ namespace Renderer {
     
     class TextureImage {
     public:
-        TextureImage(CSize size, BITS_PER_COMPONENT bitsPerComponent, PIXEL_FORMAT pixelFormat, void *bytes);
-        TextureImage(CSize size, BITS_PER_COMPONENT bitsPerComponent, PIXEL_FORMAT pixelFormat);
+        TextureImage(CSize size, PIXEL_FORMAT pixelFormat, PIXEL_TYPE pixelType, void *bytes = nullptr);
         ~TextureImage();
         
         const void *GetBytes() const;
         CSize GetSize() const;
-        BITS_PER_COMPONENT GetBitsPerComponent() const;
         PIXEL_FORMAT GetPixelFormat() const;
         PIXEL_TYPE GetPixelType() const;
         
     private:
         void *m_bytes;
         CSize m_size;
-        BITS_PER_COMPONENT m_bitsPerComponent;
         PIXEL_FORMAT m_pixelFormat;
+        PIXEL_TYPE m_pixelType;
     };
 }

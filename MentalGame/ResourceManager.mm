@@ -66,7 +66,26 @@ namespace Renderer {
             }
         }
         
-        TextureImage *pTextureImage = new TextureImage(textureSize, bitsPerComponent, pixelFormat, bytes);
+        // Pixel type
+        PIXEL_TYPE pixelType = PIXEL_TYPE_NONE;
+        
+        switch (bitsPerComponent) {
+            case BITS_PER_COMPONENT_4: {
+                if (pixelFormat == PIXEL_FORMAT_RGBA) {
+                    pixelType = PIXEL_TYPE_USHORT_4_4_4_4;
+                    break;
+                }
+            }
+            case BITS_PER_COMPONENT_8: {
+                pixelType = PIXEL_TYPE_UBYTE;
+                break;
+            }
+            default: {
+                assert(!"Unsupported format");
+            }
+        }
+        
+        TextureImage *pTextureImage = new TextureImage(textureSize, pixelFormat, pixelType, bytes);
         return pTextureImage;
     }
 }
