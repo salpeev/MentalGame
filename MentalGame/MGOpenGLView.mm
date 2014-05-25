@@ -162,7 +162,6 @@ using namespace Renderer;
 
 - (void)draw:(CADisplayLink *)displayLink {
     RenderingEngine::SharedInstance().Update(displayLink.duration);
-    
     RenderingEngine::SharedInstance().Render();
     
     m_resolveFramebuffer->BindDraw();

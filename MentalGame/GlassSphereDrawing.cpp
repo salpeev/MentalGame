@@ -18,6 +18,8 @@
 #include "TextureCamera.h"
 #include "RenderingEngine.h"
 #include "DepthRenderbufferComponent16.h"
+#include "TextureCubeMap.h"
+#include "ResourceManager.h"
 #include <vector>
 
 using namespace std;
@@ -52,9 +54,21 @@ namespace Renderer {
         m_drawRequest->SetRenderMode(RENDER_MODE_LINES);
         
         
+        
+        
+        
         Projection projection(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f, false);
         m_textureCamera = new TextureCamera(CSize(1024, 1024), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_USHORT_5_5_5_1);
         RenderingEngine::SharedInstance().AddOffscreenCamera(m_textureCamera);
+        
+        
+        TextureCubeMap *cubeMap = new TextureCubeMap();
+        for (int i = 0; i < 6; i++) {
+            TextureImage textureImage(CSize(256, 256), PIXEL_FORMAT_RGBA, PIXEL_TYPE_USHORT_5_5_5_1);
+//                        TextureImage *textureImage = ResourceManager::SharedInstance().LoadTexturePOT("globe.png");
+            cubeMap->SetTextureImage(&textureImage, 0, TEXTURE_CUBE_MAP_SIDE(TEXTURE_CUBE_MAP_SIDE_POSITIVE_X + i));
+//                        delete textureImage;
+        }
     }
     
     GlassSphereDrawing::~GlassSphereDrawing() {
@@ -74,6 +88,22 @@ namespace Renderer {
     
     void GlassSphereDrawing::Update(float interval) {
         m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
+        
+//        Point3 position = GetPositionModelviewModifier()->GetPosition();
+//        Matrix4 cameraFrustum = Matrix4::Frustum(M_PI_2, 1.0f, 1.0f, 20.0f);
+//        Matrix4 cameraTranslation = Matrix4::Translation(-position.x, -position.y, -position.z);
+//        
+//        const Vector4 &rX = cameraFrustum.x;
+//        const Vector4 &rY = cameraFrustum.y;
+//        const Vector4 &rZ = cameraFrustum.z;
+//        const Vector4 &rW = cameraFrustum.w;
+//        
+//        Matrix4 m0 = cameraTranslation * Matrix4(-rZ, -rY, -rX, rW);
+//        Matrix4 m1 = cameraTranslation * Matrix4( rZ, -rY,  rX, rW);
+//        Matrix4 m2 = cameraTranslation * Matrix4( rX, -rZ,  rY, rW);
+//        Matrix4 m3 = cameraTranslation * Matrix4( rX,  rZ, -rY, rW);
+//        Matrix4 m4 = cameraTranslation * Matrix4( rX, -rY, -rZ, rW);
+//        Matrix4 m5 = cameraTranslation * Matrix4(-rX, -rY,  rZ, rW);
     }
     
     void GlassSphereDrawing::Draw() const {

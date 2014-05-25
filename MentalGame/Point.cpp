@@ -45,6 +45,10 @@ namespace Renderer {
         return resultVector;
     }
     
+    Point3 Point3::operator-() const {
+        return Point3(-x, -y, -z);
+    }
+    
     Point3::operator Vector3() const {
         Vector3 vector(x, y, z);
         return vector;

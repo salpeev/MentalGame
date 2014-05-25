@@ -30,6 +30,8 @@
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
 		B42E7F7F18D5CD470048515C /* Touch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7D18D5CD470048515C /* Touch.cpp */; };
 		B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4436009190CF5520094661D /* ScaleModelviewModifier.cpp */; };
+		B455F7291932233400DD17EE /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = B455F7281932233400DD17EE /* globe.png */; };
+		B455F72B1932257500DD17EE /* cube_map_top.png in Resources */ = {isa = PBXBuildFile; fileRef = B455F72A1932257500DD17EE /* cube_map_top.png */; };
 		B457A15817F6D486004EF4E0 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B457A15617F6D486004EF4E0 /* Buffer.cpp */; };
 		B468F70118999CE300AAE773 /* ColorRenderbufferRGBA4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */; };
 		B468F70418999CF700AAE773 /* ColorRenderbufferRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468F70218999CF700AAE773 /* ColorRenderbufferRGB565.cpp */; };
@@ -144,6 +146,8 @@
 		B42E7F7E18D5CD470048515C /* Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Touch.h; sourceTree = "<group>"; };
 		B4436009190CF5520094661D /* ScaleModelviewModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScaleModelviewModifier.cpp; sourceTree = "<group>"; };
 		B443600A190CF5520094661D /* ScaleModelviewModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleModelviewModifier.h; sourceTree = "<group>"; };
+		B455F7281932233400DD17EE /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
+		B455F72A1932257500DD17EE /* cube_map_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube_map_top.png; sourceTree = "<group>"; };
 		B457A15617F6D486004EF4E0 /* Buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buffer.cpp; sourceTree = "<group>"; };
 		B457A15717F6D486004EF4E0 /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
 		B468F6FF18999CE300AAE773 /* ColorRenderbufferRGBA4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorRenderbufferRGBA4.cpp; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 		B429BED819150AB400DA2D3C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B455F72A1932257500DD17EE /* cube_map_top.png */,
+				B455F7281932233400DD17EE /* globe.png */,
 				B429BED919150B6800DA2D3C /* Ukraine.jpg */,
 			);
 			path = Images;
@@ -946,7 +952,9 @@
 				B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */,
 				B4D64F81187F3D3E005E78AC /* PerspectiveShader.fsh in Resources */,
 				B4E0971E17DB671400F4A436 /* InfoPlist.strings in Resources */,
+				B455F72B1932257500DD17EE /* cube_map_top.png in Resources */,
 				B4E0972617DB671400F4A436 /* Default.png in Resources */,
+				B455F7291932233400DD17EE /* globe.png in Resources */,
 				B4E0972817DB671400F4A436 /* Default@2x.png in Resources */,
 				B4E0972A17DB671400F4A436 /* Default-568h@2x.png in Resources */,
 			);

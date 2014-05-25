@@ -14,7 +14,7 @@
 
 namespace Renderer {
     
-    Framebuffer::Framebuffer(): m_name(0), m_colorRenderbuffer(nullptr), m_depthRenderbuffer(nullptr), m_stencilRenderbuffer(nullptr) {
+    Framebuffer::Framebuffer(): m_name(0), m_texture2D(nullptr), m_textureCubeMap(nullptr), m_colorRenderbuffer(nullptr), m_depthRenderbuffer(nullptr), m_stencilRenderbuffer(nullptr) {
         Generate();
     }
     
@@ -58,6 +58,7 @@ namespace Renderer {
     void Framebuffer::BindAll() const {
         Bind();
         BindTexture2D();
+        BindTextureCubeMap();
         BindColorRenderbuffer();
         BindDepthRenderbuffer();
         BindStencilRenderbuffer();
@@ -104,6 +105,21 @@ namespace Renderer {
         CheckError();
         
         m_texture2D = pTexture2D;
+    }
+    
+    void Framebuffer::AttachTextureCubeMap(TextureCubeMap *pTextureCubeMap, TEXTURE_CUBE_MAP_SIDE side) {
+        if (!pTextureCubeMap) {
+            return;
+        }
+        
+        Bind();
+        pTextureCubeMap->Bind();
+        
+        GLuint textureHandle = pTextureCubeMap->GetTextureHandle();
+        glFramebufferTexture2D(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, side, textureHandle, 0);
+        CheckError();
+        
+        m_textureCubeMap = pTextureCubeMap;
     }
     
     void Framebuffer::AttachColorRenderbuffer(Renderbuffer *pRenderbuffer) {
@@ -157,6 +173,12 @@ namespace Renderer {
         }
     }
     
+    void Framebuffer::BindTextureCubeMap() const {
+        if (m_textureCubeMap) {
+            m_textureCubeMap->Bind();
+        }
+    }
+    
     void Framebuffer::BindColorRenderbuffer() const {
         if (m_colorRenderbuffer) {
             m_colorRenderbuffer->Bind();
@@ -186,6 +208,19 @@ namespace Renderer {
         CheckError();
         
         m_texture2D = nullptr;
+    }
+    
+    void Framebuffer::DetachTextureCubeMap(TEXTURE_CUBE_MAP_SIDE side) {
+        if (!m_textureCubeMap) {
+            return;
+        }
+        
+        Bind();
+        
+        glFramebufferTexture2D(FRAMEBUFFER_OBJECT_FRAMEBUFFER, FRAMEBUFFER_ATTACHMENT_COLOR0, side, 0, 0);
+        CheckError();
+        
+        m_textureCubeMap = nullptr;
     }
     
     void Framebuffer::DetachColorRenderbuffer() {
@@ -229,6 +264,10 @@ namespace Renderer {
     
     Texture2D * Framebuffer::GetTexture2D() const {
         return m_texture2D;
+    }
+    
+    TextureCubeMap * Framebuffer::GetTextureCubeMap() const {
+        return m_textureCubeMap;
     }
     
     Renderbuffer * Framebuffer::GetColorRenderbuffer() const {

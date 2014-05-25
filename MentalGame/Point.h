@@ -35,6 +35,7 @@ namespace Renderer {
         Point3(float x, float y, float z);
         
         Vector3 operator-(const Point3 &rPoint) const;
+        Point3 operator-() const;
         operator Vector3() const;
         
         float x;

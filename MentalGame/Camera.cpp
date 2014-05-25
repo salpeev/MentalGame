@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Logger.h"
 #include "Constants.h"
+#include "RenderingEngine.h"
 
 
 
@@ -22,11 +23,13 @@ namespace Renderer {
         delete m_framebuffer;
     }
     
-    void Camera::Enable() {
+    void Camera::Record() {
         PrepareForEnable();
         
         m_framebuffer->BindAll();
         m_framebuffer->Clear();
+        
+        RenderingEngine::SharedInstance().RenderScene();
     }
     
     const CSize & Camera::GetResolution() const {

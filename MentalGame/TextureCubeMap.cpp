@@ -15,7 +15,7 @@ namespace Renderer {
     
     void TextureCubeMap::Bind() const {
         if(!IsBound()) {
-            glBindTexture(TEXTURE_2D, GetTextureHandle());
+            glBindTexture(TEXTURE_CUBE_MAP, GetTextureHandle());
             CheckError();
         }
     }

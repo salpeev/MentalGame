@@ -128,6 +128,10 @@ namespace Renderer
         
     }
     
+    Vector4 Vector4::operator-() const {
+        return Vector4(-x, -y, -z, -w);
+    }
+    
     Vector4 Vector4::operator-(const Vector4 &rVector) const {
         Vector4 vector(x - rVector.x, y - rVector.y, z - rVector.z, w - rVector.w);
         return vector;

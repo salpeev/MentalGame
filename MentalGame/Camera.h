@@ -20,7 +20,7 @@ namespace Renderer {
         Camera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer);
         virtual ~Camera();
         
-        void Enable();
+        void Record();
         void SetProjection(const Projection &rProjection);
         
         const CSize & GetResolution() const;

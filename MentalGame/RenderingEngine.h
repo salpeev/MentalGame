@@ -48,6 +48,7 @@ namespace Renderer {
         
         void Update(float interval) const;
         void Render() const;
+        void RenderScene() const;
         
         // Touches
         Touch * GetTouchForSystemTouch(const void *pSystemTouch) const;

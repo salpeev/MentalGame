@@ -52,6 +52,7 @@ namespace Renderer {
     class Matrix4 {
     public:
         Matrix4();
+        Matrix4(const Vector4 &rX, const Vector4 &rY, const Vector4 &rZ, const Vector4 &rW);
         Matrix4(const Matrix3 &rMatrix);
         
         Matrix4 operator*(const Matrix4 &rMatrix) const;

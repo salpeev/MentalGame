@@ -103,6 +103,10 @@ namespace Renderer {
         DrawWithCamera(m_mainCamera);
     }
     
+    void RenderingEngine::RenderScene() const {
+        GetDrawingController()->GetDrawing()->DrawHierarchy();
+    }
+    
 #pragma mark Touches
     
     Touch * RenderingEngine::GetTouchForSystemTouch(const void *pSystemTouch) const {
@@ -193,7 +197,6 @@ namespace Renderer {
         CSize resolution = pCamera->GetResolution();
         SetViewport(Rect(0.0f, 0.0f, resolution.width, resolution.height));
         
-        pCamera->Enable();
-        m_drawingController->GetDrawing()->DrawHierarchy();
+        pCamera->Record();
     }
 }

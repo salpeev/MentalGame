@@ -70,6 +70,7 @@ namespace Renderer
         Vector4(Vector3 &rVector);
         Vector4(Vector3 &rVector, float w);
         
+        Vector4 operator-() const;
         Vector4 operator-(const Vector4 &rVector) const;
         Vector4 operator*(const Matrix4 &rMatrix) const;
         
