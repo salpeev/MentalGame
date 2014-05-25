@@ -15,6 +15,9 @@
 #include "ProjectionModelviewInitializer.h"
 #include "ProgramContainer.h"
 #include "DrawRequest.h"
+#include "TextureCamera.h"
+#include "RenderingEngine.h"
+#include "DepthRenderbufferComponent16.h"
 #include <vector>
 
 using namespace std;
@@ -47,6 +50,11 @@ namespace Renderer {
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
         m_drawRequest->SetUniformInitializer(m_uniformInitializer);
         m_drawRequest->SetRenderMode(RENDER_MODE_LINES);
+        
+        
+        Projection projection(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f, false);
+        m_textureCamera = new TextureCamera(CSize(1024, 1024), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_USHORT_5_5_5_1);
+        RenderingEngine::SharedInstance().AddOffscreenCamera(m_textureCamera);
     }
     
     GlassSphereDrawing::~GlassSphereDrawing() {
@@ -55,6 +63,9 @@ namespace Renderer {
         delete m_positionModifier;
         delete m_attributeInitializer;
         delete m_uniformInitializer;
+        delete m_drawRequest;
+        delete m_positionModifier;
+        delete m_textureCamera;
     }
     
     PositionModelviewModifier * GlassSphereDrawing::GetPositionModelviewModifier() const {

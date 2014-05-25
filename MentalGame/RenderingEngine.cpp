@@ -17,12 +17,11 @@ namespace Renderer {
 #pragma mark - Lifecycle
     
     // TODO: Size has default constructor, that initializes to 0. Is initialization required here?
-    RenderingEngine::RenderingEngine(): m_camera(nullptr), m_drawingController(nullptr) {
+    RenderingEngine::RenderingEngine(): m_drawingController(nullptr) {
         m_touches = new vector<Touch *>;
     }
     
     RenderingEngine::~RenderingEngine() {
-        delete m_camera;
         delete m_drawingController;
         
         for (vector<Touch *>::iterator iterator = m_touches->begin(); iterator != m_touches->end(); iterator++) {
@@ -33,17 +32,27 @@ namespace Renderer {
     
 #pragma mark - Public Methods
     
-    void RenderingEngine::SetCamera(Camera *pCamera) {
-        if (m_camera == pCamera) {
+    void RenderingEngine::SetMainCamera(Camera *pCamera) {
+        if (m_mainCamera == pCamera) {
             return;
         }
         
-        delete m_camera;
-        m_camera = pCamera;
+        delete m_mainCamera;
+        m_mainCamera = pCamera;
     }
     
-    Camera * RenderingEngine::GetCamera() const {
-        return m_camera;
+    Camera * RenderingEngine::GetMainCamera() const {
+        return m_mainCamera;
+    }
+    
+    void RenderingEngine::AddOffscreenCamera(Camera *pCamera) {
+        if (find(m_offscreenCameras.begin(), m_offscreenCameras.end(), pCamera) == m_offscreenCameras.end()) {
+            m_offscreenCameras.push_back(pCamera);
+        }
+    }
+    
+    void RenderingEngine::RemoveOffscreenCamera(Camera *pCamera) {
+        m_offscreenCameras.erase(find(m_offscreenCameras.begin(), m_offscreenCameras.end(), pCamera));
     }
     
     void RenderingEngine::SetDrawingController(DrawingController *pDrawingController) {
@@ -87,8 +96,11 @@ namespace Renderer {
     }
     
     void RenderingEngine::Render() const {
-        m_camera->Enable();
-        m_drawingController->GetDrawing()->DrawHierarchy();
+        for (Camera *pCamera : m_offscreenCameras) {
+            DrawWithCamera(pCamera);
+        }
+        
+        DrawWithCamera(m_mainCamera);
     }
     
 #pragma mark Touches
@@ -175,5 +187,13 @@ namespace Renderer {
             rDrawingTouches.push_back(touch);
         }
         return sortedTouches;
+    }
+    
+    void RenderingEngine::DrawWithCamera(Camera *pCamera) const {
+        CSize resolution = pCamera->GetResolution();
+        SetViewport(Rect(0.0f, 0.0f, resolution.width, resolution.height));
+        
+        pCamera->Enable();
+        m_drawingController->GetDrawing()->DrawHierarchy();
     }
 }

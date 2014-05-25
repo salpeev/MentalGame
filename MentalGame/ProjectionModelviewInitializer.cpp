@@ -38,7 +38,7 @@ namespace Renderer {
         Uniform *projectionUniform = pUniforms->at(ProjectionUniformName);
         Uniform *modelviewUniform = pUniforms->at(ModelviewUniformName);
         
-        Matrix4 projection = RenderingEngine::SharedInstance().GetCamera()->GetProjection().GetProjectionMatrix();
+        Matrix4 projection = RenderingEngine::SharedInstance().GetMainCamera()->GetProjection().GetProjectionMatrix();
         
         projectionUniform->SetMatrix4f(projection);
         modelviewUniform->SetMatrix4f(m_modelview);

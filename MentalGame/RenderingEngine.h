@@ -16,6 +16,7 @@
 #include "Constants.h"
 #include "Camera.h"
 #include <map>
+#include <vector>
 
 using namespace std;
 
@@ -30,8 +31,11 @@ namespace Renderer {
             return renderingEngine;
         }
         
-        void SetCamera(Camera *pCamera);
-        Camera * GetCamera() const;
+        void SetMainCamera(Camera *pCamera);
+        Camera * GetMainCamera() const;
+        
+        void AddOffscreenCamera(Camera *pCamera);
+        void RemoveOffscreenCamera(Camera *pCamera);
         
         void SetDrawingController(DrawingController *pDrawingController);
         DrawingController * GetDrawingController() const;
@@ -59,8 +63,10 @@ namespace Renderer {
         RenderingEngine & operator= (const RenderingEngine &rRenderingEngine) = delete;
         
         map<DrawingComponent *, vector<Touch *>> SortTouchesByDrawingComponent(vector<Touch *> &rTouches) const;
+        void DrawWithCamera(Camera *pCamera) const;
         
-        Camera *m_camera;
+        Camera *m_mainCamera;
+        vector<Camera *> m_offscreenCameras;
         DrawingController *m_drawingController;
         vector<Touch *> *m_touches;
     };

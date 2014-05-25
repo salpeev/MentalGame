@@ -75,7 +75,7 @@ using namespace Renderer;
         Projection projection(-2.0f, 2.0f, -2.0f / aspectRatio, 2.0f / aspectRatio, 4.0f, 10.0f, false);
         BufferCamera *mainCamera = new BufferCamera(CSize(width, height), projection, new MultisampleFramebuffer(), new ColorRenderbufferMultisampleRGBA8(), new Depth24Stencil8MultisampleRenderbuffer());
         
-        RenderingEngine::SharedInstance().SetCamera(mainCamera);
+        RenderingEngine::SharedInstance().SetMainCamera(mainCamera);
         RenderingEngine::SharedInstance().SetDrawingController(new GameDrawingController());
         
         CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(draw:)];
@@ -163,25 +163,12 @@ using namespace Renderer;
 - (void)draw:(CADisplayLink *)displayLink {
     RenderingEngine::SharedInstance().Update(displayLink.duration);
     
-    
-    // TODO: Remove. Just for testing
-    // *****
-    Projection projection(-2.0f, 2.0f, -2.0f, 2.0f, 4.0f, 10.0f, false);
-    TextureCamera textureCamera(CSize(1024, 1024), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_USHORT_5_5_5_1);
-    textureCamera.Enable();
-    RenderingEngine::SharedInstance().SetViewport(Renderer::Rect(0.0f, 0.0f, textureCamera.GetResolution().width, textureCamera.GetResolution().height));
-    RenderingEngine::SharedInstance().GetDrawingController()->GetDrawing()->DrawHierarchy();
-    // *****
-    
-    
-    CSize resolution = RenderingEngine::SharedInstance().GetCamera()->GetResolution();
-    RenderingEngine::SharedInstance().SetViewport(Renderer::Rect(0.0f, 0.0f, resolution.width, resolution.height));
     RenderingEngine::SharedInstance().Render();
     
     m_resolveFramebuffer->BindDraw();
-    RenderingEngine::SharedInstance().GetCamera()->GetFramebuffer()->BindRead();
-    RenderingEngine::SharedInstance().GetCamera()->GetFramebuffer()->Resolve();
-    RenderingEngine::SharedInstance().GetCamera()->GetFramebuffer()->Discard();
+    RenderingEngine::SharedInstance().GetMainCamera()->GetFramebuffer()->BindRead();
+    RenderingEngine::SharedInstance().GetMainCamera()->GetFramebuffer()->Resolve();
+    RenderingEngine::SharedInstance().GetMainCamera()->GetFramebuffer()->Discard();
     
     m_resolveFramebuffer->Bind();
     m_resolveFramebuffer->GetColorRenderbuffer()->Bind();

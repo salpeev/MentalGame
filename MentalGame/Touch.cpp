@@ -43,14 +43,14 @@ namespace Renderer {
     }
     
     Point3 Touch::GetProjectionPosition() const {
-        CSize windowSize = RenderingEngine::SharedInstance().GetCamera()->GetResolution();
+        CSize windowSize = RenderingEngine::SharedInstance().GetMainCamera()->GetResolution();
         float xOffset = m_windowPosition.x / windowSize.width;
         float yOffset = m_windowPosition.y / windowSize.height;
         
-        Rect frontRect = RenderingEngine::SharedInstance().GetCamera()->GetProjection().GetFrontRect();
+        Rect frontRect = RenderingEngine::SharedInstance().GetMainCamera()->GetProjection().GetFrontRect();
         float xPosition = frontRect.origin.x + frontRect.size.width * xOffset;
         float yPosition = frontRect.origin.y + frontRect.size.height * yOffset;
-        float zPosition = RenderingEngine::SharedInstance().GetCamera()->GetProjection().GetDistance();
+        float zPosition = RenderingEngine::SharedInstance().GetMainCamera()->GetProjection().GetDistance();
         return Point3(xPosition, yPosition, zPosition);
     }
 }
