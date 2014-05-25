@@ -22,7 +22,7 @@ namespace Renderer {
         
         Texture2D * RetrieveTexture();
         
-        void PrepareForEnable();
+        void PrepareForRecord();
         
     private:
         void GenerateTexture();

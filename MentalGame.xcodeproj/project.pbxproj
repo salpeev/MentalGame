@@ -52,6 +52,7 @@
 		B46CAC9F191FAD8100B7BA86 /* GlassSphereDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46CAC9D191FAD8100B7BA86 /* GlassSphereDrawing.cpp */; };
 		B46FCD0118B6D902004E6221 /* SegmentDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46FCCFF18B6D902004E6221 /* SegmentDrawing.cpp */; };
 		B47177DC188BEA75006B6215 /* ProgramContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47177DA188BEA75006B6215 /* ProgramContainer.cpp */; };
+		B479B0DA19324266006B1CF6 /* CubeMapCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B479B0D819324266006B1CF6 /* CubeMapCamera.cpp */; };
 		B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229818BA424F006A0386 /* TextureDrawing.cpp */; };
 		B47D229E18BA43DF006A0386 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229C18BA43DF006A0386 /* Texture.cpp */; };
 		B49BC2601923D556000C909B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B49BC25E1923D556000C909B /* Camera.cpp */; };
@@ -190,6 +191,8 @@
 		B46FCD0018B6D902004E6221 /* SegmentDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentDrawing.h; sourceTree = "<group>"; };
 		B47177DA188BEA75006B6215 /* ProgramContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProgramContainer.cpp; sourceTree = "<group>"; };
 		B47177DB188BEA75006B6215 /* ProgramContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramContainer.h; sourceTree = "<group>"; };
+		B479B0D819324266006B1CF6 /* CubeMapCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeMapCamera.cpp; sourceTree = "<group>"; };
+		B479B0D919324266006B1CF6 /* CubeMapCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeMapCamera.h; sourceTree = "<group>"; };
 		B47D229818BA424F006A0386 /* TextureDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureDrawing.cpp; sourceTree = "<group>"; };
 		B47D229918BA424F006A0386 /* TextureDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDrawing.h; sourceTree = "<group>"; };
 		B47D229C18BA43DF006A0386 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
@@ -564,6 +567,8 @@
 				B41D18241930E7D400ABC580 /* BufferCamera.h */,
 				B41D18261930E90C00ABC580 /* TextureCamera.cpp */,
 				B41D18271930E90C00ABC580 /* TextureCamera.h */,
+				B479B0D819324266006B1CF6 /* CubeMapCamera.cpp */,
+				B479B0D919324266006B1CF6 /* CubeMapCamera.h */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -1039,6 +1044,7 @@
 				B46FCD0118B6D902004E6221 /* SegmentDrawing.cpp in Sources */,
 				B4E069D71891C11300F2E995 /* DrawingComposite.cpp in Sources */,
 				B4CE1DF017DFD906009094E8 /* ResourceManager.mm in Sources */,
+				B479B0DA19324266006B1CF6 /* CubeMapCamera.cpp in Sources */,
 				B468F70C18999EC900AAE773 /* DepthRenderbufferComponent16.cpp in Sources */,
 				B46CAC90191CB30300B7BA86 /* Texture2D.cpp in Sources */,
 				B4B095F118CCEC430045789A /* MoveToAnimation.cpp in Sources */,

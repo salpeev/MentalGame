@@ -19,7 +19,7 @@ namespace Renderer {
     class PositionColorInitializer;
     class ProjectionModelviewInitializer;
     class DrawRequest;
-    class TextureCamera;
+    class CubeMapCamera;
     
     
     
@@ -41,6 +41,6 @@ namespace Renderer {
         ProjectionModelviewInitializer *m_uniformInitializer;
         DrawRequest *m_drawRequest;
         PositionModelviewModifier *m_positionModifier;
-        TextureCamera *m_textureCamera;
+        CubeMapCamera *m_cubeMapCamera;
     };
 }

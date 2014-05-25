@@ -23,15 +23,6 @@ namespace Renderer {
         delete m_framebuffer;
     }
     
-    void Camera::Record() {
-        PrepareForEnable();
-        
-        m_framebuffer->BindAll();
-        m_framebuffer->Clear();
-        
-        RenderingEngine::SharedInstance().RenderScene();
-    }
-    
     const CSize & Camera::GetResolution() const {
         return m_resolution;
     }
@@ -48,7 +39,16 @@ namespace Renderer {
         return m_projection;
     }
     
-    void Camera::PrepareForEnable() {
+    void Camera::Record() {
+        PrepareForRecord();
+        
+        m_framebuffer->BindAll();
+        m_framebuffer->Clear();
+        
+        RenderingEngine::SharedInstance().RenderScene();
+    }
+    
+    void Camera::PrepareForRecord() {
         
     }
 }

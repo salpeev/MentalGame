@@ -49,7 +49,7 @@ namespace Renderer {
         return texture2D;
     }
     
-    void TextureCamera::PrepareForEnable() {
+    void TextureCamera::PrepareForRecord() {
         if (!m_texture2D) {
             GenerateTexture();
         }

@@ -20,14 +20,14 @@ namespace Renderer {
         Camera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer);
         virtual ~Camera();
         
-        void Record();
         void SetProjection(const Projection &rProjection);
         
         const CSize & GetResolution() const;
         const Projection & GetProjection() const;
         Framebuffer * GetFramebuffer() const;
         
-        virtual void PrepareForEnable();
+        virtual void Record();
+        virtual void PrepareForRecord();
         
     private:
         CSize m_resolution;
