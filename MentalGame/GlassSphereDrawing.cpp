@@ -28,7 +28,7 @@ using namespace std;
 
 namespace Renderer {
     
-    GlassSphereDrawing::GlassSphereDrawing() {
+    GlassSphereDrawing::GlassSphereDrawing(): m_cubeMapCamera(nullptr) {
         vector<float> vertices;
         vector<unsigned short> indices;
         
@@ -52,14 +52,6 @@ namespace Renderer {
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
         m_drawRequest->SetUniformInitializer(m_uniformInitializer);
         m_drawRequest->SetRenderMode(RENDER_MODE_LINES);
-        
-        
-        
-        
-        // TODO: Doesn't work!!!
-        Projection projection(M_PI_2, 1.0f, 1.0f, 20.0f);
-        m_cubeMapCamera = new CubeMapCamera(CSize(128, 128), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_USHORT_5_5_5_1);
-//        RenderingEngine::SharedInstance().AddOffscreenCamera(m_cubeMapCamera);
     }
     
     GlassSphereDrawing::~GlassSphereDrawing() {
@@ -80,8 +72,24 @@ namespace Renderer {
     void GlassSphereDrawing::Update(float interval) {
         m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
         
-        Point3 position = GetPositionModelviewModifier()->GetPosition();
-        m_cubeMapCamera->SetPosition(position);
+        if (m_cubeMapCamera) {
+            Point3 position = GetPositionModelviewModifier()->GetPosition();
+            m_cubeMapCamera->SetPosition(position);
+        }
+        
+        
+        // TODO: Should be removed
+        static bool cameraAdded = false;
+        static float time = 0;
+        time += interval;
+        if (time > 2.0f && !cameraAdded) {
+            cameraAdded = true;
+            
+            // TODO: Doesn't work!!!
+            Projection projection(M_PI_2, 1.0f, 1.0f, 20.0f);
+            m_cubeMapCamera = new CubeMapCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
+            RenderingEngine::SharedInstance().AddOffscreenCamera(m_cubeMapCamera);
+        }
     }
     
     void GlassSphereDrawing::Draw() const {
