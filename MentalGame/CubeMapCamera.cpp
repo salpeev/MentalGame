@@ -78,18 +78,6 @@ namespace Renderer {
         
         GetFramebuffer()->BindAll();
         
-        GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-        
-        if (status == GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT) {
-            Log("AAA");
-        } else if (status == GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS) {
-            Log("BBB");
-        } else if (status == GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT) {
-            Log("CCC");
-        } else if (status == GL_FRAMEBUFFER_UNSUPPORTED) {
-            Log("DDD");
-        }
-        
         for (int sideIndex = 0; sideIndex < TEXTURE_CUBE_MAP_SIDE_COUNT; sideIndex++) {
             GetFramebuffer()->AttachTextureCubeMap(m_cubeMap, TEXTURE_CUBE_MAP_SIDE(TEXTURE_CUBE_MAP_SIDE_POSITIVE_X + sideIndex));
             GetFramebuffer()->Clear();
