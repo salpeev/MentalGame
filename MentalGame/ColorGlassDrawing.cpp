@@ -184,9 +184,11 @@ namespace Renderer {
         }
     }
     
-    void ColorGlassDrawing::Draw() const {
+    void ColorGlassDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_CULL_FACE);
         RenderingEngine::SharedInstance().Disable(SERVER_CAPABILITY_DEPTH_TEST);
+        
+        m_uniformInitializer->SetProjectionMatrix(rProjectionMatrix);
         
         Program *pProgram = ProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);

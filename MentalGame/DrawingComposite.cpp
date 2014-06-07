@@ -33,9 +33,9 @@ namespace Renderer {
         UpdateSubDrawings(interval);
     }
     
-    void DrawingComposite::DrawHierarchy() const {
-        Draw();
-        DrawSubDrawings();
+    void DrawingComposite::DrawHierarchy(const Matrix4 &rProjectionMatrix) const {
+        Draw(rProjectionMatrix);
+        DrawSubDrawings(rProjectionMatrix);
     }
     
     DrawingComponent * DrawingComposite::HitTest(const Point3 &rPoint) {
@@ -73,7 +73,7 @@ namespace Renderer {
         
     }
     
-    void DrawingComposite::Draw() const {
+    void DrawingComposite::Draw(const Matrix4 &rProjectionMatrix) const {
         
     }
     
@@ -86,10 +86,10 @@ namespace Renderer {
         }
     }
     
-    void DrawingComposite::DrawSubDrawings() const {
+    void DrawingComposite::DrawSubDrawings(const Matrix4 &rProjectionMatrix) const {
         for (int subdrawingIndex = 0; subdrawingIndex < m_subDrawings->size(); subdrawingIndex++) {
             DrawingComponent *subdrawing = m_subDrawings->at(subdrawingIndex);
-            subdrawing->DrawHierarchy();
+            subdrawing->DrawHierarchy(rProjectionMatrix);
         }
     }
 }

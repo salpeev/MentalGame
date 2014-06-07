@@ -19,6 +19,7 @@ namespace Renderer {
         ~ProjectionModelviewInitializer();
         
         void SetModelviewMatrix(const Matrix4 &rModelviewMatix);
+        void SetProjectionMatrix(const Matrix4 &rProjectionMatrix);
         
         const Matrix4 & GetModelviewMatrix() const;
         
@@ -26,5 +27,6 @@ namespace Renderer {
         
     private:
         Matrix4 m_modelview;
+        Matrix4 m_projection;
     };
 }

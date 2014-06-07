@@ -42,7 +42,7 @@ namespace Renderer {
         
     protected:
         void Update(float interval);
-        void Draw() const;
+        void Draw(const Matrix4 &rProjectionMatrix) const;
         
     private:
         VertexBuffer *m_vertexBuffer;

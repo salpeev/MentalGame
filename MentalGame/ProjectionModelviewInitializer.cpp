@@ -30,6 +30,10 @@ namespace Renderer {
         m_modelview = rModelviewMatix;
     }
     
+    void ProjectionModelviewInitializer::SetProjectionMatrix(const Matrix4 &rProjectionMatrix) {
+        m_projection = rProjectionMatrix;
+    }
+    
     const Matrix4 & ProjectionModelviewInitializer::GetModelviewMatrix() const {
         return m_modelview;
     }
@@ -38,9 +42,7 @@ namespace Renderer {
         Uniform *projectionUniform = pUniforms->at(ProjectionUniformName);
         Uniform *modelviewUniform = pUniforms->at(ModelviewUniformName);
         
-        Matrix4 projection = RenderingEngine::SharedInstance().GetMainCamera()->GetProjection().GetProjectionMatrix();
-        
-        projectionUniform->SetMatrix4f(projection);
+        projectionUniform->SetMatrix4f(m_projection);
         modelviewUniform->SetMatrix4f(m_modelview);
     }
 }

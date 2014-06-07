@@ -17,8 +17,8 @@ namespace Renderer {
         Update(interval);
     }
     
-    void DrawingLeaf::DrawHierarchy() const {
-        Draw();
+    void DrawingLeaf::DrawHierarchy(const Matrix4 &rProjectionMatrix) const {
+        Draw(rProjectionMatrix);
     }
     
     DrawingComponent * DrawingLeaf::HitTest(const Point3 &rPoint) {
@@ -33,7 +33,7 @@ namespace Renderer {
         
     }
     
-    void DrawingLeaf::Draw() const {
+    void DrawingLeaf::Draw(const Matrix4 &rProjectionMatrix) const {
         
     }
 }

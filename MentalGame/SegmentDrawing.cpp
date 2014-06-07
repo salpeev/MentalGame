@@ -92,7 +92,9 @@ namespace Renderer {
         
     }
     
-    void SegmentDrawing::Draw() const {
+    void SegmentDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
+        m_uniformInitializer->SetProjectionMatrix(rProjectionMatrix);
+        
         Program *pProgram = ProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
     }

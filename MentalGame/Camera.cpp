@@ -45,7 +45,8 @@ namespace Renderer {
         m_framebuffer->BindAll();
         m_framebuffer->Clear();
         
-        RenderingEngine::SharedInstance().RenderScene();
+        Matrix4 projectionMatrix = GetProjection().GetProjectionMatrix();
+        RenderingEngine::SharedInstance().RenderScene(projectionMatrix);
     }
     
     void Camera::PrepareForRecord() {

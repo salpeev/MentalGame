@@ -85,14 +85,15 @@ namespace Renderer {
         if (time > 2.0f && !cameraAdded) {
             cameraAdded = true;
             
-            // TODO: Doesn't work!!!
             Projection projection(M_PI_2, 1.0f, 1.0f, 20.0f);
             m_cubeMapCamera = new CubeMapCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
             RenderingEngine::SharedInstance().AddOffscreenCamera(m_cubeMapCamera);
         }
     }
     
-    void GlassSphereDrawing::Draw() const {
+    void GlassSphereDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
+        m_uniformInitializer->SetProjectionMatrix(rProjectionMatrix);
+        
         Program *program = ProgramContainer::SharedInstance().GetPerspectiveProgram();
         program->ExecuteDrawRequest(m_drawRequest);
     }

@@ -1124,7 +1124,7 @@
 		B4E0972E17DB671400F4A436 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrey Oleynik (X9MKMX732F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Alpeev (N7NL4HM4W4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MentalGame/MentalGame-Prefix.pch";
 				INFOPLIST_FILE = "MentalGame/MentalGame-Info.plist";
@@ -1139,7 +1139,7 @@
 		B4E0972F17DB671400F4A436 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrey Oleynik (X9MKMX732F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Alpeev (N7NL4HM4W4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MentalGame/MentalGame-Prefix.pch";
 				INFOPLIST_FILE = "MentalGame/MentalGame-Info.plist";

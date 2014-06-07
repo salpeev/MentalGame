@@ -81,7 +81,7 @@ namespace Renderer {
         
     }
     
-    void TextureDrawing::Draw() const {
+    void TextureDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
         m_texture->Bind();
         
         Program *pProgram = ProgramContainer::SharedInstance().GetTextureProgram();

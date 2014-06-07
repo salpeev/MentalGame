@@ -38,7 +38,7 @@ namespace Renderer {
         
     protected:
         void Update(float interval);
-        void Draw() const;
+        void Draw(const Matrix4 &rProjectionMatrix) const;
         
     private:
         PositionColorInitializer *m_attributeInitializer;
