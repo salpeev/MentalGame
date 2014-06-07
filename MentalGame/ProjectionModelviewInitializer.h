@@ -15,9 +15,6 @@
 namespace Renderer {
     class ProjectionModelviewInitializer: public UniformInitializer {
     public:
-        ProjectionModelviewInitializer();
-        ~ProjectionModelviewInitializer();
-        
         void SetModelviewMatrix(const Matrix4 &rModelviewMatix);
         void SetProjectionMatrix(const Matrix4 &rProjectionMatrix);
         

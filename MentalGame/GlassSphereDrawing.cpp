@@ -34,7 +34,7 @@ namespace Renderer {
         
         SphereSurface sphere(20, 20, 1.0f);
         sphere.GenerateVertices(vertices, VERTEX_ATTRIBUTE_COLOR/* | VERTEX_ATTRIBUTE_NORMAL*/);
-        sphere.GenerateLineIndices(indices);
+        sphere.GenerateTriangleIndices(indices);
         
         m_vertexBuffer = new VertexBuffer();
         m_vertexBuffer->LoadBufferData(vertices);
@@ -51,7 +51,7 @@ namespace Renderer {
         m_drawRequest = new VertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
         m_drawRequest->SetUniformInitializer(m_uniformInitializer);
-        m_drawRequest->SetRenderMode(RENDER_MODE_LINES);
+        m_drawRequest->SetRenderMode(RENDER_MODE_TRIANGLES);
     }
     
     GlassSphereDrawing::~GlassSphereDrawing() {

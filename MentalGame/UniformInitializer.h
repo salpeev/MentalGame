@@ -9,15 +9,13 @@
 #pragma once
 #include <OpenGLES/ES2/gl.h>
 #include <map>
+#include "Uniform.h"
 
 using namespace std;
 
 
 
 namespace Renderer {
-    class Uniform;
-    
-    
     
     class UniformInitializer {
     public:

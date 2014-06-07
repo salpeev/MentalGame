@@ -7,7 +7,6 @@
 //
 
 #include "ProjectionModelviewInitializer.h"
-#include "Uniform.h"
 #include "RenderingEngine.h"
 
 
@@ -18,14 +17,6 @@ static const char *ModelviewUniformName = "u_modelview";
 
 
 namespace Renderer {
-    ProjectionModelviewInitializer::ProjectionModelviewInitializer () {
-        
-    }
-    
-    ProjectionModelviewInitializer::~ProjectionModelviewInitializer() {
-        
-    }
-    
     void ProjectionModelviewInitializer::SetModelviewMatrix(const Matrix4 &rModelviewMatix) {
         m_modelview = rModelviewMatix;
     }

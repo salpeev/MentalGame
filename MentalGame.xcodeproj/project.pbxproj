@@ -60,12 +60,16 @@
 		B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */; };
 		B4AC5D811896FB9500FBE8D8 /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7F1896FB9500FBE8D8 /* Framebuffer.cpp */; };
 		B4B095F118CCEC430045789A /* MoveToAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B095EF18CCEC430045789A /* MoveToAnimation.cpp */; };
+		B4BB5D861943663300485F34 /* PositionNormalInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4BB5D851943663300485F34 /* PositionNormalInitializer.cpp */; };
+		B4BB5D8919436A9600485F34 /* CubeMapUniformInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4BB5D8819436A9600485F34 /* CubeMapUniformInitializer.cpp */; };
 		B4CE1DE417DFB72C009094E8 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE217DFB72C009094E8 /* Program.cpp */; };
 		B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE517DFBBD9009094E8 /* Shader.cpp */; };
 		B4CE1DEA17DFCCEA009094E8 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DE817DFCCE9009094E8 /* Logger.cpp */; };
 		B4CE1DF017DFD906009094E8 /* ResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */; };
 		B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */; };
 		B4D1B85218AEC120004FD4B2 /* Polyhedron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */; };
+		B4D253771943490700A86E4B /* CubeMapShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D253761943490700A86E4B /* CubeMapShader.vsh */; };
+		B4D253791943491200A86E4B /* CubeMapShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D253781943491200A86E4B /* CubeMapShader.fsh */; };
 		B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F76187F3867005E78AC /* PositionColorShader.vsh */; };
 		B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F78187F3877005E78AC /* PositionColorShader.fsh */; };
 		B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */; };
@@ -208,6 +212,10 @@
 		B4AC5D801896FB9500FBE8D8 /* Framebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Framebuffer.h; sourceTree = "<group>"; };
 		B4B095EF18CCEC430045789A /* MoveToAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveToAnimation.cpp; sourceTree = "<group>"; };
 		B4B095F018CCEC430045789A /* MoveToAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveToAnimation.h; sourceTree = "<group>"; };
+		B4BB5D851943663300485F34 /* PositionNormalInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionNormalInitializer.cpp; sourceTree = "<group>"; };
+		B4BB5D871943663B00485F34 /* PositionNormalInitializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PositionNormalInitializer.h; sourceTree = "<group>"; };
+		B4BB5D8819436A9600485F34 /* CubeMapUniformInitializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeMapUniformInitializer.cpp; sourceTree = "<group>"; };
+		B4BB5D8A19436AA500485F34 /* CubeMapUniformInitializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeMapUniformInitializer.h; sourceTree = "<group>"; };
 		B4CE1DE217DFB72C009094E8 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cpp; sourceTree = "<group>"; };
 		B4CE1DE317DFB72C009094E8 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		B4CE1DE517DFBBD9009094E8 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
@@ -220,6 +228,8 @@
 		B4D1B84E18AEBBA9004FD4B2 /* CollisionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetector.h; sourceTree = "<group>"; };
 		B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polyhedron.cpp; sourceTree = "<group>"; };
 		B4D1B85118AEC120004FD4B2 /* Polyhedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyhedron.h; sourceTree = "<group>"; };
+		B4D253761943490700A86E4B /* CubeMapShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = CubeMapShader.vsh; sourceTree = "<group>"; };
+		B4D253781943491200A86E4B /* CubeMapShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = CubeMapShader.fsh; sourceTree = "<group>"; };
 		B4D64F76187F3867005E78AC /* PositionColorShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.vsh; sourceTree = "<group>"; };
 		B4D64F78187F3877005E78AC /* PositionColorShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.fsh; sourceTree = "<group>"; };
 		B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PerspectiveShader.vsh; sourceTree = "<group>"; };
@@ -494,6 +504,8 @@
 				B4D64F7C187F3891005E78AC /* PerspectiveShader.fsh */,
 				B429BEDE191652DD00DA2D3C /* TextureShader.vsh */,
 				B429BEE0191652EA00DA2D3C /* TextureShader.fsh */,
+				B4D253761943490700A86E4B /* CubeMapShader.vsh */,
+				B4D253781943491200A86E4B /* CubeMapShader.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -674,6 +686,8 @@
 				B4D64F83188179A5005E78AC /* PositionColorInitializer.h */,
 				B429BEE219165D3100DA2D3C /* TexturePositionInitializer.cpp */,
 				B429BEE319165D3100DA2D3C /* TexturePositionInitializer.h */,
+				B4BB5D851943663300485F34 /* PositionNormalInitializer.cpp */,
+				B4BB5D871943663B00485F34 /* PositionNormalInitializer.h */,
 			);
 			name = "Attribute Initializer";
 			sourceTree = "<group>";
@@ -685,6 +699,8 @@
 				B4D64F8918817A02005E78AC /* UniformInitializer.h */,
 				B4D64F8D18817BCC005E78AC /* ProjectionModelviewInitializer.cpp */,
 				B4D64F8E18817BCC005E78AC /* ProjectionModelviewInitializer.h */,
+				B4BB5D8819436A9600485F34 /* CubeMapUniformInitializer.cpp */,
+				B4BB5D8A19436AA500485F34 /* CubeMapUniformInitializer.h */,
 			);
 			name = "Uniform Initializer";
 			sourceTree = "<group>";
@@ -952,7 +968,9 @@
 				B429BEE1191652EA00DA2D3C /* TextureShader.fsh in Resources */,
 				B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */,
 				B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */,
+				B4D253791943491200A86E4B /* CubeMapShader.fsh in Resources */,
 				B429BEDF191652DD00DA2D3C /* TextureShader.vsh in Resources */,
+				B4D253771943490700A86E4B /* CubeMapShader.vsh in Resources */,
 				B429BEDA19150B6800DA2D3C /* Ukraine.jpg in Resources */,
 				B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */,
 				B4D64F81187F3D3E005E78AC /* PerspectiveShader.fsh in Resources */,
@@ -1027,6 +1045,7 @@
 				B46CAC9C191F9F8E00B7BA86 /* SphereSurface.cpp in Sources */,
 				B4ECF828189D2ACC007E2669 /* Size.cpp in Sources */,
 				B468F70F18999ED400AAE773 /* StencilRenderbufferIndex8.cpp in Sources */,
+				B4BB5D861943663300485F34 /* PositionNormalInitializer.cpp in Sources */,
 				B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */,
 				B429BEDD19150ECD00DA2D3C /* TextureImage.cpp in Sources */,
 				B4CE1DE717DFBBD9009094E8 /* Shader.cpp in Sources */,
@@ -1048,6 +1067,7 @@
 				B468F70C18999EC900AAE773 /* DepthRenderbufferComponent16.cpp in Sources */,
 				B46CAC90191CB30300B7BA86 /* Texture2D.cpp in Sources */,
 				B4B095F118CCEC430045789A /* MoveToAnimation.cpp in Sources */,
+				B4BB5D8919436A9600485F34 /* CubeMapUniformInitializer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
