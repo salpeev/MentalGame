@@ -66,6 +66,10 @@ namespace Renderer {
         m_projections[5] = cameraTranslation * Matrix4(-rX, -rY,  rZ, rW);
     }
     
+    TextureCubeMap * CubeMapCamera::GetTextureCubeMap() const {
+        return m_cubeMap;
+    }
+    
     TextureCubeMap * CubeMapCamera::RetrieveCubeMap() {
         GetFramebuffer()->DetachTexture2D();
         TextureCubeMap *cubeMap = m_cubeMap;

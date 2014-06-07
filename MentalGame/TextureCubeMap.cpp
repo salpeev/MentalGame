@@ -22,7 +22,7 @@ namespace Renderer {
     
     bool TextureCubeMap::IsBound() const {
         GLint boundTextureHandle;
-        glGetIntegerv(GET_PARAMETER_TEXTURE_BINDING_2D, &boundTextureHandle);
+        glGetIntegerv(GET_PARAMETER_TEXTURE_BINDING_CUBE_MAP, &boundTextureHandle);
         CheckError();
         
         bool bound = (boundTextureHandle == GetTextureHandle());

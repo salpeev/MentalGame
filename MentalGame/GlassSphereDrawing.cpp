@@ -11,8 +11,8 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "PositionModelviewModifier.h"
-#include "PositionColorInitializer.h"
-#include "ProjectionModelviewInitializer.h"
+#include "PositionNormalInitializer.h"
+#include "CubeMapUniformInitializer.h"
 #include "ProgramContainer.h"
 #include "DrawRequest.h"
 #include "CubeMapCamera.h"
@@ -33,7 +33,7 @@ namespace Renderer {
         vector<unsigned short> indices;
         
         SphereSurface sphere(20, 20, 1.0f);
-        sphere.GenerateVertices(vertices, VERTEX_ATTRIBUTE_COLOR/* | VERTEX_ATTRIBUTE_NORMAL*/);
+        sphere.GenerateVertices(vertices, /*VERTEX_ATTRIBUTE_COLOR | */VERTEX_ATTRIBUTE_NORMAL);
         sphere.GenerateTriangleIndices(indices);
         
         m_vertexBuffer = new VertexBuffer();
@@ -45,8 +45,8 @@ namespace Renderer {
         m_positionModifier = new PositionModelviewModifier();
         SetModelviewModifier(m_positionModifier);
         
-        m_attributeInitializer = new PositionColorInitializer();
-        m_uniformInitializer = new ProjectionModelviewInitializer();
+        m_attributeInitializer = new PositionNormalInitializer();
+        m_uniformInitializer = new CubeMapUniformInitializer();
         
         m_drawRequest = new VertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
@@ -94,7 +94,14 @@ namespace Renderer {
     void GlassSphereDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
         m_uniformInitializer->SetProjectionMatrix(rProjectionMatrix);
         
-        Program *program = ProgramContainer::SharedInstance().GetPerspectiveProgram();
+        if (m_cubeMapCamera) {
+//            m_cubeMapCamera->GetTextureCubeMap()->SetMinFilter(TEX_MIN_FILTER_LINEAR);
+//            m_cubeMapCamera->GetTextureCubeMap()->SetMagFilter(TEX_MAG_FILTER_LINEAR);
+            
+            m_cubeMapCamera->GetTextureCubeMap()->GenerateMipMap(MIPMAP_HINT_FASTEST);
+        }
+        
+        Program *program = ProgramContainer::SharedInstance().GetCubeMapProgram();
         program->ExecuteDrawRequest(m_drawRequest);
     }
 }

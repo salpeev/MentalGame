@@ -25,6 +25,7 @@ namespace Renderer {
         
         void SetPosition(const Point3 &rPosition);
         
+        TextureCubeMap * GetTextureCubeMap() const;
         TextureCubeMap * RetrieveCubeMap();
         
         void Record();

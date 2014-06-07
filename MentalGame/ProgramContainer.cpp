@@ -63,6 +63,6 @@ namespace Renderer {
         string vertexShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("CubeMapShader.vsh");
         string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("CubeMapShader.fsh");
         
-        m_textureProgram = new Program(vertexShaderSource, fragmentShaderSource);
+        m_cubeMapProgram = new Program(vertexShaderSource, fragmentShaderSource);
     }
 }

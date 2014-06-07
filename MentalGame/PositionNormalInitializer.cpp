@@ -19,7 +19,7 @@ using namespace std;
 static const char *PositionAttributeName = "a_position";
 static const char *NormalAttributeName = "a_normal";
 static const GLsizei PositionSize = 3;
-static const GLsizei NormalSize = 2;
+static const GLsizei NormalSize = 3;
 
 
 
@@ -30,8 +30,8 @@ namespace Renderer {
         
         GLsizei colorOffset = PositionSize * sizeof(GLfloat);
         
-        positionAttribute->SetBufferPointer(PositionSize, DATA_TYPE_FLOAT, false, sizeof(Vertex1P1T), 0);
-        normalAttribute->SetBufferPointer(NormalSize, DATA_TYPE_FLOAT, false, sizeof(Vertex1P1T), colorOffset);
+        positionAttribute->SetBufferPointer(PositionSize, DATA_TYPE_FLOAT, false, sizeof(Vertex1P1N), 0);
+        normalAttribute->SetBufferPointer(NormalSize, DATA_TYPE_FLOAT, false, sizeof(Vertex1P1N), colorOffset);
     }
     
     void PositionNormalInitializer::InitializeAttributes(map<string, Attribute *> *pAttributes, VertexArray *pVertexArray) const {

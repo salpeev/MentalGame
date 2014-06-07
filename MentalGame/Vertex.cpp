@@ -50,5 +50,13 @@ namespace Renderer {
     Vertex1P1T::Vertex1P1T(Point3 position, Point2 textureCoordinate): m_position(position), m_textureCoordinate(textureCoordinate) {
         
     }
+    
+    Vertex1P1N::Vertex1P1N(): Vertex1P1N(Point3(), Vector3()) {
+        
+    }
+    
+    Vertex1P1N::Vertex1P1N(Point3 position, Vector3 normal): m_position(position), m_normal(normal) {
+        
+    }
 }
 

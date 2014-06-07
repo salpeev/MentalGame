@@ -9,6 +9,7 @@
 #pragma once
 #include "Point.h"
 #include "Color.h"
+#include "Vector.h"
 
 
 
@@ -52,5 +53,16 @@ namespace Renderer {
         
         Point3 m_position;
         Point2 m_textureCoordinate;
+    };
+    
+    
+    
+    class Vertex1P1N {
+    public:
+        Vertex1P1N();
+        Vertex1P1N(Point3 position, Vector3 normal);
+        
+        Point3 m_position;
+        Vector3 m_normal;
     };
 }

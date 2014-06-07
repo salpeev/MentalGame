@@ -16,8 +16,8 @@ namespace Renderer {
     class VertexBuffer;
     class IndexBuffer;
     class PositionModelviewModifier;
-    class PositionColorInitializer;
-    class ProjectionModelviewInitializer;
+    class PositionNormalInitializer;
+    class CubeMapUniformInitializer;
     class DrawRequest;
     class CubeMapCamera;
     
@@ -37,8 +37,8 @@ namespace Renderer {
     private:
         VertexBuffer *m_vertexBuffer;
         IndexBuffer *m_indexBuffer;
-        PositionColorInitializer *m_attributeInitializer;
-        ProjectionModelviewInitializer *m_uniformInitializer;
+        PositionNormalInitializer *m_attributeInitializer;
+        CubeMapUniformInitializer *m_uniformInitializer;
         DrawRequest *m_drawRequest;
         PositionModelviewModifier *m_positionModifier;
         CubeMapCamera *m_cubeMapCamera;

@@ -1,5 +1,5 @@
 
-varying highp vec3 v_reflectionDirection;
+varying lowp vec3 v_reflectionDirection;
 
 uniform samplerCube u_samplerCube;
 
