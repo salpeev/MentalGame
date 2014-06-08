@@ -35,9 +35,34 @@ namespace Renderer {
 //        segmentDrawing->SetEndPoint(Point3(1.5, 1.5, -5));
 //        GetDrawing()->AddSubDrawing(segmentDrawing);
         
-        GlassSphereDrawing *glassSphereDrawing = new GlassSphereDrawing();
-        glassSphereDrawing->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 2.0f, -7));
-        GetDrawing()->AddSubDrawing(glassSphereDrawing);
+        GlassSphereDrawing *glassSphereDrawing0 = new GlassSphereDrawing();
+        glassSphereDrawing0->GetPositionModelviewModifier()->SetPosition(Point3(-2.0f, -2.0f, -7));
+        GetDrawing()->AddSubDrawing(glassSphereDrawing0);
+
+        GlassSphereDrawing *glassSphereDrawing1 = new GlassSphereDrawing();
+        glassSphereDrawing1->GetPositionModelviewModifier()->SetPosition(Point3(2.0f, -2.0f, -7));
+        GetDrawing()->AddSubDrawing(glassSphereDrawing1);
+        
+        GlassSphereDrawing *glassSphereDrawing2 = new GlassSphereDrawing();
+        glassSphereDrawing2->GetPositionModelviewModifier()->SetPosition(Point3(2.0f, 2.0f, -7));
+        GetDrawing()->AddSubDrawing(glassSphereDrawing2);
+        
+        GlassSphereDrawing *glassSphereDrawing3 = new GlassSphereDrawing();
+        glassSphereDrawing3->GetPositionModelviewModifier()->SetPosition(Point3(-2.0f, 2.0f, -7));
+        GetDrawing()->AddSubDrawing(glassSphereDrawing3);
+        
+        
+        
+        
+        
+        
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0;j < 4; j++) {
+//                GlassSphereDrawing *glassSphereDrawing = new GlassSphereDrawing();
+//                glassSphereDrawing->GetPositionModelviewModifier()->SetPosition(Point3(-3.0f + (2.0f * i), -3.0f + (2.0f * j), -9.0f));
+//                GetDrawing()->AddSubDrawing(glassSphereDrawing);
+//            }
+//        }
     }
     
     GameDrawingController::~GameDrawingController() {
