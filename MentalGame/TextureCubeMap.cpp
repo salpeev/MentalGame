@@ -13,30 +13,12 @@
 
 namespace Renderer {
     
-    void TextureCubeMap::Bind() const {
-        if(!IsBound()) {
-            glBindTexture(TEXTURE_CUBE_MAP, GetTextureHandle());
-            CheckError();
-        }
+    TEXTURE TextureCubeMap::GetTextureIdentifier() const {
+        return TEXTURE_CUBE_MAP;
     }
     
-    bool TextureCubeMap::IsBound() const {
-        GLint boundTextureHandle;
-        glGetIntegerv(GET_PARAMETER_TEXTURE_BINDING_CUBE_MAP, &boundTextureHandle);
-        CheckError();
-        
-        bool bound = (boundTextureHandle == GetTextureHandle());
-        return bound;
-    }
-    
-    void TextureCubeMap::GenerateMipMap(MIPMAP_HINT hint) const {
-        Bind();     // TODO: Is needed? Probably yes
-        
-        glHint(HINT_MIPMAP, hint);
-        CheckError();
-        
-        glGenerateMipmap(TEXTURE_CUBE_MAP);
-        CheckError();
+    GET_PARAMETER TextureCubeMap::GetTextureBindingIdentifier() const {
+        return GET_PARAMETER_TEXTURE_BINDING_CUBE_MAP;
     }
     
     void TextureCubeMap::SetTextureImage(TextureImage *textureImage, int level, TEXTURE_CUBE_MAP_SIDE side) const {

@@ -23,29 +23,65 @@ namespace Renderer {
         CheckError();
     }
     
+    void Texture::Bind() const {
+        if(!IsBound()) {
+            glBindTexture(GetTextureIdentifier(), GetTextureHandle());
+            CheckError();
+        }
+    }
+    
+    bool Texture::IsBound() const {
+        GLint boundTextureHandle;
+        glGetIntegerv(GetTextureBindingIdentifier(), &boundTextureHandle);
+        CheckError();
+        
+        bool bound = (boundTextureHandle == GetTextureHandle());
+        return bound;
+    }
+    
+    void Texture::GenerateMipMap(MIPMAP_HINT hint) const {
+        Bind();     // TODO: Is needed? Probably yes
+        
+        glHint(HINT_MIPMAP, hint);
+        CheckError();
+        
+        glGenerateMipmap(GetTextureIdentifier());
+        CheckError();
+    }
+    
     void Texture::SetMinFilter(TEX_MIN_FILTER minFilter) const {
-        glTexParameteri(TEXTURE_2D, TEX_PARAMETER_MIN_FILTER, minFilter);
+        Bind();
+        
+        glTexParameteri(GetTextureIdentifier(), TEX_PARAMETER_MIN_FILTER, minFilter);
         CheckError();
     }
     
     void Texture::SetMagFilter(TEX_MAG_FILTER magFilter) const {
-        glTexParameteri(TEXTURE_2D, TEX_PARAMETER_MAG_FILTER, magFilter);
+        Bind();
+        
+        glTexParameteri(GetTextureIdentifier(), TEX_PARAMETER_MAG_FILTER, magFilter);
         CheckError();
     }
     
     void Texture::SetWrapS(TEX_WRAP wrapS) const {
-        glTexParameteri(TEXTURE_2D, TEX_PARAMETER_WRAP_S, wrapS);
+        Bind();
+        
+        glTexParameteri(GetTextureIdentifier(), TEX_PARAMETER_WRAP_S, wrapS);
         CheckError();
     }
     
     void Texture::SetWrapT(TEX_WRAP wrapT) const {
-        glTexParameteri(TEXTURE_2D, TEX_PARAMETER_WRAP_T, wrapT);
+        Bind();
+        
+        glTexParameteri(GetTextureIdentifier(), TEX_PARAMETER_WRAP_T, wrapT);
         CheckError();
     }
     
     TEX_MIN_FILTER Texture::GetMinFilter() const {
+        Bind();
+        
         GLint minFilterParameter;
-        glTexParameteriv(TEXTURE_2D, TEX_PARAMETER_MIN_FILTER, &minFilterParameter);
+        glGetTexParameteriv(GetTextureIdentifier(), TEX_PARAMETER_MIN_FILTER, &minFilterParameter);
         CheckError();
         
         TEX_MIN_FILTER minFilter = (TEX_MIN_FILTER)minFilterParameter;
@@ -53,8 +89,10 @@ namespace Renderer {
     }
     
     TEX_MAG_FILTER Texture::GetMagFilter() const {
+        Bind();
+        
         GLint magFilterParameter;
-        glTexParameteriv(TEXTURE_2D, TEX_PARAMETER_MAG_FILTER, &magFilterParameter);
+        glGetTexParameteriv(GetTextureIdentifier(), TEX_PARAMETER_MAG_FILTER, &magFilterParameter);
         CheckError();
         
         TEX_MAG_FILTER magFilter = (TEX_MAG_FILTER)magFilterParameter;
@@ -62,8 +100,10 @@ namespace Renderer {
     }
     
     TEX_WRAP Texture::GetWrapS() const {
+        Bind();
+        
         GLint wrapSParameter;
-        glTexParameteriv(TEXTURE_2D, TEX_PARAMETER_WRAP_S, &wrapSParameter);
+        glGetTexParameteriv(GetTextureIdentifier(), TEX_PARAMETER_WRAP_S, &wrapSParameter);
         CheckError();
         
         TEX_WRAP wrapS = (TEX_WRAP)wrapSParameter;
@@ -71,8 +111,10 @@ namespace Renderer {
     }
     
     TEX_WRAP Texture::GetWrapT() const {
+        Bind();
+        
         GLint wrapTParameter;
-        glTexParameteriv(TEXTURE_2D, TEX_PARAMETER_WRAP_S, &wrapTParameter);
+        glGetTexParameteriv(GetTextureIdentifier(), TEX_PARAMETER_WRAP_S, &wrapTParameter);
         CheckError();
         
         TEX_WRAP wrapT = (TEX_WRAP)wrapTParameter;

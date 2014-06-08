@@ -22,9 +22,12 @@ namespace Renderer {
         Texture(const Texture &rTexture) = delete;
         ~Texture();
         
-        virtual void Bind() const = 0;
-        virtual bool IsBound() const = 0;
-        virtual void GenerateMipMap(MIPMAP_HINT hint) const = 0;
+        virtual TEXTURE GetTextureIdentifier() const = 0;
+        virtual GET_PARAMETER GetTextureBindingIdentifier() const = 0;
+        
+        void Bind() const;
+        bool IsBound() const;
+        void GenerateMipMap(MIPMAP_HINT hint) const;
         
         void SetMinFilter(TEX_MIN_FILTER minFilter) const;
         void SetMagFilter(TEX_MAG_FILTER magFilter) const;

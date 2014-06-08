@@ -32,7 +32,7 @@ namespace Renderer {
         vector<float> vertices;
         vector<unsigned short> indices;
         
-        SphereSurface sphere(20, 20, 1.0f);
+        SphereSurface sphere(40, 40, 1.0f);
         sphere.GenerateVertices(vertices, /*VERTEX_ATTRIBUTE_COLOR | */VERTEX_ATTRIBUTE_NORMAL);
         sphere.GenerateTriangleIndices(indices);
         
@@ -72,22 +72,22 @@ namespace Renderer {
     void GlassSphereDrawing::Update(float interval) {
         m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
         
-        if (m_cubeMapCamera) {
-            Point3 position = GetPositionModelviewModifier()->GetPosition();
-            m_cubeMapCamera->SetPosition(position);
-        }
-        
-        
         // TODO: Should be removed
         static bool cameraAdded = false;
         static float time = 0;
         time += interval;
-        if (time > 2.0f && !cameraAdded) {
+        if (time > 3.0f && !cameraAdded) {
             cameraAdded = true;
             
             Projection projection(M_PI_2, 1.0f, 1.0f, 20.0f);
-            m_cubeMapCamera = new CubeMapCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
+            m_cubeMapCamera = new CubeMapCamera(CSize(1024, 1024), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
             RenderingEngine::SharedInstance().AddOffscreenCamera(m_cubeMapCamera);
+            
+            m_cubeMapCamera->GetTextureCubeMap()->SetMinFilter(TEX_MIN_FILTER_NEAREST);
+            m_cubeMapCamera->GetTextureCubeMap()->SetMagFilter(TEX_MAG_FILTER_NEAREST);
+            
+            Point3 position = GetPositionModelviewModifier()->GetPosition();
+            m_cubeMapCamera->SetPosition(position);
         }
     }
     
@@ -95,10 +95,8 @@ namespace Renderer {
         m_uniformInitializer->SetProjectionMatrix(rProjectionMatrix);
         
         if (m_cubeMapCamera) {
-//            m_cubeMapCamera->GetTextureCubeMap()->SetMinFilter(TEX_MIN_FILTER_LINEAR);
-//            m_cubeMapCamera->GetTextureCubeMap()->SetMagFilter(TEX_MAG_FILTER_LINEAR);
-            
-            m_cubeMapCamera->GetTextureCubeMap()->GenerateMipMap(MIPMAP_HINT_FASTEST);
+//            m_cubeMapCamera->GetTextureCubeMap()->GenerateMipMap(MIPMAP_HINT_NICEST);
+//            RenderingEngine::SharedInstance().RemoveOffscreenCamera(m_cubeMapCamera);
         }
         
         Program *program = ProgramContainer::SharedInstance().GetCubeMapProgram();

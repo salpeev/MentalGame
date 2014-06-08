@@ -15,9 +15,8 @@ namespace Renderer {
     
     class TextureCubeMap: public Texture {
     public:
-        void Bind() const;
-        bool IsBound() const;
-        void GenerateMipMap(MIPMAP_HINT hint) const;
+        TEXTURE GetTextureIdentifier() const;
+        GET_PARAMETER GetTextureBindingIdentifier() const;
         
         void SetTextureImage(TextureImage *textureImage, int level, TEXTURE_CUBE_MAP_SIDE side) const;
     };

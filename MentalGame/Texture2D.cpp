@@ -13,30 +13,12 @@
 
 namespace Renderer {
     
-    void Texture2D::Bind() const {
-        if(!IsBound()) {
-            glBindTexture(TEXTURE_2D, GetTextureHandle());
-            CheckError();
-        }
+    TEXTURE Texture2D::GetTextureIdentifier() const {
+        return TEXTURE_2D;
     }
     
-    bool Texture2D::IsBound() const {
-        GLint boundTextureHandle;
-        glGetIntegerv(GET_PARAMETER_TEXTURE_BINDING_2D, &boundTextureHandle);
-        CheckError();
-        
-        bool bound = (boundTextureHandle == GetTextureHandle());
-        return bound;
-    }
-    
-    void Texture2D::GenerateMipMap(MIPMAP_HINT hint) const {
-        Bind();     // TODO: Is needed? Probably yes
-        
-        glHint(HINT_MIPMAP, hint);
-        CheckError();
-        
-        glGenerateMipmap(TEXTURE_2D);
-        CheckError();
+    GET_PARAMETER Texture2D::GetTextureBindingIdentifier() const {
+        return GET_PARAMETER_TEXTURE_BINDING_2D;
     }
     
     void Texture2D::SetTextureImage(TextureImage *textureImage, int level) const {

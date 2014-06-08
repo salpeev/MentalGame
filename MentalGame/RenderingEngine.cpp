@@ -52,7 +52,7 @@ namespace Renderer {
     }
     
     void RenderingEngine::RemoveOffscreenCamera(Camera *pCamera) {
-        m_offscreenCameras.erase(find(m_offscreenCameras.begin(), m_offscreenCameras.end(), pCamera));
+        m_offscreenCameras.erase(remove(m_offscreenCameras.begin(), m_offscreenCameras.end(), pCamera), m_offscreenCameras.end());
     }
     
     void RenderingEngine::SetDrawingController(DrawingController *pDrawingController) {
