@@ -76,7 +76,7 @@ namespace Renderer {
         static bool cameraAdded = false;
         static float time = 0;
         time += interval;
-        if (time > 3.0f && !cameraAdded) {
+        if (time > 0.0f && !cameraAdded) {
             cameraAdded = true;
             
             Projection projection(M_PI_2, 1.0f, 1.0f, 20.0f);
@@ -92,6 +92,9 @@ namespace Renderer {
     }
     
     void GlassSphereDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
+        RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_CULL_FACE);
+        RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_DEPTH_TEST);
+        
         m_uniformInitializer->SetProjectionMatrix(rProjectionMatrix);
         
         if (m_cubeMapCamera) {

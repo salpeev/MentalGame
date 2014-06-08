@@ -175,7 +175,7 @@ namespace Renderer {
         if (duration > 3.0f && !added) {
             added = true;
             
-            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point3(-2, -2, -9), 5, ANIMATION_CURVE_EASE_IN);
+            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point3(-1, -1, -6), 5, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
             
             Quaternion newQuaternion = Quaternion::CreateFromAxisAngle(Vector3(1, 1, 0), M_PI);
@@ -186,7 +186,7 @@ namespace Renderer {
     
     void ColorGlassDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_CULL_FACE);
-        RenderingEngine::SharedInstance().Disable(SERVER_CAPABILITY_DEPTH_TEST);
+        RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_DEPTH_TEST);
         
         m_uniformInitializer->SetProjectionMatrix(rProjectionMatrix);
         

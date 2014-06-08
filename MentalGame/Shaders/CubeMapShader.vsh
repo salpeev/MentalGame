@@ -15,7 +15,7 @@ void main() {
     vec3 cameraDirection = normalize(a_position.xyz - u_cameraPosition);
     
     vec3 reflectionVector = u_normalMatrix * reflect(cameraDirection, a_normal);
-    v_reflectionDirection = vec3(reflectionVector.x, -reflectionVector.y, reflectionVector.z);
+    v_reflectionDirection = vec3(-reflectionVector.x, -reflectionVector.y, -reflectionVector.z);
     
     gl_Position = u_projection * u_modelview * a_position;
 }

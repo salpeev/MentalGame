@@ -27,7 +27,7 @@ namespace Renderer {
 //        GetDrawing()->AddSubDrawing(textureDrawing);
         
         ColorGlassDrawing *colorGlassDrawing = new ColorGlassDrawing();
-        colorGlassDrawing->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 0.0f, -5.5f));
+        colorGlassDrawing->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, -1.0f, -4.8f));
         GetDrawing()->AddSubDrawing(colorGlassDrawing);
         
 //        SegmentDrawing *segmentDrawing = new SegmentDrawing();
@@ -36,7 +36,7 @@ namespace Renderer {
 //        GetDrawing()->AddSubDrawing(segmentDrawing);
         
         GlassSphereDrawing *glassSphereDrawing = new GlassSphereDrawing();
-        glassSphereDrawing->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 2.0f, -5.5f));
+        glassSphereDrawing->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 2.0f, -7));
         GetDrawing()->AddSubDrawing(glassSphereDrawing);
     }
     
