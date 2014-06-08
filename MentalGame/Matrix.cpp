@@ -299,6 +299,14 @@ namespace Renderer {
         return true;
     }
     
+    Matrix3 Matrix4::ToMatrix3() const {
+        Matrix3 r;
+        r.x.x = x.x; r.x.y = x.y; r.x.z = x.z;
+        r.y.x = y.x; r.y.y = y.y; r.y.z = y.z;
+        r.z.x = z.x; r.z.y = z.y; r.z.z = z.z;
+        return r;
+    }
+    
     const float * Matrix4::Pointer() const {
         return &x.x;
     }

@@ -32,7 +32,7 @@ namespace Renderer {
         vector<float> vertices;
         vector<unsigned short> indices;
         
-        SphereSurface sphere(20, 20, 1.0f);
+        SphereSurface sphere(30, 30, 1.0f);
         sphere.GenerateVertices(vertices, /*VERTEX_ATTRIBUTE_COLOR | */VERTEX_ATTRIBUTE_NORMAL);
         sphere.GenerateTriangleIndices(indices);
         
@@ -79,6 +79,7 @@ namespace Renderer {
     
     void GlassSphereDrawing::Update(float interval) {
         m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
+        m_uniformInitializer->SetNormalMatrix(GetModelviewMatrix().ToMatrix3());
         
 //        // TODO: Should be removed
 //        static bool cameraAdded = false;

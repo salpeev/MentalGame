@@ -71,6 +71,7 @@ namespace Renderer {
         Matrix4 Transposed() const;
         float Determinant() const;
         bool Inverted(Matrix4 *pResultMatrix) const;
+        Matrix3 ToMatrix3() const;
         
         const float * Pointer() const;
         
