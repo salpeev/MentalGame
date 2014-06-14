@@ -53,7 +53,7 @@ namespace Renderer {
         m_drawRequest->SetUniformInitializer(m_uniformInitializer);
         m_drawRequest->SetRenderMode(RENDER_MODE_TRIANGLES);
         
-        Projection projection(M_PI_2, 1.0f, 1.0f, 20.0f);
+        Projection projection(M_PI_2, 1.0f, 0.1f, 20.0f);
         m_cubeMapCamera = new CubeMapCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
         m_cubeMapCamera->GetTextureCubeMap()->SetMinFilter(TEX_MIN_FILTER_NEAREST);
         m_cubeMapCamera->GetTextureCubeMap()->SetMagFilter(TEX_MAG_FILTER_NEAREST);

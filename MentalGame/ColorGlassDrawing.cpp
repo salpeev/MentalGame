@@ -175,7 +175,7 @@ namespace Renderer {
         if (duration > 3.0f && !added) {
             added = true;
             
-            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point3(-1, -1, -6), 5, ANIMATION_CURVE_EASE_IN);
+            MoveToAnimation *moveTo = new MoveToAnimation(m_positionModifier, Point3(-1.8, -1.8, -6), 5, ANIMATION_CURVE_EASE_IN);
             AddAnimation(moveTo);
             
             Quaternion newQuaternion = Quaternion::CreateFromAxisAngle(Vector3(1, 1, 0), M_PI);

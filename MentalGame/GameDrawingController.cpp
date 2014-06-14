@@ -51,6 +51,10 @@ namespace Renderer {
         glassSphereDrawing3->GetPositionModelviewModifier()->SetPosition(Point3(-2.0f, 2.0f, -7));
         GetDrawing()->AddSubDrawing(glassSphereDrawing3);
         
+        GlassSphereDrawing *glassSphereDrawing4 = new GlassSphereDrawing();
+        glassSphereDrawing4->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 0.0f, -7));
+        GetDrawing()->AddSubDrawing(glassSphereDrawing4);
+        
         
         
         
