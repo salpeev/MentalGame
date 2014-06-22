@@ -20,7 +20,7 @@ void main() {
 //    v_reflectionDirection = reflectionVector.xyz;
     
     // Refraction
-    vec3 refractionVector = u_normalMatrix * refract(mirroredCameraDirection, a_normal, 1.3);
+    vec3 refractionVector = u_normalMatrix * refract(mirroredCameraDirection, a_normal, 0.7);
     v_reflectionDirection = refractionVector.xyz;
     
     gl_Position = u_projection * u_modelview * a_position;
