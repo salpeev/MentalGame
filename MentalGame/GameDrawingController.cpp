@@ -35,21 +35,21 @@ namespace Renderer {
 //        segmentDrawing->SetEndPoint(Point3(1.5, 1.5, -5));
 //        GetDrawing()->AddSubDrawing(segmentDrawing);
         
-        GlassSphereDrawing *glassSphereDrawing0 = new GlassSphereDrawing();
-        glassSphereDrawing0->GetPositionModelviewModifier()->SetPosition(Point3(-2.0f, -2.0f, -7));
-        GetDrawing()->AddSubDrawing(glassSphereDrawing0);
-
-        GlassSphereDrawing *glassSphereDrawing1 = new GlassSphereDrawing();
-        glassSphereDrawing1->GetPositionModelviewModifier()->SetPosition(Point3(2.0f, -2.0f, -7));
-        GetDrawing()->AddSubDrawing(glassSphereDrawing1);
-        
-        GlassSphereDrawing *glassSphereDrawing2 = new GlassSphereDrawing();
-        glassSphereDrawing2->GetPositionModelviewModifier()->SetPosition(Point3(2.0f, 2.0f, -7));
-        GetDrawing()->AddSubDrawing(glassSphereDrawing2);
-        
-        GlassSphereDrawing *glassSphereDrawing3 = new GlassSphereDrawing();
-        glassSphereDrawing3->GetPositionModelviewModifier()->SetPosition(Point3(-2.0f, 2.0f, -7));
-        GetDrawing()->AddSubDrawing(glassSphereDrawing3);
+//        GlassSphereDrawing *glassSphereDrawing0 = new GlassSphereDrawing();
+//        glassSphereDrawing0->GetPositionModelviewModifier()->SetPosition(Point3(-2.0f, -2.0f, -7));
+//        GetDrawing()->AddSubDrawing(glassSphereDrawing0);
+//
+//        GlassSphereDrawing *glassSphereDrawing1 = new GlassSphereDrawing();
+//        glassSphereDrawing1->GetPositionModelviewModifier()->SetPosition(Point3(2.0f, -2.0f, -7));
+//        GetDrawing()->AddSubDrawing(glassSphereDrawing1);
+//        
+//        GlassSphereDrawing *glassSphereDrawing2 = new GlassSphereDrawing();
+//        glassSphereDrawing2->GetPositionModelviewModifier()->SetPosition(Point3(2.0f, 2.0f, -7));
+//        GetDrawing()->AddSubDrawing(glassSphereDrawing2);
+//        
+//        GlassSphereDrawing *glassSphereDrawing3 = new GlassSphereDrawing();
+//        glassSphereDrawing3->GetPositionModelviewModifier()->SetPosition(Point3(-2.0f, 2.0f, -7));
+//        GetDrawing()->AddSubDrawing(glassSphereDrawing3);
         
         GlassSphereDrawing *glassSphereDrawing4 = new GlassSphereDrawing();
         glassSphereDrawing4->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 0.0f, -7));

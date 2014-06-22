@@ -76,7 +76,7 @@ namespace Renderer {
         const float * Pointer() const;
         
         static Matrix4 Frustum(float left, float right, float bottom, float top, float near, float far);
-        static Matrix4 Frustum(float fovy, float aspect, float near, float far);    // Doesn't work as expected
+        static Matrix4 Frustum(float fovy, float aspect, float near, float far);
         static Matrix4 Ortho(float left, float right, float bottom, float top, float near, float far);
         static Matrix4 Translation(float xTranslation, float yTranslation, float zTranslation);
         static Matrix4 DoScale(float xScale, float yScale, float zScale);

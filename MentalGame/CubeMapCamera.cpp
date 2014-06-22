@@ -64,6 +64,40 @@ namespace Renderer {
         m_projections[3] = cameraTranslation * Matrix4( rX,  rZ, -rY, rW);
         m_projections[4] = cameraTranslation * Matrix4( rX, -rY, -rZ, rW);
         m_projections[5] = cameraTranslation * Matrix4(-rX, -rY,  rZ, rW);
+        
+        
+        
+        
+        
+        
+//        Matrix4 right = GetProjection().GetProjectionMatrix().RotateY(-M_PI_2);
+//        Matrix4 left = GetProjection().GetProjectionMatrix().RotateY(M_PI_2);
+//        Matrix4 top = GetProjection().GetProjectionMatrix().RotateY(M_PI).RotateX(M_PI_2);
+//        Matrix4 bottom = GetProjection().GetProjectionMatrix().RotateY(M_PI).RotateX(-M_PI_2);
+//        Matrix4 front = GetProjection().GetProjectionMatrix().RotateY(M_PI);
+//        Matrix4 back = GetProjection().GetProjectionMatrix();
+//        
+//        m_projections[0] = cameraTranslation * right;
+//        m_projections[1] = cameraTranslation * left;
+//        m_projections[2] = cameraTranslation * top;
+//        m_projections[3] = cameraTranslation * bottom;
+//        m_projections[4] = cameraTranslation * front;
+//        m_projections[5] = cameraTranslation * back;
+        
+        
+//        Matrix4 right = GetProjection().GetProjectionMatrix().Scale(-1.0, 1.0, 1.0).RotateY(-M_PI_2);
+//        Matrix4 left = GetProjection().GetProjectionMatrix().Scale(-1.0, 1.0, 1.0).RotateY(M_PI_2);
+//        Matrix4 top = GetProjection().GetProjectionMatrix().Scale(-1.0, 1.0, 1.0).RotateX(M_PI_2);
+//        Matrix4 bottom = GetProjection().GetProjectionMatrix().Scale(-1.0, 1.0, 1.0).RotateX(-M_PI_2);
+//        Matrix4 front = GetProjection().GetProjectionMatrix().Scale(-1.0, 1.0, 1.0);
+//        Matrix4 back = GetProjection().GetProjectionMatrix().Scale(1.0, -1.0, 1.0).RotateX(M_PI);
+//        
+//        m_projections[0] = cameraTranslation * right;
+//        m_projections[1] = cameraTranslation * left;
+//        m_projections[2] = cameraTranslation * top;
+//        m_projections[3] = cameraTranslation * bottom;
+//        m_projections[4] = cameraTranslation * front;
+//        m_projections[5] = cameraTranslation * back;
     }
     
     TextureCubeMap * CubeMapCamera::GetTextureCubeMap() const {
