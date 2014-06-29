@@ -68,8 +68,8 @@
 		B4CE1DF017DFD906009094E8 /* ResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4CE1DEF17DFD906009094E8 /* ResourceManager.mm */; };
 		B4D1B84F18AEBBA9004FD4B2 /* CollisionDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B84D18AEBBA9004FD4B2 /* CollisionDetector.cpp */; };
 		B4D1B85218AEC120004FD4B2 /* Polyhedron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */; };
-		B4D253771943490700A86E4B /* CubeMapShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D253761943490700A86E4B /* CubeMapShader.vsh */; };
-		B4D253791943491200A86E4B /* CubeMapShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D253781943491200A86E4B /* CubeMapShader.fsh */; };
+		B4D253771943490700A86E4B /* GlassShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D253761943490700A86E4B /* GlassShader.vsh */; };
+		B4D253791943491200A86E4B /* GlassShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D253781943491200A86E4B /* GlassShader.fsh */; };
 		B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F76187F3867005E78AC /* PositionColorShader.vsh */; };
 		B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F78187F3877005E78AC /* PositionColorShader.fsh */; };
 		B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */; };
@@ -228,8 +228,8 @@
 		B4D1B84E18AEBBA9004FD4B2 /* CollisionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetector.h; sourceTree = "<group>"; };
 		B4D1B85018AEC120004FD4B2 /* Polyhedron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polyhedron.cpp; sourceTree = "<group>"; };
 		B4D1B85118AEC120004FD4B2 /* Polyhedron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyhedron.h; sourceTree = "<group>"; };
-		B4D253761943490700A86E4B /* CubeMapShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = CubeMapShader.vsh; sourceTree = "<group>"; };
-		B4D253781943491200A86E4B /* CubeMapShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = CubeMapShader.fsh; sourceTree = "<group>"; };
+		B4D253761943490700A86E4B /* GlassShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = GlassShader.vsh; sourceTree = "<group>"; };
+		B4D253781943491200A86E4B /* GlassShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = GlassShader.fsh; sourceTree = "<group>"; };
 		B4D64F76187F3867005E78AC /* PositionColorShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.vsh; sourceTree = "<group>"; };
 		B4D64F78187F3877005E78AC /* PositionColorShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PositionColorShader.fsh; sourceTree = "<group>"; };
 		B4D64F7A187F3884005E78AC /* PerspectiveShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = PerspectiveShader.vsh; sourceTree = "<group>"; };
@@ -504,8 +504,8 @@
 				B4D64F7C187F3891005E78AC /* PerspectiveShader.fsh */,
 				B429BEDE191652DD00DA2D3C /* TextureShader.vsh */,
 				B429BEE0191652EA00DA2D3C /* TextureShader.fsh */,
-				B4D253761943490700A86E4B /* CubeMapShader.vsh */,
-				B4D253781943491200A86E4B /* CubeMapShader.fsh */,
+				B4D253761943490700A86E4B /* GlassShader.vsh */,
+				B4D253781943491200A86E4B /* GlassShader.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -968,9 +968,9 @@
 				B429BEE1191652EA00DA2D3C /* TextureShader.fsh in Resources */,
 				B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */,
 				B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */,
-				B4D253791943491200A86E4B /* CubeMapShader.fsh in Resources */,
+				B4D253791943491200A86E4B /* GlassShader.fsh in Resources */,
 				B429BEDF191652DD00DA2D3C /* TextureShader.vsh in Resources */,
-				B4D253771943490700A86E4B /* CubeMapShader.vsh in Resources */,
+				B4D253771943490700A86E4B /* GlassShader.vsh in Resources */,
 				B429BEDA19150B6800DA2D3C /* Ukraine.jpg in Resources */,
 				B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */,
 				B4D64F81187F3D3E005E78AC /* PerspectiveShader.fsh in Resources */,

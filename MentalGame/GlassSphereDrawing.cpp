@@ -116,7 +116,7 @@ namespace Renderer {
 //            RenderingEngine::SharedInstance().RemoveOffscreenCamera(m_cubeMapCamera);
         }
         
-        Program *program = ProgramContainer::SharedInstance().GetCubeMapProgram();
+        Program *program = ProgramContainer::SharedInstance().GetGlassProgram();
         program->ExecuteDrawRequest(m_drawRequest);
     }
 }
