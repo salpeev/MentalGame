@@ -45,6 +45,8 @@ namespace Renderer {
         void Draw(const Matrix4 &rProjectionMatrix) const;
         
     private:
+        void CreatePhotoMap(int width, int height) const;
+        
         VertexBuffer *m_vertexBuffer;
         IndexBuffer *m_indexBuffer;
         PositionColorInitializer *m_attributeInitializer;

@@ -23,9 +23,12 @@ namespace Renderer
         
     }
     
+    Vector2 Vector2::operator+(const Vector2 &rVector) const {
+        return Vector2(x + rVector.x, y + rVector.y);
+    }
+    
     Vector2 Vector2::operator-(const Vector2 &rVector) const {
-        Vector2 vector(x - rVector.x, y - rVector.y);
-        return vector;
+        return Vector2(x - rVector.x, y - rVector.y);
     }
     
     const float * Vector2::Pointer() const {

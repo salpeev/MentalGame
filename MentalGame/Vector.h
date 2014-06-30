@@ -24,6 +24,7 @@ namespace Renderer
         Vector2();
         Vector2(float x, float y);
         
+        Vector2 operator+(const Vector2 &rVector) const;
         Vector2 operator-(const Vector2 &rVector) const;
         
         const float * Pointer() const;
