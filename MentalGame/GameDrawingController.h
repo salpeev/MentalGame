@@ -12,12 +12,28 @@
 
 namespace Renderer {
     
+    class GlassSphereDrawing;
+    class VertexBuffer;
+    class IndexBuffer;
+    class TextureCamera;
+    
+    
+    
     class GameDrawingController: public DrawingController {
     public:
         GameDrawingController();
         ~GameDrawingController();
         
-    private:
+        void WillDrawDrawing();
         
+    private:
+        void CreatePhotoMap(int width, int height);
+        void CreateCameras();
+        
+        vector<GlassSphereDrawing *> m_glassDrawings;
+        VertexBuffer *m_photoMapVertexBuffer;
+        IndexBuffer *m_photoMapIndexBuffer;
+        TextureCamera *m_frontNormalsDepthCamera;
+        TextureCamera *m_backNormalsDepthCamera;
     };
 }

@@ -23,6 +23,7 @@ namespace Renderer {
         
         void UpdateHierarchy(float interval);
         void DrawHierarchy(const Matrix4 &rProjectionMatrix) const;
+        void Draw(const Matrix4 &rProjectionMatrix) const;
         DrawingComponent * HitTest(const Point3 &rPoint);
         
         void AddSubDrawing(DrawingComponent *pDrawing);
@@ -30,7 +31,6 @@ namespace Renderer {
         
     protected:
         void Update(float interval);
-        void Draw(const Matrix4 &rProjectionMatrix) const;
         
     private:
         void UpdateSubDrawings(float interval);

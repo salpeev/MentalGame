@@ -38,6 +38,10 @@ namespace Renderer {
         DrawSubDrawings(rProjectionMatrix);
     }
     
+    void DrawingComposite::Draw(const Matrix4 &rProjectionMatrix) const {
+        
+    }
+    
     DrawingComponent * DrawingComposite::HitTest(const Point3 &rPoint) {
         // TODO: Probably rewrite this method to take into account hit coordinate, not just subdrawing position in hierarchy
         if (!PointInside(rPoint)) {
@@ -70,10 +74,6 @@ namespace Renderer {
 #pragma mark - Protected Methods
     
     void DrawingComposite::Update(float interval) {
-        
-    }
-    
-    void DrawingComposite::Draw(const Matrix4 &rProjectionMatrix) const {
         
     }
     

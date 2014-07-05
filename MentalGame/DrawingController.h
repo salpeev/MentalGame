@@ -21,6 +21,8 @@ namespace Renderer {
         
         FullscreenDrawing *GetDrawing() const;
         
+        virtual void WillDrawDrawing();
+        
     private:
         FullscreenDrawing *m_drawing;
     };

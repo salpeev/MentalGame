@@ -13,6 +13,13 @@
 #include "ResourceManager.h"
 #include "RoomDrawing.h"
 #include "GlassSphereDrawing.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "Logger.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "TextureCamera.h"
+#include "DepthRenderbufferComponent16.h"
 
 
 
@@ -55,21 +62,59 @@ namespace Renderer {
         glassSphereDrawing4->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 0.0f, -7));
         GetDrawing()->AddSubDrawing(glassSphereDrawing4);
         
+        m_glassDrawings.push_back(glassSphereDrawing0);
+        m_glassDrawings.push_back(glassSphereDrawing1);
+        m_glassDrawings.push_back(glassSphereDrawing2);
+        m_glassDrawings.push_back(glassSphereDrawing3);
+        m_glassDrawings.push_back(glassSphereDrawing4);
         
-        
-        
-        
-        
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0;j < 4; j++) {
-//                GlassSphereDrawing *glassSphereDrawing = new GlassSphereDrawing();
-//                glassSphereDrawing->GetPositionModelviewModifier()->SetPosition(Point3(-3.0f + (2.0f * i), -3.0f + (2.0f * j), -9.0f));
-//                GetDrawing()->AddSubDrawing(glassSphereDrawing);
-//            }
-//        }
+        CreatePhotoMap(1024, 1024);
+        CreateCameras();
     }
     
     GameDrawingController::~GameDrawingController() {
+        delete m_photoMapVertexBuffer;
+        delete m_photoMapIndexBuffer;
+    }
+    
+    void GameDrawingController::WillDrawDrawing() {
+//        for (GlassSphereDrawing *glassSphereDrawing : m_glassDrawings) {
+//            
+//        }
+    }
+    
+    void GameDrawingController::CreatePhotoMap(int width, int height) {
+        int numPhotons = width * height;
+        Vector2 texel(1.0f / width, 1.0f / height);
+        Vector2 dxdy(0.5f / width, 0.5f / height);
         
+        vector<Vector2> photons(numPhotons);
+        vector<GLushort> indices(numPhotons);
+        
+        GLushort k = 0;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                photons[k] = Vector2(texel.x * j, texel.y * i) + dxdy;
+                indices[k] = k;
+                k++;
+            }
+        }
+        
+        m_photoMapVertexBuffer = new VertexBuffer();
+        m_photoMapVertexBuffer->LoadBufferData(&photons[0], sizeof(Vector2), numPhotons);
+        
+        m_photoMapIndexBuffer = new IndexBuffer();
+        m_photoMapIndexBuffer->LoadBufferData(indices);
+    }
+    
+    void GameDrawingController::CreateCameras() {
+        Projection projection(M_PI_2, 1.0f, 1.0f, 100.0f);
+        m_frontNormalsDepthCamera = new TextureCamera(CSize(1024, 1024), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
     }
 }
+
+
+
+
+
+

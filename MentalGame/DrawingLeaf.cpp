@@ -21,6 +21,10 @@ namespace Renderer {
         Draw(rProjectionMatrix);
     }
     
+    void DrawingLeaf::Draw(const Matrix4 &rProjectionMatrix) const {
+        
+    }
+    
     DrawingComponent * DrawingLeaf::HitTest(const Point3 &rPoint) {
         if (PointInside(rPoint)) {
             return this;
@@ -30,10 +34,6 @@ namespace Renderer {
     }
     
     void DrawingLeaf::Update(float interval) {
-        
-    }
-    
-    void DrawingLeaf::Draw(const Matrix4 &rProjectionMatrix) const {
         
     }
 }

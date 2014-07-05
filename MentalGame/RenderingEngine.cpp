@@ -104,6 +104,7 @@ namespace Renderer {
     }
     
     void RenderingEngine::RenderScene(const Matrix4 &rProjectionMatrix) const {
+        GetDrawingController()->WillDrawDrawing();
         GetDrawingController()->GetDrawing()->DrawHierarchy(rProjectionMatrix);
     }
     

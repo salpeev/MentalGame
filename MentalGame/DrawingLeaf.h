@@ -17,10 +17,10 @@ namespace Renderer {
     public:
         void UpdateHierarchy(float interval);
         void DrawHierarchy(const Matrix4 &rProjectionMatrix) const;
+        void Draw(const Matrix4 &rProjectionMatrix) const;
         DrawingComponent * HitTest(const Point3 &rPoint);
         
     protected:
         void Update(float interval);
-        void Draw(const Matrix4 &rProjectionMatrix) const;
     };
 }

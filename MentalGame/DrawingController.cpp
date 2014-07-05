@@ -24,4 +24,8 @@ namespace Renderer {
     FullscreenDrawing * DrawingController::GetDrawing() const {
         return m_drawing;
     }
+    
+    void DrawingController::WillDrawDrawing() {
+        
+    }
 }

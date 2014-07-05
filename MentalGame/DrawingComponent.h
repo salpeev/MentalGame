@@ -29,6 +29,7 @@ namespace Renderer {
         
         virtual void UpdateHierarchy(float interval);
         virtual void DrawHierarchy(const Matrix4 &rProjectionMatrix) const = 0;
+        virtual void Draw(const Matrix4 &rProjectionMatrix) const = 0;
         virtual bool PointInside(const Point3 &rPoint) const;
         virtual DrawingComponent * HitTest(const Point3 &rPoint) = 0;
         
@@ -40,7 +41,6 @@ namespace Renderer {
         
     protected:
         virtual void Update(float interval) = 0;
-        virtual void Draw(const Matrix4 &rProjectionMatrix) const = 0;
         
         friend class DrawingComposite;
         void SetParentDrawing(DrawingComposite *pDrawing);

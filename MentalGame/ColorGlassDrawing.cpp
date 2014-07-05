@@ -112,8 +112,6 @@ namespace Renderer {
         planes.push_back(Plane(point1, point0, point4));
         planes.push_back(Plane(point3, point2, point6));
         m_shape = new Polyhedron(planes);
-        
-        CreatePhotoMap(1024, 1024);
     }
     
     ColorGlassDrawing::~ColorGlassDrawing() {
@@ -194,30 +192,5 @@ namespace Renderer {
         
         Program *pProgram = ProgramContainer::SharedInstance().GetPerspectiveProgram();
         pProgram->ExecuteDrawRequest(m_drawRequest);
-    }
-    
-    void ColorGlassDrawing::CreatePhotoMap(int width, int height) const {
-        int numPhotons = width * height;
-        Vector2 texel(1.0f / width, 1.0f / height);
-        Vector2 dxdy(0.5f / width, 0.5f / height);
-        
-        vector<Vector2> photons(numPhotons);
-        vector<GLushort> indices(numPhotons);
-        
-        GLushort k = 0;
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                photons[k] = Vector2(texel.x * j, texel.y * i) + dxdy;
-                indices[k] = k;
-                k++;
-            }
-        }
-        
-        // TODO: Return to caller
-        VertexBuffer *vertexBuffer = new VertexBuffer();
-        vertexBuffer->LoadBufferData(&photons[0], sizeof(Vector2), numPhotons);
-        
-        IndexBuffer *indexBuffer = new IndexBuffer();
-        indexBuffer->LoadBufferData(indices);
     }
 }
