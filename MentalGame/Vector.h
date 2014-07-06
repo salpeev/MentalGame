@@ -68,8 +68,9 @@ namespace Renderer
     public:
         Vector4();
         Vector4(float x, float y, float z, float w);
-        Vector4(Vector3 &rVector);
-        Vector4(Vector3 &rVector, float w);
+        Vector4(const Vector3 &rVector);
+        Vector4(const Vector3 &rVector, float w);
+        Vector4(const Point3 &rPoint);
         
         Vector4 operator-() const;
         Vector4 operator-(const Vector4 &rVector) const;

@@ -170,6 +170,15 @@ namespace Renderer {
         return r;
     }
     
+    Vector4 Matrix4::operator*(const Vector4 &rVector) const {
+        Vector4 v;
+        v.x = x.x * rVector.x + x.y * rVector.y + x.z * rVector.z + x.w * rVector.w;
+        v.y = y.x * rVector.x + y.y * rVector.y + y.z * rVector.z + y.w * rVector.w;
+        v.z = z.x * rVector.x + z.y * rVector.y + z.z * rVector.z + z.w * rVector.w;
+        v.w = w.x * rVector.x + w.y * rVector.y + w.z * rVector.z + w.w * rVector.w;
+        return v;
+    }
+    
     Matrix4 & Matrix4::MakeTranslation(float tX, float tY, float tZ) {
         w.x = tX;
         w.y = tY;
@@ -420,6 +429,25 @@ namespace Renderer {
         m.y.x = -s;   m.y.y = c;    m.y.z = 0.0f; m.y.w = 0.0f;
         m.z.x = 0.0f; m.z.y = 0.0f; m.z.z = 1.0f; m.z.w = 0.0f;
         m.w.x = 0.0f; m.w.y = 0.0f; m.w.z = 0.0f; m.w.w = 1.0f;
+        return m;
+    }
+    
+    Matrix4 Matrix4::LookAt(const Point3 &cameraPosition, const Point3 &targetPosition, const Vector3 &upVector) {
+        return Matrix4();
+        
+        Vector3 z = (cameraPosition - targetPosition).Normalized();
+        Vector3 x = upVector.Cross(z).Normalized();
+        Vector3 y = z.Cross(x).Normalized();
+        
+        Matrix4 m;
+        m.x = Vector4(x, 0.0f);
+        m.y = Vector4(y, 0.0f);
+        m.z = Vector4(z, 0.0f);
+        m.w = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+        
+        Vector4 cameraPrime = m * Vector4(-cameraPosition);
+        m.Transpose();
+        m.w = cameraPrime;
         return m;
     }
 }

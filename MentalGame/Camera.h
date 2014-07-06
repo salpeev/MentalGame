@@ -11,6 +11,7 @@
 #include "Rect.h"
 #include "Framebuffer.h"
 #include "Projection.h"
+#include "Quaternion.h"
 
 
 
@@ -21,9 +22,11 @@ namespace Renderer {
         virtual ~Camera();
         
         void SetProjection(const Projection &rProjection);
+        void SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp);
         
         const CSize & GetResolution() const;
         const Projection & GetProjection() const;
+        const Matrix4 & GetViewMatrix() const;
         Framebuffer * GetFramebuffer() const;
         
         virtual void Record();
@@ -31,6 +34,7 @@ namespace Renderer {
         
     private:
         CSize m_resolution;
+        Matrix4 m_viewMatrix;
         Projection m_projection;
         Framebuffer *m_framebuffer;
     };

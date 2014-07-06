@@ -123,11 +123,15 @@ namespace Renderer
         
     }
     
-    Vector4::Vector4(Vector3 &rVector): Vector4(rVector, 1.0f) {
+    Vector4::Vector4(const Vector3 &rVector): Vector4(rVector, 1.0f) {
         
     }
     
-    Vector4::Vector4(Vector3 &rVector, float w): Vector4(rVector.x, rVector.y, rVector.z, w) {
+    Vector4::Vector4(const Vector3 &rVector, float w): Vector4(rVector.x, rVector.y, rVector.z, w) {
+        
+    }
+    
+    Vector4::Vector4(const Point3 &rPoint): Vector4(rPoint.x, rPoint.y, rPoint.z, 1.0f) {
         
     }
     

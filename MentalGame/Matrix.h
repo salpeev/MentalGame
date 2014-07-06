@@ -56,6 +56,7 @@ namespace Renderer {
         Matrix4(const Matrix3 &rMatrix);
         
         Matrix4 operator*(const Matrix4 &rMatrix) const;
+        Vector4 operator*(const Vector4 &rVector) const;
         
         Matrix4 & MakeTranslation(float xTranslation, float yTranslation, float zTranslation);
         Matrix4 & MakeScale(float xScale, float yScale, float zScale);
@@ -84,6 +85,7 @@ namespace Renderer {
         static Matrix4 RotationX(float radians);
         static Matrix4 RotationY(float radians);
         static Matrix4 RotationZ(float radians);
+        static Matrix4 LookAt(const Point3 &cameraPosition, const Point3 &targetPosition, const Vector3 &upVector);
         
         Vector4 x;
         Vector4 y;

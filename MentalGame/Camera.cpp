@@ -31,12 +31,20 @@ namespace Renderer {
         m_projection = rProjection;
     }
     
+    void Camera::SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp) {
+        m_viewMatrix = Matrix4::LookAt(rPosition, rTarget, rUp);
+    }
+    
     Framebuffer * Camera::GetFramebuffer() const {
         return m_framebuffer;
     }
     
     const Projection & Camera::GetProjection() const {
         return m_projection;
+    }
+    
+    const Matrix4 & Camera::GetViewMatrix() const {
+        return m_viewMatrix;
     }
     
     void Camera::Record() {
