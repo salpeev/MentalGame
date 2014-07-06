@@ -22,13 +22,13 @@ namespace Renderer {
         virtual ~Camera();
         
         void SetProjection(const Projection &rProjection);
-        void SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp);
         
         const CSize & GetResolution() const;
         const Projection & GetProjection() const;
         const Matrix4 & GetViewMatrix() const;
         Framebuffer * GetFramebuffer() const;
         
+        virtual void SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp);
         virtual void Record();
         virtual void PrepareForRecord();
         

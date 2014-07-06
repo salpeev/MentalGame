@@ -33,7 +33,7 @@ namespace Renderer {
         vector<unsigned short> indices;
         
         SphereSurface sphere(30, 30, 1.0f);
-        sphere.GenerateVertices(vertices, /*VERTEX_ATTRIBUTE_COLOR | */VERTEX_ATTRIBUTE_NORMAL);
+        sphere.GenerateVertices(vertices, VERTEX_ATTRIBUTE_NORMAL);
         sphere.GenerateTriangleIndices(indices);
         
         m_vertexBuffer = new VertexBuffer();
@@ -57,8 +57,6 @@ namespace Renderer {
         m_cubeMapCamera = new CubeMapCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
         m_cubeMapCamera->GetTextureCubeMap()->SetMinFilter(TEX_MIN_FILTER_NEAREST);
         m_cubeMapCamera->GetTextureCubeMap()->SetMagFilter(TEX_MAG_FILTER_NEAREST);
-//        m_cubeMapCamera->GetTextureCubeMap()->SetMinFilter(TEX_MIN_FILTER_LINEAR_MIPMAP_LINEAR);
-//        m_cubeMapCamera->GetTextureCubeMap()->SetMagFilter(TEX_MAG_FILTER_LINEAR);
         RenderingEngine::SharedInstance().AddOffscreenCamera(m_cubeMapCamera);
     }
     
@@ -81,26 +79,8 @@ namespace Renderer {
         m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
         m_uniformInitializer->SetNormalMatrix(GetModelviewMatrix().ToMatrix3());
         
-//        // TODO: Should be removed
-//        static bool cameraAdded = false;
-//        static float time = 0;
-//        time += interval;
-//        if (time > 0.0f && !cameraAdded) {
-//            cameraAdded = true;
-//            
-//            Projection projection(M_PI_2, 1.0f, 1.0f, 20.0f);
-//            m_cubeMapCamera = new CubeMapCamera(CSize(1024, 1024), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
-//            RenderingEngine::SharedInstance().AddOffscreenCamera(m_cubeMapCamera);
-//            
-//            m_cubeMapCamera->GetTextureCubeMap()->SetMinFilter(TEX_MIN_FILTER_NEAREST);
-//            m_cubeMapCamera->GetTextureCubeMap()->SetMagFilter(TEX_MAG_FILTER_NEAREST);
-//            
-//            Point3 position = GetPositionModelviewModifier()->GetPosition();
-//            m_cubeMapCamera->SetPosition(position);
-//        }
-        
         Point3 position = GetPositionModelviewModifier()->GetPosition();
-        m_cubeMapCamera->SetPosition(position);
+        m_cubeMapCamera->SetLookAt(position, Point3(0.0f, 0.0f, -100.0f), Vector3(0.0f, 1.0f, 0.0f));
     }
     
     void GlassSphereDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
@@ -111,9 +91,6 @@ namespace Renderer {
         
         if (m_cubeMapCamera) {
             m_cubeMapCamera->GetTextureCubeMap()->Bind();
-            
-//            m_cubeMapCamera->GetTextureCubeMap()->GenerateMipMap(MIPMAP_HINT_NICEST);
-//            RenderingEngine::SharedInstance().RemoveOffscreenCamera(m_cubeMapCamera);
         }
         
         Program *program = ProgramContainer::SharedInstance().GetGlassProgram();

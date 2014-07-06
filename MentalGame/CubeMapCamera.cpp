@@ -16,7 +16,7 @@ namespace Renderer {
     
     CubeMapCamera::CubeMapCamera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer, Renderbuffer *depthRenderbuffer, Renderbuffer *stencilRenderbuffer, PIXEL_FORMAT pixelFormat, PIXEL_TYPE pixelType): Camera(resolution, rProjection, pFramebuffer), m_depthRenderbuffer(depthRenderbuffer), m_stencilRenderbuffer(stencilRenderbuffer), m_pixelFormat(pixelFormat), m_pixelType(pixelType) {
         m_projections.resize(TEXTURE_CUBE_MAP_SIDE_COUNT);
-        SetPosition(Point3(0.0f, 0.0f, 0.0f));
+        SetLookAt(Point3(), Point3(0.0f, 0.0f, -1.0f), Vector3(0.0f, 1.0f, 0.0f));
         
         GenerateCubeMap();
         
@@ -33,7 +33,7 @@ namespace Renderer {
     
     CubeMapCamera::CubeMapCamera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer, Renderbuffer *depthStencilRenderbuffer, PIXEL_FORMAT pixelFormat, PIXEL_TYPE pixelType): Camera(resolution, rProjection, pFramebuffer), m_depthRenderbuffer(depthStencilRenderbuffer), m_stencilRenderbuffer(nullptr), m_pixelFormat(pixelFormat), m_pixelType(pixelType) {
         m_projections.resize(TEXTURE_CUBE_MAP_SIDE_COUNT);
-        SetPosition(Point3(0.0f, 0.0f, 0.0f));
+        SetLookAt(Point3(), Point3(0.0f, 0.0f, -1.0f), Vector3(0.0f, 1.0f, 0.0f));
         
         GenerateCubeMap();
         
@@ -50,22 +50,6 @@ namespace Renderer {
         delete m_stencilRenderbuffer;
     }
     
-    void CubeMapCamera::SetPosition(const Point3 &rPosition) {
-        Matrix4 cameraTranslation = Matrix4::Translation(-rPosition.x, -rPosition.y, -rPosition.z);
-        
-        const Vector4 &rX = GetProjection().GetProjectionMatrix().x;
-        const Vector4 &rY = GetProjection().GetProjectionMatrix().y;
-        const Vector4 &rZ = GetProjection().GetProjectionMatrix().z;
-        const Vector4 &rW = GetProjection().GetProjectionMatrix().w;
-        
-        m_projections[0] = cameraTranslation * Matrix4(-rZ, -rY, -rX, rW);
-        m_projections[1] = cameraTranslation * Matrix4( rZ, -rY,  rX, rW);
-        m_projections[2] = cameraTranslation * Matrix4( rX, -rZ,  rY, rW);
-        m_projections[3] = cameraTranslation * Matrix4( rX,  rZ, -rY, rW);
-        m_projections[4] = cameraTranslation * Matrix4( rX, -rY, -rZ, rW);
-        m_projections[5] = cameraTranslation * Matrix4(-rX, -rY,  rZ, rW);
-    }
-    
     TextureCubeMap * CubeMapCamera::GetTextureCubeMap() const {
         return m_cubeMap;
     }
@@ -75,6 +59,24 @@ namespace Renderer {
         TextureCubeMap *cubeMap = m_cubeMap;
         m_cubeMap = nullptr;
         return cubeMap;
+    }
+    
+    void CubeMapCamera::SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp) {
+        Camera::SetLookAt(rPosition, rTarget, rUp);
+        
+        Matrix4 cameraMatrix = GetViewMatrix();
+        
+        const Vector4 &rX = GetProjection().GetProjectionMatrix().x;
+        const Vector4 &rY = GetProjection().GetProjectionMatrix().y;
+        const Vector4 &rZ = GetProjection().GetProjectionMatrix().z;
+        const Vector4 &rW = GetProjection().GetProjectionMatrix().w;
+        
+        m_projections[0] = cameraMatrix * Matrix4(-rZ, -rY, -rX, rW);
+        m_projections[1] = cameraMatrix * Matrix4( rZ, -rY,  rX, rW);
+        m_projections[2] = cameraMatrix * Matrix4( rX, -rZ,  rY, rW);
+        m_projections[3] = cameraMatrix * Matrix4( rX,  rZ, -rY, rW);
+        m_projections[4] = cameraMatrix * Matrix4( rX, -rY, -rZ, rW);
+        m_projections[5] = cameraMatrix * Matrix4(-rX, -rY,  rZ, rW);
     }
     
     void CubeMapCamera::Record() {

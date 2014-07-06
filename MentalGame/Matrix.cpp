@@ -433,8 +433,6 @@ namespace Renderer {
     }
     
     Matrix4 Matrix4::LookAt(const Point3 &cameraPosition, const Point3 &targetPosition, const Vector3 &upVector) {
-        return Matrix4();
-        
         Vector3 z = (cameraPosition - targetPosition).Normalized();
         Vector3 x = upVector.Cross(z).Normalized();
         Vector3 y = z.Cross(x).Normalized();

@@ -23,11 +23,10 @@ namespace Renderer {
         CubeMapCamera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer, Renderbuffer *depthStencilRenderbuffer, PIXEL_FORMAT pixelFormat, PIXEL_TYPE pixelType);
         ~CubeMapCamera();
         
-        void SetPosition(const Point3 &rPosition);
-        
         TextureCubeMap * GetTextureCubeMap() const;
         TextureCubeMap * RetrieveCubeMap();
         
+        void SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp);
         void Record();
         void PrepareForRecord();
         
