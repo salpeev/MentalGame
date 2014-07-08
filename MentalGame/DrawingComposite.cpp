@@ -33,12 +33,12 @@ namespace Renderer {
         UpdateSubDrawings(interval);
     }
     
-    void DrawingComposite::DrawHierarchy(const Matrix4 &rProjectionMatrix) const {
-        Draw(rProjectionMatrix);
-        DrawSubDrawings(rProjectionMatrix);
+    void DrawingComposite::DrawHierarchy(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const {
+        Draw(rProjectionMatrix, rInvertedCameraMatrix);
+        DrawSubDrawings(rProjectionMatrix, rInvertedCameraMatrix);
     }
     
-    void DrawingComposite::Draw(const Matrix4 &rProjectionMatrix) const {
+    void DrawingComposite::Draw(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const {
         
     }
     
@@ -86,10 +86,10 @@ namespace Renderer {
         }
     }
     
-    void DrawingComposite::DrawSubDrawings(const Matrix4 &rProjectionMatrix) const {
+    void DrawingComposite::DrawSubDrawings(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const {
         for (int subdrawingIndex = 0; subdrawingIndex < m_subDrawings->size(); subdrawingIndex++) {
             DrawingComponent *subdrawing = m_subDrawings->at(subdrawingIndex);
-            subdrawing->DrawHierarchy(rProjectionMatrix);
+            subdrawing->DrawHierarchy(rProjectionMatrix, rInvertedCameraMatrix);
         }
     }
 }

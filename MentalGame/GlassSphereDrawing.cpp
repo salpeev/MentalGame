@@ -83,7 +83,7 @@ namespace Renderer {
         m_cubeMapCamera->SetLookAt(position, Point3(0.0f, 0.0f, -100.0f), Vector3(0.0f, 1.0f, 0.0f));
     }
     
-    void GlassSphereDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
+    void GlassSphereDrawing::Draw(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const {
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_CULL_FACE);
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_DEPTH_TEST);
         

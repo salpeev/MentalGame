@@ -26,8 +26,10 @@ namespace Renderer {
         const CSize & GetResolution() const;
         const Projection & GetProjection() const;
         const Matrix4 & GetViewMatrix() const;
+        const Matrix4 & GetInvertedViewMatrix() const;
         Framebuffer * GetFramebuffer() const;
         
+        // TODO: Create three separate methods
         virtual void SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp);
         virtual void Record();
         virtual void PrepareForRecord();
@@ -35,6 +37,7 @@ namespace Renderer {
     private:
         CSize m_resolution;
         Matrix4 m_viewMatrix;
+        Matrix4 m_invertedViewMatrix;
         Projection m_projection;
         Framebuffer *m_framebuffer;
     };

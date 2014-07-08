@@ -28,8 +28,8 @@ namespace Renderer {
         virtual ~DrawingComponent();
         
         virtual void UpdateHierarchy(float interval);
-        virtual void DrawHierarchy(const Matrix4 &rProjectionMatrix) const = 0;
-        virtual void Draw(const Matrix4 &rProjectionMatrix) const = 0;
+        virtual void DrawHierarchy(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const = 0;
+        virtual void Draw(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const = 0;
         virtual bool PointInside(const Point3 &rPoint) const;
         virtual DrawingComponent * HitTest(const Point3 &rPoint) = 0;
         
@@ -46,7 +46,7 @@ namespace Renderer {
         void SetParentDrawing(DrawingComposite *pDrawing);
         
         void SetModelviewModifier(ModelviewModifier *pModelviewModifier);
-        ModelviewModifier *GetModelviewModifier() const;
+        ModelviewModifier *GetModelviewModifier() const;        // TODO: Should be model matrix
         Matrix4 GetModelviewMatrix() const;
         
     private:

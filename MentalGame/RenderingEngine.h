@@ -48,7 +48,7 @@ namespace Renderer {
         
         void Update(float interval) const;
         void Render() const;
-        void RenderScene(const Matrix4 &rProjectionMatrix) const;
+        void RenderScene(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const;
         
         // Touches
         Touch * GetTouchForSystemTouch(const void *pSystemTouch) const;

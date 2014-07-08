@@ -16,8 +16,8 @@ namespace Renderer {
     class DrawingLeaf: public DrawingComponent {
     public:
         void UpdateHierarchy(float interval);
-        void DrawHierarchy(const Matrix4 &rProjectionMatrix) const;
-        void Draw(const Matrix4 &rProjectionMatrix) const;
+        void DrawHierarchy(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const;
+        void Draw(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const;
         DrawingComponent * HitTest(const Point3 &rPoint);
         
     protected:

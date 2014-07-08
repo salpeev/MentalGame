@@ -103,9 +103,9 @@ namespace Renderer {
         DrawWithCamera(m_mainCamera);
     }
     
-    void RenderingEngine::RenderScene(const Matrix4 &rProjectionMatrix) const {
+    void RenderingEngine::RenderScene(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const {
         GetDrawingController()->WillDrawDrawing();
-        GetDrawingController()->GetDrawing()->DrawHierarchy(rProjectionMatrix);
+        GetDrawingController()->GetDrawing()->DrawHierarchy(rProjectionMatrix, rInvertedCameraMatrix);
     }
     
 #pragma mark Touches

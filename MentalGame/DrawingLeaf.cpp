@@ -17,11 +17,11 @@ namespace Renderer {
         Update(interval);
     }
     
-    void DrawingLeaf::DrawHierarchy(const Matrix4 &rProjectionMatrix) const {
-        Draw(rProjectionMatrix);
+    void DrawingLeaf::DrawHierarchy(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const {
+        Draw(rProjectionMatrix, rInvertedCameraMatrix);
     }
     
-    void DrawingLeaf::Draw(const Matrix4 &rProjectionMatrix) const {
+    void DrawingLeaf::Draw(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const {
         
     }
     

@@ -98,7 +98,7 @@ namespace Renderer {
         m_uniformInitializer->SetModelviewMatrix(m_quaternionModifier->GetModelviewMatrix());
     }
     
-    void RoomDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
+    void RoomDrawing::Draw(const Matrix4 &rProjectionMatrix, const Matrix4 &rInvertedCameraMatrix) const {
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_DEPTH_TEST);
         RenderingEngine::SharedInstance().Disable(SERVER_CAPABILITY_CULL_FACE);
         
