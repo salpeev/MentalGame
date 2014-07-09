@@ -43,13 +43,8 @@ namespace Renderer {
         return m_viewMatrix;
     }
     
-    const Matrix4 & Camera::GetInvertedViewMatrix() const {
-        return m_invertedViewMatrix;
-    }
-    
     void Camera::SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp) {
         m_viewMatrix = Matrix4::LookAt(rPosition, rTarget, rUp);
-        m_viewMatrix.Inverted(&m_invertedViewMatrix);
     }
     
     void Camera::Record() {
@@ -59,8 +54,7 @@ namespace Renderer {
         m_framebuffer->Clear();
         
         Matrix4 projectionMatrix = GetProjection().GetProjectionMatrix();
-        Matrix4 invertedCameraMatrix = GetInvertedViewMatrix();
-        RenderingEngine::SharedInstance().RenderScene(projectionMatrix, invertedCameraMatrix);
+        RenderingEngine::SharedInstance().RenderScene(projectionMatrix);
     }
     
     void Camera::PrepareForRecord() {

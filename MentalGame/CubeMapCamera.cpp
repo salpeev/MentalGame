@@ -87,8 +87,7 @@ namespace Renderer {
         for (int sideIndex = 0; sideIndex < TEXTURE_CUBE_MAP_SIDE_COUNT; sideIndex++) {
             GetFramebuffer()->AttachTextureCubeMap(m_cubeMap, TEXTURE_CUBE_MAP_SIDE(TEXTURE_CUBE_MAP_SIDE_POSITIVE_X + sideIndex));
             GetFramebuffer()->Clear();
-            Matrix4 invertedCameraMatrix = GetInvertedViewMatrix();
-            RenderingEngine::SharedInstance().RenderScene(m_projections[sideIndex], invertedCameraMatrix);
+            RenderingEngine::SharedInstance().RenderScene(m_projections[sideIndex]);
         }
     }
     

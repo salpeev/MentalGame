@@ -26,7 +26,6 @@ namespace Renderer {
         const CSize & GetResolution() const;
         const Projection & GetProjection() const;
         const Matrix4 & GetViewMatrix() const;
-        const Matrix4 & GetInvertedViewMatrix() const;
         Framebuffer * GetFramebuffer() const;
         
         // TODO: Create three separate methods
@@ -37,7 +36,6 @@ namespace Renderer {
     private:
         CSize m_resolution;
         Matrix4 m_viewMatrix;
-        Matrix4 m_invertedViewMatrix;
         Projection m_projection;
         Framebuffer *m_framebuffer;
     };
