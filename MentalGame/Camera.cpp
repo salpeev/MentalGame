@@ -43,6 +43,10 @@ namespace Renderer {
         return m_viewMatrix;
     }
     
+    Matrix4 Camera::GetViewProjectionMatrix() const {
+        return m_viewMatrix * m_projection.GetProjectionMatrix();
+    }
+    
     void Camera::SetLookAt(const Point3 &rPosition, const Point3 &rTarget, const Vector3 &rUp) {
         m_viewMatrix = Matrix4::LookAt(rPosition, rTarget, rUp);
     }
@@ -53,8 +57,7 @@ namespace Renderer {
         m_framebuffer->BindAll();
         m_framebuffer->Clear();
         
-        Matrix4 projectionMatrix = GetProjection().GetProjectionMatrix();
-        RenderingEngine::SharedInstance().RenderScene(projectionMatrix);
+        RenderingEngine::SharedInstance().RenderScene(GetViewProjectionMatrix());
     }
     
     void Camera::PrepareForRecord() {

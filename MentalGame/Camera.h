@@ -26,6 +26,7 @@ namespace Renderer {
         const CSize & GetResolution() const;
         const Projection & GetProjection() const;
         const Matrix4 & GetViewMatrix() const;
+        Matrix4 GetViewProjectionMatrix() const;
         Framebuffer * GetFramebuffer() const;
         
         // TODO: Create three separate methods
