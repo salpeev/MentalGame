@@ -20,6 +20,7 @@
 #include "IndexBuffer.h"
 #include "TextureCamera.h"
 #include "DepthRenderbufferComponent16.h"
+#include "RenderingEngine.h"
 
 
 
@@ -109,7 +110,9 @@ namespace Renderer {
     
     void GameDrawingController::CreateCameras() {
         Projection projection(M_PI_2, 1.0f, 1.0f, 100.0f);
-        m_frontNormalsDepthCamera = new TextureCamera(CSize(1024, 1024), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
+        m_frontNormalsDepthCamera = new TextureCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
+        m_frontNormalsDepthCamera->SetLookAt(Point3(1.0f, 1.0f, 0.0f), Point3(0.0f, 0.0f, -100.0f), Vector3(0.1f, 1.0f, 0.1f));
+        RenderingEngine::SharedInstance().AddOffscreenCamera(m_frontNormalsDepthCamera);
     }
 }
 

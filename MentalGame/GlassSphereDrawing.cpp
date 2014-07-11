@@ -80,7 +80,7 @@ namespace Renderer {
         m_uniformInitializer->SetNormalMatrix(GetModelviewMatrix().ToMatrix3());
         
         Point3 position = GetPositionModelviewModifier()->GetPosition();
-        m_cubeMapCamera->SetLookAt(position, Point3(0.0f, 0.0f, -100.0f), Vector3(0.0f, 1.0f, 0.0f));
+        m_cubeMapCamera->SetLookAt(position, Point3(position.x, position.y, -100.0f), Vector3(0.0f, 1.0f, 0.0f));
     }
     
     void GlassSphereDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
