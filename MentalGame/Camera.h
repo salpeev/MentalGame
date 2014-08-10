@@ -12,6 +12,9 @@
 #include "Framebuffer.h"
 #include "Projection.h"
 #include "Quaternion.h"
+#include <iostream>
+
+using namespace std;
 
 
 
@@ -22,6 +25,7 @@ namespace Renderer {
         virtual ~Camera();
         
         void SetProjection(const Projection &rProjection);
+        void SetDrawingCallback(function<void (const Matrix4 &rProjectionMatrix)> drawingCallback);
         
         const CSize & GetResolution() const;
         const Projection & GetProjection() const;
@@ -39,5 +43,7 @@ namespace Renderer {
         Matrix4 m_viewMatrix;
         Projection m_projection;
         Framebuffer *m_framebuffer;
+        
+        function<void (const Matrix4 &rProjectionMatrix)> *m_drawingCallback;
     };
 }

@@ -79,9 +79,7 @@ namespace Renderer {
     }
     
     void GameDrawingController::WillDrawDrawing() {
-//        for (GlassSphereDrawing *glassSphereDrawing : m_glassDrawings) {
-//            
-//        }
+        
     }
     
     void GameDrawingController::CreatePhotoMap(int width, int height) {
@@ -112,6 +110,14 @@ namespace Renderer {
         Projection projection(M_PI_2, 1.0f, 1.0f, 100.0f);
         m_frontNormalsDepthCamera = new TextureCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
         m_frontNormalsDepthCamera->SetLookAt(Point3(1.0f, 1.0f, 0.0f), Point3(0.0f, 0.0f, -100.0f), Vector3(0.1f, 1.0f, 0.1f));
+        
+        function<void (const Matrix4 &rProjectionMatrix)> drawingCallback = [this](const Matrix4 &rProjectionMatrix) {
+            for (GlassSphereDrawing *glassSphereDrawing : m_glassDrawings) {
+                glassSphereDrawing->Draw(rProjectionMatrix);
+            }
+        };
+        m_frontNormalsDepthCamera->SetDrawingCallback(drawingCallback);
+        
         RenderingEngine::SharedInstance().AddOffscreenCamera(m_frontNormalsDepthCamera);
     }
 }

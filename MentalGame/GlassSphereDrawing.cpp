@@ -71,18 +71,6 @@ namespace Renderer {
         delete m_cubeMapCamera;
     }
     
-    PositionModelviewModifier * GlassSphereDrawing::GetPositionModelviewModifier() const {
-        return m_positionModifier;
-    }
-    
-    void GlassSphereDrawing::Update(float interval) {
-        m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
-        m_uniformInitializer->SetNormalMatrix(GetModelviewMatrix().ToMatrix3());
-        
-        Point3 position = GetPositionModelviewModifier()->GetPosition();
-        m_cubeMapCamera->SetLookAt(position, Point3(position.x, position.y, -100.0f), Vector3(0.0f, 1.0f, 0.0f));
-    }
-    
     void GlassSphereDrawing::Draw(const Matrix4 &rProjectionMatrix) const {
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_CULL_FACE);
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_DEPTH_TEST);
@@ -95,5 +83,17 @@ namespace Renderer {
         
         Program *program = ProgramContainer::SharedInstance().GetGlassProgram();
         program->ExecuteDrawRequest(m_drawRequest);
+    }
+    
+    PositionModelviewModifier * GlassSphereDrawing::GetPositionModelviewModifier() const {
+        return m_positionModifier;
+    }
+    
+    void GlassSphereDrawing::Update(float interval) {
+        m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
+        m_uniformInitializer->SetNormalMatrix(GetModelviewMatrix().ToMatrix3());
+        
+        Point3 position = GetPositionModelviewModifier()->GetPosition();
+        m_cubeMapCamera->SetLookAt(position, Point3(position.x, position.y, -100.0f), Vector3(0.0f, 1.0f, 0.0f));
     }
 }

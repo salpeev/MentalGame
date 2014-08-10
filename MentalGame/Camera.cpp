@@ -15,12 +15,13 @@
 
 namespace Renderer {
     
-    Camera::Camera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer): m_resolution(resolution), m_projection(rProjection), m_framebuffer(pFramebuffer) {
+    Camera::Camera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer): m_resolution(resolution), m_projection(rProjection), m_framebuffer(pFramebuffer), m_drawingCallback(nullptr) {
         
     }
     
     Camera::~Camera() {
         delete m_framebuffer;
+        delete m_drawingCallback;
     }
     
     const CSize & Camera::GetResolution() const {
@@ -29,6 +30,11 @@ namespace Renderer {
     
     void Camera::SetProjection(const Projection &rProjection) {
         m_projection = rProjection;
+    }
+    
+    void Camera::SetDrawingCallback(function<void (const Matrix4 &)> drawingCallback) {
+        delete m_drawingCallback;
+        m_drawingCallback = new function<void (const Matrix4 &rProjectionMatrix)>(drawingCallback);
     }
     
     Framebuffer * Camera::GetFramebuffer() const {
@@ -57,7 +63,11 @@ namespace Renderer {
         m_framebuffer->BindAll();
         m_framebuffer->Clear();
         
-        RenderingEngine::SharedInstance().RenderScene(GetViewProjectionMatrix());
+        if (m_drawingCallback) {
+            (*m_drawingCallback)(GetViewProjectionMatrix());
+        } else {
+            RenderingEngine::SharedInstance().RenderScene(GetViewProjectionMatrix());
+        }
     }
     
     void Camera::PrepareForRecord() {

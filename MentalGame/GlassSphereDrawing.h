@@ -28,11 +28,12 @@ namespace Renderer {
         GlassSphereDrawing();
         ~GlassSphereDrawing();
         
+        void Draw(const Matrix4 &rProjectionMatrix) const;
+        
         PositionModelviewModifier *GetPositionModelviewModifier() const;
         
     protected:
         void Update(float interval);
-        void Draw(const Matrix4 &rProjectionMatrix) const;
         
     private:
         VertexBuffer *m_vertexBuffer;
