@@ -55,6 +55,8 @@
 		B479B0DA19324266006B1CF6 /* CubeMapCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B479B0D819324266006B1CF6 /* CubeMapCamera.cpp */; };
 		B47D229A18BA424F006A0386 /* TextureDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229818BA424F006A0386 /* TextureDrawing.cpp */; };
 		B47D229E18BA43DF006A0386 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47D229C18BA43DF006A0386 /* Texture.cpp */; };
+		B4908BB51997AA0000DD3D4B /* NormalTextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4908BB41997AA0000DD3D4B /* NormalTextureShader.vsh */; };
+		B4908BB71997AA0B00DD3D4B /* NormalTextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4908BB61997AA0B00DD3D4B /* NormalTextureShader.fsh */; };
 		B49BC2601923D556000C909B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B49BC25E1923D556000C909B /* Camera.cpp */; };
 		B4A1690B18C1FCEA0097F2D1 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1690918C1FCEA0097F2D1 /* Animation.cpp */; };
 		B4AC5D7E1896FB8B00FBE8D8 /* Renderbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC5D7C1896FB8B00FBE8D8 /* Renderbuffer.cpp */; };
@@ -201,6 +203,8 @@
 		B47D229918BA424F006A0386 /* TextureDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDrawing.h; sourceTree = "<group>"; };
 		B47D229C18BA43DF006A0386 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		B47D229D18BA43DF006A0386 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		B4908BB41997AA0000DD3D4B /* NormalTextureShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = NormalTextureShader.vsh; sourceTree = "<group>"; };
+		B4908BB61997AA0B00DD3D4B /* NormalTextureShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = NormalTextureShader.fsh; sourceTree = "<group>"; };
 		B4963F9518003B650037FC39 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		B49BC25E1923D556000C909B /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		B49BC25F1923D556000C909B /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
@@ -506,6 +510,8 @@
 				B429BEE0191652EA00DA2D3C /* TextureShader.fsh */,
 				B4D253761943490700A86E4B /* GlassShader.vsh */,
 				B4D253781943491200A86E4B /* GlassShader.fsh */,
+				B4908BB41997AA0000DD3D4B /* NormalTextureShader.vsh */,
+				B4908BB61997AA0B00DD3D4B /* NormalTextureShader.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -972,6 +978,8 @@
 				B429BEDF191652DD00DA2D3C /* TextureShader.vsh in Resources */,
 				B4D253771943490700A86E4B /* GlassShader.vsh in Resources */,
 				B429BEDA19150B6800DA2D3C /* Ukraine.jpg in Resources */,
+				B4908BB71997AA0B00DD3D4B /* NormalTextureShader.fsh in Resources */,
+				B4908BB51997AA0000DD3D4B /* NormalTextureShader.vsh in Resources */,
 				B4D64F80187F3D3E005E78AC /* PerspectiveShader.vsh in Resources */,
 				B4D64F81187F3D3E005E78AC /* PerspectiveShader.fsh in Resources */,
 				B4E0971E17DB671400F4A436 /* InfoPlist.strings in Resources */,
@@ -1144,13 +1152,13 @@
 		B4E0972E17DB671400F4A436 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Alpeev (N7NL4HM4W4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bill Campbell (P9TH4UDT54)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MentalGame/MentalGame-Prefix.pch";
 				INFOPLIST_FILE = "MentalGame/MentalGame-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A81B1492-1767-4D3B-8EB8-940D1FE20187";
+				PROVISIONING_PROFILE = "9CF6365D-D434-4171-865D-40F5018A7BF2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1159,13 +1167,13 @@
 		B4E0972F17DB671400F4A436 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Alpeev (N7NL4HM4W4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bill Campbell (P9TH4UDT54)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MentalGame/MentalGame-Prefix.pch";
 				INFOPLIST_FILE = "MentalGame/MentalGame-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A81B1492-1767-4D3B-8EB8-940D1FE20187";
+				PROVISIONING_PROFILE = "9CF6365D-D434-4171-865D-40F5018A7BF2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

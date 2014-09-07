@@ -18,8 +18,18 @@ namespace Renderer {
     class PositionModelviewModifier;
     class PositionNormalInitializer;
     class CubeMapUniformInitializer;
+    class ProjectionModelviewInitializer;
     class DrawRequest;
     class CubeMapCamera;
+    
+    
+    
+    enum class GlassSphereDrawingMode: short {
+        GlassSphereDrawingModeDefault,
+        GlassSphereDrawingModeFrontNormals,
+        GlassSphereDrawingModeBackNormals,
+        GlassSphereDrawingModeDepth
+    };
     
     
     
@@ -32,6 +42,9 @@ namespace Renderer {
         
         PositionModelviewModifier *GetPositionModelviewModifier() const;
         
+        void SetDrawingMode(GlassSphereDrawingMode mode);
+        GlassSphereDrawingMode GetDrawingMode() const;
+        
     protected:
         void Update(float interval);
         
@@ -39,9 +52,11 @@ namespace Renderer {
         VertexBuffer *m_vertexBuffer;
         IndexBuffer *m_indexBuffer;
         PositionNormalInitializer *m_attributeInitializer;
-        CubeMapUniformInitializer *m_uniformInitializer;
+        CubeMapUniformInitializer *m_cubemapUniformInitializer;
+        ProjectionModelviewInitializer *m_projectionModelviewInitializer;
         DrawRequest *m_drawRequest;
         PositionModelviewModifier *m_positionModifier;
         CubeMapCamera *m_cubeMapCamera;
+        GlassSphereDrawingMode m_drawingMode;
     };
 }

@@ -24,6 +24,7 @@ namespace Renderer {
         Program * GetPerspectiveProgram() const;
         Program * GetTextureProgram() const;
         Program * GetGlassProgram() const;
+        Program * GetNormalTextureProgram() const;
         
     private:
         ProgramContainer();
@@ -34,10 +35,12 @@ namespace Renderer {
         void LoadPerspectiveProgram();
         void LoadTextureProgram();
         void LoadGlassProgram();
+        void LoadNormalTextureProgram();
         
         Program *m_positionColorProgram;
         Program *m_perspectiveProgram;
         Program *m_textureProgram;
         Program *m_glassProgram;
+        Program *m_normalTextureProgram;
     };
 }

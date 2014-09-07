@@ -18,6 +18,7 @@ namespace Renderer {
         LoadPerspectiveProgram();
         LoadTextureProgram();
         LoadGlassProgram();
+        LoadNormalTextureProgram();
     }
     
     Program * ProgramContainer::GetPositionColorProgram() const {
@@ -34,6 +35,10 @@ namespace Renderer {
     
     Program * ProgramContainer::GetGlassProgram() const {
         return m_glassProgram;
+    }
+    
+    Program * ProgramContainer::GetNormalTextureProgram() const {
+        return m_normalTextureProgram;
     }
     
 #pragma mark - Private Methods
@@ -64,5 +69,12 @@ namespace Renderer {
         string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("GlassShader.fsh");
         
         m_glassProgram = new Program(vertexShaderSource, fragmentShaderSource);
+    }
+    
+    void ProgramContainer::LoadNormalTextureProgram() {
+        string vertexShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("NormalTextureShader.vsh");
+        string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("NormalTextureShader.fsh");
+        
+        m_normalTextureProgram = new Program(vertexShaderSource, fragmentShaderSource);
     }
 }

@@ -13,6 +13,7 @@
 #include "PositionModelviewModifier.h"
 #include "PositionNormalInitializer.h"
 #include "CubeMapUniformInitializer.h"
+#include "ProjectionModelviewInitializer.h"
 #include "ProgramContainer.h"
 #include "DrawRequest.h"
 #include "CubeMapCamera.h"
@@ -28,7 +29,7 @@ using namespace std;
 
 namespace Renderer {
     
-    GlassSphereDrawing::GlassSphereDrawing(): m_cubeMapCamera(nullptr) {
+    GlassSphereDrawing::GlassSphereDrawing(): m_cubeMapCamera(nullptr), m_drawingMode(GlassSphereDrawingMode::GlassSphereDrawingModeDefault) {
         vector<float> vertices;
         vector<unsigned short> indices;
         
@@ -46,11 +47,11 @@ namespace Renderer {
         SetModelviewModifier(m_positionModifier);
         
         m_attributeInitializer = new PositionNormalInitializer();
-        m_uniformInitializer = new CubeMapUniformInitializer();
+        m_cubemapUniformInitializer = new CubeMapUniformInitializer();
+        m_projectionModelviewInitializer = new ProjectionModelviewInitializer();
         
         m_drawRequest = new VertexBufferIndexBufferRequest(m_vertexBuffer, m_indexBuffer);
         m_drawRequest->SetAttributeInitializer(m_attributeInitializer);
-        m_drawRequest->SetUniformInitializer(m_uniformInitializer);
         m_drawRequest->SetRenderMode(RENDER_MODE_TRIANGLES);
         
         Projection projection(M_PI_2, 1.0f, 0.1f, 20.0f);
@@ -65,7 +66,8 @@ namespace Renderer {
         delete m_indexBuffer;
         delete m_positionModifier;
         delete m_attributeInitializer;
-        delete m_uniformInitializer;
+        delete m_cubemapUniformInitializer;
+        delete m_projectionModelviewInitializer;
         delete m_drawRequest;
         delete m_positionModifier;
         delete m_cubeMapCamera;
@@ -75,23 +77,54 @@ namespace Renderer {
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_CULL_FACE);
         RenderingEngine::SharedInstance().Enable(SERVER_CAPABILITY_DEPTH_TEST);
         
-        m_uniformInitializer->SetProjectionMatrix(rProjectionMatrix);
-        
-        if (m_cubeMapCamera) {
-            m_cubeMapCamera->GetTextureCubeMap()->Bind();
+        switch (m_drawingMode) {
+            case GlassSphereDrawingMode::GlassSphereDrawingModeDefault: {
+                m_drawRequest->SetUniformInitializer(m_cubemapUniformInitializer);
+                m_cubemapUniformInitializer->SetProjectionMatrix(rProjectionMatrix);
+                
+                if (m_cubeMapCamera) {
+                    m_cubeMapCamera->GetTextureCubeMap()->Bind();
+                }
+                
+                Program *program = ProgramContainer::SharedInstance().GetGlassProgram();
+                program->ExecuteDrawRequest(m_drawRequest);
+                break;
+            }
+            case GlassSphereDrawingMode::GlassSphereDrawingModeFrontNormals: {
+                m_drawRequest->SetUniformInitializer(m_projectionModelviewInitializer);
+                m_projectionModelviewInitializer->SetProjectionMatrix(rProjectionMatrix);
+                
+                Program *program = ProgramContainer::SharedInstance().GetNormalTextureProgram();
+                program->ExecuteDrawRequest(m_drawRequest);
+                break;
+            }
+            case GlassSphereDrawingMode::GlassSphereDrawingModeBackNormals: {
+                Program *program = ProgramContainer::SharedInstance().GetNormalTextureProgram();
+                program->ExecuteDrawRequest(m_drawRequest);
+                break;
+            }
+            case GlassSphereDrawingMode::GlassSphereDrawingModeDepth: {
+                break;
+            }
         }
-        
-        Program *program = ProgramContainer::SharedInstance().GetGlassProgram();
-        program->ExecuteDrawRequest(m_drawRequest);
     }
     
     PositionModelviewModifier * GlassSphereDrawing::GetPositionModelviewModifier() const {
         return m_positionModifier;
     }
     
+    void GlassSphereDrawing::SetDrawingMode(GlassSphereDrawingMode mode) {
+        m_drawingMode = mode;
+    }
+    
+    GlassSphereDrawingMode GlassSphereDrawing::GetDrawingMode() const {
+        return m_drawingMode;
+    }
+    
     void GlassSphereDrawing::Update(float interval) {
-        m_uniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
-        m_uniformInitializer->SetNormalMatrix(GetModelviewMatrix().ToMatrix3());
+        m_cubemapUniformInitializer->SetModelviewMatrix(GetModelviewMatrix());
+        m_cubemapUniformInitializer->SetNormalMatrix(GetModelviewMatrix().ToMatrix3());
+        m_projectionModelviewInitializer->SetModelviewMatrix(GetModelviewMatrix());
         
         Point3 position = GetPositionModelviewModifier()->GetPosition();
         m_cubeMapCamera->SetLookAt(position, Point3(position.x, position.y, -100.0f), Vector3(0.0f, 1.0f, 0.0f));

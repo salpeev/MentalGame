@@ -113,7 +113,9 @@ namespace Renderer {
         
         function<void (const Matrix4 &rProjectionMatrix)> drawingCallback = [this](const Matrix4 &rProjectionMatrix) {
             for (GlassSphereDrawing *glassSphereDrawing : m_glassDrawings) {
+                glassSphereDrawing->SetDrawingMode(GlassSphereDrawingMode::GlassSphereDrawingModeFrontNormals);
                 glassSphereDrawing->Draw(rProjectionMatrix);
+                glassSphereDrawing->SetDrawingMode(GlassSphereDrawingMode::GlassSphereDrawingModeDefault);
             }
         };
         m_frontNormalsDepthCamera->SetDrawingCallback(drawingCallback);
