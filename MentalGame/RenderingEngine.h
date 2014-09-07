@@ -43,8 +43,14 @@ namespace Renderer {
         void SetViewport(const Rect &rViewport) const;
         Rect GetViewport() const;
         
+        bool IsEnabled(SERVER_CAPABILITY serverCapability) const;
         void Enable(SERVER_CAPABILITY serverCapability) const;
         void Disable(SERVER_CAPABILITY serverCapability) const;
+        
+        void SetFrontFace(FRONT_FACE frontFace) const;
+        FRONT_FACE GetFrontFace() const;
+        void SetCullFace(CULL_FACE cullFace) const;
+        CULL_FACE GetCullFace() const;
         
         void Update(float interval) const;
         void Render() const;

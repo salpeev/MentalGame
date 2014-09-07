@@ -77,18 +77,52 @@ namespace Renderer {
         return viewport;
     }
     
+    bool RenderingEngine::IsEnabled(SERVER_CAPABILITY serverCapability) const {
+        bool isEnabled = glIsEnabled(serverCapability) == GLSL_TRUE;
+        CheckError();
+        return isEnabled;
+    }
+    
     void RenderingEngine::Enable(SERVER_CAPABILITY serverCapability) const {
-        if (glIsEnabled(serverCapability) == GLSL_FALSE) {
+        if (!IsEnabled(serverCapability)) {
             glEnable(serverCapability);
             CheckError();
         }
     }
     
     void RenderingEngine::Disable(SERVER_CAPABILITY serverCapability) const {
-        if (glIsEnabled(serverCapability) == GLSL_TRUE) {
+        if (IsEnabled(serverCapability)) {
             glDisable(serverCapability);
             CheckError();
         }
+    }
+    
+    void RenderingEngine::SetFrontFace(FRONT_FACE frontFace) const {
+        if (GetFrontFace() != frontFace) {
+            glFrontFace(frontFace);
+            CheckError();
+        }
+    }
+    
+    FRONT_FACE RenderingEngine::GetFrontFace() const {
+        GLint frontFace;
+        glGetIntegerv(GET_PARAMETER_FRONT_FACE, &frontFace);
+        CheckError();
+        return (FRONT_FACE)frontFace;
+    }
+    
+    void RenderingEngine::SetCullFace(CULL_FACE cullFace) const {
+        if (GetCullFace() != cullFace) {
+            glCullFace(cullFace);
+            CheckError();
+        }
+    }
+    
+    CULL_FACE RenderingEngine::GetCullFace() const {
+        GLint cullFace;
+        glGetIntegerv(GET_PARAMETER_CULL_FACE_MODE, &cullFace);
+        CheckError();
+        return (CULL_FACE)cullFace;
     }
     
     void RenderingEngine::Update(float interval) const {

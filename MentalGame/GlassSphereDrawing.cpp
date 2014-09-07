@@ -79,6 +79,8 @@ namespace Renderer {
         
         switch (m_drawingMode) {
             case GlassSphereDrawingMode::GlassSphereDrawingModeDefault: {
+                RenderingEngine::SharedInstance().SetCullFace(CULL_FACE_BACK);
+                
                 m_drawRequest->SetUniformInitializer(m_cubemapUniformInitializer);
                 m_cubemapUniformInitializer->SetProjectionMatrix(rProjectionMatrix);
                 
@@ -91,6 +93,8 @@ namespace Renderer {
                 break;
             }
             case GlassSphereDrawingMode::GlassSphereDrawingModeFrontNormals: {
+                RenderingEngine::SharedInstance().SetCullFace(CULL_FACE_BACK);
+                
                 m_drawRequest->SetUniformInitializer(m_projectionModelviewInitializer);
                 m_projectionModelviewInitializer->SetProjectionMatrix(rProjectionMatrix);
                 
@@ -99,6 +103,11 @@ namespace Renderer {
                 break;
             }
             case GlassSphereDrawingMode::GlassSphereDrawingModeBackNormals: {
+                RenderingEngine::SharedInstance().SetCullFace(CULL_FACE_FRONT);
+                
+                m_drawRequest->SetUniformInitializer(m_projectionModelviewInitializer);
+                m_projectionModelviewInitializer->SetProjectionMatrix(rProjectionMatrix);
+                
                 Program *program = ProgramContainer::SharedInstance().GetNormalTextureProgram();
                 program->ExecuteDrawRequest(m_drawRequest);
                 break;
@@ -107,6 +116,9 @@ namespace Renderer {
                 break;
             }
         }
+        
+        // TODO: should be improved. Probably state should be saved and restored. Or there is should be another way to implement this
+        RenderingEngine::SharedInstance().SetCullFace(CULL_FACE_BACK);
     }
     
     PositionModelviewModifier * GlassSphereDrawing::GetPositionModelviewModifier() const {
