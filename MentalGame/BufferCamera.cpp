@@ -47,4 +47,16 @@ namespace Renderer {
         delete m_depthRenderbuffer;
         delete m_stencilRenderbuffer;
     }
+    
+    Renderbuffer * BufferCamera::GetColorRenderbuffer() const {
+        return m_colorRenderbuffer;
+    }
+    
+    Renderbuffer * BufferCamera::GetDepthRenderbuffer() const {
+        return m_depthRenderbuffer;
+    }
+    
+    Renderbuffer * BufferCamera::GetStencilRenderbuffer() const {
+        return m_stencilRenderbuffer;
+    }
 }

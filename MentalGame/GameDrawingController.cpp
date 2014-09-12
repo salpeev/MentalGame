@@ -21,6 +21,7 @@
 #include "TextureCamera.h"
 #include "DepthRenderbufferComponent16.h"
 #include "RenderingEngine.h"
+#include "BufferCamera.h"
 
 
 
@@ -63,6 +64,8 @@ namespace Renderer {
         glassSphereDrawing4->GetPositionModelviewModifier()->SetPosition(Point3(0.0f, 0.0f, -7));
         GetDrawing()->AddSubDrawing(glassSphereDrawing4);
         
+        m_sceneDrawings.push_back(roomDrawing);
+        m_sceneDrawings.push_back(colorGlassDrawing);
         m_glassDrawings.push_back(glassSphereDrawing0);
         m_glassDrawings.push_back(glassSphereDrawing1);
         m_glassDrawings.push_back(glassSphereDrawing2);
@@ -78,6 +81,7 @@ namespace Renderer {
         delete m_photoMapIndexBuffer;
         delete m_frontNormalsDepthCamera;
         delete m_backNormalsDepthCamera;
+        delete m_sceneDepthCamera;
     }
     
     void GameDrawingController::WillDrawDrawing() {
@@ -125,7 +129,7 @@ namespace Renderer {
         RenderingEngine::SharedInstance().AddOffscreenCamera(m_frontNormalsDepthCamera);
         
         // Back normals camera
-        m_backNormalsDepthCamera = new TextureCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16, nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
+        m_backNormalsDepthCamera = new TextureCamera(CSize(512, 512), projection, new Framebuffer(), new DepthRenderbufferCompontent16(), nullptr, PIXEL_FORMAT_RGBA, PIXEL_TYPE_UBYTE);
         m_backNormalsDepthCamera->SetLookAt(Point3(1.0f, 1.0f, 0.0f), Point3(0.0f, 0.0f, -100.0f), Vector3(0.1f, 1.0f, 0.1f));
         function<void (const Matrix4 &rProjectionMatrix)> backNormalsDrawingCallback = [this](const Matrix4 &rProjectionMatrix) {
             for (GlassSphereDrawing *glassSphereDrawing : m_glassDrawings) {
@@ -136,6 +140,17 @@ namespace Renderer {
         };
         m_backNormalsDepthCamera->SetDrawingCallback(backNormalsDrawingCallback);
         RenderingEngine::SharedInstance().AddOffscreenCamera(m_backNormalsDepthCamera);
+        
+        // Scene depth camera
+        m_sceneDepthCamera = new BufferCamera(CSize(512, 512), projection, new Framebuffer(), nullptr, new DepthRenderbufferCompontent16(), nullptr);
+        m_sceneDepthCamera->SetLookAt(Point3(1.0f, 1.0f, 0.0f), Point3(0.0f, 0.0f, -100.0f), Vector3(0.1f, 1.0f, 0.1f));
+        function<void (const Matrix4 &rProjectionMatrix)> sceneDepthDrawingCallback = [this](const Matrix4 &rProjectionMatrix) {
+            for (DrawingComponent *sceneDrawing : m_sceneDrawings) {
+                sceneDrawing->Draw(rProjectionMatrix);
+            }
+        };
+        m_sceneDepthCamera->SetDrawingCallback(sceneDepthDrawingCallback);
+        RenderingEngine::SharedInstance().AddOffscreenCamera(m_sceneDepthCamera);
     }
 }
 

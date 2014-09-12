@@ -16,6 +16,7 @@ namespace Renderer {
     class VertexBuffer;
     class IndexBuffer;
     class TextureCamera;
+    class BufferCamera;
     
     
     
@@ -31,9 +32,11 @@ namespace Renderer {
         void CreateCameras();
         
         vector<GlassSphereDrawing *> m_glassDrawings;
+        vector<DrawingComponent *> m_sceneDrawings;
         VertexBuffer *m_photoMapVertexBuffer;
         IndexBuffer *m_photoMapIndexBuffer;
         TextureCamera *m_frontNormalsDepthCamera;
         TextureCamera *m_backNormalsDepthCamera;
+        BufferCamera *m_sceneDepthCamera;
     };
 }

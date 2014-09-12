@@ -203,6 +203,8 @@
 		B47D229918BA424F006A0386 /* TextureDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDrawing.h; sourceTree = "<group>"; };
 		B47D229C18BA43DF006A0386 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		B47D229D18BA43DF006A0386 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		B49087D319C367FC00AFD29D /* CausticTextureShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = CausticTextureShader.vsh; sourceTree = "<group>"; };
+		B49087D519C3680700AFD29D /* CausticTextureShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = CausticTextureShader.fsh; sourceTree = "<group>"; };
 		B4908BB41997AA0000DD3D4B /* NormalTextureShader.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = NormalTextureShader.vsh; sourceTree = "<group>"; };
 		B4908BB61997AA0B00DD3D4B /* NormalTextureShader.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = NormalTextureShader.fsh; sourceTree = "<group>"; };
 		B4963F9518003B650037FC39 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -512,6 +514,8 @@
 				B4D253781943491200A86E4B /* GlassShader.fsh */,
 				B4908BB41997AA0000DD3D4B /* NormalTextureShader.vsh */,
 				B4908BB61997AA0B00DD3D4B /* NormalTextureShader.fsh */,
+				B49087D319C367FC00AFD29D /* CausticTextureShader.vsh */,
+				B49087D519C3680700AFD29D /* CausticTextureShader.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";

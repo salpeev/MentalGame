@@ -20,6 +20,10 @@ namespace Renderer {
         BufferCamera(CSize resolution, const Projection &rProjection, Framebuffer *pFramebuffer, Renderbuffer *colorRenderbuffer, Renderbuffer *depthStencilRenderbuffer);
         ~BufferCamera();
         
+        Renderbuffer * GetColorRenderbuffer() const;
+        Renderbuffer * GetDepthRenderbuffer() const;
+        Renderbuffer * GetStencilRenderbuffer() const;
+        
     private:
         Renderbuffer *m_colorRenderbuffer;
         Renderbuffer *m_depthRenderbuffer;
