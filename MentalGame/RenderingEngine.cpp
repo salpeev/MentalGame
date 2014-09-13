@@ -19,6 +19,8 @@ namespace Renderer {
     // TODO: Size has default constructor, that initializes to 0. Is initialization required here?
     RenderingEngine::RenderingEngine(): m_drawingController(nullptr) {
         m_touches = new vector<Touch *>;
+        
+        PrintExtensions();
     }
     
     RenderingEngine::~RenderingEngine() {
@@ -215,6 +217,19 @@ namespace Renderer {
     }
     
 #pragma mark - Private Methods
+    
+    void RenderingEngine::PrintExtensions() const {
+        string extensions = (const char *)glGetString(GL_EXTENSIONS);
+        char *extensionStart = &extensions[0];
+        char **extension = &extensionStart;
+        Log("Supported OpenGL ES Extensions:");
+        
+        while(*extension) {
+            Log("\t%s", strsep(extension, " "));
+        }
+        
+        Log("");
+    }
     
     map<DrawingComponent *, vector<Touch *>> RenderingEngine::SortTouchesByDrawingComponent(vector<Touch *> &rTouches) const {
         map<DrawingComponent *, vector<Touch *>> sortedTouches;

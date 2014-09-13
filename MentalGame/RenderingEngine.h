@@ -69,6 +69,8 @@ namespace Renderer {
         ~RenderingEngine();
         RenderingEngine & operator= (const RenderingEngine &rRenderingEngine) = delete;
         
+        void PrintExtensions() const;
+        
         map<DrawingComponent *, vector<Touch *>> SortTouchesByDrawingComponent(vector<Touch *> &rTouches) const;
         void DrawWithCamera(Camera *pCamera) const;
         
