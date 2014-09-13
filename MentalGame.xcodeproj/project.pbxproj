@@ -30,6 +30,8 @@
 		B42E7F7C18D5C5320048515C /* GameDrawingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7A18D5C5320048515C /* GameDrawingController.cpp */; };
 		B42E7F7F18D5CD470048515C /* Touch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42E7F7D18D5CD470048515C /* Touch.cpp */; };
 		B443600B190CF5520094661D /* ScaleModelviewModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4436009190CF5520094661D /* ScaleModelviewModifier.cpp */; };
+		B445A1EF19C474300067505E /* CausticTextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B49087D319C367FC00AFD29D /* CausticTextureShader.vsh */; };
+		B445A1F019C474300067505E /* CausticTextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B49087D519C3680700AFD29D /* CausticTextureShader.fsh */; };
 		B455F7291932233400DD17EE /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = B455F7281932233400DD17EE /* globe.png */; };
 		B455F72B1932257500DD17EE /* cube_map_top.png in Resources */ = {isa = PBXBuildFile; fileRef = B455F72A1932257500DD17EE /* cube_map_top.png */; };
 		B457A15817F6D486004EF4E0 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B457A15617F6D486004EF4E0 /* Buffer.cpp */; };
@@ -975,6 +977,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B445A1EF19C474300067505E /* CausticTextureShader.vsh in Resources */,
+				B445A1F019C474300067505E /* CausticTextureShader.fsh in Resources */,
 				B429BEE1191652EA00DA2D3C /* TextureShader.fsh in Resources */,
 				B4D64F7E187F3D3D005E78AC /* PositionColorShader.vsh in Resources */,
 				B4D64F7F187F3D3E005E78AC /* PositionColorShader.fsh in Resources */,

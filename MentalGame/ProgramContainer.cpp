@@ -19,6 +19,7 @@ namespace Renderer {
         LoadTextureProgram();
         LoadGlassProgram();
         LoadNormalTextureProgram();
+        LoadCausticTextureProgram();
     }
     
     Program * ProgramContainer::GetPositionColorProgram() const {
@@ -39,6 +40,10 @@ namespace Renderer {
     
     Program * ProgramContainer::GetNormalTextureProgram() const {
         return m_normalTextureProgram;
+    }
+    
+    Program * ProgramContainer::GetCausticTextureProgram() const {
+        return m_causticTextureProgram;
     }
     
 #pragma mark - Private Methods
@@ -76,5 +81,12 @@ namespace Renderer {
         string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("NormalTextureShader.fsh");
         
         m_normalTextureProgram = new Program(vertexShaderSource, fragmentShaderSource);
+    }
+    
+    void ProgramContainer::LoadCausticTextureProgram() {
+        string vertexShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("CausticTextureShader.vsh");
+        string fragmentShaderSource = ResourceManager::SharedInstance().LoadTextFileNamed("CausticTextureShader.fsh");
+        
+        m_causticTextureProgram = new Program(vertexShaderSource, fragmentShaderSource);
     }
 }

@@ -25,6 +25,7 @@ namespace Renderer {
         Program * GetTextureProgram() const;
         Program * GetGlassProgram() const;
         Program * GetNormalTextureProgram() const;
+        Program * GetCausticTextureProgram() const;
         
     private:
         ProgramContainer();
@@ -36,11 +37,13 @@ namespace Renderer {
         void LoadTextureProgram();
         void LoadGlassProgram();
         void LoadNormalTextureProgram();
+        void LoadCausticTextureProgram();
         
         Program *m_positionColorProgram;
         Program *m_perspectiveProgram;
         Program *m_textureProgram;
         Program *m_glassProgram;
         Program *m_normalTextureProgram;
+        Program *m_causticTextureProgram;
     };
 }
