@@ -55,15 +55,6 @@ namespace Renderer {
         }
     }
     
-    void Framebuffer::BindAll() const {
-        Bind();
-        BindTexture2D();
-        BindTextureCubeMap();
-        BindColorRenderbuffer();
-        BindDepthRenderbuffer();
-        BindStencilRenderbuffer();
-    }
-    
     void Framebuffer::Clear() const {
         // TODO: Check is framebuffer should be bound. Is renderbuffers should be bound too?
         Bind();
@@ -165,36 +156,6 @@ namespace Renderer {
         CheckError();
         
         m_stencilRenderbuffer = pRenderbuffer;
-    }
-    
-    void Framebuffer::BindTexture2D() const {
-        if (m_texture2D) {
-            m_texture2D->Bind();
-        }
-    }
-    
-    void Framebuffer::BindTextureCubeMap() const {
-        if (m_textureCubeMap) {
-            m_textureCubeMap->Bind();
-        }
-    }
-    
-    void Framebuffer::BindColorRenderbuffer() const {
-        if (m_colorRenderbuffer) {
-            m_colorRenderbuffer->Bind();
-        }
-    }
-    
-    void Framebuffer::BindDepthRenderbuffer() const {
-        if (m_depthRenderbuffer) {
-            m_depthRenderbuffer->Bind();
-        }
-    }
-    
-    void Framebuffer::BindStencilRenderbuffer() const {
-        if (m_stencilRenderbuffer) {
-            m_stencilRenderbuffer->Bind();
-        }
     }
     
     void Framebuffer::DetachTexture2D() {

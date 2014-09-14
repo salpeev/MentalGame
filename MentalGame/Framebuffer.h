@@ -30,9 +30,7 @@ namespace Renderer {
         virtual void Resolve() const;
         virtual void Discard() const;
         
-        // TODO: Determine when Bind() and when BindAll() should be used.
         void Bind() const;
-        void BindAll() const;
         void Clear() const;
         void Clear(GLbitfield mask) const;
         
@@ -41,12 +39,6 @@ namespace Renderer {
         void AttachColorRenderbuffer(Renderbuffer *pRenderbuffer);
         void AttachDepthRenderbuffer(Renderbuffer *pRenderbuffer);
         void AttachStencilRenderbuffer(Renderbuffer *pRenderbuffer);
-        
-        void BindTexture2D() const;
-        void BindTextureCubeMap() const;
-        void BindColorRenderbuffer() const;
-        void BindDepthRenderbuffer() const;
-        void BindStencilRenderbuffer() const;
         
         void DetachTexture2D();
         void DetachTextureCubeMap(TEXTURE_CUBE_MAP_SIDE side);

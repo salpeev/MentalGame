@@ -60,7 +60,7 @@ namespace Renderer {
     void Camera::Record() {
         PrepareForRecord();
         
-        m_framebuffer->BindAll();
+        m_framebuffer->Bind();
         m_framebuffer->Clear();
         
         if (m_drawingCallback) {
