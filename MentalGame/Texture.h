@@ -15,7 +15,6 @@
 
 namespace Renderer {
     
-    // TODO: Hint, generate mipmap
     class Texture {
     public:
         Texture();
@@ -38,8 +37,6 @@ namespace Renderer {
         TEX_MAG_FILTER GetMagFilter() const;
         TEX_WRAP GetWrapS() const;
         TEX_WRAP GetWrapT() const;
-        
-        void GenerateMipMap() const;
         
         GLuint GetTextureHandle() const;
         
